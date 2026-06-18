@@ -549,18 +549,188 @@ function Methode() {
   )
 }
 
+/* ─── Simulateur de devis ────────────────────────────────────── */
+function Simulateur({ onDevis }) {
+  const [siteType, setSiteType] = useState('vitrine')
+  const [maintenance, setMaintenance] = useState('essentiel')
+  const [photo, setPhoto] = useState(false)
+
+  const sitePrice = siteType === 'vitrine' ? 299 : 499
+  const maintPrice = maintenance === 'essentiel' ? 19 : 35
+  const photoPrice = photo ? 40 : 0
+  const totalCreation = sitePrice + photoPrice
+
+  const siteLabel = siteType === 'vitrine' ? 'Site Vitrine' : 'Site Complet'
+  const maintLabel = maintenance === 'essentiel' ? 'Maintenance Essentielle' : 'Maintenance Sérénité'
+
+  const handleDevis = () => {
+    const recap = `${siteLabel} (${sitePrice}€)${photo ? ` + Séance photo (40€)` : ''} + ${maintLabel} (${maintPrice}€/mois)`
+    onDevis(recap)
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  const OptionBtn = ({ selected, onClick, children }) => (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`flex-1 py-3.5 px-4 rounded-xl border text-sm font-medium transition-all ${
+        selected
+          ? 'bg-[#090428] text-white border-[#090428]'
+          : 'bg-white text-[#4A4465] border-gray-200 hover:border-[#C4A26A]/50'
+      }`}
+    >
+      {children}
+    </button>
+  )
+
+  return (
+    <section className="py-28 px-6 bg-[#F8F5F0]">
+      <div className="max-w-4xl mx-auto">
+        <div className="mb-12">
+          <p className="text-xs tracking-widest uppercase text-[#C4A26A] mb-3">Simulateur</p>
+          <h2 className="text-4xl md:text-5xl font-light tracking-tight text-[#090428]">
+            Estimez votre<br />
+            <span className="font-semibold">projet en 30 secondes</span>
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8 items-start">
+          {/* Options */}
+          <div className="space-y-7">
+            {/* Type de site */}
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-[#4A4465]/50 mb-3">
+                01 — Type de site
+              </p>
+              <div className="flex gap-3">
+                <OptionBtn selected={siteType === 'vitrine'} onClick={() => setSiteType('vitrine')}>
+                  Site Vitrine — 299€
+                </OptionBtn>
+                <OptionBtn selected={siteType === 'complet'} onClick={() => setSiteType('complet')}>
+                  Site Complet — 499€
+                </OptionBtn>
+              </div>
+            </div>
+
+            {/* Maintenance */}
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-[#4A4465]/50 mb-3">
+                02 — Maintenance mensuelle
+              </p>
+              <div className="flex gap-3">
+                <OptionBtn selected={maintenance === 'essentiel'} onClick={() => setMaintenance('essentiel')}>
+                  Essentielle — 19€/mois
+                </OptionBtn>
+                <OptionBtn selected={maintenance === 'serenite'} onClick={() => setMaintenance('serenite')}>
+                  Sérénité — 35€/mois
+                </OptionBtn>
+              </div>
+            </div>
+
+            {/* Séance photo */}
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-[#4A4465]/50 mb-3">
+                03 — Option séance photo
+              </p>
+              <label className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all ${
+                photo ? 'bg-[#090428] border-[#090428]' : 'bg-white border-gray-200 hover:border-[#C4A26A]/50'
+              }`}>
+                <div className={`w-5 h-5 rounded border-2 flex items-center justify-center shrink-0 transition-all ${
+                  photo ? 'bg-[#C4A26A] border-[#C4A26A]' : 'border-gray-300'
+                }`}>
+                  {photo && (
+                    <svg className="w-3 h-3 text-white" viewBox="0 0 12 12" fill="none">
+                      <path d="M2 6l2.5 2.5L10 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  )}
+                </div>
+                <input type="checkbox" className="sr-only" checked={photo} onChange={(e) => setPhoto(e.target.checked)} />
+                <div>
+                  <p className={`text-sm font-medium ${photo ? 'text-white' : 'text-[#090428]'}`}>
+                    Séance photo professionnelle
+                  </p>
+                  <p className={`text-xs mt-0.5 ${photo ? 'text-white/60' : 'text-[#4A4465]/60'}`}>
+                    Photos de votre activité pour illustrer le site — +40€
+                  </p>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          {/* Récapitulatif */}
+          <div className="bg-[#090428] rounded-2xl p-8 text-white sticky top-20">
+            <p className="text-xs tracking-widest uppercase text-[#C4A26A]/80 mb-6">Récapitulatif</p>
+
+            <ul className="space-y-3 mb-6">
+              <li className="flex justify-between text-sm">
+                <span className="text-white/70">{siteLabel}</span>
+                <span className="font-medium">{sitePrice}€</span>
+              </li>
+              {photo && (
+                <li className="flex justify-between text-sm">
+                  <span className="text-white/70">Séance photo</span>
+                  <span className="font-medium">40€</span>
+                </li>
+              )}
+              <li className="pt-3 border-t border-white/10 flex justify-between text-sm">
+                <span className="text-white/70">{maintLabel}</span>
+                <span className="font-medium">{maintPrice}€/mois</span>
+              </li>
+            </ul>
+
+            <div className="border-t border-[#C4A26A]/20 pt-5 space-y-2 mb-8">
+              <div className="flex justify-between items-baseline">
+                <span className="text-sm text-white/50">Total création</span>
+                <span className="text-3xl font-semibold text-[#C4A26A]">{totalCreation}€</span>
+              </div>
+              <div className="flex justify-between items-baseline">
+                <span className="text-sm text-white/50">Puis chaque mois</span>
+                <span className="text-lg font-medium">{maintPrice}€</span>
+              </div>
+            </div>
+
+            <button
+              onClick={handleDevis}
+              className="w-full bg-[#C4A26A] text-white text-sm font-medium py-4 rounded-xl hover:bg-[#C4A26A]/85 transition-colors"
+            >
+              Demander ce devis →
+            </button>
+            <p className="text-xs text-white/30 text-center mt-3">Gratuit · Sans engagement</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 /* ─── Contact ────────────────────────────────────────────────── */
-function Contact() {
+function Contact({ prefillMessage }) {
   const [form, setForm] = useState({ name: '', email: '', tel: '', message: '' })
   const [sent, setSent] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
+
+  useEffect(() => {
+    if (prefillMessage) {
+      setForm((f) => ({ ...f, message: prefillMessage }))
+    }
+  }, [prefillMessage])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
     setError(false)
     try {
+      // ── Option Formspree ────────────────────────────────────────
+      // Remplace l'URL ci-dessous par ton endpoint Formspree
+      // (ex: https://formspree.io/f/XXXXXXXX) puis supprime emailjs.
+      // const res = await fetch('https://formspree.io/f/PLACEHOLDER', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ name: form.name, email: form.email, tel: form.tel, message: form.message }),
+      // })
+      // if (!res.ok) throw new Error()
+      // ── Option EmailJS (active) ─────────────────────────────────
       await emailjs.send(
         'service_bp6mu9b',
         'template_tssg0zr',
@@ -697,6 +867,8 @@ function Footer() {
 
 /* ─── App ────────────────────────────────────────────────────── */
 export default function App() {
+  const [prefillMessage, setPrefillMessage] = useState('')
+
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -706,7 +878,8 @@ export default function App() {
       <Tarifs />
       <Apropos />
       <Methode />
-      <Contact />
+      <Simulateur onDevis={setPrefillMessage} />
+      <Contact prefillMessage={prefillMessage} />
       <Footer />
     </div>
   )
