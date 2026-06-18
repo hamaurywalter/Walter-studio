@@ -102,7 +102,7 @@ function Navbar() {
 /* ─── Hero ───────────────────────────────────────────────────── */
 function Hero() {
   return (
-    <section className="min-h-screen flex flex-col justify-center bg-[#090428] text-white px-6 pt-24 pb-24">
+    <section className="min-h-screen flex flex-col justify-center bg-[#090428] text-white px-6 pt-48 md:pt-28 pb-24">
       <div className="max-w-5xl mx-auto w-full">
         <p className="text-sm tracking-widest uppercase text-[#C4A26A]/80 mb-8">
           Web design · Rennes & alentours
