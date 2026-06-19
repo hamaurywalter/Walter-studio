@@ -217,22 +217,29 @@ function Services() {
   const services = [
     {
       num: '01',
-      title: 'Site Vitrine',
-      desc: 'Une page élégante pour présenter votre activité, vos services et vos coordonnées.',
-      features: ['Page unique', 'Design sur-mesure', 'Mobile first'],
+      title: 'Essentiel',
+      price: '299€',
+      delay: 'Livré en 5 jours',
+      desc: 'L\'essentiel pour être visible en ligne rapidement.',
+      features: ['Site one-page', 'Jusqu\'à 3 sections', 'Design responsive', '1 série de retouches'],
     },
     {
       num: '02',
-      title: 'Site Complet',
-      desc: 'Un site multi-pages pour développer votre présence et présenter votre univers.',
-      features: ['3 à 5 pages', 'Galerie photo', 'SEO de base'],
+      title: 'Pro',
+      price: '590€',
+      delay: 'Livré en 2 semaines',
+      desc: 'La formule complète pour une présence professionnelle.',
+      features: ['Jusqu\'à 6 sections au choix', 'Formulaire de contact', 'Référencement Google de base', '2 séries de retouches'],
       highlight: true,
+      badge: 'Le plus demandé',
     },
     {
       num: '03',
-      title: 'Maintenance',
-      desc: "Je m'occupe des mises à jour pour que votre site reste à jour et performant.",
-      features: ['Mises à jour', 'Modifications', 'Support'],
+      title: 'Premium',
+      price: '990€',
+      delay: 'Livré en 2-3 semaines',
+      desc: 'La solution sur-mesure sans compromis.',
+      features: ['Sections illimitées', 'Prise de RDV en ligne', 'Référencement avancé', '3 mois de maintenance offerts'],
     },
   ]
 
@@ -251,23 +258,27 @@ function Services() {
           {services.map((s) => (
             <div
               key={s.num}
-              className={`p-8 rounded-2xl border transition-colors ${
+              className={`relative p-8 rounded-2xl border transition-colors ${
                 s.highlight
                   ? 'bg-white text-[#090428] border-white'
                   : 'bg-white/5 text-white border-white/10 hover:border-[#C4A26A]/30'
               }`}
             >
-              <p className={`text-xs tracking-widest font-medium mb-6 ${s.highlight ? 'text-[#C4A26A]' : 'text-[#C4A26A]/60'}`}>
+              {s.badge && (
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-xs bg-[#C4A26A] text-white px-4 py-1 rounded-full whitespace-nowrap font-medium">
+                  {s.badge}
+                </span>
+              )}
+              <p className={`text-xs tracking-widest font-medium mb-4 ${s.highlight ? 'text-[#C4A26A]' : 'text-[#C4A26A]/60'}`}>
                 {s.num}
               </p>
-              <h3 className="text-xl font-semibold mb-3">{s.title}</h3>
-              <p className={`text-sm leading-relaxed mb-8 ${s.highlight ? 'text-[#4A4465]/80' : 'text-white/50'}`}>
-                {s.desc}
-              </p>
+              <h3 className="text-xl font-semibold mb-1">{s.title}</h3>
+              <p className={`text-2xl font-light mb-1 ${s.highlight ? 'text-[#C4A26A]' : 'text-[#C4A26A]'}`}>{s.price}</p>
+              <p className={`text-xs italic mb-6 ${s.highlight ? 'text-[#4A4465]/50' : 'text-white/40'}`}>{s.delay}</p>
               <ul className="space-y-2">
                 {s.features.map((f) => (
                   <li key={f} className="flex items-center gap-2 text-sm">
-                    <span className={`w-1 h-1 rounded-full ${s.highlight ? 'bg-[#C4A26A]' : 'bg-[#C4A26A]/50'}`} />
+                    <span className="w-1 h-1 rounded-full bg-[#C4A26A]/60" />
                     <span className={s.highlight ? 'text-[#4A4465]' : 'text-white/70'}>{f}</span>
                   </li>
                 ))}
@@ -293,25 +304,39 @@ function Services() {
 function Tarifs() {
   const creation = [
     {
-      title: 'Vitrine Solo',
+      title: 'Essentiel',
       price: '299€',
+      delay: 'Livré en 5 jours',
       popular: false,
       features: [
-        'Site 1 – 2 pages',
-        'Design professionnel',
-        'Intégration prise de RDV',
-        'Optimisé mobile',
+        'Site one-page',
+        'Jusqu\'à 3 sections',
+        'Design responsive',
+        '1 série de retouches',
       ],
     },
     {
-      title: 'Site Complet',
-      price: '499€',
+      title: 'Pro',
+      price: '590€',
+      delay: 'Livré en 2 semaines',
       popular: true,
       features: [
-        '3 à 5 pages',
-        'Galerie photo',
+        'Jusqu\'à 6 sections au choix',
         'Formulaire de contact',
-        'Optimisation SEO de base',
+        'Référencement Google de base',
+        '2 séries de retouches',
+      ],
+    },
+    {
+      title: 'Premium',
+      price: '990€',
+      delay: 'Livré en 2-3 semaines',
+      popular: false,
+      features: [
+        'Sections illimitées',
+        'Prise de RDV en ligne',
+        'Référencement avancé',
+        '3 mois de maintenance offerts',
       ],
     },
   ]
@@ -341,7 +366,7 @@ function Tarifs() {
         </div>
 
         <p className="text-xs tracking-widest uppercase text-[#4A4465]/50 mb-6">01 — Création</p>
-        <div className="grid sm:grid-cols-2 gap-6 mb-6">
+        <div className="grid sm:grid-cols-3 gap-6 mb-6">
           {creation.map((p) => (
             <div
               key={p.title}
@@ -352,21 +377,22 @@ function Tarifs() {
               }`}
             >
               {p.popular && (
-                <span className="absolute top-6 right-6 text-xs bg-[#C4A26A] text-white px-3 py-1 rounded-full font-medium">
-                  Populaire
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-xs bg-[#C4A26A] text-white px-4 py-1 rounded-full whitespace-nowrap font-medium">
+                  Le plus demandé
                 </span>
               )}
-              <h3 className={`text-xl font-semibold mb-2 ${!p.popular && 'text-[#090428]'}`}>
+              <h3 className={`text-xl font-semibold mb-1 ${!p.popular && 'text-[#090428]'}`}>
                 {p.title}
               </h3>
-              <p className={`text-4xl font-light mb-8 ${p.popular ? 'text-[#C4A26A]' : 'text-[#090428]'}`}>
+              <p className="text-xs italic mb-4 text-[#4A4465]/50">{p.delay}</p>
+              <p className={`text-4xl font-light mb-8 ${p.popular ? 'text-[#C4A26A]' : 'text-[#C4A26A]'}`}>
                 {p.price}
               </p>
               <ul className="space-y-3">
                 {p.features.map((f) => (
                   <li key={f} className="flex items-start gap-3 text-sm">
                     <svg
-                      className={`w-4 h-4 mt-0.5 shrink-0 ${p.popular ? 'text-[#C4A26A]' : 'text-[#C4A26A]'}`}
+                      className="w-4 h-4 mt-0.5 shrink-0 text-[#C4A26A]"
                       viewBox="0 0 16 16" fill="none"
                     >
                       <path d="M3 8l3.5 3.5L13 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -382,7 +408,7 @@ function Tarifs() {
         <div className="bg-white rounded-xl px-6 py-4 text-sm text-[#4A4465]/70 mb-16 text-center border border-[#C4A26A]/20">
           <span className="text-[#C4A26A]">✦</span>{' '}
           Domaine personnalisé et mise en ligne{' '}
-          <strong className="text-[#090428]">offerts</strong> pour les deux offres
+          <strong className="text-[#090428]">offerts</strong> pour toutes les formules
         </div>
 
         <p className="text-xs tracking-widest uppercase text-[#4A4465]/50 mb-6">02 — Maintenance mensuelle</p>
@@ -551,17 +577,21 @@ function Methode() {
 
 /* ─── Simulateur de devis ────────────────────────────────────── */
 function Simulateur({ onDevis }) {
-  const [siteType, setSiteType] = useState('vitrine')
+  const [siteType, setSiteType] = useState('essentiel')
   const [maintenance, setMaintenance] = useState('essentiel')
   const [photo, setPhoto] = useState(false)
 
-  const sitePrice = siteType === 'vitrine' ? 299 : 499
+  const siteOptions = {
+    essentiel: { label: 'Essentiel', price: 299 },
+    pro:       { label: 'Pro',       price: 590 },
+    premium:   { label: 'Premium',   price: 990 },
+  }
+  const sitePrice = siteOptions[siteType].price
+  const siteLabel = siteOptions[siteType].label
   const maintPrice = maintenance === 'essentiel' ? 19 : 35
+  const maintLabel = maintenance === 'essentiel' ? 'Maintenance Essentielle' : 'Maintenance Sérénité'
   const photoPrice = photo ? 40 : 0
   const totalCreation = sitePrice + photoPrice
-
-  const siteLabel = siteType === 'vitrine' ? 'Site Vitrine' : 'Site Complet'
-  const maintLabel = maintenance === 'essentiel' ? 'Maintenance Essentielle' : 'Maintenance Sérénité'
 
   const handleDevis = () => {
     const recap = `${siteLabel} (${sitePrice}€)${photo ? ` + Séance photo (40€)` : ''} + ${maintLabel} (${maintPrice}€/mois)`
@@ -602,12 +632,15 @@ function Simulateur({ onDevis }) {
               <p className="text-xs font-semibold uppercase tracking-widest text-[#4A4465]/50 mb-3">
                 01 — Type de site
               </p>
-              <div className="flex gap-3">
-                <OptionBtn selected={siteType === 'vitrine'} onClick={() => setSiteType('vitrine')}>
-                  Site Vitrine — 299€
+              <div className="flex flex-col sm:flex-row gap-3">
+                <OptionBtn selected={siteType === 'essentiel'} onClick={() => setSiteType('essentiel')}>
+                  Essentiel — 299€
                 </OptionBtn>
-                <OptionBtn selected={siteType === 'complet'} onClick={() => setSiteType('complet')}>
-                  Site Complet — 499€
+                <OptionBtn selected={siteType === 'pro'} onClick={() => setSiteType('pro')}>
+                  Pro — 590€
+                </OptionBtn>
+                <OptionBtn selected={siteType === 'premium'} onClick={() => setSiteType('premium')}>
+                  Premium — 990€
                 </OptionBtn>
               </div>
             </div>
