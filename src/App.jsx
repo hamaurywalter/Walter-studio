@@ -1,96 +1,86 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import emailjs from '@emailjs/browser'
 
-/*
-  Palette :
-  #090428 — bleu nuit (fond sombre, textes forts)
-  #ffffff — blanc (fond clair, textes sur fond sombre)
-  #F8F5F0 — crème chaud (sections claires intermédiaires)
-  #C4A26A — or doux (accents, numéros, badges, highlights)
-  #4A4465 — violet nuit (textes secondaires sur fond blanc)
-*/
-
-/* ─── Navbar ─────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════════════════════════ */
 function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', onScroll)
+    const onScroll = () => setScrolled(window.scrollY > 60)
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   const links = [
     { href: '#realisations', label: 'Réalisations' },
-    { href: '#services', label: 'Services' },
-    { href: '#tarifs', label: 'Tarifs' },
-    { href: '#apropos', label: 'À propos' },
-    { href: '#contact', label: 'Contact' },
+    { href: '#services',     label: 'Services'     },
+    { href: '#tarifs',       label: 'Tarifs'       },
+    { href: '#apropos',      label: 'À propos'     },
+    { href: '#contact',      label: 'Contact'      },
   ]
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/95 backdrop-blur border-b border-[#F8F5F0] shadow-sm' : 'bg-transparent'
-      }`}
-    >
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      scrolled ? 'bg-white/96 backdrop-blur-sm border-b border-craie shadow-sm' : 'bg-transparent'
+    }`}>
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+
+        {/* Logo */}
         <a href="#">
           <img
             src="/logoWS.png"
             alt="WALTER Studio"
-            className={`w-auto transition-all duration-300 ${scrolled ? 'h-11' : 'h-40'}`}
+            className={`w-auto transition-all duration-300 ${scrolled ? 'h-10' : 'h-36'}`}
           />
         </a>
 
+        {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-sm text-[#4A4465]/70 hover:text-[#090428] transition-colors"
-            >
+          {links.map(l => (
+            <a key={l.href} href={l.href}
+              className={`nav-link text-sm transition-colors ${
+                scrolled ? 'text-minuit/60 hover:text-minuit' : 'text-white/60 hover:text-white'
+              }`}>
               {l.label}
             </a>
           ))}
         </nav>
 
-        <a
-          href="#contact"
-          className="hidden md:inline-flex items-center gap-2 bg-[#090428] text-white text-sm px-5 py-2.5 rounded-full hover:bg-[#090428]/85 transition-colors"
-        >
+        <a href="#contact"
+          className="hidden md:inline-flex items-center gap-2 bg-laiton text-minuit text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-laiton/80 transition-colors">
           Devis gratuit
         </a>
 
-        <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Menu"
-        >
-          <span className={`block w-6 h-0.5 bg-[#090428] transition-all ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-          <span className={`block w-6 h-0.5 bg-[#090428] transition-all ${menuOpen ? 'opacity-0' : ''}`} />
-          <span className={`block w-6 h-0.5 bg-[#090428] transition-all ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+        {/* Burger mobile */}
+        <button className="md:hidden p-2" onClick={() => setMenuOpen(true)} aria-label="Ouvrir le menu">
+          <span className={`block w-6 h-0.5 mb-1.5 ${scrolled ? 'bg-minuit' : 'bg-white'}`} />
+          <span className={`block w-6 h-0.5 mb-1.5 ${scrolled ? 'bg-minuit' : 'bg-white'}`} />
+          <span className={`block w-4 h-0.5 ${scrolled ? 'bg-minuit' : 'bg-white'}`} />
         </button>
       </div>
 
+      {/* Mobile overlay plein écran */}
       {menuOpen && (
-        <div className="md:hidden bg-white border-t border-[#F8F5F0] px-6 py-6 flex flex-col gap-5">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-base text-[#4A4465] hover:text-[#090428]"
-              onClick={() => setMenuOpen(false)}
-            >
-              {l.label}
-            </a>
-          ))}
-          <a
-            href="#contact"
-            className="inline-flex justify-center bg-[#090428] text-white text-sm px-5 py-3 rounded-full mt-2"
+        <div className="md:hidden fixed inset-0 bg-minuit z-[100] flex flex-col px-8 py-10">
+          <button
+            className="absolute top-6 right-6 text-white/50 hover:text-white text-3xl leading-none"
             onClick={() => setMenuOpen(false)}
-          >
+            aria-label="Fermer">✕</button>
+          <nav className="flex flex-col gap-8 mt-20">
+            {links.map(l => (
+              <a key={l.href} href={l.href}
+                className="font-display text-4xl font-bold text-white hover:text-laiton transition-colors"
+                onClick={() => setMenuOpen(false)}>
+                {l.label}
+              </a>
+            ))}
+          </nav>
+          <a href="#contact"
+            className="mt-auto inline-flex justify-center bg-laiton text-minuit font-semibold px-6 py-4 rounded-full"
+            onClick={() => setMenuOpen(false)}>
             Devis gratuit
           </a>
         </div>
@@ -99,47 +89,110 @@ function Navbar() {
   )
 }
 
-/* ─── Hero ───────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════
+   HERO — typewriter + ticker + entrée orchestrée
+═══════════════════════════════════════════════════════════════ */
 function Hero() {
+  const professions = [
+    'boulangerie', 'salon de coiffure', 'cabinet de kiné',
+    'restaurant', 'plomberie', 'menuiserie',
+  ]
+  const [profIdx,    setProfIdx]    = useState(0)
+  const [typed,      setTyped]      = useState('')
+  const [typePhase,  setTypePhase]  = useState('typing')
+  const [typeOn,     setTypeOn]     = useState(false)
+  const [show, setShow] = useState({ ticker: false, title: false, body: false, ctas: false })
+  const timerRef = useRef(null)
+
+  const reduced = typeof window !== 'undefined'
+    && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  /* Séquence d'entrée */
+  useEffect(() => {
+    if (reduced) {
+      setShow({ ticker: true, title: true, body: true, ctas: true })
+      setTypeOn(true)
+      setTyped('site web')
+      return
+    }
+    const t1 = setTimeout(() => setShow(s => ({ ...s, ticker: true  })), 150)
+    const t2 = setTimeout(() => setShow(s => ({ ...s, title:  true  })), 320)
+    const t3 = setTimeout(() => setShow(s => ({ ...s, body:   true  })), 480)
+    const t4 = setTimeout(() => { setShow(s => ({ ...s, ctas: true })); setTypeOn(true) }, 680)
+    return () => [t1, t2, t3, t4].forEach(clearTimeout)
+  }, [])
+
+  /* Boucle typewriter */
+  useEffect(() => {
+    if (!typeOn || reduced) return
+    const prof = professions[profIdx]
+    if (typePhase === 'typing') {
+      if (typed.length < prof.length) {
+        timerRef.current = setTimeout(() => setTyped(prof.slice(0, typed.length + 1)), 85)
+      } else {
+        timerRef.current = setTimeout(() => setTypePhase('pausing'), 2000)
+      }
+    } else if (typePhase === 'pausing') {
+      timerRef.current = setTimeout(() => setTypePhase('deleting'), 100)
+    } else {
+      if (typed.length > 0) {
+        timerRef.current = setTimeout(() => setTyped(typed.slice(0, -1)), 45)
+      } else {
+        setProfIdx(i => (i + 1) % professions.length)
+        setTypePhase('typing')
+      }
+    }
+    return () => clearTimeout(timerRef.current)
+  }, [typeOn, typed, typePhase, profIdx, reduced])
+
+  const TICKER = 'BOULANGERIES · PLOMBIERS · KINÉSITHÉRAPEUTES · COIFFEURS · RESTAURATEURS · ARTISANS DU BÂTIMENT · PHOTOGRAPHES · AVOCATS · OSTÉOPATHES · ARCHITECTES · '
+
   return (
-    <section className="min-h-screen flex flex-col justify-center bg-[#090428] text-white px-6 pt-48 md:pt-28 pb-24">
-      <div className="max-w-5xl mx-auto w-full">
-        <p className="text-sm tracking-widest uppercase text-[#C4A26A]/80 mb-8">
-          Web design · Rennes & alentours
-        </p>
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-light leading-[1.05] tracking-tight mb-8">
-          Votre site web.<br />
-          <span className="font-semibold">Livré en 2 semaines.</span>
-        </h1>
-        <p className="text-lg md:text-xl text-white/60 max-w-xl mb-12 leading-relaxed">
-          Je crée des sites internet sur-mesure pour les artisans et professionnels
-          locaux. Conçus avec l'IA, livrés vite, à un prix juste.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4">
-          <a
-            href="#contact"
-            className="inline-flex items-center justify-center gap-2 bg-white text-[#090428] px-8 py-4 rounded-full text-sm font-medium hover:bg-[#F8F5F0] transition-colors"
-          >
-            Demander un devis gratuit
-          </a>
-          <a
-            href="#realisations"
-            className="inline-flex items-center justify-center gap-2 border border-[#C4A26A]/40 text-white px-8 py-4 rounded-full text-sm hover:border-[#C4A26A] transition-colors"
-          >
-            Voir les réalisations
-          </a>
+    <section className="min-h-screen flex flex-col bg-minuit text-white">
+      {/* Contenu principal */}
+      <div className="flex-1 flex flex-col justify-center max-w-5xl mx-auto w-full px-6 pt-52 md:pt-36 pb-16">
+
+        {/* H1 typewriter */}
+        <div className={`transition-all duration-700 ${show.title ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <h1 className="font-display font-bold leading-[1.0] tracking-tight mb-4">
+            <span className="text-4xl md:text-6xl lg:text-7xl text-white/35">Votre </span>
+            <span className="text-4xl md:text-6xl lg:text-7xl text-white">{typed}</span>
+            <span className="tw-cursor" style={{ height: '0.85em' }} aria-hidden="true" />
+            <br />
+            <span className="text-4xl md:text-6xl lg:text-7xl text-laiton">
+              vient d'apparaître en ligne.
+            </span>
+          </h1>
         </div>
 
-        <div className="mt-20 pt-10 border-t border-[#C4A26A]/20 grid grid-cols-3 gap-8 max-w-md">
-          {[
-            { value: '< 2 sem.', label: 'Délai de livraison' },
-            { value: '299€', label: 'À partir de' },
-            { value: '100%', label: 'Sur-mesure' },
-          ].map((s) => (
-            <div key={s.label}>
-              <p className="text-2xl md:text-3xl font-semibold text-[#C4A26A]">{s.value}</p>
-              <p className="text-xs text-white/40 mt-1">{s.label}</p>
-            </div>
+        {/* Paragraphe thèse */}
+        <div className={`transition-all duration-700 ${show.body ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <p className="text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed mb-10">
+            Les professionnels locaux perdent des clients chaque jour parce qu'ils sont introuvables sur Google.
+            Je règle ça en 2 semaines, à partir de 299€ — sans agence, sans intermédiaire.
+          </p>
+        </div>
+
+        {/* CTAs */}
+        <div className={`flex flex-col sm:flex-row gap-4 transition-all duration-700 ${show.ctas ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <a href="#contact"
+            className="inline-flex items-center justify-center gap-2 bg-laiton text-minuit px-8 py-4 rounded-full text-sm font-semibold hover:bg-laiton/80 transition-colors">
+            Obtenir mon site →
+          </a>
+          <a href="#realisations"
+            className="inline-flex items-center justify-center gap-2 border border-white/20 text-white px-8 py-4 rounded-full text-sm hover:border-laiton/60 transition-colors">
+            Voir un exemple
+          </a>
+        </div>
+      </div>
+
+      {/* Ticker */}
+      <div className={`border-t border-brume/20 overflow-hidden transition-all duration-700 ${show.ticker ? 'opacity-100' : 'opacity-0'}`}>
+        <div className="ticker-track py-4" aria-hidden="true">
+          {[0, 1].map(i => (
+            <span key={i} className="font-util text-xs tracking-[0.25em] text-brume/40 whitespace-nowrap">
+              {TICKER}
+            </span>
           ))}
         </div>
       </div>
@@ -147,139 +200,148 @@ function Hero() {
   )
 }
 
-/* ─── Réalisations ───────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════
+   RÉALISATIONS — browser chrome mockup
+═══════════════════════════════════════════════════════════════ */
 function Realisations() {
   return (
-    <section id="realisations" className="py-28 px-6 bg-white">
+    <section id="realisations" className="py-28 px-6 bg-craie">
       <div className="max-w-6xl mx-auto">
         <div className="mb-16">
-          <p className="text-xs tracking-widest uppercase text-[#C4A26A] mb-3">Portfolio</p>
-          <h2 className="text-4xl md:text-5xl font-light tracking-tight text-[#090428]">
+          <p className="font-util text-xs tracking-widest uppercase text-laiton mb-3">Portfolio</p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight text-minuit">
             Réalisations
           </h2>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <div className="relative overflow-hidden rounded-2xl bg-[#F8F5F0] aspect-[4/3]">
-            <img
-              src="/elles-vitrine.png"
-              alt="Site vitrine Elles – Maison de Beauté"
-              className="w-full h-full object-cover object-top"
-            />
-            <div className="absolute top-4 left-4 bg-[#090428] text-white text-xs px-3 py-1.5 rounded-full">
-              Site complet
+
+          {/* Browser chrome */}
+          <div className="rounded-xl overflow-hidden border border-brume/20 shadow-xl shadow-minuit/10 card-lift">
+            <div className="bg-encre px-4 py-3 flex items-center gap-3">
+              <div className="flex gap-1.5 shrink-0">
+                <div className="w-3 h-3 rounded-full bg-[#FF5F57]" />
+                <div className="w-3 h-3 rounded-full bg-[#FFBE2E]" />
+                <div className="w-3 h-3 rounded-full bg-[#28C840]" />
+              </div>
+              <div className="flex-1 bg-minuit/60 rounded-md px-3 py-1 font-util text-xs text-brume/50 truncate">
+                ellesmaisondebeaute.com
+              </div>
+            </div>
+            <div className="aspect-[16/10] overflow-hidden">
+              <img
+                src="/elles-vitrine.png"
+                alt="Site Elles – Maison de Beauté"
+                className="w-full h-full object-cover object-top hover:scale-[1.02] transition-transform duration-700"
+              />
             </div>
           </div>
 
+          {/* Infos projet */}
           <div>
-            <p className="text-xs tracking-widest uppercase text-[#C4A26A] mb-4">01</p>
-            <h3 className="text-2xl md:text-3xl font-semibold text-[#090428] mb-4">
+            <p className="font-util text-xs tracking-widest text-laiton uppercase mb-3">
+              Site complet · 2024
+            </p>
+            <h3 className="font-display text-2xl md:text-3xl font-bold text-minuit mb-4">
               Elles — Maison de Beauté
             </h3>
-            <p className="text-[#4A4465]/80 leading-relaxed mb-6">
-              Site vitrine pour un institut de beauté rennais. Présentation des
-              soins, galerie photos, horaires et prise de contact directe.
-              Design sobre, mobile first, optimisé pour le référencement local.
+            <p className="text-minuit/60 leading-relaxed mb-6">
+              Institut de beauté rennais. Présentation des soins, galerie photos, horaires
+              et contact direct. Design sobre, mobile first, optimisé pour le référencement local.{' '}
+              <a href="https://ellesmaisondebeaute.com" target="_blank" rel="noopener noreferrer"
+                className="text-laiton hover:text-minuit transition-colors underline underline-offset-4">
+                ellesmaisondebeaute.com
+              </a>
             </p>
             <ul className="flex flex-wrap gap-2 mb-8">
-              {['Design sur-mesure', 'Mobile first', 'SEO local', 'Galerie photo'].map((tag) => (
-                <li
-                  key={tag}
-                  className="text-xs border border-[#C4A26A]/30 text-[#4A4465] px-3 py-1 rounded-full"
-                >
+              {['Design sur-mesure', 'Mobile first', 'SEO local', 'Galerie photo'].map(tag => (
+                <li key={tag}
+                  className="font-util text-xs border border-laiton/30 text-laiton px-3 py-1 rounded-full">
                   {tag}
                 </li>
               ))}
             </ul>
-            <div className="h-px bg-[#F8F5F0] mb-6" />
-            <p className="text-sm text-[#4A4465]/50 italic">
-              Institut situé à Rennes · Livré en 10 jours
-            </p>
+            <div className="h-px bg-brume/20 mb-5" />
+            <p className="font-util text-xs text-minuit/35">Livré en 10 jours · Rennes</p>
           </div>
         </div>
 
-        <div className="mt-20 border border-dashed border-[#C4A26A]/20 rounded-2xl p-12 text-center">
-          <p className="text-[#4A4465]/60 text-sm">D'autres projets arrivent bientôt.</p>
-          <p className="text-[#4A4465]/60 text-sm mt-1">
-            Vous pouvez être le prochain.{' '}
-            <a href="#contact" className="text-[#C4A26A] underline underline-offset-2 hover:text-[#090428] transition-colors">
-              Parlons de votre projet →
-            </a>
-          </p>
+        {/* Placeholder */}
+        <div className="mt-20 border border-dashed border-laiton/20 rounded-xl p-10 text-center">
+          <p className="text-minuit/40 text-sm mb-2">Votre activité ici, bientôt.</p>
+          <a href="#contact"
+            className="text-laiton text-sm hover:text-minuit transition-colors underline underline-offset-4">
+            Parlons de votre projet →
+          </a>
         </div>
       </div>
     </section>
   )
 }
 
-/* ─── Services ───────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════
+   SERVICES — 3 panneaux, Pro avec ligne laiton en tête
+═══════════════════════════════════════════════════════════════ */
 function Services() {
   const services = [
     {
-      num: '01',
       title: 'Essentiel',
-      price: '299€',
-      delay: 'Livré en 5 jours',
-      desc: 'L\'essentiel pour être visible en ligne rapidement.',
-      features: ['Site one-page', 'Jusqu\'à 3 sections', 'Design responsive', '1 série de retouches'],
+      price: '299',
+      delay: '5 jours',
+      desc: "L'essentiel pour être visible en ligne rapidement.",
+      features: ["Site one-page", "Jusqu'à 3 sections", "Design responsive", "1 série de retouches"],
     },
     {
-      num: '02',
       title: 'Pro',
-      price: '590€',
-      delay: 'Livré en 2 semaines',
+      price: '590',
+      delay: '2 semaines',
       desc: 'La formule complète pour une présence professionnelle.',
-      features: ['Jusqu\'à 6 sections au choix', 'Formulaire de contact', 'Référencement Google de base', '2 séries de retouches'],
+      features: ["Jusqu'à 6 sections", "Formulaire de contact", "Référencement Google de base", "2 séries de retouches"],
       highlight: true,
-      badge: 'Le plus demandé',
     },
     {
-      num: '03',
       title: 'Premium',
-      price: '990€',
-      delay: 'Livré en 2-3 semaines',
+      price: '990',
+      delay: '2-3 semaines',
       desc: 'La solution sur-mesure sans compromis.',
-      features: ['Sections illimitées', 'Prise de RDV en ligne', 'Référencement avancé', '3 mois de maintenance offerts'],
+      features: ["Sections illimitées", "Prise de RDV en ligne", "Référencement avancé", "3 mois de maintenance offerts"],
     },
   ]
 
   return (
-    <section id="services" className="py-28 px-6 bg-[#090428]">
+    <section id="services" className="py-28 px-6 bg-minuit">
       <div className="max-w-6xl mx-auto">
         <div className="mb-16">
-          <p className="text-xs tracking-widest uppercase text-[#C4A26A]/80 mb-3">Prestations</p>
-          <h2 className="text-4xl md:text-5xl font-light tracking-tight text-white">
-            Trois façons de<br />
-            <span className="font-semibold">travailler ensemble</span>
+          <p className="font-util text-xs tracking-widest uppercase text-brume/50 mb-3">Prestations</p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight text-white">
+            Trois formules,<br />un seul interlocuteur
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {services.map((s) => (
-            <div
-              key={s.num}
-              className={`relative p-8 rounded-2xl border transition-colors ${
-                s.highlight
-                  ? 'bg-white text-[#090428] border-white'
-                  : 'bg-white/5 text-white border-white/10 hover:border-[#C4A26A]/30'
-              }`}
-            >
-              {s.badge && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-xs bg-[#C4A26A] text-white px-4 py-1 rounded-full whitespace-nowrap font-medium">
-                  {s.badge}
-                </span>
+        <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-encre rounded-xl overflow-hidden border border-encre">
+          {services.map(s => (
+            <div key={s.title}
+              className={`relative p-8 transition-colors ${s.highlight ? 'bg-encre' : 'bg-encre/30 hover:bg-encre/50'}`}>
+              {/* Ligne laiton en tête pour Pro */}
+              {s.highlight && (
+                <div className="absolute top-0 left-0 right-0 h-0.5 bg-laiton" />
               )}
-              <p className={`text-xs tracking-widest font-medium mb-4 ${s.highlight ? 'text-[#C4A26A]' : 'text-[#C4A26A]/60'}`}>
-                {s.num}
-              </p>
-              <h3 className="text-xl font-semibold mb-1">{s.title}</h3>
-              <p className={`text-2xl font-light mb-1 ${s.highlight ? 'text-[#C4A26A]' : 'text-[#C4A26A]'}`}>{s.price}</p>
-              <p className={`text-xs italic mb-6 ${s.highlight ? 'text-[#4A4465]/50' : 'text-white/40'}`}>{s.delay}</p>
-              <ul className="space-y-2">
-                {s.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2 text-sm">
-                    <span className="w-1 h-1 rounded-full bg-[#C4A26A]/60" />
-                    <span className={s.highlight ? 'text-[#4A4465]' : 'text-white/70'}>{f}</span>
+              {s.highlight && (
+                <p className="font-util text-xs tracking-widest text-laiton uppercase mb-4">Le plus demandé</p>
+              )}
+              <h3 className="font-display text-2xl font-bold text-white mb-1">{s.title}</h3>
+              <div className="flex items-baseline gap-1 mb-1">
+                <span className="font-util text-3xl text-laiton">{s.price}€</span>
+              </div>
+              <p className="font-util text-xs text-brume/45 mb-6">Livré en {s.delay}</p>
+              <p className="text-sm text-white/45 leading-relaxed mb-7">{s.desc}</p>
+              <ul className="space-y-3">
+                {s.features.map(f => (
+                  <li key={f} className="flex items-start gap-2.5 text-sm text-white/65">
+                    <svg className="w-4 h-4 mt-0.5 shrink-0 text-laiton/70" viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8l3.5 3.5L13 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    {f}
                   </li>
                 ))}
               </ul>
@@ -288,11 +350,9 @@ function Services() {
         </div>
 
         <div className="mt-10 text-center">
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 border border-[#C4A26A]/40 text-white text-sm px-7 py-3.5 rounded-full hover:border-[#C4A26A] transition-colors"
-          >
-            Prendre rendez-vous — c'est gratuit
+          <a href="#contact"
+            className="inline-flex items-center gap-2 border border-laiton/30 text-white text-sm px-7 py-3.5 rounded-full hover:border-laiton transition-colors">
+            Discuter de mon projet — c'est gratuit
           </a>
         </div>
       </div>
@@ -300,130 +360,97 @@ function Services() {
   )
 }
 
-/* ─── Tarifs ─────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════
+   TARIFS — tableau comparatif + maintenance
+═══════════════════════════════════════════════════════════════ */
 function Tarifs() {
-  const creation = [
-    {
-      title: 'Essentiel',
-      price: '299€',
-      delay: 'Livré en 5 jours',
-      popular: false,
-      features: [
-        'Site one-page',
-        'Jusqu\'à 3 sections',
-        'Design responsive',
-        '1 série de retouches',
-      ],
-    },
-    {
-      title: 'Pro',
-      price: '590€',
-      delay: 'Livré en 2 semaines',
-      popular: true,
-      features: [
-        'Jusqu\'à 6 sections au choix',
-        'Formulaire de contact',
-        'Référencement Google de base',
-        '2 séries de retouches',
-      ],
-    },
-    {
-      title: 'Premium',
-      price: '990€',
-      delay: 'Livré en 2-3 semaines',
-      popular: false,
-      features: [
-        'Sections illimitées',
-        'Prise de RDV en ligne',
-        'Référencement avancé',
-        '3 mois de maintenance offerts',
-      ],
-    },
+  const plans  = ['Essentiel', 'Pro', 'Premium']
+  const prices = ['299€', '590€', '990€']
+  const delays = ['5 jours', '2 semaines', '2–3 semaines']
+
+  const features = [
+    { label: 'Sections / pages',      values: ["Jusqu'à 3", "Jusqu'à 6", 'Illimitées']   },
+    { label: 'Design responsive',     values: [true,  true,  true]                        },
+    { label: 'Formulaire de contact', values: [false, true,  true]                        },
+    { label: 'Référencement Google',  values: [false, 'Base', 'Avancé']                  },
+    { label: 'Prise de RDV en ligne', values: [false, false, true]                        },
+    { label: 'Séries de retouches',   values: ['1',   '2',   '3']                         },
+    { label: 'Domaine + hébergement', values: [true,  true,  true]                        },
+    { label: 'Maintenance offerte',   values: [false, false, '3 mois']                    },
   ]
 
+  const Cell = ({ value }) => {
+    if (value === true)  return <span className="text-laiton font-semibold text-base">✓</span>
+    if (value === false) return <span className="text-brume/25 text-base">—</span>
+    return <span className="text-minuit/65 text-sm font-util">{value}</span>
+  }
+
   const maintenance = [
-    {
-      title: 'Essentiel',
-      price: '19€/mois',
-      features: ['Mises à jour textes', 'Mises à jour photos', 'Mise à jour horaires'],
-    },
-    {
-      title: 'Sérénité',
-      price: '35€/mois',
-      features: ["Tout l'Essentiel", 'Petites modif. de design', 'Réponse prioritaire'],
-    },
+    { title: 'Essentiel', price: '19€/mois', features: ['Mises à jour textes', 'Mises à jour photos', 'Mise à jour horaires'] },
+    { title: 'Sérénité',  price: '35€/mois', features: ["Tout l'Essentiel", 'Petites modif. de design', 'Réponse prioritaire'] },
   ]
 
   return (
-    <section id="tarifs" className="py-28 px-6 bg-[#F8F5F0]">
+    <section id="tarifs" className="py-28 px-6 bg-craie">
       <div className="max-w-6xl mx-auto">
         <div className="mb-16">
-          <p className="text-xs tracking-widest uppercase text-[#C4A26A] mb-3">Tarifs</p>
-          <h2 className="text-4xl md:text-5xl font-light tracking-tight text-[#090428]">
-            Des prix clairs,<br />
-            <span className="font-semibold">sans surprise</span>
+          <p className="font-util text-xs tracking-widest uppercase text-laiton mb-3">Tarifs</p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight text-minuit">
+            Des prix clairs,<br />sans surprise
           </h2>
         </div>
 
-        <p className="text-xs tracking-widest uppercase text-[#4A4465]/50 mb-6">01 — Création</p>
-        <div className="grid sm:grid-cols-3 gap-6 mb-6">
-          {creation.map((p) => (
-            <div
-              key={p.title}
-              className={`relative p-8 rounded-2xl border ${
-                p.popular
-                  ? 'bg-[#090428] text-white border-[#090428]'
-                  : 'bg-white text-[#090428] border-white'
-              }`}
-            >
-              {p.popular && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-xs bg-[#C4A26A] text-white px-4 py-1 rounded-full whitespace-nowrap font-medium">
-                  Le plus demandé
-                </span>
-              )}
-              <h3 className={`text-xl font-semibold mb-1 ${!p.popular && 'text-[#090428]'}`}>
-                {p.title}
-              </h3>
-              <p className="text-xs italic mb-4 text-[#4A4465]/50">{p.delay}</p>
-              <p className={`text-4xl font-light mb-8 ${p.popular ? 'text-[#C4A26A]' : 'text-[#C4A26A]'}`}>
-                {p.price}
-              </p>
-              <ul className="space-y-3">
-                {p.features.map((f) => (
-                  <li key={f} className="flex items-start gap-3 text-sm">
-                    <svg
-                      className="w-4 h-4 mt-0.5 shrink-0 text-[#C4A26A]"
-                      viewBox="0 0 16 16" fill="none"
-                    >
-                      <path d="M3 8l3.5 3.5L13 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    <span className={p.popular ? 'text-white/80' : 'text-[#4A4465]'}>{f}</span>
-                  </li>
+        {/* Tableau comparatif */}
+        <p className="font-util text-xs tracking-widest uppercase text-minuit/35 mb-4">Création</p>
+        <div className="overflow-x-auto rounded-xl border border-brume/20 mb-5">
+          <table className="w-full min-w-[540px]">
+            <thead>
+              <tr className="border-b border-brume/20">
+                <th className="text-left p-5 font-util text-xs tracking-widest uppercase text-minuit/35 w-[38%]" />
+                {plans.map((plan, i) => (
+                  <th key={plan} className={`p-5 text-center ${i === 1 ? 'bg-laiton/5' : 'bg-white/60'}`}>
+                    <p className="font-display font-bold text-minuit text-lg">{plan}</p>
+                    <p className="font-util text-laiton text-xl mt-0.5">{prices[i]}</p>
+                    <p className="font-util text-minuit/35 text-xs mt-1">{delays[i]}</p>
+                  </th>
                 ))}
-              </ul>
-            </div>
-          ))}
+              </tr>
+            </thead>
+            <tbody>
+              {features.map((f, fi) => (
+                <tr key={f.label} className={`border-b border-brume/10 ${fi % 2 === 0 ? 'bg-white/50' : ''}`}>
+                  <td className="p-5 text-sm text-minuit/60">{f.label}</td>
+                  {f.values.map((v, vi) => (
+                    <td key={vi} className={`p-5 text-center ${vi === 1 ? 'bg-laiton/5' : ''}`}>
+                      <Cell value={v} />
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
 
-        <div className="bg-white rounded-xl px-6 py-4 text-sm text-[#4A4465]/70 mb-16 text-center border border-[#C4A26A]/20">
-          <span className="text-[#C4A26A]">✦</span>{' '}
+        <div className="bg-white/60 border border-laiton/15 rounded-xl px-6 py-4 text-sm text-minuit/55 mb-16 text-center">
+          <span className="text-laiton">✦</span>{' '}
           Domaine personnalisé et mise en ligne{' '}
-          <strong className="text-[#090428]">offerts</strong> pour toutes les formules
+          <strong className="text-minuit">offerts</strong> pour toutes les formules
         </div>
 
-        <p className="text-xs tracking-widest uppercase text-[#4A4465]/50 mb-6">02 — Maintenance mensuelle</p>
-        <div className="grid sm:grid-cols-2 gap-6">
-          {maintenance.map((m) => (
-            <div key={m.title} className="bg-white border border-white rounded-2xl p-8">
-              <h3 className="text-xl font-semibold text-[#090428] mb-2">{m.title}</h3>
-              <p className="text-3xl font-light text-[#C4A26A] mb-8">{m.price}</p>
+        {/* Maintenance */}
+        <p className="font-util text-xs tracking-widest uppercase text-minuit/35 mb-5">Maintenance mensuelle</p>
+        <div className="grid sm:grid-cols-2 gap-5">
+          {maintenance.map(m => (
+            <div key={m.title} className="bg-white/60 border border-brume/20 rounded-xl p-7 card-lift">
+              <h3 className="font-display font-bold text-minuit text-xl mb-1">{m.title}</h3>
+              <p className="font-util text-laiton text-3xl mb-6">{m.price}</p>
               <ul className="space-y-3">
-                {m.features.map((f) => (
-                  <li key={f} className="flex items-start gap-3 text-sm">
-                    <svg className="w-4 h-4 mt-0.5 shrink-0 text-[#C4A26A]" viewBox="0 0 16 16" fill="none">
+                {m.features.map(f => (
+                  <li key={f} className="flex items-start gap-3 text-sm text-minuit/60">
+                    <svg className="w-4 h-4 mt-0.5 shrink-0 text-laiton" viewBox="0 0 16 16" fill="none">
                       <path d="M3 8l3.5 3.5L13 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
-                    <span className="text-[#4A4465]">{f}</span>
+                    {f}
                   </li>
                 ))}
               </ul>
@@ -432,11 +459,9 @@ function Tarifs() {
         </div>
 
         <div className="mt-12 text-center">
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 bg-[#090428] text-white text-sm px-8 py-4 rounded-full hover:bg-[#090428]/85 transition-colors"
-          >
-            Demander un devis gratuit
+          <a href="#simulateur"
+            className="inline-flex items-center gap-2 bg-minuit text-white text-sm px-8 py-4 rounded-full hover:bg-encre transition-colors">
+            Estimer mon projet →
           </a>
         </div>
       </div>
@@ -444,72 +469,68 @@ function Tarifs() {
   )
 }
 
-/* ─── À propos ───────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════
+   À PROPOS — layout asymétrique + watermark W
+═══════════════════════════════════════════════════════════════ */
 function Apropos() {
   const atouts = [
-    { num: '01', title: 'Présence locale', desc: 'Basé à Rennes, je rencontre mes clients en personne.' },
-    { num: '02', title: 'Livraison rapide', desc: 'Votre site en ligne en moins de 2 semaines.' },
-    { num: '03', title: 'Tarifs accessibles', desc: 'Pensés pour les petits pros, sans rogner sur la qualité.' },
-    { num: '04', title: 'Suivi personnalisé', desc: 'Un interlocuteur unique, du devis à la mise en ligne.' },
+    { title: 'Présence locale',    desc: 'Basé à Rennes, je rencontre mes clients en personne.'  },
+    { title: 'Livraison rapide',   desc: 'Votre site en ligne en moins de 2 semaines.'            },
+    { title: 'Tarifs accessibles', desc: 'Pensés pour les petits pros, sans rogner sur la qualité.' },
+    { title: 'Suivi personnalisé', desc: 'Un interlocuteur unique, du devis à la mise en ligne.'  },
   ]
 
   return (
-    <section id="apropos" className="py-28 px-6 bg-white">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-start">
-          <div className="relative">
-            <div className="aspect-[3/4] rounded-2xl overflow-hidden bg-[#F8F5F0]">
+    <section id="apropos" className="py-28 bg-white overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="grid md:grid-cols-[52%_48%] gap-0 items-start">
+
+          {/* Photo débordant à gauche */}
+          <div className="md:-ml-6 lg:-ml-16">
+            <div className="aspect-[3/4] md:rounded-r-2xl overflow-hidden bg-craie">
               <img
                 src="/pdp.jpeg"
                 alt="Hamaury Walter — WALTER Studio"
                 className="w-full h-full object-cover"
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none'
-                  e.currentTarget.parentElement.classList.add('flex', 'items-center', 'justify-center')
-                  const p = document.createElement('p')
-                  p.textContent = 'Ajoutez votre photo ici (public/walter.jpg)'
-                  p.className = 'text-gray-400 text-sm text-center px-4'
-                  e.currentTarget.parentElement.appendChild(p)
-                }}
+                onError={e => { e.currentTarget.parentElement.classList.add('flex','items-center','justify-center'); e.currentTarget.remove() }}
               />
-            </div>
-            <div className="absolute -bottom-4 -right-4 bg-[#C4A26A] text-white px-5 py-3 rounded-xl text-sm font-medium">
-              Basé à Rennes 📍
             </div>
           </div>
 
-          <div className="pt-4">
-            <p className="text-xs tracking-widest uppercase text-[#C4A26A] mb-3">À propos</p>
-            <h2 className="text-4xl md:text-5xl font-light tracking-tight text-[#090428] mb-6">
-              Un freelance,<br />
-              <span className="font-semibold">pas une agence</span>
-            </h2>
-            <p className="text-[#4A4465]/80 leading-relaxed mb-4">
-              Je suis Hamaury Walter, freelance à Rennes. Je crée des sites web
-              modernes en m'appuyant sur des outils IA pour livrer plus vite, à
-              un prix juste, sans intermédiaires.
-            </p>
-            <p className="text-[#4A4465]/80 leading-relaxed mb-12">
-              Je cible les artisans, coiffeurs, esthéticiennes et professionnels
-              locaux qui n'ont pas encore de site — ou qui méritent mieux que
-              ce qu'ils ont.
-            </p>
+          {/* Texte avec watermark */}
+          <div className="relative pl-8 md:pl-12 pt-10 md:pt-0">
+            {/* W en watermark */}
+            <div
+              className="absolute -top-6 right-0 font-display font-bold select-none pointer-events-none leading-none"
+              style={{ fontSize: '22rem', color: '#A9A4C9', opacity: 0.07 }}
+              aria-hidden="true">W</div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {atouts.map((a) => (
-                <div key={a.num} className="border-t border-[#F8F5F0] pt-5">
-                  <p className="text-xs text-[#C4A26A] font-medium mb-2">{a.num}</p>
-                  <p className="text-sm font-semibold text-[#090428] mb-1">{a.title}</p>
-                  <p className="text-sm text-[#4A4465]/70 leading-relaxed">{a.desc}</p>
-                </div>
-              ))}
-            </div>
+            <div className="relative z-10">
+              <p className="font-util text-xs tracking-widest uppercase text-laiton mb-4">À propos</p>
+              <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight text-minuit mb-6">
+                Un freelance,<br />pas une agence
+              </h2>
+              <p className="text-minuit/60 leading-relaxed mb-4">
+                Je suis Hamaury Walter, freelance à Rennes. Je crée des sites web
+                modernes en m'appuyant sur des outils IA pour livrer plus vite, à
+                un prix juste, sans intermédiaires.
+              </p>
+              <p className="text-minuit/60 leading-relaxed mb-10">
+                J'accompagne les artisans, coiffeurs, esthéticiennes et professionnels
+                locaux qui n'ont pas encore de site — ou qui méritent mieux.
+              </p>
 
-            <div className="mt-12">
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 text-[#C4A26A] text-sm font-medium hover:text-[#090428] transition-colors"
-              >
+              <div className="grid grid-cols-2 gap-5 mb-10">
+                {atouts.map(a => (
+                  <div key={a.title} className="border-t-2 border-laiton/20 pt-4">
+                    <p className="text-sm font-semibold text-minuit mb-1">{a.title}</p>
+                    <p className="text-sm text-minuit/50 leading-relaxed">{a.desc}</p>
+                  </div>
+                ))}
+              </div>
+
+              <a href="#contact"
+                className="text-laiton text-sm font-semibold hover:text-minuit transition-colors">
                 Prendre un appel découverte →
               </a>
             </div>
@@ -520,53 +541,35 @@ function Apropos() {
   )
 }
 
-/* ─── Méthode ────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════
+   MÉTHODE — fond Encre + chiffres romains
+═══════════════════════════════════════════════════════════════ */
 function Methode() {
   const etapes = [
-    {
-      num: '01',
-      title: 'Échange découverte',
-      desc: 'On discute de votre activité, vos besoins et vos envies. Gratuit, sans engagement.',
-    },
-    {
-      num: '02',
-      title: 'Devis & maquette',
-      desc: 'Je vous propose une direction visuelle et un devis clair sous 24h.',
-    },
-    {
-      num: '03',
-      title: 'Création express',
-      desc: "Je conçois votre site avec l'IA et un soin manuel. Vous suivez l'avancée en direct.",
-    },
-    {
-      num: '04',
-      title: 'Mise en ligne',
-      desc: "Domaine, hébergement, mise en ligne : je m'occupe de tout. Visible en moins de 2 semaines.",
-    },
+    { num: 'I',   title: 'Échange découverte', desc: "On discute de votre activité, vos besoins et vos envies. Gratuit, sans engagement." },
+    { num: 'II',  title: 'Devis & maquette',   desc: "Je vous propose une direction visuelle et un devis clair sous 24h."                  },
+    { num: 'III', title: 'Création express',    desc: "Je conçois votre site avec l'IA et un soin manuel. Vous suivez l'avancée en direct." },
+    { num: 'IV',  title: 'Mise en ligne',       desc: "Domaine, hébergement, mise en ligne : je m'occupe de tout en moins de 2 semaines."  },
   ]
 
   return (
-    <section className="py-28 px-6 bg-[#F8F5F0]">
+    <section className="py-28 px-6 bg-encre">
       <div className="max-w-6xl mx-auto">
         <div className="mb-16">
-          <p className="text-xs tracking-widest uppercase text-[#C4A26A] mb-3">Méthode</p>
-          <h2 className="text-4xl md:text-5xl font-light tracking-tight text-[#090428]">
-            De l'idée au site,<br />
-            <span className="font-semibold">en 4 étapes</span>
+          <p className="font-util text-xs tracking-widest uppercase text-brume/45 mb-3">Méthode</p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight text-white">
+            De l'idée au site,<br />en 4 étapes
           </h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {etapes.map((e, i) => (
-            <div key={e.num} className="relative">
-              {i < etapes.length - 1 && (
-                <div className="hidden lg:block absolute top-6 left-[calc(100%+12px)] w-[calc(100%-24px)] h-px bg-[#C4A26A]/20 z-10 pointer-events-none" />
-              )}
-              <div className="bg-white rounded-2xl p-7 h-full border border-white">
-                <p className="text-3xl font-light text-[#C4A26A]/30 mb-6">{e.num}</p>
-                <h3 className="text-base font-semibold text-[#090428] mb-3">{e.title}</h3>
-                <p className="text-sm text-[#4A4465]/70 leading-relaxed">{e.desc}</p>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-brume/10 rounded-xl overflow-hidden">
+          {etapes.map(e => (
+            <div key={e.num} className="bg-encre p-8 hover:bg-encre/80 transition-colors">
+              <div className="w-12 h-12 rounded-full border border-laiton/30 flex items-center justify-center mb-7">
+                <span className="font-util text-laiton text-xs">{e.num}</span>
               </div>
+              <h3 className="font-semibold text-white text-base mb-3">{e.title}</h3>
+              <p className="text-sm text-white/45 leading-relaxed">{e.desc}</p>
             </div>
           ))}
         </div>
@@ -575,101 +578,80 @@ function Methode() {
   )
 }
 
-/* ─── Simulateur de devis ────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════
+   SIMULATEUR DE DEVIS
+═══════════════════════════════════════════════════════════════ */
 function Simulateur({ onDevis }) {
-  const [siteType, setSiteType] = useState('essentiel')
+  const [siteType,   setSiteType]   = useState('essentiel')
   const [maintenance, setMaintenance] = useState('essentiel')
-  const [photo, setPhoto] = useState(false)
+  const [photo,      setPhoto]      = useState(false)
 
   const siteOptions = {
     essentiel: { label: 'Essentiel', price: 299 },
     pro:       { label: 'Pro',       price: 590 },
     premium:   { label: 'Premium',   price: 990 },
   }
-  const sitePrice = siteOptions[siteType].price
-  const siteLabel = siteOptions[siteType].label
+  const sitePrice  = siteOptions[siteType].price
+  const siteLabel  = siteOptions[siteType].label
   const maintPrice = maintenance === 'essentiel' ? 19 : 35
   const maintLabel = maintenance === 'essentiel' ? 'Maintenance Essentielle' : 'Maintenance Sérénité'
   const photoPrice = photo ? 40 : 0
-  const totalCreation = sitePrice + photoPrice
+  const total      = sitePrice + photoPrice
 
   const handleDevis = () => {
-    const recap = `${siteLabel} (${sitePrice}€)${photo ? ` + Séance photo (40€)` : ''} + ${maintLabel} (${maintPrice}€/mois)`
+    const recap = `${siteLabel} (${sitePrice}€)${photo ? ' + Séance photo (40€)' : ''} + ${maintLabel} (${maintPrice}€/mois)`
     onDevis(recap)
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  const OptionBtn = ({ selected, onClick, children }) => (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`flex-1 py-3.5 px-4 rounded-xl border text-sm font-medium transition-all ${
+  const Opt = ({ selected, onClick, children }) => (
+    <button type="button" onClick={onClick}
+      className={`flex-1 py-3 px-3 rounded-lg border text-sm font-medium transition-all text-center ${
         selected
-          ? 'bg-[#090428] text-white border-[#090428]'
-          : 'bg-white text-[#4A4465] border-gray-200 hover:border-[#C4A26A]/50'
-      }`}
-    >
+          ? 'bg-minuit text-white border-minuit'
+          : 'bg-white text-minuit/60 border-brume/30 hover:border-laiton/40'
+      }`}>
       {children}
     </button>
   )
 
   return (
-    <section className="py-28 px-6 bg-[#F8F5F0]">
+    <section id="simulateur" className="py-28 px-6 bg-craie">
       <div className="max-w-4xl mx-auto">
         <div className="mb-12">
-          <p className="text-xs tracking-widest uppercase text-[#C4A26A] mb-3">Simulateur</p>
-          <h2 className="text-4xl md:text-5xl font-light tracking-tight text-[#090428]">
-            Estimez votre<br />
-            <span className="font-semibold">projet en 30 secondes</span>
+          <p className="font-util text-xs tracking-widest uppercase text-laiton mb-3">Simulateur</p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight text-minuit">
+            Estimez votre projet<br />en 30 secondes
           </h2>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 items-start">
           {/* Options */}
           <div className="space-y-7">
-            {/* Type de site */}
             <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-[#4A4465]/50 mb-3">
-                01 — Type de site
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <OptionBtn selected={siteType === 'essentiel'} onClick={() => setSiteType('essentiel')}>
-                  Essentiel — 299€
-                </OptionBtn>
-                <OptionBtn selected={siteType === 'pro'} onClick={() => setSiteType('pro')}>
-                  Pro — 590€
-                </OptionBtn>
-                <OptionBtn selected={siteType === 'premium'} onClick={() => setSiteType('premium')}>
-                  Premium — 990€
-                </OptionBtn>
+              <p className="font-util text-xs tracking-widest uppercase text-minuit/35 mb-3">Type de site</p>
+              <div className="flex flex-col sm:flex-row gap-2">
+                <Opt selected={siteType === 'essentiel'} onClick={() => setSiteType('essentiel')}>Essentiel · 299€</Opt>
+                <Opt selected={siteType === 'pro'}       onClick={() => setSiteType('pro')}>Pro · 590€</Opt>
+                <Opt selected={siteType === 'premium'}   onClick={() => setSiteType('premium')}>Premium · 990€</Opt>
               </div>
             </div>
 
-            {/* Maintenance */}
             <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-[#4A4465]/50 mb-3">
-                02 — Maintenance mensuelle
-              </p>
-              <div className="flex gap-3">
-                <OptionBtn selected={maintenance === 'essentiel'} onClick={() => setMaintenance('essentiel')}>
-                  Essentielle — 19€/mois
-                </OptionBtn>
-                <OptionBtn selected={maintenance === 'serenite'} onClick={() => setMaintenance('serenite')}>
-                  Sérénité — 35€/mois
-                </OptionBtn>
+              <p className="font-util text-xs tracking-widest uppercase text-minuit/35 mb-3">Maintenance mensuelle</p>
+              <div className="flex gap-2">
+                <Opt selected={maintenance === 'essentiel'} onClick={() => setMaintenance('essentiel')}>Essentielle · 19€/mois</Opt>
+                <Opt selected={maintenance === 'serenite'}  onClick={() => setMaintenance('serenite')}>Sérénité · 35€/mois</Opt>
               </div>
             </div>
 
-            {/* Séance photo */}
             <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-[#4A4465]/50 mb-3">
-                03 — Option séance photo
-              </p>
+              <p className="font-util text-xs tracking-widest uppercase text-minuit/35 mb-3">Option séance photo</p>
               <label className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all ${
-                photo ? 'bg-[#090428] border-[#090428]' : 'bg-white border-gray-200 hover:border-[#C4A26A]/50'
+                photo ? 'bg-minuit border-minuit' : 'bg-white border-brume/30 hover:border-laiton/40'
               }`}>
                 <div className={`w-5 h-5 rounded border-2 flex items-center justify-center shrink-0 transition-all ${
-                  photo ? 'bg-[#C4A26A] border-[#C4A26A]' : 'border-gray-300'
+                  photo ? 'bg-laiton border-laiton' : 'border-brume/40'
                 }`}>
                   {photo && (
                     <svg className="w-3 h-3 text-white" viewBox="0 0 12 12" fill="none">
@@ -677,58 +659,49 @@ function Simulateur({ onDevis }) {
                     </svg>
                   )}
                 </div>
-                <input type="checkbox" className="sr-only" checked={photo} onChange={(e) => setPhoto(e.target.checked)} />
+                <input type="checkbox" className="sr-only" checked={photo} onChange={e => setPhoto(e.target.checked)} />
                 <div>
-                  <p className={`text-sm font-medium ${photo ? 'text-white' : 'text-[#090428]'}`}>
-                    Séance photo professionnelle
-                  </p>
-                  <p className={`text-xs mt-0.5 ${photo ? 'text-white/60' : 'text-[#4A4465]/60'}`}>
-                    Photos de votre activité pour illustrer le site — +40€
-                  </p>
+                  <p className={`text-sm font-medium ${photo ? 'text-white' : 'text-minuit'}`}>Séance photo professionnelle</p>
+                  <p className={`text-xs mt-0.5 ${photo ? 'text-white/55' : 'text-minuit/45'}`}>Photos de votre activité pour illustrer le site — +40€</p>
                 </div>
               </label>
             </div>
           </div>
 
-          {/* Récapitulatif */}
-          <div className="bg-[#090428] rounded-2xl p-8 text-white sticky top-20">
-            <p className="text-xs tracking-widest uppercase text-[#C4A26A]/80 mb-6">Récapitulatif</p>
-
+          {/* Récapitulatif sticky */}
+          <div className="bg-minuit rounded-2xl p-8 text-white sticky top-20">
+            <p className="font-util text-xs tracking-widest uppercase text-brume/50 mb-6">Récapitulatif</p>
             <ul className="space-y-3 mb-6">
               <li className="flex justify-between text-sm">
-                <span className="text-white/70">{siteLabel}</span>
-                <span className="font-medium">{sitePrice}€</span>
+                <span className="text-white/60">{siteLabel}</span>
+                <span className="font-util">{sitePrice}€</span>
               </li>
               {photo && (
                 <li className="flex justify-between text-sm">
-                  <span className="text-white/70">Séance photo</span>
-                  <span className="font-medium">40€</span>
+                  <span className="text-white/60">Séance photo</span>
+                  <span className="font-util">40€</span>
                 </li>
               )}
               <li className="pt-3 border-t border-white/10 flex justify-between text-sm">
-                <span className="text-white/70">{maintLabel}</span>
-                <span className="font-medium">{maintPrice}€/mois</span>
+                <span className="text-white/60">{maintLabel}</span>
+                <span className="font-util">{maintPrice}€/mois</span>
               </li>
             </ul>
-
-            <div className="border-t border-[#C4A26A]/20 pt-5 space-y-2 mb-8">
+            <div className="border-t border-laiton/20 pt-5 space-y-1.5 mb-8">
               <div className="flex justify-between items-baseline">
-                <span className="text-sm text-white/50">Total création</span>
-                <span className="text-3xl font-semibold text-[#C4A26A]">{totalCreation}€</span>
+                <span className="text-sm text-white/45">Total création</span>
+                <span className="font-util text-3xl text-laiton">{total}€</span>
               </div>
               <div className="flex justify-between items-baseline">
-                <span className="text-sm text-white/50">Puis chaque mois</span>
-                <span className="text-lg font-medium">{maintPrice}€</span>
+                <span className="text-sm text-white/45">Puis chaque mois</span>
+                <span className="font-util text-lg">{maintPrice}€</span>
               </div>
             </div>
-
-            <button
-              onClick={handleDevis}
-              className="w-full bg-[#C4A26A] text-white text-sm font-medium py-4 rounded-xl hover:bg-[#C4A26A]/85 transition-colors"
-            >
+            <button onClick={handleDevis}
+              className="w-full bg-laiton text-minuit text-sm font-semibold py-4 rounded-xl hover:bg-laiton/80 transition-colors">
               Demander ce devis →
             </button>
-            <p className="text-xs text-white/30 text-center mt-3">Gratuit · Sans engagement</p>
+            <p className="font-util text-xs text-white/25 text-center mt-3">Gratuit · Sans engagement</p>
           </div>
         </div>
       </div>
@@ -736,40 +709,36 @@ function Simulateur({ onDevis }) {
   )
 }
 
-/* ─── Contact ────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════════════════════════ */
 function Contact({ prefillMessage }) {
-  const [form, setForm] = useState({ name: '', email: '', tel: '', message: '' })
-  const [sent, setSent] = useState(false)
+  const [form, setForm]     = useState({ name: '', email: '', tel: '', message: '' })
+  const [sent, setSent]     = useState(false)
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false)
+  const [error, setError]   = useState(false)
 
   useEffect(() => {
-    if (prefillMessage) {
-      setForm((f) => ({ ...f, message: prefillMessage }))
-    }
+    if (prefillMessage) setForm(f => ({ ...f, message: prefillMessage }))
   }, [prefillMessage])
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault()
     setLoading(true)
     setError(false)
     try {
-      // ── Option Formspree ────────────────────────────────────────
-      // Remplace l'URL ci-dessous par ton endpoint Formspree
-      // (ex: https://formspree.io/f/XXXXXXXX) puis supprime emailjs.
+      // ── Option Formspree (à activer) ──────────────────────────
+      // Remplace PLACEHOLDER par ton endpoint https://formspree.io/f/xxxxxxxx
       // const res = await fetch('https://formspree.io/f/PLACEHOLDER', {
       //   method: 'POST',
       //   headers: { 'Content-Type': 'application/json' },
       //   body: JSON.stringify({ name: form.name, email: form.email, tel: form.tel, message: form.message }),
       // })
       // if (!res.ok) throw new Error()
-      // ── Option EmailJS (active) ─────────────────────────────────
-      await emailjs.send(
-        'service_bp6mu9b',
-        'template_tssg0zr',
+      // ── Option EmailJS (active) ───────────────────────────────
+      await emailjs.send('service_bp6mu9b', 'template_tssg0zr',
         { name: form.name, email: form.email, tel: form.tel, message: form.message },
-        '5SBrP57uZX8ptAwJW'
-      )
+        '5SBrP57uZX8ptAwJW')
       setSent(true)
     } catch {
       setError(true)
@@ -778,90 +747,76 @@ function Contact({ prefillMessage }) {
     }
   }
 
+  const inputCls = "w-full bg-white/5 border border-white/10 text-white placeholder:text-white/25 rounded-xl px-5 py-4 text-sm outline-none focus:border-laiton/50 transition-colors"
+
   return (
-    <section id="contact" className="py-28 px-6 bg-[#090428]">
+    <section id="contact" className="py-28 px-6 bg-minuit">
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-16 lg:gap-24">
+
+          {/* Gauche */}
           <div>
-            <p className="text-xs tracking-widest uppercase text-[#C4A26A]/80 mb-3">Contact</p>
-            <h2 className="text-4xl md:text-5xl font-light tracking-tight text-white mb-6">
-              On démarre<br />
-              <span className="font-semibold">votre projet ?</span>
+            <p className="font-util text-xs tracking-widest uppercase text-brume/50 mb-3">Contact</p>
+            <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
+              On démarre<br />votre projet ?
             </h2>
-            <p className="text-white/50 leading-relaxed mb-12">
+            <p className="text-white/45 leading-relaxed mb-10">
               Décrivez-moi votre activité en quelques mots. Je vous réponds
               sous 24h avec un devis clair et une première idée visuelle.
-              C'est gratuit, sans engagement.
+              Gratuit, sans engagement.
             </p>
 
             <div className="space-y-5">
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full border border-[#C4A26A]/20 flex items-center justify-center">
-                  <svg className="w-4 h-4 text-[#C4A26A]/70" viewBox="0 0 16 16" fill="none">
+                <div className="w-10 h-10 rounded-full border border-laiton/20 flex items-center justify-center shrink-0">
+                  <svg className="w-4 h-4 text-laiton/60" viewBox="0 0 16 16" fill="none">
                     <path d="M2 4l6 4 6-4M2 4h12v9H2V4z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </div>
-                <a href="mailto:hamaury.walter@icloud.com" className="text-white/70 text-sm hover:text-white transition-colors">
+                <a href="mailto:hamaury.walter@icloud.com"
+                  className="text-white/60 text-sm hover:text-white transition-colors">
                   hamaury.walter@icloud.com
                 </a>
               </div>
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full border border-[#C4A26A]/20 flex items-center justify-center">
-                  <svg className="w-4 h-4 text-[#C4A26A]/70" viewBox="0 0 16 16" fill="none">
+                <div className="w-10 h-10 rounded-full border border-laiton/20 flex items-center justify-center shrink-0">
+                  <svg className="w-4 h-4 text-laiton/60" viewBox="0 0 16 16" fill="none">
                     <path d="M8 1.5A4.5 4.5 0 0 0 3.5 6c0 3.5 4.5 8.5 4.5 8.5s4.5-5 4.5-8.5A4.5 4.5 0 0 0 8 1.5zm0 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" stroke="currentColor" strokeWidth="1.2"/>
                   </svg>
                 </div>
-                <span className="text-white/70 text-sm">Rennes, Bretagne</span>
+                <span className="text-white/60 text-sm">Rennes, Bretagne</span>
               </div>
+              <p className="font-util text-xs text-brume/35 pl-14">
+                Je réponds généralement sous 24h en semaine
+              </p>
             </div>
           </div>
 
+          {/* Formulaire */}
           <div>
             {sent ? (
-              <div className="bg-white/5 border border-[#C4A26A]/20 rounded-2xl p-10 text-center h-full flex flex-col items-center justify-center">
-                <p className="text-[#C4A26A] text-xl font-light mb-2">Message envoyé !</p>
-                <p className="text-white/50 text-sm">Je vous réponds dans les 24h.</p>
+              <div className="bg-white/5 border border-laiton/20 rounded-2xl p-10 h-full flex flex-col items-center justify-center text-center">
+                <p className="font-display font-bold text-laiton text-2xl mb-2">Message envoyé !</p>
+                <p className="text-white/45 text-sm">Je vous réponds dans les 24h.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid sm:grid-cols-2 gap-4">
-                  <input
-                    type="text"
-                    required
-                    placeholder="Votre nom"
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="w-full bg-white/5 border border-white/10 text-white placeholder:text-white/30 rounded-xl px-5 py-4 text-sm outline-none focus:border-[#C4A26A]/50 transition-colors"
-                  />
-                  <input
-                    type="email"
-                    required
-                    placeholder="Votre email"
-                    value={form.email}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="w-full bg-white/5 border border-white/10 text-white placeholder:text-white/30 rounded-xl px-5 py-4 text-sm outline-none focus:border-[#C4A26A]/50 transition-colors"
-                  />
+                  <input type="text"    required placeholder="Votre nom"
+                    value={form.name}    onChange={e => setForm({ ...form, name: e.target.value })}
+                    className={inputCls} />
+                  <input type="email"   required placeholder="Votre email"
+                    value={form.email}   onChange={e => setForm({ ...form, email: e.target.value })}
+                    className={inputCls} />
                 </div>
-                <input
-                  type="tel"
-                  placeholder="Téléphone (optionnel)"
-                  value={form.tel}
-                  onChange={(e) => setForm({ ...form, tel: e.target.value })}
-                  className="w-full bg-white/5 border border-white/10 text-white placeholder:text-white/30 rounded-xl px-5 py-4 text-sm outline-none focus:border-[#C4A26A]/50 transition-colors"
-                />
-                <textarea
-                  required
-                  rows={5}
-                  placeholder="Décrivez votre activité et ce que vous recherchez..."
-                  value={form.message}
-                  onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className="w-full bg-white/5 border border-white/10 text-white placeholder:text-white/30 rounded-xl px-5 py-4 text-sm outline-none focus:border-[#C4A26A]/50 transition-colors resize-none"
-                />
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full bg-[#C4A26A] text-white text-sm font-medium py-4 rounded-xl hover:bg-[#C4A26A]/85 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
-                >
+                <input type="tel" placeholder="Téléphone (optionnel)"
+                  value={form.tel}     onChange={e => setForm({ ...form, tel: e.target.value })}
+                  className={inputCls} />
+                <textarea required rows={5} placeholder="Décrivez votre activité et ce que vous recherchez…"
+                  value={form.message} onChange={e => setForm({ ...form, message: e.target.value })}
+                  className={`${inputCls} resize-none`} />
+                <button type="submit" disabled={loading}
+                  className="w-full bg-laiton text-minuit text-sm font-semibold py-4 rounded-xl hover:bg-laiton/80 transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
                   {loading ? 'Envoi en cours…' : "Envoyer ma demande — c'est gratuit"}
                 </button>
                 {error && (
@@ -869,9 +824,7 @@ function Contact({ prefillMessage }) {
                     Une erreur est survenue. Réessaie ou écris-moi directement par email.
                   </p>
                 )}
-                <p className="text-xs text-white/30 text-center">
-                  Réponse sous 24h · Sans engagement
-                </p>
+                <p className="font-util text-xs text-white/25 text-center">Réponse sous 24h · Sans engagement</p>
               </form>
             )}
           </div>
@@ -881,16 +834,18 @@ function Contact({ prefillMessage }) {
   )
 }
 
-/* ─── Footer ─────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════════════ */
 function Footer() {
   return (
-    <footer className="bg-[#090428] border-t border-[#C4A26A]/10 px-6 py-10">
+    <footer className="bg-minuit border-t border-brume/10 px-6 py-10">
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-white/60 text-sm">
+        <p className="text-white/45 text-sm">
           © {new Date().getFullYear()}{' '}
-          <span className="text-[#C4A26A]">WALTER Studio</span> · Rennes
+          <span className="font-display font-bold text-laiton">WALTER Studio</span> · Rennes
         </p>
-        <p className="text-white/30 text-xs">
+        <p className="font-util text-white/25 text-xs">
           Sites web sur-mesure pour les professionnels locaux
         </p>
       </div>
@@ -898,7 +853,9 @@ function Footer() {
   )
 }
 
-/* ─── App ────────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════
+   APP
+═══════════════════════════════════════════════════════════════ */
 export default function App() {
   const [prefillMessage, setPrefillMessage] = useState('')
 
