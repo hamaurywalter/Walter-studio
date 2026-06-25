@@ -386,8 +386,8 @@ function Tarifs() {
   }
 
   const maintenance = [
-    { title: 'Essentiel', price: '19€/mois', features: ['Mises à jour textes', 'Mises à jour photos', 'Mise à jour horaires'] },
-    { title: 'Sérénité',  price: '35€/mois', features: ["Tout l'Essentiel", 'Petites modif. de design', 'Réponse prioritaire'] },
+    { title: 'Essentiel', price: '19€/mois', features: ['3 modifications de texte', '3 modifications d\'image'] },
+    { title: 'Sérénité',  price: '35€/mois', features: ['15 modifications textes/images', 'Réponse prioritaire', '1 modification de design'] },
   ]
 
   return (
