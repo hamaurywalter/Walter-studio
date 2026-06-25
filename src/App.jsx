@@ -293,7 +293,7 @@ function Services() {
     },
     {
       title: 'Pro',
-      price: '590',
+      price: '490',
       delay: '2 semaines',
       desc: 'La formule complète pour une présence professionnelle.',
       features: ["Jusqu'à 6 sections", "Formulaire de contact", "Référencement Google de base", "2 séries de retouches"],
@@ -301,7 +301,7 @@ function Services() {
     },
     {
       title: 'Premium',
-      price: '990',
+      price: '790',
       delay: '2-3 semaines',
       desc: 'La solution sur-mesure sans compromis.',
       features: ["Sections illimitées", "Prise de RDV en ligne", "Référencement avancé", "3 mois de maintenance offerts"],
@@ -365,7 +365,7 @@ function Services() {
 ═══════════════════════════════════════════════════════════════ */
 function Tarifs() {
   const plans  = ['Essentiel', 'Pro', 'Premium']
-  const prices = ['299€', '590€', '990€']
+  const prices = ['299€', '490€', '790€']
   const delays = ['5 jours', '2 semaines', '2–3 semaines']
 
   const features = [
@@ -588,8 +588,8 @@ function Simulateur({ onDevis }) {
 
   const siteOptions = {
     essentiel: { label: 'Essentiel', price: 299 },
-    pro:       { label: 'Pro',       price: 590 },
-    premium:   { label: 'Premium',   price: 990 },
+    pro:       { label: 'Pro',       price: 490 },
+    premium:   { label: 'Premium',   price: 790 },
   }
   const sitePrice  = siteOptions[siteType].price
   const siteLabel  = siteOptions[siteType].label
@@ -632,8 +632,8 @@ function Simulateur({ onDevis }) {
               <p className="font-util text-xs tracking-widest uppercase text-minuit/35 mb-3">Type de site</p>
               <div className="flex flex-col sm:flex-row gap-2">
                 <Opt selected={siteType === 'essentiel'} onClick={() => setSiteType('essentiel')}>Essentiel · 299€</Opt>
-                <Opt selected={siteType === 'pro'}       onClick={() => setSiteType('pro')}>Pro · 590€</Opt>
-                <Opt selected={siteType === 'premium'}   onClick={() => setSiteType('premium')}>Premium · 990€</Opt>
+                <Opt selected={siteType === 'pro'}       onClick={() => setSiteType('pro')}>Pro · 490€</Opt>
+                <Opt selected={siteType === 'premium'}   onClick={() => setSiteType('premium')}>Premium · 790€</Opt>
               </div>
             </div>
 
