@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Élise Beauté — Maquette WALTER Studio</title>
+<style>
+:root { --p: #8B5CF6; --p2: #EC4899; --bg: #FAFAFA; --ink: #1A1A2E; --soft: #64748B; }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Georgia',serif;color:var(--ink);background:var(--bg);line-height:1.65;}
+.demo-flag{background:#0D1033;color:#C9A84C;text-align:center;font:600 11px/2.4 Arial,sans-serif;letter-spacing:1.5px;text-transform:uppercase;}
+header{position:sticky;top:0;z-index:99;background:rgba(255,255,255,0.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(139,92,246,0.12);}
+nav{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:72px;}
+.logo{font-size:22px;font-weight:700;color:var(--ink);}
+.logo span{color:var(--p);}
+.logo small{display:block;font-family:Arial,sans-serif;font-size:10px;font-weight:500;color:var(--soft);letter-spacing:2px;text-transform:uppercase;}
+nav ul{display:flex;gap:28px;list-style:none;}
+nav a{font-family:Arial,sans-serif;font-size:14px;font-weight:500;color:var(--soft);text-decoration:none;transition:color .2s;}
+nav a:hover{color:var(--p);}
+.btn-nav{background:var(--p);color:#fff;padding:11px 24px;border-radius:40px;font-family:Arial,sans-serif;font-size:13px;font-weight:700;text-decoration:none;transition:background .2s;}
+.btn-nav:hover{background:var(--p2);}
+
+/* HERO */
+.hero{min-height:90vh;display:grid;grid-template-columns:1fr 1fr;}
+.hero-left{padding:80px 60px 80px 80px;display:flex;flex-direction:column;justify-content:center;}
+.hero-tag{display:inline-block;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.25);color:var(--p);padding:6px 16px;border-radius:40px;font-family:Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:28px;}
+.hero-left h1{font-size:54px;line-height:1.08;margin-bottom:20px;color:var(--ink);}
+.hero-left h1 em{color:var(--p);font-style:italic;}
+.hero-left p{font-family:Arial,sans-serif;font-size:17px;color:var(--soft);max-width:420px;line-height:1.7;margin-bottom:36px;}
+.cta-group{display:flex;gap:12px;flex-wrap:wrap;}
+.btn{display:inline-block;padding:14px 28px;border-radius:40px;font-family:Arial,sans-serif;font-size:14px;font-weight:700;text-decoration:none;transition:all .2s;}
+.btn-primary{background:var(--p);color:#fff;}
+.btn-primary:hover{background:var(--p2);}
+.btn-outline{background:transparent;color:var(--p);border:2px solid var(--p);}
+.btn-outline:hover{background:var(--p);color:#fff;}
+.hero-stats{display:flex;gap:28px;margin-top:44px;padding-top:28px;border-top:1px solid #EBEBEB;}
+.stat strong{display:block;font-size:26px;font-weight:700;color:var(--p);}
+.stat span{font-family:Arial,sans-serif;font-size:12px;color:var(--soft);text-transform:uppercase;letter-spacing:1px;}
+.hero-right{background:url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=900&q=80') center/cover no-repeat;background-color:var(--p);}
+
+/* PRESTATIONS */
+.services-section{padding:90px 28px;background:#fff;}
+.container{max-width:1100px;margin:auto;}
+.section-label{font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--p);margin-bottom:10px;}
+h2{font-size:34px;color:var(--ink);margin-bottom:14px;line-height:1.2;}
+.lead{font-family:Arial,sans-serif;font-size:16px;color:var(--soft);max-width:520px;margin-bottom:48px;line-height:1.7;}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.svc-card{background:var(--bg);border:1.5px solid #EBEBEB;border-radius:16px;padding:28px;text-align:center;transition:all .25s;}
+.svc-card:hover{border-color:var(--p);box-shadow:0 8px 28px rgba(139,92,246,0.12);transform:translateY(-4px);}
+.svc-icon{width:56px;height:56px;background:rgba(139,92,246,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 16px;}
+.svc-card h3{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+.svc-card p{font-family:Arial,sans-serif;font-size:13px;color:var(--soft);line-height:1.6;}
+
+/* ABOUT */
+.about-section{padding:90px 28px;background:rgba(139,92,246,0.04);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;}
+.about-img{background:url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80') center/cover no-repeat;background-color:var(--p);border-radius:20px;aspect-ratio:4/3;}
+.about-text p{font-family:Arial,sans-serif;font-size:15px;color:var(--soft);line-height:1.75;margin-bottom:14px;}
+.about-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;}
+.tag{background:#fff;border:1.5px solid rgba(139,92,246,0.2);color:var(--p);padding:7px 16px;border-radius:40px;font-family:Arial,sans-serif;font-size:13px;font-weight:600;}
+
+/* AVANT APRES */
+.avantapres-section{padding:90px 28px;background:#fff;}
+.aa-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.aa-card{border-radius:14px;overflow:hidden;aspect-ratio:3/4;background:linear-gradient(135deg,var(--p),var(--p2));display:flex;align-items:center;justify-content:center;color:#fff;font-family:Arial,sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;}
+
+/* AVIS */
+.avis-section{padding:90px 28px;background:var(--bg);}
+.avis-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.avis-card{background:#fff;border:1.5px solid #EBEBEB;border-radius:16px;padding:26px;}
+.stars{color:var(--p2);font-size:18px;margin-bottom:12px;}
+.avis-card blockquote{font-size:15px;color:var(--ink);line-height:1.65;margin-bottom:14px;font-style:italic;}
+.avis-author{font-family:Arial,sans-serif;font-size:13px;color:var(--soft);font-weight:600;}
+
+/* CONTACT */
+.contact-section{padding:90px 28px;background:var(--ink);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.contact-section .section-label{color:var(--p2);}
+.contact-section h2{color:#fff;}
+.contact-section .lead{color:rgba(255,255,255,0.5);}
+.info-item{display:flex;gap:14px;align-items:flex-start;margin-bottom:22px;}
+.info-ico{width:42px;height:42px;background:rgba(255,255,255,0.06);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.info-item h4{font-family:Arial,sans-serif;font-size:12px;font-weight:700;color:var(--p2);letter-spacing:1px;text-transform:uppercase;margin-bottom:3px;}
+.info-item p{font-family:Arial,sans-serif;font-size:14px;color:rgba(255,255,255,0.6);}
+.form-group{margin-bottom:14px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+label{display:block;font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:6px;}
+input,select,textarea{width:100%;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-family:Arial,sans-serif;font-size:14px;color:#fff;outline:none;transition:border-color .2s;}
+input:focus,select:focus,textarea:focus{border-color:var(--p);}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,0.2);}
+select option{background:var(--ink);}
+.btn-submit{width:100%;background:var(--p);color:#fff;border:none;padding:15px;border-radius:40px;font-family:Arial,sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:8px;transition:background .2s;}
+.btn-submit:hover{background:var(--p2);}
+
+footer{background:#0d0d1a;color:rgba(255,255,255,0.3);padding:32px 28px;text-align:center;font-family:Arial,sans-serif;font-size:13px;}
+.footer-logo{font-family:Georgia,serif;font-size:20px;color:var(--p);margin-bottom:8px;}
+footer p{line-height:1.8;}
+.walter{margin-top:14px;font-size:11px;opacity:.3;}
+@media(max-width:768px){nav ul{display:none;}.hero{grid-template-columns:1fr;}.hero-right{min-height:300px;}.hero-left{padding:60px 24px;}.hero-left h1{font-size:36px;}.services-grid{grid-template-columns:1fr 1fr;}.about-grid,.contact-grid,.avis-grid{grid-template-columns:1fr;}.form-row{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="demo-flag">MAQUETTE DE DÉMONSTRATION — réalisée par WALTER Studio · contenu et photos à personnaliser</div>
+<header>
+  <nav>
+    <div class="logo"><span class="nom-entreprise">Élise Beauté</span><small>Institut de beauté · Rennes</small></div>
+    <ul><li><a href="#">Prestations</a></li><li><a href="#">L'institut</a></li><li><a href="#">Avis</a></li><li><a href="#">Contact</a></li></ul>
+    <a href="#contact" class="btn-nav">Prendre RDV</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Institut de beauté · Rennes centre</div>
+    <h1>Prenez soin<br>de <em>vous</em></h1>
+    <p>Épilations, soins du visage, massages et bien-être — dans un cocon de douceur pensé pour vous ressourcer.</p>
+    <div class="cta-group">
+      <a href="#contact" class="btn btn-primary">Réserver sur Planity</a>
+      <a href="#prestations" class="btn btn-outline">Voir les prestations</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><strong>8 ans</strong><span>d'expérience</span></div>
+      <div class="stat"><strong>1200+</strong><span>clientes</span></div>
+      <div class="stat"><strong>4.9★</strong><span>Google</span></div>
+    </div>
+  </div>
+  <div class="hero-right"></div>
+</div>
+
+<section id="prestations" class="services-section" data-formule="essentiel">
+  <div class="container">
+    <div class="section-label">Nos prestations</div>
+    <h2>Des soins personnalisés,<br>réalisés avec soin</h2>
+    <p class="lead">Chaque prestation est adaptée à votre type de peau et vos besoins.</p>
+    <div class="services-grid">
+      <div class="svc-card"><div class="svc-icon">🌸</div><h3>Soins du visage</h3><p>Anti-âge, hydratants, purifiants. Adaptés à chaque type de peau.</p></div>
+      <div class="svc-card"><div class="svc-icon">🪶</div><h3>Épilation</h3><p>Visage et corps, en douceur. Cire chaude ou froide selon votre sensibilité.</p></div>
+      <div class="svc-card"><div class="svc-icon">💆</div><h3>Massages</h3><p>Relaxant, drainant ou sportif. Un moment pour vous ressourcer.</p></div>
+      <div class="svc-card"><div class="svc-icon">🎁</div><h3>Bons cadeaux</h3><p>Offrez un moment de beauté à ceux que vous aimez.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="about-section" data-formule="pro">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img"></div>
+      <div class="about-text">
+        <div class="section-label">L'institut</div>
+        <h2>Un espace pensé<br>pour votre bien-être</h2>
+        <p>Élise vous accueille dans un cadre chaleureux et discret, au cœur de Rennes. Esthéticienne diplômée d'État avec 8 ans d'expérience, elle adapte chaque soin à vos besoins spécifiques.</p>
+        <p>Prise de rendez-vous en ligne 24h/24 via Planity. Parking gratuit à proximité.</p>
+        <div class="about-tags">
+          <span class="tag">✓ Diplômée d'État</span>
+          <span class="tag">✓ Produits bio</span>
+          <span class="tag">✓ RDV en ligne</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="avantapres-section" data-formule="premium">
+  <div class="container">
+    <div class="section-label">Transformations</div>
+    <h2>Avant / Après</h2>
+    <p class="lead" style="margin-bottom:36px">Quelques résultats obtenus par nos clientes.</p>
+    <div class="aa-grid">
+      <div class="aa-card">Photo cliente 1</div>
+      <div class="aa-card">Photo cliente 2</div>
+      <div class="aa-card">Photo cliente 3</div>
+    </div>
+  </div>
+</section>
+
+<section class="avis-section" data-formule="pro">
+  <div class="container">
+    <div class="section-label">Ce qu'elles disent</div>
+    <h2>Avis de nos clientes</h2>
+    <p class="lead">Plus de 150 avis vérifiés sur Google.</p>
+    <div class="avis-grid">
+      <div class="avis-card"><div class="stars">★★★★★</div><blockquote>Un accueil chaleureux, des soins impeccables. Élise est vraiment à l'écoute. Je repars toujours ressourcée et ravie du résultat.</blockquote><div class="avis-author">— Sophie M., cliente depuis 3 ans</div></div>
+      <div class="avis-card"><div class="stars">★★★★★</div><blockquote>La meilleure esthéticienne que j'ai eu. Professionnelle, douce, et ses produits sont top. Je recommande les yeux fermés !</blockquote><div class="avis-author">— Laura B., via Google</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-section" data-formule="pro">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <div class="section-label">Infos pratiques</div>
+        <h2 style="color:#fff">Prenez rendez-vous</h2>
+        <p class="lead">En ligne via Planity 24h/24, ou contactez-nous directement.</p>
+        <div class="info-item"><div class="info-ico">📍</div><div><h4>Adresse</h4><p>19 rue de Rennes<br>35000 Rennes</p></div></div>
+        <div class="info-item"><div class="info-ico">🕐</div><div><h4>Horaires</h4><p>Mardi – Samedi : 9h–19h<br>Sur rendez-vous uniquement</p></div></div>
+        <div class="info-item"><div class="info-ico">📱</div><div><h4>Réservation</h4><p>En ligne via Planity, 24h/24</p></div></div>
+      </div>
+      <div>
+        <div class="form-group form-row">
+          <div><label>Prénom</label><input type="text" placeholder="Sophie"></div>
+          <div><label>Nom</label><input type="text" placeholder="Martin"></div>
+        </div>
+        <div class="form-group"><label>Prestation souhaitée</label>
+          <select><option>Soin du visage</option><option>Épilation</option><option>Massage</option><option>Autre</option></select>
+        </div>
+        <div class="form-group"><label>Email</label><input type="email" placeholder="sophie@email.fr"></div>
+        <div class="form-group"><label>Message</label><textarea rows="3" placeholder="Précisions, demandes particulières..."></textarea></div>
+        <button class="btn-submit">Envoyer ma demande →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREMIUM : Tarifs -->
+<section data-formule="premium" style="padding:80px 28px;background:#fff;">
+  <div style="max-width:1100px;margin:auto;">
+    <div style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--p);margin-bottom:10px;">Tarifs</div>
+    <h2 style="font-size:32px;font-family:Georgia,serif;color:var(--ink);margin-bottom:40px;">Nos prestations & prix</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1.5px solid #EBEBEB;border-radius:14px;overflow:hidden;">
+      <div style="padding:28px;border-right:1.5px solid #EBEBEB;">
+        <div style="font-family:Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--p);margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid rgba(139,92,246,0.1);">Soins visage</div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:12px;font-family:Arial,sans-serif;"><span style="font-size:14px;color:var(--ink);">Soin hydratant</span><span style="font-weight:700;color:var(--p);">45€</span></div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:12px;font-family:Arial,sans-serif;"><span style="font-size:14px;color:var(--ink);">Soin anti-âge</span><span style="font-weight:700;color:var(--p);">65€</span></div>
+        <div style="display:flex;justify-content:space-between;font-family:Arial,sans-serif;"><span style="font-size:14px;color:var(--ink);">Soin purifiant</span><span style="font-weight:700;color:var(--p);">55€</span></div>
+      </div>
+      <div style="padding:28px;border-right:1.5px solid #EBEBEB;">
+        <div style="font-family:Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--p);margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid rgba(139,92,246,0.1);">Épilation</div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:12px;font-family:Arial,sans-serif;"><span style="font-size:14px;color:var(--ink);">Demi-jambes</span><span style="font-weight:700;color:var(--p);">22€</span></div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:12px;font-family:Arial,sans-serif;"><span style="font-size:14px;color:var(--ink);">Jambes complètes</span><span style="font-weight:700;color:var(--p);">35€</span></div>
+        <div style="display:flex;justify-content:space-between;font-family:Arial,sans-serif;"><span style="font-size:14px;color:var(--ink);">Maillot intégral</span><span style="font-weight:700;color:var(--p);">28€</span></div>
+      </div>
+      <div style="padding:28px;">
+        <div style="font-family:Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--p);margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid rgba(139,92,246,0.1);">Massages</div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:12px;font-family:Arial,sans-serif;"><span style="font-size:14px;color:var(--ink);">Relaxant (30 min)</span><span style="font-weight:700;color:var(--p);">40€</span></div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:12px;font-family:Arial,sans-serif;"><span style="font-size:14px;color:var(--ink);">Drainant (45 min)</span><span style="font-weight:700;color:var(--p);">55€</span></div>
+        <div style="display:flex;justify-content:space-between;font-family:Arial,sans-serif;"><span style="font-size:14px;color:var(--ink);">Corps complet (1h)</span><span style="font-weight:700;color:var(--p);">75€</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREMIUM : Module RDV Planity -->
+<section data-formule="premium" style="padding:70px 28px;background:rgba(139,92,246,0.05);">
+  <div style="max-width:700px;margin:auto;text-align:center;">
+    <div style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--p);margin-bottom:10px;">Réservation en ligne</div>
+    <h2 style="font-size:32px;font-family:Georgia,serif;color:var(--ink);margin-bottom:14px;">Prenez rendez-vous<br>en quelques secondes</h2>
+    <p style="font-family:Arial,sans-serif;font-size:16px;color:var(--soft);margin-bottom:36px;">Disponible 24h/24 via Planity. Confirmation immédiate par SMS.</p>
+    <div style="background:#fff;border:1.5px solid #EBEBEB;border-radius:14px;padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:14px;text-align:left;">
+      <div><label style="display:block;font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--soft);margin-bottom:6px;">Prestation</label><select style="width:100%;background:#FAFAFA;border:1.5px solid #EBEBEB;border-radius:8px;padding:11px 14px;font-family:Arial,sans-serif;font-size:14px;color:var(--ink);outline:none;"><option>Soin du visage</option><option>Épilation</option><option>Massage</option></select></div>
+      <div><label style="display:block;font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--soft);margin-bottom:6px;">Date souhaitée</label><input type="date" style="width:100%;background:#FAFAFA;border:1.5px solid #EBEBEB;border-radius:8px;padding:11px 14px;font-family:Arial,sans-serif;font-size:14px;color:var(--ink);outline:none;"></div>
+    </div>
+    <a href="#" style="display:inline-block;margin-top:20px;background:var(--p);color:#fff;padding:14px 32px;border-radius:40px;font-family:Arial,sans-serif;font-size:14px;font-weight:700;text-decoration:none;">Réserver sur Planity →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo"><span class="nom-entreprise">Élise Beauté</span></div>
+  <p>19 rue de Rennes · 35000 Rennes · Réservation via Planity</p>
+  <p class="walter">Maquette créée par WALTER Studio — Hamaury Walter</p>
+</footer>
+
+<script>
+window.addEventListener('message', function(e) {
+  var d = e.data; if (!d) return;
+  if (d.couleurPrincipale) document.documentElement.style.setProperty('--p', d.couleurPrincipale);
+  if (d.couleurAccent) document.documentElement.style.setProperty('--p2', d.couleurAccent);
+  if (d.nom) document.querySelectorAll('.nom-entreprise').forEach(function(el){ el.textContent = d.nom; });
+  if (d.formule) {
+    var n = { essentiel:['essentiel'], pro:['essentiel','pro'], premium:['essentiel','pro','premium'] };
+    document.querySelectorAll('[data-formule]').forEach(function(el){
+      el.style.display = n[d.formule] && n[d.formule].includes(el.dataset.formule) ? '' : 'none';
+    });
+  }
+});
+</script>
+</body>
+</html>

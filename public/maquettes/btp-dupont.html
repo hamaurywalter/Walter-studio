@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dupont BTP — Maquette WALTER Studio</title>
+<style>
+:root{--p:#1B5E20;--p2:#F9A825;--bg:#F5F5F0;--ink:#1A1A1A;--soft:#5C6B5C;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Arial',sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;}
+.demo-flag{background:#0D1033;color:#C9A84C;text-align:center;font:600 11px/2.4 Arial,sans-serif;letter-spacing:1.5px;text-transform:uppercase;}
+header{background:var(--ink);position:sticky;top:0;z-index:99;}
+nav{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:72px;}
+.logo{display:flex;align-items:center;gap:14px;}
+.logo-box{width:46px;height:46px;background:var(--p2);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px;color:var(--ink);}
+.logo-name{color:#fff;font-size:20px;font-weight:800;letter-spacing:-.3px;}
+.logo-name small{display:block;font-size:10px;font-weight:500;color:rgba(255,255,255,.4);letter-spacing:2px;}
+nav ul{display:flex;gap:28px;list-style:none;}
+nav a{color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;}
+nav a:hover{color:var(--p2);}
+.btn-nav{background:var(--p2);color:var(--ink);padding:11px 24px;border-radius:6px;font-size:13px;font-weight:800;text-decoration:none;}
+
+/* HERO */
+.hero{min-height:88vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;}
+.hero-left{background:var(--ink);padding:80px 60px 80px 80px;display:flex;flex-direction:column;justify-content:center;position:relative;}
+.hero-left::after{content:'';position:absolute;top:0;right:-40px;width:80px;height:100%;background:var(--ink);transform:skewX(-3deg);z-index:1;}
+.hero-stripe{width:60px;height:5px;background:var(--p2);border-radius:3px;margin-bottom:28px;}
+.hero-left h1{font-size:54px;font-weight:900;color:#fff;line-height:1.05;letter-spacing:-1.5px;margin-bottom:22px;}
+.hero-left h1 span{color:var(--p2);}
+.hero-left p{font-size:17px;color:rgba(255,255,255,.65);max-width:420px;line-height:1.7;margin-bottom:36px;}
+.cta-group{display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:2;}
+.btn{display:inline-block;padding:14px 28px;border-radius:6px;font-size:14px;font-weight:800;text-decoration:none;transition:all .2s;}
+.btn-yellow{background:var(--p2);color:var(--ink);}
+.btn-yellow:hover{background:#f0a000;}
+.btn-ghost{background:rgba(255,255,255,.07);color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.12);}
+.btn-ghost:hover{background:rgba(255,255,255,.12);}
+.hero-stats{display:flex;gap:28px;margin-top:48px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08);position:relative;z-index:2;}
+.stat strong{display:block;font-size:28px;font-weight:900;color:var(--p2);letter-spacing:-.5px;}
+.stat span{font-size:12px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px;}
+.hero-right{background:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80') center/cover no-repeat;background-color:var(--p);position:relative;}
+.hero-right::before{content:'';position:absolute;inset:0;background:rgba(27,94,32,0.25);}
+
+/* SECTIONS */
+.section-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--p);margin-bottom:10px;}
+h2{font-size:34px;font-weight:800;color:var(--ink);margin-bottom:14px;line-height:1.2;}
+.lead{font-size:16px;color:var(--soft);max-width:540px;margin-bottom:48px;line-height:1.7;}
+.container{max-width:1100px;margin:auto;}
+
+/* SERVICES */
+.services-section{padding:90px 28px;background:#fff;}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.svc-card{border:2px solid #EBEBEB;border-radius:12px;padding:30px;transition:all .25s;position:relative;overflow:hidden;}
+.svc-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:var(--p);transform:scaleX(0);transition:transform .25s;transform-origin:left;}
+.svc-card:hover::before{transform:scaleX(1);}
+.svc-card:hover{border-color:var(--p);box-shadow:0 8px 28px rgba(27,94,32,0.1);transform:translateY(-3px);}
+.svc-icon{font-size:36px;margin-bottom:16px;}
+.svc-card h3{font-size:18px;font-weight:800;color:var(--ink);margin-bottom:10px;}
+.svc-card p{font-size:14px;color:var(--soft);line-height:1.65;}
+
+/* ZONE */
+.zone-section{padding:70px 28px;background:var(--bg);}
+.zone-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.zone-left h2{margin-bottom:16px;}
+.zone-left p{font-size:15px;color:var(--soft);line-height:1.7;margin-bottom:24px;}
+.dept-grid{display:flex;flex-wrap:wrap;gap:8px;}
+.dept{background:#fff;border:1.5px solid #DDEEDD;color:var(--p);padding:7px 16px;border-radius:6px;font-size:13px;font-weight:700;}
+.zone-img{background:url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80') center/cover no-repeat;background-color:var(--p);border-radius:16px;aspect-ratio:4/3;}
+
+/* ABOUT */
+.about-section{padding:90px 28px;background:#fff;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;}
+.about-img{background:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80') center/cover no-repeat;background-color:var(--p);border-radius:16px;aspect-ratio:5/4;}
+.about-text p{font-size:15px;color:var(--soft);line-height:1.75;margin-bottom:14px;}
+.certs{display:flex;flex-direction:column;gap:10px;margin-top:22px;}
+.cert{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--ink);}
+.cert::before{content:'✓';width:26px;height:26px;background:rgba(27,94,32,0.1);color:var(--p);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;flex-shrink:0;}
+
+/* RÉALISATIONS */
+.realis-section{padding:90px 28px;background:var(--bg);}
+.realis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.realis-card{aspect-ratio:4/3;background:linear-gradient(135deg,var(--p),var(--p2));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#fff;letter-spacing:1px;}
+
+/* CHIFFRES */
+.chiffres-section{padding:90px 28px;background:var(--ink);}
+.chiffres-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;text-align:center;}
+.chiffre-item strong{display:block;font-size:52px;font-weight:900;color:var(--p2);letter-spacing:-2px;margin-bottom:8px;}
+.chiffre-item p{font-size:14px;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:1px;}
+
+/* AVIS */
+.avis-section{padding:90px 28px;background:#fff;}
+.avis-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.avis-card{background:var(--bg);border-left:4px solid var(--p2);border-radius:0 12px 12px 0;padding:26px;}
+.stars{color:var(--p2);font-size:16px;margin-bottom:12px;}
+.avis-card blockquote{font-size:15px;color:var(--ink);line-height:1.65;margin-bottom:14px;font-style:italic;}
+.avis-author{font-size:13px;color:var(--soft);font-weight:700;}
+
+/* DEVIS */
+.devis-section{padding:90px 28px;background:var(--bg);}
+.devis-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.devis-intro h2{margin-bottom:16px;}
+.devis-intro p{font-size:15px;color:var(--soft);line-height:1.7;margin-bottom:14px;}
+.promises{display:flex;flex-direction:column;gap:14px;margin-top:24px;}
+.promise{display:flex;gap:12px;align-items:flex-start;}
+.p-ico{width:38px;height:38px;background:rgba(27,94,32,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.promise h4{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:2px;}
+.promise p{font-size:13px;color:var(--soft);}
+.form-group{margin-bottom:14px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+label{display:block;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--soft);margin-bottom:6px;}
+input,select,textarea{width:100%;background:#fff;border:1.5px solid #DDEEDD;border-radius:8px;padding:12px 14px;font-family:Arial,sans-serif;font-size:14px;color:var(--ink);outline:none;transition:border-color .2s;}
+input:focus,select:focus,textarea:focus{border-color:var(--p);}
+.btn-submit{width:100%;background:var(--p);color:#fff;border:none;padding:15px;border-radius:8px;font-size:14px;font-weight:800;cursor:pointer;margin-top:8px;transition:background .2s;}
+.btn-submit:hover{background:#155016;}
+footer{background:#111;color:rgba(255,255,255,.3);padding:32px 28px;text-align:center;font-size:13px;}
+.footer-logo{font-size:18px;font-weight:900;color:rgba(255,255,255,.8);margin-bottom:8px;}
+footer p{line-height:1.8;}
+.walter{margin-top:14px;font-size:11px;opacity:.3;}
+@media(max-width:768px){nav ul{display:none;}.hero{grid-template-columns:1fr;}.hero-right{min-height:250px;}.hero-left{padding:60px 24px;}.hero-left h1{font-size:38px;}.services-grid,.chiffres-grid,.realis-grid{grid-template-columns:1fr;}.about-grid,.zone-grid,.devis-grid,.avis-grid{grid-template-columns:1fr;}.form-row{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="demo-flag">MAQUETTE DE DÉMONSTRATION — réalisée par WALTER Studio · contenu et photos à personnaliser</div>
+<header>
+  <nav>
+    <div class="logo">
+      <div class="logo-box">B</div>
+      <div class="logo-name"><span class="nom-entreprise">Dupont BTP</span><small>CONSTRUCTION · BRETAGNE</small></div>
+    </div>
+    <ul><li><a href="#">Services</a></li><li><a href="#">Réalisations</a></li><li><a href="#">À propos</a></li><li><a href="#">Contact</a></li></ul>
+    <a href="#devis" class="btn-nav">Demander un devis</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-stripe"></div>
+    <h1>Construisons<br><span>ensemble</span></h1>
+    <p>Des projets solides, des équipes fiables, des délais tenus. Depuis 20 ans, votre partenaire de confiance en Bretagne.</p>
+    <div class="cta-group">
+      <a href="#devis" class="btn btn-yellow">Demander un devis gratuit</a>
+      <a href="#realisations" class="btn btn-ghost">Voir nos réalisations</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><strong>20 ans</strong><span>d'expérience</span></div>
+      <div class="stat"><strong>500+</strong><span>projets</span></div>
+      <div class="stat"><strong>98%</strong><span>délais tenus</span></div>
+    </div>
+  </div>
+  <div class="hero-right"></div>
+</div>
+
+<section class="services-section" data-formule="essentiel">
+  <div class="container">
+    <div class="section-label">Nos métiers</div>
+    <h2>Tout ce qu'il faut<br>pour construire juste</h2>
+    <p class="lead">Du gros œuvre à la finition, une seule équipe, un seul interlocuteur.</p>
+    <div class="services-grid">
+      <div class="svc-card"><div class="svc-icon">🏗️</div><h3>Gros œuvre</h3><p>Fondations, dalles, murs porteurs, charpente. Les bases solides de chaque projet.</p></div>
+      <div class="svc-card"><div class="svc-icon">🔨</div><h3>Rénovation complète</h3><p>Remise à neuf de logements, locaux commerciaux, bâtiments anciens. Tous corps d'état.</p></div>
+      <div class="svc-card"><div class="svc-icon">📐</div><h3>Maîtrise d'œuvre</h3><p>Pilotage complet de votre chantier : plans, coordination des équipes, suivi qualité.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="zone-section" data-formule="essentiel">
+  <div class="container">
+    <div class="zone-grid">
+      <div class="zone-left">
+        <div class="section-label">Zone d'intervention</div>
+        <h2>On intervient<br>partout en Bretagne</h2>
+        <p>Basés à Rennes, nous intervenons dans toute la région Bretagne et les départements limitrophes.</p>
+        <div class="dept-grid">
+          <span class="dept">Ille-et-Vilaine</span><span class="dept">Côtes-d'Armor</span><span class="dept">Finistère</span><span class="dept">Morbihan</span><span class="dept">Loire-Atlantique</span><span class="dept">Mayenne</span>
+        </div>
+      </div>
+      <div class="zone-img"></div>
+    </div>
+  </div>
+</section>
+
+<section class="about-section" data-formule="pro">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img"></div>
+      <div class="about-text">
+        <div class="section-label">À propos</div>
+        <h2>20 ans de chantiers<br>menés à bien</h2>
+        <p>Dupont BTP c'est une équipe de 12 compagnons qualifiés, pilotée par Marc Dupont, artisan depuis 2004. On intervient sur des projets de toutes tailles, des particuliers aux collectivités.</p>
+        <p>Notre force : une organisation rigoureuse, une communication transparente, et des délais que l'on tient pour de vrai.</p>
+        <div class="certs">
+          <div class="cert">Qualibat — Qualification niveau expert</div>
+          <div class="cert">RGE — Reconnu Garant de l'Environnement</div>
+          <div class="cert">Assurance décennale tous corps d'état</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="realisations" class="realis-section" data-formule="pro">
+  <div class="container">
+    <div class="section-label">Portfolio</div>
+    <h2>Quelques réalisations</h2>
+    <p class="lead">Des projets livrés dans les délais, à la satisfaction de nos clients.</p>
+    <div class="realis-grid">
+      <div class="realis-card">Maison individuelle · Rennes</div>
+      <div class="realis-card">Rénovation bureau · Cesson</div>
+      <div class="realis-card">Extension · Bruz</div>
+      <div class="realis-card">Gros œuvre · Chartres-35</div>
+      <div class="realis-card">Rénovation école · Noyal</div>
+      <div class="realis-card">Logements collectifs · St-Grégoire</div>
+    </div>
+  </div>
+</section>
+
+<section class="chiffres-section" data-formule="premium">
+  <div class="container">
+    <div class="chiffres-grid">
+      <div class="chiffre-item"><strong>20</strong><p>Ans d'expérience</p></div>
+      <div class="chiffre-item"><strong>500+</strong><p>Projets livrés</p></div>
+      <div class="chiffre-item"><strong>98%</strong><p>Délais tenus</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="avis-section" data-formule="pro">
+  <div class="container">
+    <div class="section-label">Témoignages</div>
+    <h2>Ce que disent nos clients</h2>
+    <p class="lead">+80 avis Google, note moyenne 4.8/5.</p>
+    <div class="avis-grid">
+      <div class="avis-card"><div class="stars">★★★★★</div><blockquote>Sérieux et professionnel du début à la fin. Chantier livré dans les délais et dans les clous du budget. Je les recommande sans hésiter.</blockquote><div class="avis-author">— Jean-Marc F., Rennes</div></div>
+      <div class="avis-card"><div class="stars">★★★★★</div><blockquote>Travail soigné, équipe respectueuse. Marc est disponible et transparent sur tout. C'est rare et ça change tout.</div><div class="avis-author">— Sylvie R., Cesson-Sévigné</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="devis" class="devis-section" data-formule="pro">
+  <div class="container">
+    <div class="devis-grid">
+      <div class="devis-intro">
+        <div class="section-label">Contact</div>
+        <h2>Demandez votre<br>devis gratuit</h2>
+        <p>On vous rappelle sous 48h pour discuter de votre projet et vous donner une première estimation.</p>
+        <div class="promises">
+          <div class="promise"><div class="p-ico">📋</div><div><h4>Devis détaillé</h4><p>Chaque poste est expliqué et chiffré</p></div></div>
+          <div class="promise"><div class="p-ico">📞</div><div><h4>Rappel sous 48h</h4><p>Du lundi au vendredi, 8h-18h</p></div></div>
+          <div class="promise"><div class="p-ico">✅</div><div><h4>Sans engagement</h4><p>Vous êtes libre d'accepter ou non</p></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="form-group form-row">
+          <div><label>Prénom</label><input type="text" placeholder="Paul"></div>
+          <div><label>Nom</label><input type="text" placeholder="Martin"></div>
+        </div>
+        <div class="form-group"><label>Téléphone</label><input type="tel" placeholder="06 XX XX XX XX"></div>
+        <div class="form-group"><label>Type de projet</label>
+          <select><option>Gros œuvre</option><option>Rénovation</option><option>Extension</option><option>Maîtrise d'œuvre</option><option>Autre</option></select>
+        </div>
+        <div class="form-group form-row">
+          <div><label>Surface (m²)</label><input type="text" placeholder="Ex : 120 m²"></div>
+          <div><label>Email</label><input type="email" placeholder="paul@email.fr"></div>
+        </div>
+        <div class="form-group"><label>Description du projet</label><textarea rows="3" placeholder="Décrivez votre projet..."></textarea></div>
+        <button class="btn-submit">Envoyer ma demande →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo"><span class="nom-entreprise">Dupont BTP</span></div>
+  <p>Rennes & Bretagne · 06 XX XX XX XX · dupont-btp@email.fr</p>
+  <p>Lundi – Vendredi 7h30–18h</p>
+  <p class="walter">Maquette créée par WALTER Studio — Hamaury Walter</p>
+</footer>
+
+<script>
+window.addEventListener('message', function(e) {
+  var d = e.data; if (!d) return;
+  if (d.couleurPrincipale) document.documentElement.style.setProperty('--p', d.couleurPrincipale);
+  if (d.couleurAccent) document.documentElement.style.setProperty('--p2', d.couleurAccent);
+  if (d.nom) document.querySelectorAll('.nom-entreprise').forEach(function(el){ el.textContent = d.nom; });
+  if (d.formule) {
+    var n = { essentiel:['essentiel'], pro:['essentiel','pro'], premium:['essentiel','pro','premium'] };
+    document.querySelectorAll('[data-formule]').forEach(function(el){
+      el.style.display = n[d.formule] && n[d.formule].includes(el.dataset.formule) ? '' : 'none';
+    });
+  }
+});
+</script>
+</body>
+</html>

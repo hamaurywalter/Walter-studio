@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import emailjs from '@emailjs/browser'
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
+import { Routes, Route, Link } from 'react-router-dom'
+import SimulateurPage from './pages/SimulateurPage.jsx'
 
 /* ═══════════════════════════════════════════════════════════════
    HELPERS ANIMATION
@@ -74,7 +76,7 @@ function Navbar() {
     }`}>
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
 
-        <a href="#">
+        <a href="/">
           <img
             src="/logoWS.png"
             alt="WALTER Studio"
@@ -91,6 +93,12 @@ function Navbar() {
               {l.label}
             </a>
           ))}
+          <Link to="/simulateur"
+            className={`nav-link text-sm font-medium transition-colors ${
+              scrolled ? 'text-laiton hover:text-minuit' : 'text-laiton hover:text-white'
+            }`}>
+            Simulateur
+          </Link>
         </nav>
 
         <a href="#contact"
@@ -119,6 +127,11 @@ function Navbar() {
                 {l.label}
               </a>
             ))}
+            <Link to="/simulateur"
+              className="font-display text-4xl font-bold text-laiton hover:text-white transition-colors"
+              onClick={() => setMenuOpen(false)}>
+              Simulateur
+            </Link>
           </nav>
           <a href="#contact"
             className="mt-auto inline-flex justify-center bg-laiton text-minuit font-semibold px-6 py-4 rounded-full"
@@ -950,10 +963,20 @@ function Footer() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   APP
+   HOME PAGE
 ═══════════════════════════════════════════════════════════════ */
-export default function App() {
+function HomePage() {
   const [prefillMessage, setPrefillMessage] = useState('')
+
+  useEffect(() => {
+    const hash = window.location.hash
+    if (!hash) return
+    const t = setTimeout(() => {
+      const el = document.querySelector(hash)
+      if (el) el.scrollIntoView({ behavior: 'smooth' })
+    }, 150)
+    return () => clearTimeout(t)
+  }, [])
 
   return (
     <div className="min-h-screen">
@@ -968,5 +991,17 @@ export default function App() {
       <Contact prefillMessage={prefillMessage} />
       <Footer />
     </div>
+  )
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   APP — routing
+═══════════════════════════════════════════════════════════════ */
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/"           element={<HomePage />} />
+      <Route path="/simulateur" element={<SimulateurPage />} />
+    </Routes>
   )
 }

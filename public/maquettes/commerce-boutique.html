@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>La Boutique Léa — Maquette WALTER Studio</title>
+<style>
+:root{--p:#0D47A1;--p2:#FF6F00;--bg:#FAFAFA;--ink:#1A1A2E;--soft:#5C6B7A;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Arial',sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;}
+.demo-flag{background:#0D1033;color:#C9A84C;text-align:center;font:600 11px/2.4 Arial,sans-serif;letter-spacing:1.5px;text-transform:uppercase;}
+.promo-strip{background:var(--p2);color:#fff;text-align:center;padding:9px 20px;font-size:13px;font-weight:700;letter-spacing:.3px;}
+header{background:#fff;border-bottom:1px solid #EBEBEB;position:sticky;top:0;z-index:99;box-shadow:0 2px 12px rgba(0,0,0,.06);}
+nav{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:72px;}
+.logo{display:flex;flex-direction:column;}
+.logo-name{font-size:22px;font-weight:800;color:var(--p);letter-spacing:-.3px;}
+.logo-sub{font-size:11px;color:var(--soft);letter-spacing:1.5px;text-transform:uppercase;}
+nav ul{display:flex;gap:28px;list-style:none;}
+nav a{font-size:14px;font-weight:500;color:var(--soft);text-decoration:none;transition:color .2s;}
+nav a:hover{color:var(--p);}
+.btn-nav{background:var(--p);color:#fff;padding:11px 24px;border-radius:6px;font-size:13px;font-weight:700;text-decoration:none;transition:background .2s;}
+.btn-nav:hover{background:var(--p2);}
+
+/* HERO SPLIT */
+.hero{min-height:88vh;display:grid;grid-template-columns:1fr 1fr;}
+.hero-img{background:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900&q=80') center/cover no-repeat;background-color:var(--p);position:relative;}
+.hero-img::before{content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent 60%,rgba(250,250,250,1) 100%);}
+.hero-right{display:flex;flex-direction:column;justify-content:center;padding:80px 80px 80px 60px;}
+.hero-tag{display:inline-block;background:rgba(13,71,161,0.08);border:1.5px solid rgba(13,71,161,0.2);color:var(--p);padding:6px 16px;border-radius:6px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:28px;}
+.hero-right h1{font-size:50px;font-weight:900;line-height:1.08;letter-spacing:-1.5px;margin-bottom:20px;color:var(--ink);}
+.hero-right h1 span{color:var(--p2);}
+.hero-right p{font-size:17px;color:var(--soft);max-width:400px;line-height:1.7;margin-bottom:36px;}
+.cta-group{display:flex;gap:12px;flex-wrap:wrap;}
+.btn{display:inline-block;padding:14px 28px;border-radius:6px;font-size:14px;font-weight:700;text-decoration:none;transition:all .2s;}
+.btn-primary{background:var(--p);color:#fff;}
+.btn-primary:hover{background:#0a3880;}
+.btn-outline{background:transparent;color:var(--p);border:2px solid var(--p);}
+.btn-outline:hover{background:var(--p);color:#fff;}
+.hero-badges{display:flex;gap:12px;flex-wrap:wrap;margin-top:36px;}
+.hero-badge{background:var(--bg);border:1.5px solid #DDEEDD;border-radius:6px;padding:8px 16px;font-size:12px;font-weight:700;color:var(--ink);}
+
+/* SECTIONS */
+.section-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--p);margin-bottom:10px;}
+h2{font-size:34px;font-weight:800;color:var(--ink);margin-bottom:14px;line-height:1.2;}
+.lead{font-size:16px;color:var(--soft);max-width:520px;margin-bottom:48px;line-height:1.7;}
+.container{max-width:1100px;margin:auto;}
+
+/* PRODUITS */
+.products-section{padding:90px 28px;background:#fff;}
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.product-card{border:1.5px solid #EBEBEB;border-radius:14px;overflow:hidden;transition:all .25s;}
+.product-card:hover{border-color:var(--p);box-shadow:0 8px 28px rgba(13,71,161,.1);transform:translateY(-4px);}
+.product-img{background:linear-gradient(135deg,var(--p),var(--p2));aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-size:50px;}
+.product-info{padding:20px;}
+.product-info h3{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+.product-info p{font-size:13px;color:var(--soft);margin-bottom:12px;}
+.product-price{font-size:18px;font-weight:900;color:var(--p);}
+.product-badge{display:inline-block;background:rgba(255,111,0,0.1);color:var(--p2);border-radius:4px;padding:3px 10px;font-size:11px;font-weight:700;margin-left:8px;}
+
+/* INFOS */
+.infos-section{padding:70px 28px;background:var(--bg);}
+.infos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.info-card{background:#fff;border-radius:12px;padding:24px;text-align:center;border:1.5px solid #EBEBEB;}
+.info-ico{font-size:28px;margin-bottom:12px;}
+.info-card h3{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+.info-card p{font-size:13px;color:var(--soft);line-height:1.6;}
+
+/* ABOUT */
+.about-section{padding:90px 28px;background:#fff;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;}
+.about-img{background:url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80') center/cover no-repeat;background-color:var(--p);border-radius:16px;aspect-ratio:4/3;}
+.about-text p{font-size:15px;color:var(--soft);line-height:1.75;margin-bottom:14px;}
+.about-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;}
+.tag{background:rgba(13,71,161,.06);border:1.5px solid rgba(13,71,161,.15);color:var(--p);padding:7px 16px;border-radius:6px;font-size:13px;font-weight:700;}
+
+/* PROMOS */
+.promos-section{padding:90px 28px;background:var(--bg);}
+.promos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.promo-card{background:#fff;border-radius:14px;padding:28px;border:1.5px solid #EBEBEB;position:relative;overflow:hidden;}
+.promo-pct{position:absolute;top:16px;right:16px;background:var(--p2);color:#fff;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;}
+.promo-card h3{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px;padding-right:50px;}
+.promo-card p{font-size:14px;color:var(--soft);}
+.promo-card .ancien{font-size:13px;color:var(--soft);text-decoration:line-through;margin-top:12px;}
+.promo-card .nouveau{font-size:22px;font-weight:900;color:var(--p);}
+
+/* AVIS */
+.avis-section{padding:90px 28px;background:var(--p);}
+.avis-section .section-label{color:rgba(255,255,255,.6);}
+.avis-section h2{color:#fff;}
+.avis-section .lead{color:rgba(255,255,255,.6);}
+.avis-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.avis-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:24px;}
+.stars{color:var(--p2);font-size:16px;margin-bottom:12px;}
+.avis-card blockquote{font-size:15px;color:rgba(255,255,255,.85);line-height:1.65;margin-bottom:14px;font-style:italic;}
+.avis-author{font-size:13px;color:rgba(255,255,255,.45);font-weight:600;}
+
+/* CONTACT */
+.contact-section{padding:90px 28px;background:#fff;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.contact-intro h2{margin-bottom:16px;}
+.contact-intro p{font-size:15px;color:var(--soft);line-height:1.7;margin-bottom:24px;}
+.click-collect{background:rgba(255,111,0,.06);border:2px solid rgba(255,111,0,.2);border-radius:12px;padding:24px;margin-top:24px;}
+.click-collect h4{font-size:15px;font-weight:700;color:var(--p2);margin-bottom:8px;}
+.click-collect p{font-size:14px;color:var(--soft);}
+.form-group{margin-bottom:14px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+label{display:block;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--soft);margin-bottom:6px;}
+input,select,textarea{width:100%;background:var(--bg);border:1.5px solid #E0E7EF;border-radius:8px;padding:12px 14px;font-family:Arial,sans-serif;font-size:14px;color:var(--ink);outline:none;transition:border-color .2s;}
+input:focus,select:focus,textarea:focus{border-color:var(--p);}
+.btn-submit{width:100%;background:var(--p);color:#fff;border:none;padding:15px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;margin-top:8px;transition:background .2s;}
+.btn-submit:hover{background:var(--p2);}
+footer{background:#0a0d1a;color:rgba(255,255,255,.3);padding:32px 28px;text-align:center;font-size:13px;}
+.footer-logo{font-size:18px;font-weight:800;color:rgba(255,255,255,.8);margin-bottom:8px;}
+footer p{line-height:1.8;}
+.walter{margin-top:14px;font-size:11px;opacity:.3;}
+@media(max-width:768px){nav ul{display:none;}.hero{grid-template-columns:1fr;}.hero-img{min-height:280px;}.hero-img::before{background:none;}.hero-right{padding:60px 24px;}.hero-right h1{font-size:36px;}.products-grid,.promos-grid{grid-template-columns:1fr;}.infos-grid{grid-template-columns:1fr 1fr;}.about-grid,.avis-grid,.contact-grid{grid-template-columns:1fr;}.form-row{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="demo-flag">MAQUETTE DE DÉMONSTRATION — réalisée par WALTER Studio · contenu et photos à personnaliser</div>
+<div class="promo-strip">🎉 Soldes d'été — jusqu'à -40% sur une sélection d'articles</div>
+
+<header>
+  <nav>
+    <div class="logo">
+      <div class="logo-name"><span class="nom-entreprise">La Boutique Léa</span></div>
+      <div class="logo-sub">Mode & accessoires · Rennes</div>
+    </div>
+    <ul><li><a href="#">Nos produits</a></li><li><a href="#">Promotions</a></li><li><a href="#">À propos</a></li><li><a href="#">Contact</a></li></ul>
+    <a href="#contact" class="btn-nav">Nous contacter</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-right">
+    <div class="hero-tag">Boutique locale · Rennes centre</div>
+    <h1>Bienvenue dans<br>notre <span>boutique</span></h1>
+    <p>Découvrez une sélection soigneuse de produits locaux et de créateurs. Un accueil personnalisé, toujours.</p>
+    <div class="cta-group">
+      <a href="#produits" class="btn btn-primary">Voir nos produits</a>
+      <a href="#contact" class="btn btn-outline">Nous contacter</a>
+    </div>
+    <div class="hero-badges">
+      <div class="hero-badge">📦 Click & Collect</div>
+      <div class="hero-badge">🚚 Livraison Rennes</div>
+      <div class="hero-badge">♻️ Circuit local</div>
+    </div>
+  </div>
+</div>
+
+<section id="produits" class="products-section" data-formule="essentiel">
+  <div class="container">
+    <div class="section-label">Notre sélection</div>
+    <h2>Des produits choisis<br>avec soin</h2>
+    <p class="lead">Chaque article est sélectionné pour sa qualité et son origine locale ou responsable.</p>
+    <div class="products-grid">
+      <div class="product-card"><div class="product-img">👗</div><div class="product-info"><h3>Robe lin naturel</h3><p>Collection été — Tailles 36 à 46</p><div><span class="product-price">89€</span><span class="product-badge">Nouveau</span></div></div></div>
+      <div class="product-card"><div class="product-img">👜</div><div class="product-info"><h3>Sac cuir artisanal</h3><p>Maroquinier breton · Fait main</p><div><span class="product-price">149€</span></div></div></div>
+      <div class="product-card"><div class="product-img">🧣</div><div class="product-info"><h3>Écharpe laine Mérinos</h3><p>Tissage local · 5 coloris</p><div><span class="product-price">65€</span><span class="product-badge">-20%</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="infos-section" data-formule="essentiel">
+  <div class="container">
+    <div class="infos-grid">
+      <div class="info-card"><div class="info-ico">📍</div><h3>Adresse</h3><p>12 rue Saint-Michel<br>35000 Rennes</p></div>
+      <div class="info-card"><div class="info-ico">🕐</div><h3>Horaires</h3><p>Mardi – Samedi<br>10h – 19h</p></div>
+      <div class="info-card"><div class="info-ico">📞</div><h3>Téléphone</h3><p>02 99 XX XX XX</p></div>
+      <div class="info-card"><div class="info-ico">📦</div><h3>Click & Collect</h3><p>Commandez en ligne<br>retirez en boutique</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="about-section" data-formule="pro">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img"></div>
+      <div class="about-text">
+        <div class="section-label">Notre histoire</div>
+        <h2>Une boutique indépendante<br>depuis 2008</h2>
+        <p>La Boutique Léa, c'est Léa et son équipe de 3 personnes qui vous accueillent depuis 15 ans. On sélectionne nos produits avec soin, en privilégiant les créateurs locaux et les marques responsables.</p>
+        <p>Ici, on prend le temps de vous conseiller. Pas de forcing, juste du service personnalisé et des produits qu'on aime vraiment.</p>
+        <div class="about-tags">
+          <span class="tag">✓ Circuit local</span>
+          <span class="tag">✓ Créateurs bretons</span>
+          <span class="tag">✓ Conseils personnalisés</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="promos-section" data-formule="premium">
+  <div class="container">
+    <div class="section-label">Offres en cours</div>
+    <h2>Promotions<br>& Bons plans</h2>
+    <p class="lead">Des offres régulières sur notre sélection.</p>
+    <div class="promos-grid">
+      <div class="promo-card"><div class="promo-pct">-30%</div><h3>Collection Printemps</h3><p>Robes, tops, vestes légères</p><div class="ancien">À partir de 79€</div><div class="nouveau">À partir de 55€</div></div>
+      <div class="promo-card"><div class="promo-pct">-20%</div><h3>Accessoires cuir</h3><p>Sacs, ceintures, portefeuilles</p><div class="ancien">À partir de 65€</div><div class="nouveau">À partir de 52€</div></div>
+      <div class="promo-card"><div class="promo-pct">-40%</div><h3>Soldes d'été</h3><p>Sélection été en cours</p><div class="ancien">Jusqu'à 149€</div><div class="nouveau">À partir de 29€</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="avis-section" data-formule="pro">
+  <div class="container">
+    <div class="section-label">Avis clients</div>
+    <h2>Ce que nos clients disent</h2>
+    <p class="lead">+120 avis Google, note moyenne 4.8/5.</p>
+    <div class="avis-grid">
+      <div class="avis-card"><div class="stars">★★★★★</div><blockquote>Super boutique, personnel aux petits soins. On se sent vraiment accueilli, pas juste client. Les conseils sont toujours bons et les produits de qualité.</blockquote><div class="avis-author">— Nathalie G., cliente depuis 5 ans</div></div>
+      <div class="avis-card"><div class="stars">★★★★★</div><blockquote>Mon commerce préféré à Rennes. J'y reviens chaque saison. L'équipe connaît ses produits et ça se voit. Et les prix sont vraiment honnêtes.</blockquote><div class="avis-author">— Marine T., via Google</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-section" data-formule="pro">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-intro">
+        <div class="section-label">Contact</div>
+        <h2>On est là pour vous</h2>
+        <p>Une question sur un produit ? Vous cherchez quelque chose de particulier ? On vous répond rapidement.</p>
+        <div class="click-collect">
+          <h4>📦 Click & Collect disponible</h4>
+          <p>Commandez en ligne, venez récupérer votre commande en boutique sous 24h. Gratuit, sans frais de port.</p>
+        </div>
+      </div>
+      <div>
+        <div class="form-group form-row">
+          <div><label>Prénom</label><input type="text" placeholder="Marie"></div>
+          <div><label>Nom</label><input type="text" placeholder="Dupont"></div>
+        </div>
+        <div class="form-group"><label>Email</label><input type="email" placeholder="marie@email.fr"></div>
+        <div class="form-group"><label>Sujet</label>
+          <select><option>Question produit</option><option>Disponibilité / taille</option><option>Click & Collect</option><option>Autre</option></select>
+        </div>
+        <div class="form-group"><label>Message</label><textarea rows="4" placeholder="Votre message..."></textarea></div>
+        <button class="btn-submit">Envoyer →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo"><span class="nom-entreprise">La Boutique Léa</span></div>
+  <p>12 rue Saint-Michel · 35000 Rennes · 02 99 XX XX XX</p>
+  <p>Mardi – Samedi 10h–19h</p>
+  <p class="walter">Maquette créée par WALTER Studio — Hamaury Walter</p>
+</footer>
+
+<script>
+window.addEventListener('message', function(e) {
+  var d = e.data; if (!d) return;
+  if (d.couleurPrincipale) document.documentElement.style.setProperty('--p', d.couleurPrincipale);
+  if (d.couleurAccent) document.documentElement.style.setProperty('--p2', d.couleurAccent);
+  if (d.nom) document.querySelectorAll('.nom-entreprise').forEach(function(el){ el.textContent = d.nom; });
+  if (d.formule) {
+    var n = { essentiel:['essentiel'], pro:['essentiel','pro'], premium:['essentiel','pro','premium'] };
+    document.querySelectorAll('[data-formule]').forEach(function(el){
+      el.style.display = n[d.formule] && n[d.formule].includes(el.dataset.formule) ? '' : 'none';
+    });
+  }
+});
+</script>
+</body>
+</html>

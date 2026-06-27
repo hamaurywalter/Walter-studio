@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Martin Électricité — Maquette WALTER Studio</title>
+<style>
+:root {
+  --p: #E65100;
+  --p2: #FF8F00;
+  --bg: #FAFAFA;
+  --ink: #1C1C1C;
+  --soft: #666;
+  --light: #FFF3E0;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Arial', sans-serif; color: var(--ink); background: var(--bg); line-height: 1.65; }
+
+.demo-flag {
+  background: #0D1033;
+  color: #C9A84C;
+  text-align: center;
+  font: 600 11px/2.4 Arial, sans-serif;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* URGENCE STRIP */
+.urgence-strip {
+  background: var(--p);
+  color: #fff;
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+.urgence-strip a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* NAV */
+header {
+  background: #fff;
+  border-bottom: 1px solid #EBEBEB;
+  position: sticky;
+  top: 0; z-index: 99;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+nav {
+  max-width: 1140px; margin: auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 28px;
+  height: 72px;
+}
+.logo {
+  display: flex; align-items: center; gap: 14px;
+}
+.logo-mark {
+  width: 46px; height: 46px;
+  background: var(--p);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 900;
+}
+.logo-name {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.3px;
+}
+.logo-name small {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--soft);
+  letter-spacing: 0px;
+}
+nav ul { display: flex; gap: 28px; list-style: none; }
+nav a {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--soft);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+nav a:hover { color: var(--p); }
+.nav-phone {
+  display: flex; flex-direction: column;
+  align-items: flex-end;
+}
+.nav-phone span {
+  font-size: 11px;
+  color: var(--soft);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.nav-phone a {
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--p);
+  text-decoration: none;
+  letter-spacing: -0.3px;
+}
+
+/* HERO */
+.hero {
+  background: var(--ink);
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  min-height: 85vh;
+  overflow: hidden;
+}
+.hero-left {
+  padding: 90px 70px 90px 80px;
+  position: relative;
+}
+.hero-left::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 5px; height: 100%;
+  background: linear-gradient(180deg, var(--p) 0%, var(--p2) 100%);
+}
+.hero-tag {
+  display: inline-block;
+  background: rgba(230,81,0,0.15);
+  border: 1px solid rgba(230,81,0,0.3);
+  color: var(--p2);
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.hero-left h1 {
+  font-size: 54px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.08;
+  margin-bottom: 22px;
+  letter-spacing: -1.5px;
+}
+.hero-left h1 .accent {
+  color: var(--p2);
+}
+.hero-left p {
+  font-size: 18px;
+  color: rgba(255,255,255,0.6);
+  max-width: 460px;
+  line-height: 1.7;
+  margin-bottom: 38px;
+}
+
+.cta-group {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+.btn {
+  display: inline-block;
+  padding: 15px 30px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--p);
+  color: #fff;
+}
+.btn-primary:hover { background: #bf360c; }
+.btn-light {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.85);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.btn-light:hover { background: rgba(255,255,255,0.13); }
+
+.garanties {
+  display: flex; gap: 20px; flex-wrap: wrap;
+}
+.garantie {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+}
+.garantie::before {
+  content: '✓';
+  width: 20px; height: 20px;
+  background: rgba(255,143,0,0.2);
+  color: var(--p2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.hero-right {
+  background: url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=900&q=80') center/cover no-repeat;
+  background-color: #111;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-right::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at center, rgba(230,81,0,0.15) 0%, transparent 70%);
+}
+.hero-card-stack {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; gap: 14px;
+  width: 100%;
+  max-width: 320px;
+}
+.hc {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: flex; align-items: center; gap: 14px;
+}
+.hc-ico {
+  width: 44px; height: 44px;
+  background: rgba(230,81,0,0.15);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.hc-text h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 2px;
+}
+.hc-text p {
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+}
+.hc-accent { border-color: rgba(230,81,0,0.4); }
+
+/* SERVICES */
+.services-section { padding: 90px 28px; background: #fff; }
+.services-section .container { max-width: 1100px; margin: auto; }
+.section-top {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 50px;
+}
+.section-label {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--p); margin-bottom: 10px;
+}
+h2 { font-size: 34px; font-weight: 800; line-height: 1.2; }
+.lead { color: var(--soft); font-size: 15px; max-width: 500px; line-height: 1.7; }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.svc-card {
+  background: var(--bg);
+  border: 1.5px solid #EBEBEB;
+  border-radius: 12px;
+  padding: 28px;
+  transition: all 0.25s;
+}
+.svc-card:hover {
+  border-color: var(--p);
+  box-shadow: 0 8px 28px rgba(230,81,0,0.1);
+  transform: translateY(-4px);
+}
+.svc-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+}
+.svc-ico {
+  width: 48px; height: 48px;
+  background: var(--light);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+.svc-card h3 { font-size: 17px; font-weight: 800; color: var(--ink); }
+.svc-card p { font-size: 14px; color: var(--soft); line-height: 1.65; }
+.svc-tag {
+  display: inline-block;
+  margin-top: 14px;
+  background: var(--light);
+  color: var(--p);
+  padding: 4px 12px;
+  border-radius: 40px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ZONE */
+.zone-section {
+  background: var(--light);
+  padding: 70px 28px;
+}
+.zone-section .container {
+  max-width: 1100px; margin: auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+}
+.zone-left h2 { margin-bottom: 16px; }
+.zone-left p { color: var(--soft); font-size: 15px; line-height: 1.7; margin-bottom: 24px; }
+.villes {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.ville-tag {
+  background: #fff;
+  border: 1.5px solid #EBEBEB;
+  border-radius: 40px;
+  padding: 7px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.zone-visual {
+  background: linear-gradient(135deg, var(--p) 0%, var(--p2) 100%);
+  border-radius: 16px;
+  aspect-ratio: 4/3;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 80px;
+  box-shadow: 0 20px 50px rgba(230,81,0,0.25);
+}
+
+/* ABOUT */
+.about-section { padding: 90px 28px; background: #fff; }
+.about-section .container { max-width: 1100px; margin: auto; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+.about-img {
+  background: url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80') center/cover no-repeat;
+  background-color: var(--ink);
+  border-radius: 16px;
+  aspect-ratio: 5/4;
+  position: relative;
+}
+.exp-badge {
+  position: absolute;
+  top: -16px; right: -16px;
+  background: var(--p);
+  color: #fff;
+  border-radius: 10px;
+  padding: 14px 18px;
+  text-align: center;
+}
+.exp-badge strong { display: block; font-size: 28px; font-weight: 900; }
+.exp-badge span { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; }
+.about-text h2 { margin-bottom: 16px; }
+.about-text p { color: var(--soft); font-size: 15px; line-height: 1.75; margin-bottom: 14px; }
+.certs { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
+.cert-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 14px; color: var(--ink); font-weight: 600;
+}
+.cert-item::before {
+  content: '✓';
+  width: 24px; height: 24px;
+  background: var(--light);
+  color: var(--p);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 900;
+  flex-shrink: 0;
+}
+
+/* AVIS */
+.avis-section { padding: 90px 28px; background: var(--bg); }
+.avis-section .container { max-width: 1100px; margin: auto; }
+.avis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.avis-card {
+  background: #fff;
+  border: 1.5px solid #EBEBEB;
+  border-radius: 12px;
+  padding: 26px;
+  position: relative;
+}
+.avis-card::before {
+  content: '"';
+  position: absolute; top: 16px; right: 22px;
+  font-size: 60px; line-height: 1;
+  color: var(--light);
+  font-family: Georgia, serif;
+}
+.avis-stars { color: var(--p2); font-size: 16px; margin-bottom: 12px; }
+.avis-card blockquote {
+  font-size: 15px; color: var(--ink);
+  line-height: 1.65; margin-bottom: 16px;
+  font-style: italic; position: relative;
+}
+.avis-author { font-size: 13px; color: var(--soft); font-weight: 700; }
+
+/* FORMULAIRE */
+.form-section { padding: 90px 28px; background: var(--ink); }
+.form-section .container {
+  max-width: 1100px; margin: auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: start;
+}
+.form-section .section-label { color: var(--p2); }
+.form-section h2 { color: #fff; margin-bottom: 16px; }
+.form-section .lead { color: rgba(255,255,255,0.5); margin-bottom: 32px; }
+
+.urgence-options {
+  display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px;
+}
+.urg-option {
+  background: rgba(255,255,255,0.05);
+  border: 1.5px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 12px 18px;
+  text-align: center;
+  cursor: pointer;
+}
+.urg-option.active {
+  border-color: var(--p);
+  background: rgba(230,81,0,0.1);
+}
+.urg-option strong {
+  display: block; color: #fff; font-size: 14px; margin-bottom: 2px;
+}
+.urg-option span { font-size: 11px; color: rgba(255,255,255,0.4); }
+
+.form-group { margin-bottom: 16px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+label {
+  display: block;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 6px;
+}
+input, select, textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.06);
+  border: 1.5px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 14px; color: #fff;
+  outline: none; transition: border-color 0.2s;
+  font-family: 'Arial', sans-serif;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--p); }
+input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.2); }
+select option { background: #1C1C1C; }
+.btn-submit {
+  width: 100%;
+  background: var(--p);
+  color: #fff; border: none;
+  padding: 16px; border-radius: 8px;
+  font-size: 14px; font-weight: 800;
+  cursor: pointer; margin-top: 8px;
+  transition: background 0.2s;
+  letter-spacing: 0.3px;
+}
+.btn-submit:hover { background: #bf360c; }
+
+/* FOOTER */
+footer {
+  background: #111;
+  color: rgba(255,255,255,0.3);
+  padding: 34px 28px;
+  text-align: center;
+  font-size: 13px;
+}
+.footer-logo {
+  font-size: 18px; font-weight: 900;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 8px;
+}
+footer p { line-height: 1.8; }
+.walter { margin-top: 14px; font-size: 11px; opacity: 0.3; }
+
+@media(max-width: 768px) {
+  nav ul { display: none; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 60px 24px; }
+  .hero-left h1 { font-size: 36px; }
+  .section-top { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .zone-section .container { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; }
+  .avis-grid { grid-template-columns: 1fr; }
+  .form-section .container { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="demo-flag">MAQUETTE DE DÉMONSTRATION — réalisée par WALTER Studio · contenu et photos à personnaliser</div>
+
+<div class="urgence-strip">
+  ⚡ Urgence électrique ? Disponible 7j/7 — Appelez le <a href="tel:">06 XX XX XX XX</a>
+</div>
+
+<header>
+  <nav>
+    <div class="logo">
+      <div class="logo-mark">⚡</div>
+      <div>
+        <div class="logo-name">
+          <span class="nom-entreprise">Martin Électricité</span>
+          <small>Électricien certifié · Rennes & agglomération</small>
+        </div>
+      </div>
+    </div>
+    <ul>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Zone</a></li>
+      <li><a href="#">À propos</a></li>
+      <li><a href="#">Avis</a></li>
+    </ul>
+    <div class="nav-phone">
+      <span>Urgence 7j/7</span>
+      <a href="tel:">06 XX XX XX XX</a>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Électricien certifié RGE</div>
+    <h1>Intervention<br><span class="accent">rapide</span><br>7j/7</h1>
+    <p>Dépannage, installation, rénovation électrique. On s'occupe de tout — devis gratuit sous 24h, intervention en 2h pour les urgences.</p>
+    <div class="cta-group">
+      <a href="#contact" class="btn btn-primary">Devis gratuit sous 24h</a>
+      <a href="tel:" class="btn btn-light">📞 Appeler maintenant</a>
+    </div>
+    <div class="garanties">
+      <div class="garantie">Certifié RGE</div>
+      <div class="garantie">Devis gratuit</div>
+      <div class="garantie">Intervention en 2h</div>
+      <div class="garantie">Garantie 1 an</div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-card-stack">
+      <div class="hc hc-accent">
+        <div class="hc-ico">🚨</div>
+        <div class="hc-text">
+          <h4>Urgence disponible</h4>
+          <p>Intervention garantie en 2h</p>
+        </div>
+      </div>
+      <div class="hc">
+        <div class="hc-ico">📋</div>
+        <div class="hc-text">
+          <h4>Devis gratuit</h4>
+          <p>Réponse sous 24h, sans engagement</p>
+        </div>
+      </div>
+      <div class="hc">
+        <div class="hc-ico">⭐</div>
+        <div class="hc-text">
+          <h4>4.9/5 sur Google</h4>
+          <p>+150 avis clients vérifiés</p>
+        </div>
+      </div>
+      <div class="hc">
+        <div class="hc-ico">🔒</div>
+        <div class="hc-text">
+          <h4>Garantie décennale</h4>
+          <p>Tous travaux assurés</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services-section" data-formule="essentiel">
+  <div class="container">
+    <div class="section-top">
+      <div>
+        <div class="section-label">Nos services</div>
+        <h2>Ce qu'on installe,<br>ce qu'on répare</h2>
+      </div>
+      <p class="lead">Particuliers, professionnels, copropriétés — on intervient sur tous types de chantiers électriques.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card">
+        <div class="svc-header">
+          <div class="svc-ico">🔌</div>
+          <h3>Dépannage urgent</h3>
+        </div>
+        <p>Coupure de courant, disjoncteur qui saute, prise défectueuse. On intervient en priorité pour les pannes urgentes, 7 jours sur 7.</p>
+        <span class="svc-tag">⚡ Intervention en 2h</span>
+      </div>
+      <div class="svc-card">
+        <div class="svc-header">
+          <div class="svc-ico">🏗️</div>
+          <h3>Installation & Rénovation</h3>
+        </div>
+        <p>Tableau électrique, mise aux normes NF C 15-100, domotique, éclairage LED, borne de recharge voiture électrique.</p>
+        <span class="svc-tag">✓ Aux normes</span>
+      </div>
+      <div class="svc-card">
+        <div class="svc-header">
+          <div class="svc-ico">📄</div>
+          <h3>Devis gratuit sous 24h</h3>
+        </div>
+        <p>Chiffrage précis, sans surprise. On vous explique chaque ligne du devis et on ne commence les travaux qu'avec votre accord.</p>
+        <span class="svc-tag">✓ Sans engagement</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ZONE -->
+<section class="zone-section" data-formule="essentiel">
+  <div class="container">
+    <div class="zone-left">
+      <div class="section-label">Zone d'intervention</div>
+      <h2>On intervient dans<br>toute l'agglomération</h2>
+      <p>Basés à Rennes, nous intervenons dans un rayon de 30 km. Besoin de vérifier si on peut venir chez vous ? Appelez-nous.</p>
+      <div class="villes">
+        <span class="ville-tag">Rennes</span>
+        <span class="ville-tag">Cesson-Sévigné</span>
+        <span class="ville-tag">Bruz</span>
+        <span class="ville-tag">Chartres-de-Bretagne</span>
+        <span class="ville-tag">Noyal-sur-Vilaine</span>
+        <span class="ville-tag">Betton</span>
+        <span class="ville-tag">Saint-Grégoire</span>
+        <span class="ville-tag">Pacé</span>
+        <span class="ville-tag">+ alentours</span>
+      </div>
+    </div>
+    <div class="zone-visual">🗺️</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" data-formule="pro">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img">
+        <div class="exp-badge">
+          <strong>10 ans</strong>
+          <span>d'expérience</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <div class="section-label">À propos</div>
+        <h2>Un électricien certifié<br>qui fait ce qu'il dit</h2>
+        <p>Julien Martin exerce depuis 10 ans dans le bassin rennais. Artisan indépendant, il intervient seul ou avec son équipe de 2 compagnons sur tous types de chantiers, du dépannage express à la rénovation complète.</p>
+        <p>Pas de sous-traitance, pas d'approximation. Chaque intervention est documentée et chaque client reçoit un compte-rendu de travaux.</p>
+        <div class="certs">
+          <div class="cert-item">Habilitation électrique BR/BC — Niveau expert</div>
+          <div class="cert-item">Certification RGE — Éligible aux aides de l'État</div>
+          <div class="cert-item">Qualibat 5111 — Travaux d'équipement électrique</div>
+          <div class="cert-item">Assurance décennale Groupama Pro BTP</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AVIS -->
+<section class="avis-section" data-formule="pro">
+  <div class="container">
+    <div class="section-label">Ils nous font confiance</div>
+    <h2>Avis de nos clients</h2>
+    <p class="lead" style="margin-bottom:36px">+150 avis vérifiés sur Google. Note moyenne : 4.9/5.</p>
+    <div class="avis-grid">
+      <div class="avis-card">
+        <div class="avis-stars">★★★★★</div>
+        <blockquote>Efficace et ponctuel, exactement ce qu'on attend d'un artisan. Panne résolue en 45 minutes, propre et bien expliqué. Je recommande sans hésiter.</blockquote>
+        <div class="avis-author">— Claire V., Rennes</div>
+      </div>
+      <div class="avis-card">
+        <div class="avis-stars">★★★★★</div>
+        <blockquote>Travail soigné pour la rénovation électrique de notre maison. Délais respectés, devis tenu à l'euro près. Une vraie référence dans le secteur.</blockquote>
+        <div class="avis-author">— Antoine M., Cesson-Sévigné</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULAIRE -->
+<section id="contact" class="form-section" data-formule="pro">
+  <div class="container">
+    <div>
+      <div class="section-label">Nous contacter</div>
+      <h2>Demandez votre<br>devis gratuit</h2>
+      <p class="lead">Réponse garantie sous 24h. Pour les urgences, appelez directement.</p>
+
+      <div class="urgence-options">
+        <div class="urg-option active">
+          <strong>🚨 Urgent</strong>
+          <span>Intervention sous 2h</span>
+        </div>
+        <div class="urg-option">
+          <strong>📅 Planifié</strong>
+          <span>Cette semaine</span>
+        </div>
+        <div class="urg-option">
+          <strong>💬 Devis</strong>
+          <span>Pour un projet</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="form-group form-row">
+        <div>
+          <label>Prénom</label>
+          <input type="text" placeholder="Marie">
+        </div>
+        <div>
+          <label>Nom</label>
+          <input type="text" placeholder="Leblanc">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Téléphone</label>
+        <input type="tel" placeholder="06 XX XX XX XX">
+      </div>
+      <div class="form-group">
+        <label>Type de travaux</label>
+        <select>
+          <option>Dépannage urgent</option>
+          <option>Installation / Rénovation</option>
+          <option>Mise aux normes</option>
+          <option>Borne recharge électrique</option>
+          <option>Domotique / Éclairage</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div class="form-group form-row">
+        <div>
+          <label>Ville</label>
+          <input type="text" placeholder="Rennes">
+        </div>
+        <div>
+          <label>Email</label>
+          <input type="email" placeholder="marie@email.fr">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea rows="3" placeholder="Décrivez votre problème ou votre projet..."></textarea>
+      </div>
+      <button class="btn-submit">Envoyer ma demande →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">⚡ Martin Électricité</div>
+  <p>Rennes & agglomération · 06 XX XX XX XX · martin.electricite@email.fr</p>
+  <p>Lundi – Samedi 7h–20h · Urgences 7j/7</p>
+  <p class="walter">Maquette créée par WALTER Studio — Hamaury Walter</p>
+</footer>
+
+<script>
+window.addEventListener('message', function(e) {
+  var d = e.data; if (!d) return;
+  if (d.couleurPrincipale) document.documentElement.style.setProperty('--p', d.couleurPrincipale);
+  if (d.couleurAccent) document.documentElement.style.setProperty('--p2', d.couleurAccent);
+  if (d.nom) document.querySelectorAll('.nom-entreprise').forEach(function(el){ el.textContent = d.nom; });
+  if (d.formule) {
+    var n = { essentiel:['essentiel'], pro:['essentiel','pro'], premium:['essentiel','pro','premium'] };
+    document.querySelectorAll('[data-formule]').forEach(function(el){
+      el.style.display = n[d.formule] && n[d.formule].includes(el.dataset.formule) ? '' : 'none';
+    });
+  }
+});
+</script>
+</body>
+</html>
