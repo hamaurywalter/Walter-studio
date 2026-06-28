@@ -79,9 +79,9 @@ function Navbar() {
 
         <a href="/">
           <img
-            src="/logoWS.png"
+            src={scrolled ? '/logoWS.png' : '/logoWS-white.png'}
             alt="WALTER Studio"
-            className={`w-auto transition-all duration-300 ${scrolled ? 'h-10' : 'h-36'}`}
+            className={`w-auto transition-all duration-300 ${scrolled ? 'h-11' : 'h-12'}`}
           />
         </a>
 
