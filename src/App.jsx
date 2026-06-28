@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import emailjs from '@emailjs/browser'
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { Routes, Route, Link } from 'react-router-dom'
@@ -113,8 +114,10 @@ function Navbar() {
         </button>
       </div>
 
-      {menuOpen && (
-        <div className="md:hidden fixed inset-0 bg-minuit z-[100] flex flex-col px-8 py-10">
+      {menuOpen && createPortal(
+        <div
+          style={{ backgroundColor: '#0B0530' }}
+          className="fixed inset-0 z-[200] flex flex-col px-8 py-10">
           <button
             className="absolute top-6 right-6 text-white/50 hover:text-white text-3xl leading-none"
             onClick={() => setMenuOpen(false)}
@@ -138,7 +141,8 @@ function Navbar() {
             onClick={() => setMenuOpen(false)}>
             Devis gratuit
           </a>
-        </div>
+        </div>,
+        document.body
       )}
     </header>
   )
