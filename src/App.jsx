@@ -4,6 +4,7 @@ import emailjs from '@emailjs/browser'
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { Routes, Route, Link } from 'react-router-dom'
 import SimulateurPage from './pages/SimulateurPage.jsx'
+import DevisPage from './pages/DevisPage.jsx'
 
 /* ═══════════════════════════════════════════════════════════════
    HELPERS ANIMATION
@@ -100,6 +101,12 @@ function Navbar() {
             }`}>
             Simulateur
           </Link>
+          <Link to="/devis"
+            className={`nav-link text-sm font-medium transition-colors ${
+              scrolled ? 'text-laiton hover:text-minuit' : 'text-laiton hover:text-white'
+            }`}>
+            Obtenir un devis
+          </Link>
         </nav>
 
         <a href="#contact"
@@ -134,6 +141,11 @@ function Navbar() {
               className="font-display text-4xl font-bold text-laiton hover:text-white transition-colors"
               onClick={() => setMenuOpen(false)}>
               Simulateur
+            </Link>
+            <Link to="/devis"
+              className="font-display text-4xl font-bold text-laiton hover:text-white transition-colors"
+              onClick={() => setMenuOpen(false)}>
+              Obtenir un devis
             </Link>
           </nav>
           <a href="#contact"
@@ -1006,6 +1018,7 @@ export default function App() {
     <Routes>
       <Route path="/"           element={<HomePage />} />
       <Route path="/simulateur" element={<SimulateurPage />} />
+      <Route path="/devis"      element={<DevisPage />} />
     </Routes>
   )
 }
