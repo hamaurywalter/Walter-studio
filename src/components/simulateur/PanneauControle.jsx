@@ -30,7 +30,7 @@ export default function PanneauControle({ config, setConfig }) {
           ← Retour au site
         </Link>
         <h1 style={{ fontSize: 22, fontWeight: 900, color: '#0D1033', margin: '0 0 5px', letterSpacing: '-0.5px' }}>
-          Visualisez votre site
+          Choisissez la formule la plus adaptée à votre structure
         </h1>
         <p style={{ fontSize: 13, color: '#999', margin: 0 }}>
           Personnalisez en temps réel
