@@ -562,10 +562,10 @@ function Tarifs() {
         </div>
 
         <FadeUp delay={0.1} className="mt-12 text-center">
-          <a href="#simulateur"
+          <Link to="/devis"
             className="inline-flex items-center gap-2 bg-minuit text-white text-sm px-8 py-4 rounded-full hover:bg-encre transition-colors">
             Estimer mon projet →
-          </a>
+          </Link>
         </FadeUp>
       </div>
     </section>
@@ -702,151 +702,13 @@ function Methode() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SIMULATEUR DE DEVIS
-═══════════════════════════════════════════════════════════════ */
-function Simulateur({ onDevis }) {
-  const [siteType,    setSiteType]    = useState('essentiel')
-  const [maintenance, setMaintenance] = useState('essentiel')
-  const [photo,       setPhoto]       = useState(false)
-
-  const siteOptions = {
-    essentiel: { label: 'Essentiel', price: 299 },
-    pro:       { label: 'Pro',       price: 490 },
-    premium:   { label: 'Premium',   price: 790 },
-  }
-  const sitePrice  = siteOptions[siteType].price
-  const siteLabel  = siteOptions[siteType].label
-  const maintPrice = maintenance === 'essentiel' ? 19 : 35
-  const maintLabel = maintenance === 'essentiel' ? 'Maintenance Essentielle' : 'Maintenance Sérénité'
-  const photoPrice = photo ? 40 : 0
-  const total      = sitePrice + photoPrice
-
-  const handleDevis = () => {
-    const recap = `${siteLabel} (${sitePrice}€)${photo ? ' + Séance photo (40€)' : ''} + ${maintLabel} (${maintPrice}€/mois)`
-    onDevis(recap)
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
-  }
-
-  const Opt = ({ selected, onClick, children }) => (
-    <button type="button" onClick={onClick}
-      className={`flex-1 py-3 px-3 rounded-lg border text-sm font-medium transition-all text-center ${
-        selected
-          ? 'bg-minuit text-white border-minuit'
-          : 'bg-white text-minuit/60 border-brume/30 hover:border-laiton/40'
-      }`}>
-      {children}
-    </button>
-  )
-
-  return (
-    <section id="simulateur" className="py-28 px-6 bg-craie">
-      <div className="max-w-4xl mx-auto">
-
-        <FadeUp className="mb-12">
-          <p className="font-util text-xs tracking-widest uppercase text-laiton mb-3">Simulateur</p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight text-minuit">
-            <WordReveal>Estimez votre projet</WordReveal>
-            <br />
-            <WordReveal delay={0.2}>en 30 secondes</WordReveal>
-          </h2>
-        </FadeUp>
-
-        <div className="grid md:grid-cols-2 gap-8 items-start">
-          <FadeUp fromX={-15} delay={0.1} className="space-y-7">
-            <div>
-              <p className="font-util text-xs tracking-widest uppercase text-minuit/35 mb-3">Type de site</p>
-              <div className="flex flex-col sm:flex-row gap-2">
-                <Opt selected={siteType === 'essentiel'} onClick={() => setSiteType('essentiel')}>Essentiel · 299€</Opt>
-                <Opt selected={siteType === 'pro'}       onClick={() => setSiteType('pro')}>Pro · 490€</Opt>
-                <Opt selected={siteType === 'premium'}   onClick={() => setSiteType('premium')}>Premium · 790€</Opt>
-              </div>
-            </div>
-
-            <div>
-              <p className="font-util text-xs tracking-widest uppercase text-minuit/35 mb-3">Maintenance mensuelle</p>
-              <div className="flex gap-2">
-                <Opt selected={maintenance === 'essentiel'} onClick={() => setMaintenance('essentiel')}>Essentielle · 19€/mois</Opt>
-                <Opt selected={maintenance === 'serenite'}  onClick={() => setMaintenance('serenite')}>Sérénité · 35€/mois</Opt>
-              </div>
-            </div>
-
-            <div>
-              <p className="font-util text-xs tracking-widest uppercase text-minuit/35 mb-3">Option séance photo</p>
-              <label className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all ${
-                photo ? 'bg-minuit border-minuit' : 'bg-white border-brume/30 hover:border-laiton/40'
-              }`}>
-                <div className={`w-5 h-5 rounded border-2 flex items-center justify-center shrink-0 transition-all ${
-                  photo ? 'bg-laiton border-laiton' : 'border-brume/40'
-                }`}>
-                  {photo && (
-                    <svg className="w-3 h-3 text-white" viewBox="0 0 12 12" fill="none">
-                      <path d="M2 6l2.5 2.5L10 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  )}
-                </div>
-                <input type="checkbox" className="sr-only" checked={photo} onChange={e => setPhoto(e.target.checked)} />
-                <div>
-                  <p className={`text-sm font-medium ${photo ? 'text-white' : 'text-minuit'}`}>Séance photo professionnelle</p>
-                  <p className={`text-xs mt-0.5 ${photo ? 'text-white/55' : 'text-minuit/45'}`}>Photos de votre activité pour illustrer le site — +40€</p>
-                </div>
-              </label>
-            </div>
-          </FadeUp>
-
-          <FadeUp fromX={15} delay={0.2}>
-            <div className="bg-minuit rounded-2xl p-8 text-white sticky top-20">
-              <p className="font-util text-xs tracking-widest uppercase text-brume/50 mb-6">Récapitulatif</p>
-              <ul className="space-y-3 mb-6">
-                <li className="flex justify-between text-sm">
-                  <span className="text-white/60">{siteLabel}</span>
-                  <span className="font-util">{sitePrice}€</span>
-                </li>
-                {photo && (
-                  <li className="flex justify-between text-sm">
-                    <span className="text-white/60">Séance photo</span>
-                    <span className="font-util">40€</span>
-                  </li>
-                )}
-                <li className="pt-3 border-t border-white/10 flex justify-between text-sm">
-                  <span className="text-white/60">{maintLabel}</span>
-                  <span className="font-util">{maintPrice}€/mois</span>
-                </li>
-              </ul>
-              <div className="border-t border-laiton/20 pt-5 space-y-1.5 mb-8">
-                <div className="flex justify-between items-baseline">
-                  <span className="text-sm text-white/45">Total création</span>
-                  <span className="font-util text-3xl text-laiton">{total}€</span>
-                </div>
-                <div className="flex justify-between items-baseline">
-                  <span className="text-sm text-white/45">Puis chaque mois</span>
-                  <span className="font-util text-lg">{maintPrice}€</span>
-                </div>
-              </div>
-              <button onClick={handleDevis}
-                className="w-full bg-laiton text-minuit text-sm font-semibold py-4 rounded-xl hover:bg-laiton/80 transition-colors">
-                Demander ce devis →
-              </button>
-              <p className="font-util text-xs text-white/25 text-center mt-3">Gratuit · Sans engagement</p>
-            </div>
-          </FadeUp>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-/* ═══════════════════════════════════════════════════════════════
    CONTACT
 ═══════════════════════════════════════════════════════════════ */
-function Contact({ prefillMessage }) {
+function Contact() {
   const [form, setForm]       = useState({ name: '', email: '', tel: '', message: '' })
   const [sent, setSent]       = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError]     = useState(false)
-
-  useEffect(() => {
-    if (prefillMessage) setForm(f => ({ ...f, message: prefillMessage }))
-  }, [prefillMessage])
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -982,8 +844,6 @@ function Footer() {
    HOME PAGE
 ═══════════════════════════════════════════════════════════════ */
 function HomePage() {
-  const [prefillMessage, setPrefillMessage] = useState('')
-
   useEffect(() => {
     const hash = window.location.hash
     if (!hash) return
@@ -1003,8 +863,7 @@ function HomePage() {
       <Tarifs />
       <Apropos />
       <Methode />
-      <Simulateur onDevis={setPrefillMessage} />
-      <Contact prefillMessage={prefillMessage} />
+      <Contact />
       <Footer />
     </div>
   )
