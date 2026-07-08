@@ -33,7 +33,7 @@ export default function PanneauControle({ config, setConfig }) {
           Choisissez la formule la plus adaptée à votre structure
         </h1>
         <p style={{ fontSize: 13, color: '#999', margin: 0 }}>
-          Personnalisez en temps réel
+          Comprenez la différence entre nos 3 formules
         </p>
       </div>
 

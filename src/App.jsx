@@ -101,18 +101,12 @@ function Navbar() {
             }`}>
             Simulateur
           </Link>
-          <Link to="/devis"
-            className={`nav-link text-sm font-medium transition-colors ${
-              scrolled ? 'text-laiton hover:text-minuit' : 'text-laiton hover:text-white'
-            }`}>
-            Obtenir un devis
-          </Link>
         </nav>
 
-        <a href="#contact"
+        <Link to="/devis"
           className="hidden md:inline-flex items-center gap-2 bg-laiton text-minuit text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-laiton/80 transition-colors">
-          Devis gratuit
-        </a>
+          Obtenir un devis
+        </Link>
 
         <button className="md:hidden p-2" onClick={() => setMenuOpen(true)} aria-label="Ouvrir le menu">
           <span className={`block w-6 h-0.5 mb-1.5 ${scrolled ? 'bg-minuit' : 'bg-white'}`} />
@@ -142,17 +136,12 @@ function Navbar() {
               onClick={() => setMenuOpen(false)}>
               Simulateur
             </Link>
-            <Link to="/devis"
-              className="font-display text-4xl font-bold text-laiton hover:text-white transition-colors"
-              onClick={() => setMenuOpen(false)}>
-              Obtenir un devis
-            </Link>
           </nav>
-          <a href="#contact"
+          <Link to="/devis"
             className="mt-auto inline-flex justify-center bg-laiton text-minuit font-semibold px-6 py-4 rounded-full"
             onClick={() => setMenuOpen(false)}>
-            Devis gratuit
-          </a>
+            Obtenir un devis
+          </Link>
         </div>,
         document.body
       )}
