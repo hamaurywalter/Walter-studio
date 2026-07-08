@@ -316,7 +316,7 @@ function Realisations() {
 
           <FadeUp fromX={20} delay={0.1}>
             <p className="font-util text-xs tracking-widest text-laiton uppercase mb-3">
-              Site complet · 2024
+              Site pro · Juin 2026
             </p>
             <h3 className="font-display text-2xl md:text-3xl font-bold text-minuit mb-4">
               Elles — Maison de Beauté
@@ -344,7 +344,7 @@ function Realisations() {
             </ul>
 
             <div className="h-px bg-brume/20 mb-5" />
-            <p className="font-util text-xs text-minuit/35">Livré en 10 jours · Rennes</p>
+            <p className="font-util text-xs text-minuit/35">Livré en 8 jours · Rennes</p>
           </FadeUp>
         </div>
 
@@ -641,7 +641,7 @@ function Apropos() {
 
               <a href="#contact"
                 className="text-laiton text-sm font-semibold hover:text-minuit transition-colors">
-                Prendre un appel découverte →
+                Envoyer une demande d'informations →
               </a>
             </div>
           </FadeUp>
@@ -749,9 +749,8 @@ function Contact() {
               <WordReveal delay={0.12}>votre projet ?</WordReveal>
             </h2>
             <p className="text-white/45 leading-relaxed mb-10">
-              Décrivez-moi votre activité en quelques mots. Je vous réponds
-              sous 24h avec un devis clair et une première idée visuelle.
-              Gratuit, sans engagement.
+              Une question, un projet, un doute ? Écrivez-moi en quelques mots
+              et je vous réponds sous 24h afin de pouvoir vous aider au mieux.
             </p>
 
             <div className="space-y-5">
@@ -799,7 +798,7 @@ function Contact() {
                 <input type="tel" placeholder="Téléphone (optionnel)"
                   value={form.tel}   onChange={e => setForm({ ...form, tel: e.target.value })}
                   className={inputCls} />
-                <textarea required rows={5} placeholder="Décrivez votre activité et ce que vous recherchez…"
+                <textarea required rows={5} placeholder="Que puis-je faire pour vous ?"
                   value={form.message} onChange={e => setForm({ ...form, message: e.target.value })}
                   className={`${inputCls} resize-none`} />
                 <button type="submit" disabled={loading}
