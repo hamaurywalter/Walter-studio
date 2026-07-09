@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import emailjs from '@emailjs/browser'
+import { useSEO } from '../hooks/useSEO.js'
 
 import StepperBar    from '../components/devis/StepperBar.jsx'
 import Step1Secteur  from '../components/devis/Step1Secteur.jsx'
@@ -21,6 +22,12 @@ const variants = {
 }
 
 export default function DevisPage() {
+  useSEO({
+    title:       'Devis gratuit pour votre site web – WALTER Studio',
+    description: 'Obtenez un devis personnalisé en 2 minutes. Site web sur-mesure à Rennes, livré en 2 semaines, à partir de 299€. Sans engagement.',
+    canonical:   'https://walter-studio.fr/devis',
+  })
+
   const [devis, setDevis] = useState({
     secteur:      '',
     secteurAutre: '',

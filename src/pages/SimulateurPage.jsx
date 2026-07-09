@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import PanneauControle   from '../components/simulateur/PanneauControle.jsx'
 import PreviewNavigateur from '../components/simulateur/PreviewNavigateur.jsx'
+import { useSEO } from '../hooks/useSEO.js'
 
 const SRCS = {
   coiffeur:   '/maquettes/coiffeur.html',
@@ -12,6 +13,12 @@ const SRCS = {
 }
 
 export default function SimulateurPage() {
+  useSEO({
+    title:       'Simulateur de site web – WALTER Studio',
+    description: 'Visualisez votre futur site web en temps réel. Choisissez votre secteur, votre formule et vos couleurs avant de commander.',
+    canonical:   'https://walter-studio.fr/simulateur',
+  })
+
   const [config, setConfig] = useState({
     secteur:           'coiffeur',
     formule:           'pro',
