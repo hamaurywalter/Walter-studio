@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import PanneauControle   from '../components/simulateur/PanneauControle.jsx'
 import PreviewNavigateur from '../components/simulateur/PreviewNavigateur.jsx'
-import { useSEO } from '../hooks/useSEO.js'
+import { useSEO } from '../hooks/useSEO'
 
 const SRCS = {
   coiffeur:   '/maquettes/coiffeur.html',

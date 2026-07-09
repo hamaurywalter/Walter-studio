@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import emailjs from '@emailjs/browser'
-import { useSEO } from '../hooks/useSEO.js'
+import { useSEO } from '../hooks/useSEO'
 
 import StepperBar    from '../components/devis/StepperBar.jsx'
 import Step1Secteur  from '../components/devis/Step1Secteur.jsx'
