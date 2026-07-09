@@ -9,11 +9,12 @@ export default defineConfig({
     // ── Chunk splitting — évite un bundle monolithique ──────────────────────
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor:  ['react', 'react-dom'],
-          router:  ['react-router-dom'],
-          motion:  ['framer-motion'],
-          emailjs: ['@emailjs/browser'],
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return
+          if (id.includes('react-dom') || id.includes('react/') || id.includes('react-is')) return 'vendor'
+          if (id.includes('react-router')) return 'router'
+          if (id.includes('framer-motion')) return 'motion'
+          if (id.includes('@emailjs')) return 'emailjs'
         },
       },
     },
