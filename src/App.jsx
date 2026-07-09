@@ -79,11 +79,14 @@ function Navbar() {
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
 
         <a href="/">
-          <img
-            src={scrolled ? '/logoWS.png' : '/logoWS-white.png'}
-            alt="WALTER Studio"
-            className={`w-auto transition-all duration-300 ${scrolled ? 'h-11' : 'h-12'}`}
-          />
+          <picture>
+            <source srcSet={scrolled ? '/logoWS.webp' : '/logoWS-white.webp'} type="image/webp" />
+            <img
+              src={scrolled ? '/logoWS.png' : '/logoWS-white.png'}
+              alt="WALTER Studio"
+              className={`w-auto transition-all duration-300 ${scrolled ? 'h-11' : 'h-12'}`}
+            />
+          </picture>
         </a>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -294,11 +297,14 @@ function Realisations() {
                 </div>
               </div>
               <div className="aspect-[16/10] overflow-hidden">
-                <img
-                  src="/elles-vitrine.png"
-                  alt="Site Elles – Maison de Beauté"
-                  className="w-full h-full object-cover object-top hover:scale-[1.02] transition-transform duration-700"
-                />
+                <picture style={{display:'contents'}}>
+                  <source srcSet="/elles-vitrine.webp" type="image/webp" />
+                  <img
+                    src="/elles-vitrine.png"
+                    alt="Site Elles – Maison de Beauté"
+                    className="w-full h-full object-cover object-top hover:scale-[1.02] transition-transform duration-700"
+                  />
+                </picture>
               </div>
             </div>
           </FadeUp>
@@ -582,12 +588,15 @@ function Apropos() {
 
           <FadeUp fromX={-20} className="md:-ml-6 lg:-ml-16">
             <div className="aspect-[3/4] md:rounded-r-2xl overflow-hidden bg-craie">
-              <img
-                src="/pdp.jpeg"
-                alt="Hamaury Walter — WALTER Studio"
-                className="w-full h-full object-cover"
-                onError={e => { e.currentTarget.parentElement.classList.add('flex','items-center','justify-center'); e.currentTarget.remove() }}
-              />
+              <picture style={{display:'contents'}}>
+                <source srcSet="/pdp.webp" type="image/webp" />
+                <img
+                  src="/pdp.jpeg"
+                  alt="Hamaury Walter — WALTER Studio"
+                  className="w-full h-full object-cover"
+                  onError={e => { e.currentTarget.parentElement.classList.add('flex','items-center','justify-center'); e.currentTarget.remove() }}
+                />
+              </picture>
             </div>
           </FadeUp>
 
