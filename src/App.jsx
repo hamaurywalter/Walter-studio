@@ -811,9 +811,13 @@ function Contact() {
                     Une erreur est survenue. Réessaie ou écris-moi directement par email.
                   </p>
                 )}
-                <p className="font-util text-[11px] text-white/30 text-center leading-relaxed">
-                  En envoyant ce formulaire, j'accepte que mes données soient traitées conformément à la{' '}
-                  <Link to="/confidentialite" className="underline underline-offset-2 hover:text-white/50 transition-colors">politique de confidentialité</Link>.
+                <p className="text-xs text-white/40 text-center leading-relaxed mt-4">
+                  Les informations recueillies via ce formulaire sont utilisées uniquement pour répondre à votre demande. En savoir plus :{' '}
+                  <Link
+                    to="/confidentialite"
+                    className="text-laiton hover:underline underline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-laiton rounded-sm transition-colors">
+                    Politique de confidentialité
+                  </Link>.
                 </p>
                 <p className="font-util text-xs text-white/25 text-center">Réponse sous 24h · Sans engagement</p>
               </form>
