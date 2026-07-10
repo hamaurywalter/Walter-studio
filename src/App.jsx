@@ -8,6 +8,7 @@ import DevisPage             from './pages/DevisPage.jsx'
 import CguPage               from './pages/CguPage.jsx'
 import ConfidentialitePage   from './pages/ConfidentialitePage.jsx'
 import MentionsLegalesPage   from './pages/MentionsLegalesPage.jsx'
+import NotFoundPage          from './pages/NotFoundPage.jsx'
 
 /* ═══════════════════════════════════════════════════════════════
    HELPERS ANIMATION
@@ -95,7 +96,7 @@ export function Navbar({ solid = false }) {
           </picture>
         </a>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-8">
           {links.map(l => (
             <a key={l.href} href={l.href}
               className={`nav-link text-sm transition-colors ${
@@ -113,11 +114,11 @@ export function Navbar({ solid = false }) {
         </nav>
 
         <Link to="/devis"
-          className="hidden md:inline-flex items-center gap-2 bg-laiton text-minuit text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-laiton/80 transition-colors">
+          className="hidden lg:inline-flex items-center gap-2 bg-laiton text-minuit text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-laiton/80 transition-colors">
           Obtenir un devis
         </Link>
 
-        <button className="md:hidden p-2" onClick={() => setMenuOpen(true)} aria-label="Ouvrir le menu">
+        <button className="lg:hidden p-2" onClick={() => setMenuOpen(true)} aria-label="Ouvrir le menu">
           <span className={`block w-6 h-0.5 mb-1.5 ${opaque ? 'bg-minuit' : 'bg-white'}`} />
           <span className={`block w-6 h-0.5 mb-1.5 ${opaque ? 'bg-minuit' : 'bg-white'}`} />
           <span className={`block w-4 h-0.5 ${opaque ? 'bg-minuit' : 'bg-white'}`} />
@@ -899,6 +900,7 @@ export default function App() {
       <Route path="/cgu"              element={<CguPage />} />
       <Route path="/confidentialite"  element={<ConfidentialitePage />} />
       <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
+      <Route path="*"                 element={<NotFoundPage />} />
     </Routes>
   )
 }
