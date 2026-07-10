@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { PAGES, OPTIONS, MAINTENANCES, getFormule, labelSecteur } from './devisData.js'
 
 export default function Step5Resultat({ devis, sent, loading, error, onSend }) {
@@ -95,7 +96,11 @@ export default function Step5Resultat({ devis, sent, loading, error, onSend }) {
           Une erreur est survenue. Réessayez ou écrivez-moi directement à hamaury.walter@icloud.com
         </p>
       )}
-      <p className="font-util text-xs text-minuit/30 text-center mt-3">Gratuit · Sans engagement · Réponse sous 48h</p>
+      <p className="font-util text-[11px] text-minuit/35 text-center mt-3 leading-relaxed">
+        En envoyant ce formulaire, j'accepte que mes données soient traitées conformément à la{' '}
+        <Link to="/confidentialite" className="underline underline-offset-2 hover:text-minuit/60 transition-colors">politique de confidentialité</Link>.
+      </p>
+      <p className="font-util text-xs text-minuit/30 text-center mt-2">Gratuit · Sans engagement · Réponse sous 48h</p>
     </div>
   )
 }

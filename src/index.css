@@ -89,3 +89,58 @@
   .ticker-track { animation: none; }
   .tw-cursor    { animation: none; opacity: 1; }
 }
+
+/* ── Prose légal ────────────────────────────────────────────── */
+.prose-legal p,
+.prose-legal li {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: #0B0530;
+  opacity: 0.75;
+  margin-bottom: 1rem;
+}
+
+.prose-legal h2 {
+  font-family: 'Syne', system-ui, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #0B0530;
+  margin-top: 2.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-legal ul {
+  padding-left: 1.4rem;
+  list-style: disc;
+  margin-bottom: 1rem;
+}
+
+.prose-legal ul li {
+  margin-bottom: 0.25rem;
+}
+
+.prose-legal a {
+  color: #B8924A;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-legal a:hover { opacity: 0.75; }
+
+.prose-legal blockquote {
+  border-left: 3px solid #B8924A;
+  padding: 0.75rem 1.25rem;
+  margin: 1.5rem 0;
+  background: rgba(184, 146, 74, 0.06);
+  border-radius: 0 0.5rem 0.5rem 0;
+  color: #0B0530;
+  opacity: 0.7;
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+.prose-legal strong {
+  color: #0B0530;
+  opacity: 1;
+  font-weight: 600;
+}

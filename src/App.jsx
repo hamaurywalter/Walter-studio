@@ -3,8 +3,11 @@ import { createPortal } from 'react-dom'
 import emailjs from '@emailjs/browser'
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { Routes, Route, Link } from 'react-router-dom'
-import SimulateurPage from './pages/SimulateurPage.jsx'
-import DevisPage from './pages/DevisPage.jsx'
+import SimulateurPage        from './pages/SimulateurPage.jsx'
+import DevisPage             from './pages/DevisPage.jsx'
+import CguPage               from './pages/CguPage.jsx'
+import ConfidentialitePage   from './pages/ConfidentialitePage.jsx'
+import MentionsLegalesPage   from './pages/MentionsLegalesPage.jsx'
 
 /* ═══════════════════════════════════════════════════════════════
    HELPERS ANIMATION
@@ -54,7 +57,7 @@ function WordReveal({ children, className = '', delay = 0 }) {
 /* ═══════════════════════════════════════════════════════════════
    NAVBAR
 ═══════════════════════════════════════════════════════════════ */
-function Navbar() {
+export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -808,6 +811,10 @@ function Contact() {
                     Une erreur est survenue. Réessaie ou écris-moi directement par email.
                   </p>
                 )}
+                <p className="font-util text-[11px] text-white/30 text-center leading-relaxed">
+                  En envoyant ce formulaire, j'accepte que mes données soient traitées conformément à la{' '}
+                  <Link to="/confidentialite" className="underline underline-offset-2 hover:text-white/50 transition-colors">politique de confidentialité</Link>.
+                </p>
                 <p className="font-util text-xs text-white/25 text-center">Réponse sous 24h · Sans engagement</p>
               </form>
             )}
@@ -821,7 +828,7 @@ function Contact() {
 /* ═══════════════════════════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════════════════════════ */
-function Footer() {
+export function Footer() {
   return (
     <footer className="bg-minuit border-t border-brume/10 px-6 py-10">
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -832,6 +839,13 @@ function Footer() {
         <p className="font-util text-white/25 text-xs">
           Sites web sur-mesure pour les professionnels locaux
         </p>
+      </div>
+      <div className="max-w-6xl mx-auto mt-4 pt-4 border-t border-white/5 flex justify-center gap-4">
+        <Link to="/mentions-legales" className="font-util text-white/20 text-xs hover:text-white/45 transition-colors">Mentions légales</Link>
+        <span className="text-white/10 text-xs">·</span>
+        <Link to="/cgu"              className="font-util text-white/20 text-xs hover:text-white/45 transition-colors">CGU</Link>
+        <span className="text-white/10 text-xs">·</span>
+        <Link to="/confidentialite"  className="font-util text-white/20 text-xs hover:text-white/45 transition-colors">Politique de confidentialité</Link>
       </div>
     </footer>
   )
@@ -872,9 +886,12 @@ function HomePage() {
 export default function App() {
   return (
     <Routes>
-      <Route path="/"           element={<HomePage />} />
-      <Route path="/simulateur" element={<SimulateurPage />} />
-      <Route path="/devis"      element={<DevisPage />} />
+      <Route path="/"                 element={<HomePage />} />
+      <Route path="/simulateur"       element={<SimulateurPage />} />
+      <Route path="/devis"            element={<DevisPage />} />
+      <Route path="/cgu"              element={<CguPage />} />
+      <Route path="/confidentialite"  element={<ConfidentialitePage />} />
+      <Route path="/mentions-legales" element={<MentionsLegalesPage />} />
     </Routes>
   )
 }
