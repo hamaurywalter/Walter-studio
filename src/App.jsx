@@ -57,7 +57,7 @@ function WordReveal({ children, className = '', delay = 0 }) {
 /* ═══════════════════════════════════════════════════════════════
    NAVBAR
 ═══════════════════════════════════════════════════════════════ */
-export function Navbar() {
+export function Navbar({ solid = false }) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -66,6 +66,9 @@ export function Navbar() {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  /* Sur fond clair (pages légales…), la barre est opaque en permanence */
+  const opaque = solid || scrolled
 
   const links = [
     { href: '#realisations', label: 'Réalisations' },
@@ -77,17 +80,17 @@ export function Navbar() {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? 'bg-white/96 backdrop-blur-sm border-b border-craie shadow-sm' : 'bg-transparent'
+      opaque ? 'bg-white/96 backdrop-blur-sm border-b border-craie shadow-sm' : 'bg-transparent'
     }`}>
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
 
         <a href="/">
           <picture>
-            <source srcSet={scrolled ? '/logoWS.webp' : '/logoWS-white.webp'} type="image/webp" />
+            <source srcSet={opaque ? '/logoWS.webp' : '/logoWS-white.webp'} type="image/webp" />
             <img
-              src={scrolled ? '/logoWS.png' : '/logoWS-white.png'}
+              src={opaque ? '/logoWS.png' : '/logoWS-white.png'}
               alt="WALTER Studio"
-              className={`w-auto transition-all duration-300 ${scrolled ? 'h-11' : 'h-12'}`}
+              className={`w-auto transition-all duration-300 ${opaque ? 'h-11' : 'h-12'}`}
             />
           </picture>
         </a>
@@ -96,14 +99,14 @@ export function Navbar() {
           {links.map(l => (
             <a key={l.href} href={l.href}
               className={`nav-link text-sm transition-colors ${
-                scrolled ? 'text-minuit/60 hover:text-minuit' : 'text-white/60 hover:text-white'
+                opaque ? 'text-minuit/60 hover:text-minuit' : 'text-white/60 hover:text-white'
               }`}>
               {l.label}
             </a>
           ))}
           <Link to="/simulateur"
             className={`nav-link text-sm font-medium transition-colors ${
-              scrolled ? 'text-laiton hover:text-minuit' : 'text-laiton hover:text-white'
+              opaque ? 'text-laiton hover:text-minuit' : 'text-laiton hover:text-white'
             }`}>
             Simulateur
           </Link>
@@ -115,9 +118,9 @@ export function Navbar() {
         </Link>
 
         <button className="md:hidden p-2" onClick={() => setMenuOpen(true)} aria-label="Ouvrir le menu">
-          <span className={`block w-6 h-0.5 mb-1.5 ${scrolled ? 'bg-minuit' : 'bg-white'}`} />
-          <span className={`block w-6 h-0.5 mb-1.5 ${scrolled ? 'bg-minuit' : 'bg-white'}`} />
-          <span className={`block w-4 h-0.5 ${scrolled ? 'bg-minuit' : 'bg-white'}`} />
+          <span className={`block w-6 h-0.5 mb-1.5 ${opaque ? 'bg-minuit' : 'bg-white'}`} />
+          <span className={`block w-6 h-0.5 mb-1.5 ${opaque ? 'bg-minuit' : 'bg-white'}`} />
+          <span className={`block w-4 h-0.5 ${opaque ? 'bg-minuit' : 'bg-white'}`} />
         </button>
       </div>
 

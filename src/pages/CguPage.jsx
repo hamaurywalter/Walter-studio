@@ -11,7 +11,7 @@ export default function CguPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-craie">
-      <Navbar />
+      <Navbar solid />
 
       <main className="flex-1 pt-28 pb-20 px-6">
         <div className="max-w-2xl mx-auto">
