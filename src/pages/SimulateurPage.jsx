@@ -89,33 +89,6 @@ export default function SimulateurPage() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', background: '#F5F6FA' }}>
 
-      {/* Barre d'onglets */}
-      <div style={{
-        display: 'flex', flexShrink: 0,
-        background: '#fff',
-        borderBottom: '1px solid #E5E7EB',
-      }}>
-        {[
-          { key: 'controls', label: 'Personnaliser' },
-          { key: 'preview',  label: 'Aperçu' },
-        ].map(tab => (
-          <button
-            key={tab.key}
-            onClick={() => setActiveTab(tab.key)}
-            style={{
-              flex: 1, padding: '14px 8px',
-              fontSize: 14, fontWeight: 600,
-              border: 'none', cursor: 'pointer',
-              background: 'transparent',
-              color: activeTab === tab.key ? '#0B0530' : '#9CA3AF',
-              borderBottom: activeTab === tab.key ? '2px solid #B8924A' : '2px solid transparent',
-              transition: 'all 0.2s',
-            }}>
-            {tab.label}
-          </button>
-        ))}
-      </div>
-
       {/* Contenu */}
       <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
 
@@ -142,6 +115,34 @@ export default function SimulateurPage() {
             onLoad={handleLoad}
           />
         </div>
+      </div>
+
+      {/* Barre d'onglets — en bas */}
+      <div style={{
+        display: 'flex', flexShrink: 0,
+        background: '#fff',
+        borderTop: '1px solid #E5E7EB',
+        paddingBottom: 'env(safe-area-inset-bottom)',
+      }}>
+        {[
+          { key: 'controls', label: 'Personnaliser' },
+          { key: 'preview',  label: 'Aperçu' },
+        ].map(tab => (
+          <button
+            key={tab.key}
+            onClick={() => setActiveTab(tab.key)}
+            style={{
+              flex: 1, padding: '14px 8px',
+              fontSize: 14, fontWeight: 600,
+              border: 'none', cursor: 'pointer',
+              background: 'transparent',
+              color: activeTab === tab.key ? '#0B0530' : '#9CA3AF',
+              borderTop: activeTab === tab.key ? '2px solid #B8924A' : '2px solid transparent',
+              transition: 'all 0.2s',
+            }}>
+            {tab.label}
+          </button>
+        ))}
       </div>
     </div>
   )
