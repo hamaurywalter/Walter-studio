@@ -1,4 +1,4 @@
-import { OPTIONS, MAINTENANCES } from './devisData.js'
+import { OPTIONS, MAINTENANCES, getCodePromo } from './devisData.js'
 
 export default function Step3Options({ devis, setDevis }) {
   const toggle = id =>
@@ -54,6 +54,23 @@ export default function Step3Options({ devis, setDevis }) {
           />
         )}
       </div>
+
+      {/* Code parrainage / promo */}
+      <p className="font-util text-xs tracking-widest uppercase text-minuit/35 mt-10 mb-3">
+        Code parrainage / promo <span className="normal-case tracking-normal text-minuit/25">(optionnel)</span>
+      </p>
+      <input
+        type="text"
+        placeholder="Ex : STUDIO"
+        value={devis.codePromo}
+        onChange={e => setDevis(d => ({ ...d, codePromo: e.target.value }))}
+        className="w-full bg-white border border-brume/30 text-minuit placeholder:text-minuit/30 rounded-xl px-5 py-4 text-sm outline-none focus:border-laiton/60 transition-colors"
+      />
+      {getCodePromo(devis.codePromo) && (
+        <div className="mt-3 bg-laiton/10 border border-laiton/30 text-minuit rounded-xl px-4 py-3 text-xs leading-relaxed">
+          {getCodePromo(devis.codePromo).message}
+        </div>
+      )}
 
       {/* Maintenance mensuelle */}
       <p className="font-util text-xs tracking-widest uppercase text-minuit/35 mt-10 mb-3">

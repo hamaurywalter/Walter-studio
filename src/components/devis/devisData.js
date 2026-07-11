@@ -61,3 +61,22 @@ export function labelSecteur(devis) {
   if (devis.secteur === 'autre') return devis.secteurAutre || 'Autre'
   return SECTEURS.find(s => s.id === devis.secteur)?.label || ''
 }
+
+/* ── Codes promo / parrainage ───────────────────────────────── */
+export const CODES_PROMO = {
+  STUDIO: {
+    type: 'promo',
+    reduction: 50,
+    message: "Code d'ouverture appliqué : −50€ sur votre formule.",
+  },
+  ELLES: {
+    type: 'parrainage',
+    reduction: 0,
+    message: "Parrainage validé ! Vous obtenez 1 mois de maintenance offert — et Elles Maison de Beauté également.",
+  },
+}
+
+export function getCodePromo(code) {
+  if (!code) return null
+  return CODES_PROMO[code.trim().toUpperCase()] || null
+}

@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom'
-import { PAGES, OPTIONS, MAINTENANCES, getFormule, labelSecteur } from './devisData.js'
+import { PAGES, OPTIONS, MAINTENANCES, getFormule, labelSecteur, getCodePromo } from './devisData.js'
 
 export default function Step5Resultat({ devis, sent, loading, error, onSend }) {
   const formule = getFormule(devis.pages.length)
   const maint   = MAINTENANCES.find(m => m.id === devis.maintenance)
   const c = devis.contact
+  const promo     = getCodePromo(devis.codePromo)
+  const prixFinal = promo ? formule.prix - promo.reduction : formule.prix
+  const codeUp    = devis.codePromo.trim().toUpperCase()
 
   if (sent) {
     return (
@@ -34,7 +37,14 @@ export default function Step5Resultat({ devis, sent, loading, error, onSend }) {
         <p className="font-util text-xs tracking-widest uppercase text-brume/50 mb-3">Formule recommandée</p>
         <div className="flex items-baseline justify-between gap-4 mb-4">
           <span className="font-display text-3xl font-bold">{formule.label}</span>
-          <span className="font-util text-4xl text-laiton shrink-0">{formule.prix}€</span>
+          {promo && promo.reduction > 0 ? (
+            <span className="flex items-baseline gap-2 shrink-0">
+              <span className="font-util text-2xl text-white/40 line-through">{formule.prix}€</span>
+              <span className="font-util text-4xl text-laiton">{prixFinal}€</span>
+            </span>
+          ) : (
+            <span className="font-util text-4xl text-laiton shrink-0">{formule.prix}€</span>
+          )}
         </div>
         <p className="text-sm text-white/55 leading-relaxed mb-5">{formule.pourquoi}</p>
         <div className="border-t border-white/10 pt-4 flex items-baseline justify-between gap-4 text-sm">
@@ -42,6 +52,12 @@ export default function Step5Resultat({ devis, sent, loading, error, onSend }) {
           <span className="font-util text-white shrink-0">{maint.prix}€/mois</span>
         </div>
       </div>
+
+      {promo && (
+        <div className="bg-laiton/10 border border-laiton/30 text-minuit rounded-xl px-5 py-4 mb-6 text-sm leading-relaxed">
+          {promo.message}
+        </div>
+      )}
 
       {/* Récapitulatif */}
       <div className="bg-white border border-brume/25 rounded-2xl p-7 mb-8 space-y-5">
@@ -74,6 +90,12 @@ export default function Step5Resultat({ devis, sent, loading, error, onSend }) {
           <p className="font-util text-[11px] tracking-widest uppercase text-minuit/35 mb-1.5">Maintenance</p>
           <p className="text-sm text-minuit">{maint.label} · {maint.prix}€/mois</p>
         </div>
+        {promo && (
+          <div>
+            <p className="font-util text-[11px] tracking-widest uppercase text-minuit/35 mb-1.5">Code</p>
+            <p className="text-sm text-minuit">{codeUp}</p>
+          </div>
+        )}
         <div>
           <p className="font-util text-[11px] tracking-widest uppercase text-minuit/35 mb-1.5">Contact</p>
           <p className="text-sm text-minuit">

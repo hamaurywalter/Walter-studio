@@ -10,7 +10,7 @@ import Step2Pages    from '../components/devis/Step2Pages.jsx'
 import Step3Options  from '../components/devis/Step3Options.jsx'
 import Step4Contact  from '../components/devis/Step4Contact.jsx'
 import Step5Resultat from '../components/devis/Step5Resultat.jsx'
-import { PAGES, OPTIONS, MAINTENANCES, getFormule, labelSecteur } from '../components/devis/devisData.js'
+import { PAGES, OPTIONS, MAINTENANCES, getFormule, labelSecteur, getCodePromo } from '../components/devis/devisData.js'
 
 const reduced =
   typeof window !== 'undefined' &&
@@ -35,6 +35,7 @@ export default function DevisPage() {
     options:      [],
     optionAutre:  '',
     maintenance:  'essentiel',
+    codePromo:    '',
     contact: { prenom: '', nom: '', entreprise: '', ville: '', email: '', tel: '' },
   })
   const [step, setStep]           = useState(1)
@@ -63,12 +64,22 @@ export default function DevisPage() {
     const formule = getFormule(devis.pages.length)
     const maint   = MAINTENANCES.find(m => m.id === devis.maintenance)
     const c = devis.contact
+    const promo  = getCodePromo(devis.codePromo)
+    const codeUp = devis.codePromo.trim().toUpperCase()
     const message = [
       'DEMANDE DE DEVIS — Configurateur WALTER Studio',
       '═══════════════════════════════════════════',
       '',
       `SECTEUR : ${labelSecteur(devis)}`,
       `FORMULE RECOMMANDÉE : ${formule.label} — ${formule.prix}€`,
+      ...(promo
+        ? promo.type === 'promo'
+          ? [
+              `CODE : ${codeUp} — PROMO OUVERTURE (−${promo.reduction}€)`,
+              `PRIX APRÈS RÉDUCTION : ${formule.prix - promo.reduction}€`,
+            ]
+          : [`CODE : ${codeUp} — PARRAINAGE (1 mois de maintenance offert au client ET à Elles Maison de Beauté)`]
+        : []),
       `MAINTENANCE : ${maint.label} — ${maint.prix}€/mois`,
       '',
       `PAGES SOUHAITÉES (${devis.pages.length}) :`,
