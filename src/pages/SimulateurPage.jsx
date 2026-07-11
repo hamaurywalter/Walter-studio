@@ -87,7 +87,7 @@ export default function SimulateurPage() {
 
   /* ── Mobile : onglets ── */
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', background: '#F5F6FA' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', background: '#F5F6FA' }}>
 
       {/* Contenu */}
       <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
