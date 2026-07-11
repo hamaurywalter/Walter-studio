@@ -35,7 +35,7 @@ export default function DevisPage() {
     options:      [],
     optionAutre:  '',
     maintenance:  'essentiel',
-    codePromo:    '',
+    codesPromo:   [],
     contact: { prenom: '', nom: '', entreprise: '', ville: '', email: '', tel: '' },
   })
   const [step, setStep]           = useState(1)
@@ -64,22 +64,18 @@ export default function DevisPage() {
     const formule = getFormule(devis.pages.length)
     const maint   = MAINTENANCES.find(m => m.id === devis.maintenance)
     const c = devis.contact
-    const promo  = getCodePromo(devis.codePromo)
-    const codeUp = devis.codePromo.trim().toUpperCase()
+    const promos = devis.codesPromo.map(code => ({ code, ...getCodePromo(code) })).filter(p => p.type)
+    const totalReduction = promos.reduce((s, p) => s + p.reduction, 0)
     const message = [
       'DEMANDE DE DEVIS — Configurateur WALTER Studio',
       '═══════════════════════════════════════════',
       '',
       `SECTEUR : ${labelSecteur(devis)}`,
       `FORMULE RECOMMANDÉE : ${formule.label} — ${formule.prix}€`,
-      ...(promo
-        ? promo.type === 'promo'
-          ? [
-              `CODE : ${codeUp} — PROMO OUVERTURE (−${promo.reduction}€)`,
-              `PRIX APRÈS RÉDUCTION : ${formule.prix - promo.reduction}€`,
-            ]
-          : [`CODE : ${codeUp} — PARRAINAGE (1 mois de maintenance offert au client ET à Elles Maison de Beauté)`]
-        : []),
+      ...promos.map(p => p.type === 'promo'
+        ? `CODE : ${p.code} — PROMO OUVERTURE (−${p.reduction}€)`
+        : `CODE : ${p.code} — PARRAINAGE (1 mois de maintenance offert au client ET à Elles Maison de Beauté)`),
+      ...(totalReduction > 0 ? [`PRIX APRÈS RÉDUCTION : ${formule.prix - totalReduction}€`] : []),
       `MAINTENANCE : ${maint.label} — ${maint.prix}€/mois`,
       '',
       `PAGES SOUHAITÉES (${devis.pages.length}) :`,

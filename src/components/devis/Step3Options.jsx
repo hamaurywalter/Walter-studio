@@ -1,11 +1,36 @@
+import { useState } from 'react'
 import { OPTIONS, MAINTENANCES, getCodePromo } from './devisData.js'
 
 export default function Step3Options({ devis, setDevis }) {
+  const [codeInput, setCodeInput] = useState('')
+  const [feedback, setFeedback]   = useState(null)  // { type: 'error' | 'info', text }
+
   const toggle = id =>
     setDevis(d => ({
       ...d,
       options: d.options.includes(id) ? d.options.filter(o => o !== id) : [...d.options, id],
     }))
+
+  const addCode = () => {
+    const trimmed = codeInput.trim()
+    if (!trimmed) return
+    const valide = getCodePromo(codeInput)
+    const up = trimmed.toUpperCase()
+    if (!valide) {
+      setFeedback({ type: 'error', text: "Ce code n'est pas valide." })
+      return
+    }
+    if (devis.codesPromo.includes(up)) {
+      setFeedback({ type: 'info', text: 'Ce code est déjà appliqué.' })
+      return
+    }
+    setDevis(d => ({ ...d, codesPromo: [...d.codesPromo, up] }))
+    setCodeInput('')
+    setFeedback(null)
+  }
+
+  const removeCode = code =>
+    setDevis(d => ({ ...d, codesPromo: d.codesPromo.filter(c => c !== code) }))
 
   return (
     <div>
@@ -59,16 +84,47 @@ export default function Step3Options({ devis, setDevis }) {
       <p className="font-util text-xs tracking-widest uppercase text-minuit/35 mt-10 mb-3">
         Code parrainage / promo <span className="normal-case tracking-normal text-minuit/25">(optionnel)</span>
       </p>
-      <input
-        type="text"
-        placeholder="Ex : STUDIO"
-        value={devis.codePromo}
-        onChange={e => setDevis(d => ({ ...d, codePromo: e.target.value }))}
-        className="w-full bg-white border border-brume/30 text-minuit placeholder:text-minuit/30 rounded-xl px-5 py-4 text-sm outline-none focus:border-laiton/60 transition-colors"
-      />
-      {getCodePromo(devis.codePromo) && (
-        <div className="mt-3 bg-laiton/10 border border-laiton/30 text-minuit rounded-xl px-4 py-3 text-xs leading-relaxed">
-          {getCodePromo(devis.codePromo).message}
+      <div className="flex gap-2">
+        <input
+          type="text"
+          placeholder="Votre code"
+          value={codeInput}
+          onChange={e => { setCodeInput(e.target.value); if (feedback) setFeedback(null) }}
+          onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); addCode() } }}
+          className="flex-1 bg-white border border-brume/30 text-minuit placeholder:text-minuit/30 rounded-xl px-5 py-4 text-sm outline-none focus:border-laiton/60 transition-colors"
+        />
+        <button
+          type="button"
+          onClick={addCode}
+          className="shrink-0 bg-minuit text-white text-sm font-semibold px-6 rounded-xl hover:bg-encre transition-colors">
+          Ajouter
+        </button>
+      </div>
+      {feedback && (
+        <p className={`font-util text-xs mt-2 ${feedback.type === 'error' ? 'text-red-500/80' : 'text-minuit/45'}`}>
+          {feedback.text}
+        </p>
+      )}
+      {devis.codesPromo.length > 0 && (
+        <div className="mt-3 flex flex-col gap-2">
+          {devis.codesPromo.map(code => {
+            const p = getCodePromo(code)
+            if (!p) return null
+            return (
+              <div key={code} className="flex items-start gap-3 bg-laiton/10 border border-laiton/30 rounded-xl px-4 py-3">
+                <p className="flex-1 text-xs text-minuit leading-relaxed">
+                  <span className="font-util font-semibold tracking-wide">{code}</span> — {p.message}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => removeCode(code)}
+                  aria-label={`Retirer le code ${code}`}
+                  className="shrink-0 text-minuit/40 hover:text-minuit transition-colors text-lg leading-none">
+                  ×
+                </button>
+              </div>
+            )
+          })}
         </div>
       )}
 

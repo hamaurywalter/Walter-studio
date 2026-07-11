@@ -5,9 +5,9 @@ export default function Step5Resultat({ devis, sent, loading, error, onSend }) {
   const formule = getFormule(devis.pages.length)
   const maint   = MAINTENANCES.find(m => m.id === devis.maintenance)
   const c = devis.contact
-  const promo     = getCodePromo(devis.codePromo)
-  const prixFinal = promo ? formule.prix - promo.reduction : formule.prix
-  const codeUp    = devis.codePromo.trim().toUpperCase()
+  const promos    = devis.codesPromo.map(code => ({ code, ...getCodePromo(code) })).filter(p => p.type)
+  const totalReduction = promos.reduce((s, p) => s + p.reduction, 0)
+  const prixFinal = formule.prix - totalReduction
 
   if (sent) {
     return (
@@ -37,7 +37,7 @@ export default function Step5Resultat({ devis, sent, loading, error, onSend }) {
         <p className="font-util text-xs tracking-widest uppercase text-brume/50 mb-3">Formule recommandée</p>
         <div className="flex items-baseline justify-between gap-4 mb-4">
           <span className="font-display text-3xl font-bold">{formule.label}</span>
-          {promo && promo.reduction > 0 ? (
+          {totalReduction > 0 ? (
             <span className="flex items-baseline gap-2 shrink-0">
               <span className="font-util text-2xl text-white/40 line-through">{formule.prix}€</span>
               <span className="font-util text-4xl text-laiton">{prixFinal}€</span>
@@ -53,9 +53,13 @@ export default function Step5Resultat({ devis, sent, loading, error, onSend }) {
         </div>
       </div>
 
-      {promo && (
-        <div className="bg-laiton/10 border border-laiton/30 text-minuit rounded-xl px-5 py-4 mb-6 text-sm leading-relaxed">
-          {promo.message}
+      {promos.length > 0 && (
+        <div className="bg-laiton/10 border border-laiton/30 rounded-xl px-5 py-4 mb-6 space-y-2">
+          {promos.map(p => (
+            <p key={p.code} className="text-sm text-minuit leading-relaxed">
+              <span className="font-util font-semibold tracking-wide">{p.code}</span> — {p.message}
+            </p>
+          ))}
         </div>
       )}
 
@@ -90,10 +94,12 @@ export default function Step5Resultat({ devis, sent, loading, error, onSend }) {
           <p className="font-util text-[11px] tracking-widest uppercase text-minuit/35 mb-1.5">Maintenance</p>
           <p className="text-sm text-minuit">{maint.label} · {maint.prix}€/mois</p>
         </div>
-        {promo && (
+        {promos.length > 0 && (
           <div>
-            <p className="font-util text-[11px] tracking-widest uppercase text-minuit/35 mb-1.5">Code</p>
-            <p className="text-sm text-minuit">{codeUp}</p>
+            <p className="font-util text-[11px] tracking-widest uppercase text-minuit/35 mb-1.5">
+              {promos.length > 1 ? 'Codes' : 'Code'}
+            </p>
+            <p className="text-sm text-minuit">{promos.map(p => p.code).join(' · ')}</p>
           </div>
         )}
         <div>
