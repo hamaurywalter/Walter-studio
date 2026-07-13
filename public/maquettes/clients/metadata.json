@@ -1,0 +1,13 @@
+{
+  "maquettes": [
+    {
+      "id": "le-bistronome-bruz",
+      "nom": "Le Bistronome",
+      "secteur": "Restauration",
+      "ville": "Bruz",
+      "dateCreation": "2026-07-13",
+      "statut": "en-cours",
+      "description": "Restaurant gastronomique — galerie photo, ambiance, contact."
+    }
+  ]
+}
