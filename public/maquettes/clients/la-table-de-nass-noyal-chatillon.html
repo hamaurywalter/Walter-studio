@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Table de Nass — Cuisine orientale halal à Noyal-Châtillon-sur-Seiche</title>
+<meta name="description" content="La Table de Nass, restaurant halal à Noyal-Châtillon-sur-Seiche. Mezzés, shawarma, falafels du Chef Nasser. 4,9/5 sur Google — 187 avis. Sur place, à emporter, livraison.">
+<!-- ============================================================
+     MAQUETTE DE DÉMONSTRATION — WALTER Studio
+     Aperçu non contractuel réalisé pour La Table de Nass
+     Palette : terracotta + sable chaud + safran doré + brun épice —
+     les couleurs du Levant et des épices, avec arches orientales
+     discrètes sur les visuels. Typo : Marcellus (titres) + Figtree.
+     ============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* ================= RESET & VARIABLES ================= */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --terre:#b0562f;         /* terracotta — chaleur des plats mijotés */
+  --terre-vif:#c96a3e;
+  --safran:#d9a441;        /* safran doré — épices du comptoir */
+  --safran-clair:#e8c37c;
+  --sable:#faf4e9;         /* fond sable chaud */
+  --sable-2:#f4e8d2;
+  --nuit:#2e1f15;          /* brun épice profond — sections sombres */
+  --nuit-2:#241811;
+  --encre:#33261c;
+  --gris:#7d6f60;
+  --blanc:#fffdf9;
+  --ombre:0 18px 45px rgba(46,31,21,.16);
+  --rayon:14px;
+  --arche:170px 170px 14px 14px; /* arche orientale */
+  --transition:all .35s cubic-bezier(.25,.6,.3,1);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Figtree',sans-serif;font-weight:300;color:var(--encre);background:var(--sable);line-height:1.7;font-size:16.5px;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Marcellus',serif;font-weight:400;line-height:1.15;color:inherit}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+::selection{background:var(--safran);color:#fff}
+
+/* ================= UTILITAIRES ================= */
+.wrap{width:min(1150px,92%);margin-inline:auto}
+.kicker{display:inline-flex;align-items:center;gap:.7rem;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:var(--terre);font-weight:500}
+.kicker::before{content:"✦";color:var(--safran);font-size:.9rem}
+.section{padding:5.5rem 0}
+.titre{font-size:clamp(2rem,4.5vw,3rem);margin:.6rem 0 1rem}
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.65,.3,1)}
+.reveal.vu{opacity:1;transform:none}
+.reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}
+
+/* ================= HEADER STICKY ================= */
+header{position:fixed;inset:0 0 auto 0;z-index:100;padding:1.1rem 0;transition:var(--transition)}
+header.scrolle{background:rgba(36,24,17,.93);backdrop-filter:blur(12px);padding:.65rem 0;box-shadow:0 6px 25px rgba(0,0,0,.3)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{font-family:'Marcellus',serif;font-size:1.5rem;color:var(--blanc);letter-spacing:.02em}
+.logo span{color:var(--safran-clair)}
+.nav ul{display:flex;gap:1.7rem;align-items:center}
+.nav ul a{color:rgba(255,253,249,.85);font-size:.86rem;letter-spacing:.12em;text-transform:uppercase;position:relative;padding:.3rem 0}
+.nav ul a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--safran-clair);transition:width .3s ease}
+.nav ul a:hover{color:#fff}
+.nav ul a:hover::after{width:100%}
+.btn{display:inline-flex;align-items:center;gap:.55rem;background:var(--terre);color:#fff;padding:.78rem 1.6rem;border-radius:50px;font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;border:1px solid var(--terre);transition:var(--transition);cursor:pointer}
+.btn:hover{background:transparent;color:var(--safran-clair);border-color:var(--safran-clair);transform:translateY(-2px)}
+.btn.plein-safran{background:var(--safran);border-color:var(--safran);color:var(--nuit)}
+.btn.plein-safran:hover{background:transparent;color:var(--terre);border-color:var(--terre)}
+.btn.contour{background:transparent;border-color:rgba(255,255,255,.6);color:#fff}
+.btn.contour:hover{background:#fff;color:var(--nuit);border-color:#fff}
+.burger{display:none;background:none;border:none;cursor:pointer;width:42px;height:42px;position:relative;z-index:110}
+.burger span{display:block;width:24px;height:2px;background:#fff;margin:5px auto;transition:var(--transition)}
+.burger.ouvert span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.ouvert span:nth-child(2){opacity:0}
+.burger.ouvert span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ================= HERO ================= */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;color:var(--blanc);isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:url('https://lh3.googleusercontent.com/grass-cs/ACvplmPMdrAiRB4xLs7jzWddPqKmXSoi5XQqR4Kkgx4iMS8RMJES65dJ8GTttaBBq4xCZXqcaoFw_cpZgrmkVlMjOKqEVsvUm6OJ2t-hzOY4gotacESMjIOhTGwW3z37BlZ4KzwxN1tokOoNwcpm=w1600-h1200-p-k-no') center/cover no-repeat;background-color:var(--nuit-2)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(115deg,rgba(30,19,12,.9) 0%,rgba(36,24,17,.66) 48%,rgba(36,24,17,.3) 100%)}
+.hero-inner{padding:9rem 0 6rem;max-width:720px}
+.hero .kicker{color:var(--safran-clair)}
+.hero h1{font-size:clamp(2.8rem,7.5vw,5rem);margin:.8rem 0 .4rem;color:#fff}
+.hero .slogan{font-family:'Marcellus',serif;font-size:clamp(1.2rem,2.6vw,1.6rem);color:var(--safran-clair);margin-bottom:1.4rem}
+.hero p.accroche{font-size:1.05rem;color:rgba(255,253,249,.88);max-width:560px;margin-bottom:2.2rem}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.hero-note{display:inline-flex;align-items:center;gap:.55rem;margin-top:2.6rem;font-size:.95rem;color:rgba(255,253,249,.92)}
+.etoiles{color:var(--safran-clair);letter-spacing:2px;font-size:1.05rem}
+.scroll-indice{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.65);font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;animation:flotte 2.4s ease-in-out infinite}
+@keyframes flotte{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,9px)}}
+
+/* ================= BARRE INFOS RAPIDES ================= */
+.barre-infos{background:var(--nuit);color:var(--sable);position:relative;z-index:5}
+.barre-infos .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;padding:1.4rem 0}
+.info-cell{display:flex;align-items:center;gap:.9rem;justify-content:center;font-size:.95rem}
+.info-cell svg{flex-shrink:0;width:26px;height:26px;stroke:var(--safran-clair)}
+.info-cell b{font-weight:500;display:block;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--safran-clair)}
+.info-cell a:hover{color:var(--safran-clair)}
+
+/* ================= À PROPOS ================= */
+.apropos{background:var(--sable)}
+.apropos .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:4rem;align-items:center}
+.apropos-txt p{margin-bottom:1.1rem;color:#4a3c2e}
+.apropos-txt .signature{font-family:'Marcellus',serif;font-size:1.3rem;color:var(--terre);margin-top:1.4rem}
+.apropos-visuel{position:relative}
+.apropos-visuel .cadre{border-radius:var(--arche);overflow:hidden;box-shadow:var(--ombre);border:6px solid var(--blanc)}
+.apropos-visuel img{aspect-ratio:4/5;object-fit:cover;width:100%;transition:transform .8s ease}
+.apropos-visuel:hover img{transform:scale(1.045)}
+.badge-flottant{position:absolute;left:-1.4rem;bottom:2rem;background:var(--terre);color:var(--sable);padding:1.15rem 1.5rem;border-radius:var(--rayon);box-shadow:var(--ombre);max-width:230px}
+.badge-flottant .gros{font-family:'Marcellus',serif;font-size:2rem;color:var(--safran-clair);line-height:1}
+.badge-flottant .petit{font-size:.8rem;letter-spacing:.06em;margin-top:.3rem}
+.citation{border-left:3px solid var(--safran);padding:.4rem 0 .4rem 1.2rem;font-family:'Marcellus',serif;font-size:1.25rem;color:var(--terre);margin:1.5rem 0}
+
+/* ================= SPÉCIALITÉS ================= */
+.prestations{background:var(--sable-2)}
+.grille-cartes{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:2.8rem}
+.carte{background:var(--blanc);border-radius:var(--rayon);overflow:hidden;box-shadow:0 8px 28px rgba(46,31,21,.09);transition:var(--transition);display:flex;flex-direction:column}
+.carte:hover{transform:translateY(-8px);box-shadow:var(--ombre)}
+.carte-img{height:210px;overflow:hidden}
+.carte-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.carte:hover .carte-img img{transform:scale(1.07)}
+.carte-corps{padding:1.6rem 1.6rem 1.9rem;flex:1}
+.carte-corps h3{font-size:1.35rem;margin-bottom:.55rem;color:var(--terre)}
+.carte-corps p{font-size:.95rem;color:#54463a}
+.carte-corps .pastille-tag{display:inline-block;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;background:var(--sable-2);color:var(--terre);border-radius:50px;padding:.25rem .8rem;margin-bottom:.6rem}
+
+/* ================= COMMANDER ================= */
+.commander{background:var(--terre);color:var(--sable);text-align:center}
+.commander .titre{color:#fff}
+.commander p{max-width:600px;margin:0 auto 2rem;color:rgba(250,244,233,.9)}
+.commander-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.commander .btn{background:var(--nuit);border-color:var(--nuit)}
+.commander .btn:hover{background:transparent;border-color:#fff;color:#fff}
+
+/* ================= GALERIE ================= */
+.galerie{background:var(--nuit);color:var(--sable)}
+.galerie .titre{color:var(--sable)}
+.mosaique{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:180px;gap:.8rem;margin-top:2.6rem}
+.mosaique figure{overflow:hidden;border-radius:10px;position:relative;cursor:pointer}
+.mosaique img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease,filter .5s ease}
+.mosaique figure:hover img{transform:scale(1.08);filter:brightness(1.08)}
+.mosaique figure:nth-child(1){grid-column:span 2;grid-row:span 2;border-radius:var(--arche)}
+.mosaique figure:nth-child(4){grid-row:span 2}
+.mosaique figure:nth-child(6){grid-column:span 2}
+.galerie .legende{margin-top:1.4rem;text-align:center;font-size:.85rem;color:rgba(250,244,233,.6);font-style:italic}
+
+/* ================= CHIFFRES CLÉS ================= */
+.chiffres{background:var(--sable)}
+.chiffres .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.chiffre .gros{font-family:'Marcellus',serif;font-size:clamp(2.6rem,5vw,3.6rem);color:var(--terre);line-height:1}
+.chiffre .gros em{font-style:normal;color:var(--safran)}
+.chiffre .label{font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gris);margin-top:.5rem}
+
+/* ================= AVIS ================= */
+.avis{background:var(--sable-2)}
+.grille-avis{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.8rem}
+.avis-carte{background:var(--blanc);border-radius:var(--rayon);padding:1.9rem 1.7rem;box-shadow:0 8px 28px rgba(46,31,21,.08);display:flex;flex-direction:column;gap:1rem;transition:var(--transition);position:relative}
+.avis-carte:hover{transform:translateY(-6px);box-shadow:var(--ombre)}
+.avis-carte::before{content:"“";font-family:'Marcellus',serif;font-size:4.5rem;color:var(--safran);opacity:.4;position:absolute;top:.4rem;right:1.2rem;line-height:1}
+.avis-txt{font-size:.96rem;color:#4a3c2e;font-style:italic;flex:1}
+.avis-pied{display:flex;align-items:center;gap:.8rem;border-top:1px solid #eee2cc;padding-top:1rem}
+.avis-avatar{width:40px;height:40px;border-radius:50%;background:var(--terre);color:var(--safran-clair);display:grid;place-items:center;font-family:'Marcellus',serif;font-size:1.15rem;flex-shrink:0}
+.avis-pied b{font-weight:500;font-size:.92rem;display:block}
+.avis-pied small{color:var(--gris);font-size:.76rem;display:flex;align-items:center;gap:.35rem}
+.g-logo{width:13px;height:13px}
+.bandeau-note{display:flex;align-items:center;justify-content:center;gap:1.1rem;margin-top:2.6rem;flex-wrap:wrap}
+.bandeau-note .pastille{background:var(--blanc);border-radius:50px;padding:.8rem 1.7rem;box-shadow:0 8px 24px rgba(46,31,21,.09);display:flex;align-items:center;gap:.7rem;font-size:.95rem}
+.bandeau-note .pastille b{font-size:1.25rem;font-weight:600}
+
+/* ================= ZONE / CARTE ================= */
+.zone{background:var(--sable)}
+.zone .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:3.5rem;align-items:center}
+.zone iframe{width:100%;height:420px;border:0;border-radius:var(--rayon);box-shadow:var(--ombre);filter:saturate(.92)}
+.zone address{font-style:normal;margin:1.2rem 0;font-size:1.05rem}
+.zone address b{font-weight:500;color:var(--terre)}
+.liste-acces{margin-top:1rem}
+.liste-acces li{display:flex;gap:.7rem;align-items:baseline;margin-bottom:.55rem;font-size:.97rem;color:#4a3c2e}
+.liste-acces li::before{content:"✦";color:var(--safran);font-size:.7rem}
+
+/* ================= FAQ ================= */
+.faq{background:var(--sable-2)}
+.faq-liste{max-width:820px;margin:2.6rem auto 0}
+.faq-item{background:var(--blanc);border-radius:12px;margin-bottom:.9rem;box-shadow:0 5px 18px rgba(46,31,21,.07);overflow:hidden}
+.faq-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;font-family:'Figtree',sans-serif;font-size:1.02rem;font-weight:400;color:var(--encre)}
+.faq-q:hover{color:var(--terre)}
+.faq-q .plus{font-family:'Marcellus',serif;font-size:1.7rem;color:var(--safran);transition:transform .35s ease;line-height:1;flex-shrink:0}
+.faq-item.ouvert .faq-q .plus{transform:rotate(45deg)}
+.faq-r{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.faq-r p{padding:0 1.5rem 1.3rem;font-size:.95rem;color:#54463a}
+
+/* ================= HORAIRES ================= */
+.horaires{background:var(--nuit);color:var(--sable)}
+.horaires .titre{color:var(--sable)}
+.horaires .wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.table-horaires{width:100%;border-collapse:collapse;margin-top:1.2rem}
+.table-horaires td{padding:.85rem .3rem;border-bottom:1px solid rgba(250,244,233,.14);font-size:.95rem}
+.table-horaires td:last-child{text-align:right;color:var(--safran-clair)}
+.table-horaires tr.ferme td:last-child{color:rgba(250,244,233,.45);font-style:italic}
+.table-horaires tr.aujourdhui td{color:#fff;font-weight:500}
+.table-horaires tr.aujourdhui td:first-child::after{content:" — aujourd'hui";font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--safran-clair)}
+.encart-resa{background:rgba(250,244,233,.06);border:1px solid rgba(217,164,65,.4);border-radius:var(--rayon);padding:2.2rem;text-align:center}
+.encart-resa h3{font-size:1.8rem;color:var(--safran-clair);margin-bottom:.7rem}
+.encart-resa p{font-size:.97rem;color:rgba(250,244,233,.85);margin-bottom:1.5rem}
+.tel-geant{font-family:'Marcellus',serif;font-size:clamp(1.6rem,4vw,2.2rem);color:#fff;display:block;margin-bottom:1.4rem;transition:color .3s}
+.tel-geant:hover{color:var(--safran-clair)}
+
+/* ================= CONTACT ================= */
+.contact{background:var(--sable)}
+.contact .wrap{display:grid;grid-template-columns:1fr 1.15fr;gap:4rem}
+.coord-liste{margin-top:1.6rem}
+.coord-liste li{display:flex;gap:1.1rem;margin-bottom:1.5rem;align-items:flex-start}
+.coord-ico{width:46px;height:46px;border-radius:50%;background:var(--terre);display:grid;place-items:center;flex-shrink:0}
+.coord-ico svg{width:20px;height:20px;stroke:var(--safran-clair)}
+.coord-liste b{font-weight:500;display:block;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terre)}
+.coord-liste a:hover{color:var(--safran)}
+.formulaire{background:var(--blanc);border-radius:var(--rayon);padding:2.4rem;box-shadow:var(--ombre)}
+.formulaire h3{font-size:1.5rem;color:var(--terre);margin-bottom:1.4rem}
+.champ{margin-bottom:1.15rem}
+.champ label{display:block;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gris);margin-bottom:.35rem}
+.champ input,.champ select,.champ textarea{width:100%;padding:.85rem 1rem;border:1px solid #e4d5b8;border-radius:9px;background:var(--sable);font-family:'Figtree',sans-serif;font-size:.97rem;color:var(--encre);transition:border-color .3s,box-shadow .3s}
+.champ input:focus,.champ select:focus,.champ textarea:focus{outline:none;border-color:var(--safran);box-shadow:0 0 0 3px rgba(217,164,65,.18)}
+.champ-duo{display:grid;grid-template-columns:1fr 1fr;gap:1.15rem}
+.msg-form{display:none;background:#eef3e6;border:1px solid #c4d4a8;color:#4a5d2e;border-radius:9px;padding:1rem 1.2rem;font-size:.93rem;margin-top:1rem}
+.msg-form.visible{display:block}
+
+/* ================= FOOTER ================= */
+footer{background:var(--nuit-2);color:rgba(250,244,233,.75)}
+.footer-haut{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:3rem;padding:4rem 0 3rem}
+.footer-haut h4{font-size:1.25rem;color:var(--sable);margin-bottom:1rem}
+.footer-haut p,.footer-haut li{font-size:.92rem;margin-bottom:.5rem}
+.footer-haut a:hover{color:var(--safran-clair)}
+.reseaux{display:flex;gap:.9rem;margin-top:1.2rem}
+.reseaux a{width:42px;height:42px;border:1px solid rgba(250,244,233,.3);border-radius:50%;display:grid;place-items:center;transition:var(--transition)}
+.reseaux a:hover{background:var(--safran);border-color:var(--safran);transform:translateY(-3px)}
+.reseaux svg{width:18px;height:18px;fill:var(--sable)}
+.footer-bas{border-top:1px solid rgba(250,244,233,.12);padding:1.3rem 0;text-align:center;font-size:.8rem;color:rgba(250,244,233,.5)}
+.bandeau-walter{background:#180f09;text-align:center;padding:.85rem 1rem;font-size:.78rem;letter-spacing:.08em;color:rgba(250,244,233,.55)}
+.bandeau-walter a{color:var(--safran-clair);font-weight:500}
+.bandeau-walter a:hover{text-decoration:underline}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:980px){
+  .apropos .wrap,.zone .wrap,.horaires .wrap,.contact .wrap{grid-template-columns:1fr;gap:2.6rem}
+  .grille-cartes,.grille-avis{grid-template-columns:repeat(2,1fr)}
+  .chiffres .wrap{grid-template-columns:repeat(2,1fr)}
+  .mosaique{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}
+  .mosaique figure:nth-child(1){grid-column:span 2}
+  .mosaique figure:nth-child(6){grid-column:span 1}
+  .footer-haut{grid-template-columns:1fr 1fr}
+  .badge-flottant{left:1rem}
+}
+@media (max-width:680px){
+  .section{padding:3.8rem 0}
+  .nav ul{position:fixed;inset:0;background:rgba(24,15,9,.97);flex-direction:column;justify-content:center;gap:2.1rem;transform:translateX(100%);transition:transform .4s ease;z-index:105}
+  .nav ul.ouvert{transform:none}
+  .nav ul a{font-size:1.1rem}
+  .burger{display:block}
+  .nav .btn{display:none}
+  .barre-infos .wrap{grid-template-columns:1fr;gap:.9rem;padding:1.2rem 0}
+  .info-cell{justify-content:flex-start}
+  .grille-cartes,.grille-avis{grid-template-columns:1fr}
+  .champ-duo{grid-template-columns:1fr}
+  .footer-haut{grid-template-columns:1fr;gap:2rem}
+  .hero-inner{padding-top:7.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header id="haut">
+  <div class="wrap nav">
+    <a href="#accueil" class="logo">La Table <span>de Nass</span></a>
+    <button class="burger" aria-label="Menu" aria-expanded="false" id="burger">
+      <span></span><span></span><span></span>
+    </button>
+    <ul id="menu-mobile">
+      <li><a href="#apropos">La maison</a></li>
+      <li><a href="#prestations">Spécialités</a></li>
+      <li><a href="#galerie">Galerie</a></li>
+      <li><a href="#avis">Avis</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="tel:+33650189031" class="btn">☎ Commander</a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="accueil">
+  <div class="wrap">
+    <div class="hero-inner">
+      <span class="kicker">Cuisine orientale · 100 % halal · Noyal-Châtillon-sur-Seiche</span>
+      <h1>La Table de Nass</h1>
+      <p class="slogan">Le voyage commence place de la Mairie.</p>
+      <p class="accroche">Mezzés chauds et froids, shawarma taillé minute, falafels dorés : la cuisine du Levant, généreuse et faite maison, à déguster sur place, à emporter ou en livraison.</p>
+      <div class="hero-ctas">
+        <a href="tel:+33650189031" class="btn">☎ 06 50 18 90 31</a>
+        <a href="#prestations" class="btn contour">Voir les spécialités</a>
+      </div>
+      <div class="hero-note">
+        <span class="etoiles">★★★★★</span>
+        <span><strong>4,9 / 5</strong> · 187 avis Google</span>
+      </div>
+    </div>
+  </div>
+  <span class="scroll-indice">Défiler</span>
+</section>
+
+<!-- ================= BARRE INFOS RAPIDES ================= -->
+<div class="barre-infos">
+  <div class="wrap">
+    <div class="info-cell">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2l2.9 6.26L21 9.27l-4.8 4.28L17.8 20 12 16.6 6.2 20l1.6-6.45L3 9.27l6.1-1.01z"/></svg>
+      <span><b>Note Google</b>4,9 / 5 — 187 avis</span>
+    </div>
+    <div class="info-cell">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+      <span><b>Aujourd'hui</b><span id="horaire-jour">mar–ven 12h–14h30 · tous les soirs sauf lundi 19h–22h30</span></span>
+    </div>
+    <div class="info-cell">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 5c0 8 7 15 15 15l2-4-4-2-2 2c-3-1.5-5.5-4-7-7l2-2-2-4z"/></svg>
+      <span><b>Commander</b><a href="tel:+33650189031">06 50 18 90 31</a></span>
+    </div>
+  </div>
+</div>
+
+<!-- ================= À PROPOS ================= -->
+<section class="section apropos" id="apropos">
+  <div class="wrap">
+    <div class="apropos-txt reveal">
+      <span class="kicker">La maison</span>
+      <h2 class="titre">La table du Chef Nasser,<br>« le roi du falafel »</h2>
+      <p>Sur la place de la Mairie de Noyal-Châtillon-sur-Seiche, une petite adresse qui ne paye pas de mine de l'extérieur — et qui surprend dès la porte franchie : décor soigné, accueil au thé à la menthe, et une cuisine orientale entièrement faite maison.</p>
+      <p>Aux fourneaux, le Chef Nasser compose mezzés chauds et froids, grillades, shawarma et plats du jour comme on les prépare là-bas : généreux, parfumés, avec le geste juste. Ses falafels lui ont valu son surnom — venez vérifier pourquoi.</p>
+      <div class="citation">L'accueil est chaleureux, le shawarma tout simplement parfait : savoureux, bien assaisonné et généreux.</div>
+      <p class="signature">— Le mot d'une cliente, avis Google</p>
+    </div>
+    <div class="apropos-visuel reveal d1">
+      <div class="cadre">
+        <img src="https://lh3.googleusercontent.com/grass-cs/ACvplmNj6w5af8zrYRLycTgLO5ELL3KTZX0eJr8Z1Gx6WNKVnHkB4HpTTwU-tnzknDNz8jP2OOHWUXUET-m1vYp_I_6_HEORtcnpr3oYacDuwh7TTprajped1NQMvz5f9inK0P2xjc4DdLF8b3oP=w600-h900-p-k-no" alt="Spécialité de La Table de Nass" loading="lazy">
+      </div>
+      <div class="badge-flottant">
+        <div class="gros">4,9★</div>
+        <div class="petit">sur Google — l'une des meilleures notes de la région rennaise</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SPÉCIALITÉS ================= -->
+<section class="section prestations" id="prestations">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="kicker">Les spécialités</span>
+      <h2 class="titre">Un voyage en plein cœur du Levant</h2>
+    </div>
+    <div class="grille-cartes">
+      <article class="carte reveal">
+        <div class="carte-img"><img src="https://lh3.googleusercontent.com/grass-cs/ACvplmPMdrAiRB4xLs7jzWddPqKmXSoi5XQqR4Kkgx4iMS8RMJES65dJ8GTttaBBq4xCZXqcaoFw_cpZgrmkVlMjOKqEVsvUm6OJ2t-hzOY4gotacESMjIOhTGwW3z37BlZ4KzwxN1tokOoNwcpm=w600-h450-p-k-no" alt="Assortiment de mezzés chauds et froids" loading="lazy"></div>
+        <div class="carte-corps">
+          <span class="pastille-tag">Le plat star</span>
+          <h3>Mezzés chauds &amp; froids</h3>
+          <p>Houmous, taboulé, feuilletés, falafels… L'assortiment composé par le chef : le choix idéal quand on veut tout goûter.</p>
+        </div>
+      </article>
+      <article class="carte reveal d1">
+        <div class="carte-img"><img src="https://lh3.googleusercontent.com/grass-cs/ACvplmNgMMVeJFJxaWhpTETV0y3ffFpPI02AEHW3Jkd1g5Tz2yyDuD34iqIyHJ_5EKCWg8XJ2XjtgTW2UZIN2g9LR_22oPpmfziIH7mFX7GC_eGy7iKZO1-Rm-3fxjHha8WGbYm2Uuy5BDOoe1xe=w600-h450-p-k-no" alt="Shawarma préparé minute" loading="lazy"></div>
+        <div class="carte-corps">
+          <span class="pastille-tag">Taillé minute</span>
+          <h3>Shawarma</h3>
+          <p>« Le chef shawarma est un vrai artiste », écrivent les clients. Viande marinée, pain grillé à la touche finale parfaite, en assiette ou en sandwich.</p>
+        </div>
+      </article>
+      <article class="carte reveal d2">
+        <div class="carte-img"><img src="https://lh3.googleusercontent.com/grass-cs/ACvplmOAQtMk0PYyQvhi26FD46vffftD43vazWcWIus9vtieounaO5uddU_DzlGg7S07eHvz6d6Sxtxi0MUUv1ZclDn0GqvE7uyb1XhWnxqIipyH8iciQHn6dSzHwcUSDRiKF5nZmEdmtw_BB_4=w600-h450-p-k-no" alt="Falafels et grillades orientales" loading="lazy"></div>
+        <div class="carte-corps">
+          <span class="pastille-tag">La signature</span>
+          <h3>Falafels &amp; grillades</h3>
+          <p>Les falafels qui ont fait le surnom du chef, et des grillades parfumées cuites comme il se doit. Options végétaliennes disponibles.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMMANDER ================= -->
+<section class="section commander">
+  <div class="wrap reveal">
+    <span class="kicker" style="color:var(--safran-clair)">Sur place · À emporter · Livraison</span>
+    <h2 class="titre">Comme là-bas, où vous voulez</h2>
+    <p>Dégustez en salle ou en terrasse avec un thé à la menthe offert par l'ambiance, emportez votre commande en appelant le chef, ou faites-vous livrer via Uber Eats (noté 4,9/5 là aussi).</p>
+    <div class="commander-ctas">
+      <a href="tel:+33650189031" class="btn">☎ Commander au 06 50 18 90 31</a>
+      <a href="https://www.ubereats.com/fr/store/la-table-de-nass" target="_blank" rel="noopener" class="btn contour">Livraison Uber Eats</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALERIE ================= -->
+<section class="section galerie" id="galerie">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="kicker" style="color:var(--safran-clair)">Galerie</span>
+      <h2 class="titre">Les couleurs de la maison</h2>
+    </div>
+    <div class="mosaique reveal d1">
+      <figure><img src="https://lh3.googleusercontent.com/grass-cs/ACvplmPMdrAiRB4xLs7jzWddPqKmXSoi5XQqR4Kkgx4iMS8RMJES65dJ8GTttaBBq4xCZXqcaoFw_cpZgrmkVlMjOKqEVsvUm6OJ2t-hzOY4gotacESMjIOhTGwW3z37BlZ4KzwxN1tokOoNwcpm=w1000-h750-p-k-no" alt="Grand assortiment de mezzés de La Table de Nass" loading="lazy"></figure>
+      <figure><img src="https://lh3.googleusercontent.com/grass-cs/ACvplmNgMMVeJFJxaWhpTETV0y3ffFpPI02AEHW3Jkd1g5Tz2yyDuD34iqIyHJ_5EKCWg8XJ2XjtgTW2UZIN2g9LR_22oPpmfziIH7mFX7GC_eGy7iKZO1-Rm-3fxjHha8WGbYm2Uuy5BDOoe1xe=w600-h450-p-k-no" alt="Plat oriental servi en salle" loading="lazy"></figure>
+      <figure><img src="https://lh3.googleusercontent.com/grass-cs/ACvplmOAQtMk0PYyQvhi26FD46vffftD43vazWcWIus9vtieounaO5uddU_DzlGg7S07eHvz6d6Sxtxi0MUUv1ZclDn0GqvE7uyb1XhWnxqIipyH8iciQHn6dSzHwcUSDRiKF5nZmEdmtw_BB_4=w600-h450-p-k-no" alt="Grillades et accompagnements" loading="lazy"></figure>
+      <figure><img src="https://lh3.googleusercontent.com/grass-cs/ACvplmNj6w5af8zrYRLycTgLO5ELL3KTZX0eJr8Z1Gx6WNKVnHkB4HpTTwU-tnzknDNz8jP2OOHWUXUET-m1vYp_I_6_HEORtcnpr3oYacDuwh7TTprajped1NQMvz5f9inK0P2xjc4DdLF8b3oP=w500-h700-p-k-no" alt="Spécialité dressée du chef Nasser" loading="lazy"></figure>
+      <figure><img src="https://lh3.googleusercontent.com/grass-cs/ACvplmMdN69VF1bCeb1vUJO_mEwes05_tmlGfj02M_voM-jKKp72cb9MU0H3sjTW3RxxcewDcrQLibu8VIQ7UA8lx0E94bo43uMZ5TJvMAtDspnwAU6jqthjxyznVcKHf2d_ndACOLWk-yaaKxzv=w600-h450-p-k-no" alt="Assiette du jour, cuisine faite maison" loading="lazy"></figure>
+      <figure><img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlU1gGUq5PeLkDONVqbVc3oaJpwc5xNzBq0CCawSc7PQBMTqKvI0v80KGgHcFSjLdavPFbGSX-4CfpDdZHTuSAFapj0hSy2EDBQ3HhCxhO-ycvTcE7nvyKo-RUxwG2NvJCDxeY=w900-h500-k-no" alt="Le restaurant, place de la Mairie à Noyal-Châtillon-sur-Seiche" loading="lazy"></figure>
+    </div>
+    <p class="legende">Photos issues de la fiche Google de La Table de Nass — sur le site final, un reportage photo professionnel peut être intégré.</p>
+  </div>
+</section>
+
+<!-- ================= CHIFFRES CLÉS ================= -->
+<section class="section chiffres">
+  <div class="wrap">
+    <div class="chiffre reveal"><div class="gros">4,9<em>/5</em></div><div class="label">Note Google</div></div>
+    <div class="chiffre reveal d1"><div class="gros">187</div><div class="label">Avis clients</div></div>
+    <div class="chiffre reveal d2"><div class="gros">10<em>–20 €</em></div><div class="label">Par personne</div></div>
+    <div class="chiffre reveal d3"><div class="gros">6<em>j/7</em></div><div class="label">Fermé le lundi</div></div>
+  </div>
+</section>
+
+<!-- ================= AVIS ================= -->
+<section class="section avis" id="avis">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center">
+      <span class="kicker" style="justify-content:center">Ils en parlent mieux que nous</span>
+      <h2 class="titre">Les avis de nos clients</h2>
+      <p style="max-width:560px;margin:0 auto;color:#54463a">Chaque avis ci-dessous est un vrai commentaire publié sur la fiche Google de La Table de Nass.</p>
+    </div>
+    <div class="grille-avis">
+      <article class="avis-carte reveal">
+        <p class="avis-txt">Un goût parfaitement équilibré et vraiment incroyable. Le chef shawarma est un vrai artiste dans son travail, surtout la touche finale sur le pain, juste parfaite.</p>
+        <div class="avis-pied">
+          <span class="avis-avatar">I</span>
+          <span><b>Isco M.</b><small><svg class="g-logo" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-2 3.3-4.9 3.3-8.3z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.8c-1 .7-2.3 1.1-3.7 1.1-2.9 0-5.3-1.9-6.2-4.6H2.1v2.9A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.8 14a6.6 6.6 0 0 1 0-4.2V6.9H2.1a11 11 0 0 0 0 10z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 6.9l3.7 2.9c.9-2.7 3.3-4.4 6.2-4.4z"/></svg> Avis Google · mai 2026</small></span>
+        </div>
+      </article>
+      <article class="avis-carte reveal d1">
+        <p class="avis-txt">L'accueil est chaleureux et le service agréable. Le shawarma était tout simplement parfait : savoureux, bien assaisonné et généreux. Une très belle découverte, nous reviendrons avec plaisir !</p>
+        <div class="avis-pied">
+          <span class="avis-avatar">I</span>
+          <span><b>Iman A.</b><small><svg class="g-logo" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-2 3.3-4.9 3.3-8.3z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.8c-1 .7-2.3 1.1-3.7 1.1-2.9 0-5.3-1.9-6.2-4.6H2.1v2.9A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.8 14a6.6 6.6 0 0 1 0-4.2V6.9H2.1a11 11 0 0 0 0 10z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 6.9l3.7 2.9c.9-2.7 3.3-4.4 6.2-4.4z"/></svg> Avis Google · Local Guide</small></span>
+        </div>
+      </article>
+      <article class="avis-carte reveal d2">
+        <p class="avis-txt">Cuisine de grande qualité. On est accueilli par un bon thé à la menthe ! Petit espace qui ne paye pas de mine de l'extérieur mais très bien décoré. Personnel chaleureux.</p>
+        <div class="avis-pied">
+          <span class="avis-avatar">A</span>
+          <span><b>Audrey G.</b><small><svg class="g-logo" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-2 3.3-4.9 3.3-8.3z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.8c-1 .7-2.3 1.1-3.7 1.1-2.9 0-5.3-1.9-6.2-4.6H2.1v2.9A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.8 14a6.6 6.6 0 0 1 0-4.2V6.9H2.1a11 11 0 0 0 0 10z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 6.9l3.7 2.9c.9-2.7 3.3-4.4 6.2-4.4z"/></svg> Avis Google · 5/5 · mai 2026</small></span>
+        </div>
+      </article>
+      <article class="avis-carte reveal">
+        <p class="avis-txt">On a mangé en famille sur place, c'était délicieux, tout fait maison, ambiance chaleureuse avec un bon thé. Rapport qualité-prix parfait, tout était frais avec bon goût.</p>
+        <div class="avis-pied">
+          <span class="avis-avatar">J</span>
+          <span><b>Jessica H.</b><small><svg class="g-logo" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-2 3.3-4.9 3.3-8.3z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.8c-1 .7-2.3 1.1-3.7 1.1-2.9 0-5.3-1.9-6.2-4.6H2.1v2.9A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.8 14a6.6 6.6 0 0 1 0-4.2V6.9H2.1a11 11 0 0 0 0 10z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 6.9l3.7 2.9c.9-2.7 3.3-4.4 6.2-4.4z"/></svg> Avis Google · 5/5 · février 2026</small></span>
+        </div>
+      </article>
+      <article class="avis-carte reveal d1">
+        <p class="avis-txt">Très bon moment en famille, on s'est régalés. Un beau + pour le chawarma.</p>
+        <div class="avis-pied">
+          <span class="avis-avatar">R</span>
+          <span><b>Rhn B.</b><small><svg class="g-logo" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-2 3.3-4.9 3.3-8.3z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.8c-1 .7-2.3 1.1-3.7 1.1-2.9 0-5.3-1.9-6.2-4.6H2.1v2.9A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.8 14a6.6 6.6 0 0 1 0-4.2V6.9H2.1a11 11 0 0 0 0 10z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 6.9l3.7 2.9c.9-2.7 3.3-4.4 6.2-4.4z"/></svg> Avis Google · Local Guide</small></span>
+        </div>
+      </article>
+      <article class="avis-carte reveal d2">
+        <p class="avis-txt">Délicieux ! L'assortiment classique, composé par le chef, un régal quand on ne sait pas quoi choisir.</p>
+        <div class="avis-pied">
+          <span class="avis-avatar">B</span>
+          <span><b>Batoum P.</b><small><svg class="g-logo" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-2 3.3-4.9 3.3-8.3z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.8c-1 .7-2.3 1.1-3.7 1.1-2.9 0-5.3-1.9-6.2-4.6H2.1v2.9A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.8 14a6.6 6.6 0 0 1 0-4.2V6.9H2.1a11 11 0 0 0 0 10z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 6.9l3.7 2.9c.9-2.7 3.3-4.4 6.2-4.4z"/></svg> Avis Google · avril 2026</small></span>
+        </div>
+      </article>
+    </div>
+    <div class="bandeau-note reveal">
+      <span class="pastille"><span class="etoiles" style="color:var(--safran)">★★★★★</span> <b>4,9/5</b> · 187 avis Google</span>
+      <span class="pastille">💬 « mezzés », « libanais », « shawarma », « voyage » : les mots qui reviennent le plus</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ZONE / CARTE ================= -->
+<section class="section zone" id="acces">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="kicker">Nous trouver</span>
+      <h2 class="titre">Place de la Mairie,<br>à 10 minutes de Rennes</h2>
+      <address>
+        <b>La Table de Nass</b><br>
+        4 place de la Mairie<br>
+        35230 Noyal-Châtillon-sur-Seiche
+      </address>
+      <ul class="liste-acces">
+        <li>En plein centre-bourg, stationnement facile autour de la place</li>
+        <li>Terrasse aux beaux jours</li>
+        <li>Sur place, à emporter, ou livraison via Uber Eats</li>
+        <li>Plats végétaliens disponibles</li>
+      </ul>
+      <a class="btn" style="margin-top:1.6rem" href="https://www.google.com/maps/dir/?api=1&destination=La+Table+de+Nass,+4+Pl.+de+la+Mairie,+35230+Noyal-Ch%C3%A2tillon-sur-Seiche" target="_blank" rel="noopener">Itinéraire ➔</a>
+    </div>
+    <div class="reveal d1">
+      <iframe title="Plan d'accès à La Table de Nass, 4 place de la Mairie, Noyal-Châtillon-sur-Seiche" src="https://maps.google.com/maps?q=La%20Table%20de%20Nass%204%20Pl.%20de%20la%20Mairie%2035230%20Noyal-Ch%C3%A2tillon-sur-Seiche&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="section faq" id="faq">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center">
+      <span class="kicker" style="justify-content:center">Questions fréquentes</span>
+      <h2 class="titre">Tout ce qu'on nous demande</h2>
+    </div>
+    <div class="faq-liste reveal d1">
+      <div class="faq-item">
+        <button class="faq-q">Le restaurant est-il halal ?<span class="plus">+</span></button>
+        <div class="faq-r"><p>Oui, toute la carte est halal — c'est même la catégorie officielle de notre fiche Google. Vous pouvez venir en toute confiance.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Proposez-vous des plats végétariens ou végétaliens ?<span class="plus">+</span></button>
+        <div class="faq-r"><p>Oui. La cuisine du Levant regorge naturellement d'options végétales : houmous, taboulé, falafels, mezzés froids… Des plats végétaliens sont disponibles à la carte.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Peut-on commander à emporter ou se faire livrer ?<span class="plus">+</span></button>
+        <div class="faq-r"><p>Les deux ! Appelez le 06 50 18 90 31 pour une commande à emporter, ou passez par Uber Eats pour la livraison (noté 4,9/5 sur la plateforme).</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Quels sont vos horaires ?<span class="plus">+</span></button>
+        <div class="faq-r"><p>Le midi du mardi au vendredi (12h–14h30), et le soir du mardi au dimanche (19h–22h30). Fermé le lundi.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Quel budget prévoir ?<span class="plus">+</span></button>
+        <div class="faq-r"><p>Comptez entre 10 et 20 € par personne : une cuisine généreuse et faite maison, à prix doux.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Peut-on venir en groupe ou privatiser pour un événement ?<span class="plus">+</span></button>
+        <div class="faq-r"><p>Appelez-nous pour en parler : selon la date et la taille du groupe, nous trouverons la formule qui convient — mezzés à partager, plateaux à emporter pour vos événements…</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HORAIRES + COMMANDE ================= -->
+<section class="section horaires" id="horaires">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="kicker" style="color:var(--safran-clair)">Horaires</span>
+      <h2 class="titre">Quand venir</h2>
+      <table class="table-horaires" id="table-horaires">
+        <tr data-jour="1" class="ferme"><td>Lundi</td><td>Fermé</td></tr>
+        <tr data-jour="2"><td>Mardi</td><td>12h–14h30 · 19h–22h30</td></tr>
+        <tr data-jour="3"><td>Mercredi</td><td>12h–14h30 · 19h–22h30</td></tr>
+        <tr data-jour="4"><td>Jeudi</td><td>12h–14h30 · 19h–22h30</td></tr>
+        <tr data-jour="5"><td>Vendredi</td><td>12h–14h30 · 19h–22h30</td></tr>
+        <tr data-jour="6"><td>Samedi</td><td>19h–22h30</td></tr>
+        <tr data-jour="0"><td>Dimanche</td><td>19h–22h30</td></tr>
+      </table>
+    </div>
+    <div class="encart-resa reveal d1">
+      <h3>Une table ou une commande ?</h3>
+      <p>Un coup de fil au chef, et c'est prêt — sur place, à emporter, ou en livraison.</p>
+      <a href="tel:+33650189031" class="tel-geant">06 50 18 90 31</a>
+      <a href="tel:+33650189031" class="btn plein-safran">☎ Appeler maintenant</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="section contact" id="contact">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="kicker">Contact</span>
+      <h2 class="titre">Écrivez-nous,<br>ou passez nous voir</h2>
+      <ul class="coord-liste">
+        <li>
+          <span class="coord-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 5c0 8 7 15 15 15l2-4-4-2-2 2c-3-1.5-5.5-4-7-7l2-2-2-4z"/></svg></span>
+          <span><b>Téléphone</b><a href="tel:+33650189031">06 50 18 90 31</a></span>
+        </li>
+        <li>
+          <span class="coord-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+          <span><b>Adresse</b><a href="https://www.google.com/maps/dir/?api=1&destination=La+Table+de+Nass,+4+Pl.+de+la+Mairie,+35230+Noyal-Ch%C3%A2tillon-sur-Seiche" target="_blank" rel="noopener">4 place de la Mairie, 35230 Noyal-Châtillon-sur-Seiche</a></span>
+        </li>
+        <li>
+          <span class="coord-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+          <span><b>Service</b>Midi mar–ven · Soir mar–dim · Fermé lundi</span>
+        </li>
+        <li>
+          <span class="coord-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+          <span><b>Réseaux</b><a href="https://www.instagram.com/nasser.rennes/" target="_blank" rel="noopener">Instagram @nasser.rennes</a></span>
+        </li>
+      </ul>
+    </div>
+    <div class="reveal d1">
+      <form class="formulaire" id="form-contact">
+        <h3>Commande groupée ou événement</h3>
+        <div class="champ-duo">
+          <div class="champ"><label for="f-nom">Nom</label><input id="f-nom" type="text" placeholder="Votre nom" required></div>
+          <div class="champ"><label for="f-tel">Téléphone</label><input id="f-tel" type="tel" placeholder="06 12 34 56 78" required></div>
+        </div>
+        <div class="champ-duo">
+          <div class="champ"><label for="f-date">Date souhaitée</label><input id="f-date" type="date" required></div>
+          <div class="champ"><label for="f-type">Type de demande</label>
+            <select id="f-type"><option>Table sur place</option><option>Commande à emporter</option><option>Plateaux pour un événement</option><option>Autre</option></select>
+          </div>
+        </div>
+        <div class="champ"><label for="f-msg">Message</label><textarea id="f-msg" rows="4" placeholder="Nombre de personnes, plats souhaités, contraintes alimentaires…"></textarea></div>
+        <button type="submit" class="btn" style="width:100%;justify-content:center">Envoyer ma demande</button>
+        <div class="msg-form" id="msg-form">✓ Ceci est une maquette de démonstration : sur le site final, votre demande arriverait directement par SMS ou e-mail au restaurant.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap footer-haut">
+    <div>
+      <h4>La Table de Nass</h4>
+      <p>Cuisine orientale halal, entièrement faite maison : mezzés, shawarma, falafels et grillades du Chef Nasser. À Noyal-Châtillon-sur-Seiche, aux portes de Rennes.</p>
+      <div class="reseaux">
+        <a href="https://www.instagram.com/nasser.rennes/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 8.7a3.3 3.3 0 1 0 0 6.6 3.3 3.3 0 0 0 0-6.6zm0-2.2a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zm7-0.3a1.3 1.3 0 1 1-2.6 0 1.3 1.3 0 0 1 2.6 0zM12 4.2c-2.5 0-2.8 0-3.8.06-.98.04-1.5.2-1.86.34-.47.18-.8.4-1.15.75-.35.35-.57.68-.75 1.15-.14.35-.3.88-.34 1.86C4.2 9.2 4.2 9.5 4.2 12s0 2.8.05 3.8c.05.98.21 1.5.35 1.86.18.47.4.8.75 1.15.35.35.68.57 1.15.75.35.14.88.3 1.86.34 1 .05 1.3.06 3.8.06s2.8-.01 3.8-.06c.98-.04 1.5-.2 1.86-.34.47-.18.8-.4 1.15-.75.35-.35.57-.68.75-1.15.14-.35.3-.88.34-1.86.05-1 .06-1.3.06-3.8s-.01-2.8-.06-3.8c-.04-.98-.2-1.5-.34-1.86a3.1 3.1 0 0 0-.75-1.15 3.1 3.1 0 0 0-1.15-.75c-.35-.14-.88-.3-1.86-.34-1-.06-1.3-.06-3.8-.06zM12 2c2.54 0 2.86.01 3.86.06 1 .05 1.67.2 2.27.44.61.24 1.13.56 1.65 1.08.52.52.84 1.04 1.08 1.65.23.6.39 1.28.44 2.27.05 1 .06 1.32.06 3.86s-.01 2.86-.06 3.86c-.05 1-.2 1.67-.44 2.27a4.6 4.6 0 0 1-1.08 1.65c-.52.52-1.04.84-1.65 1.08-.6.23-1.28.39-2.27.44-1 .05-1.32.06-3.86.06s-2.86-.01-3.86-.06c-1-.05-1.67-.2-2.27-.44a4.6 4.6 0 0 1-1.65-1.08 4.6 4.6 0 0 1-1.08-1.65c-.23-.6-.39-1.28-.44-2.27C2 14.86 2 14.54 2 12s.01-2.86.06-3.86c.05-1 .2-1.67.44-2.27.24-.61.56-1.13 1.08-1.65A4.6 4.6 0 0 1 5.23 3.14c.6-.24 1.28-.4 2.27-.44C8.5 2.65 8.82 2.64 12 2z"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <h4>Le restaurant</h4>
+      <ul>
+        <li><a href="#apropos">La maison</a></li>
+        <li><a href="#prestations">Spécialités</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#avis">Avis clients</a></li>
+        <li><a href="#faq">Questions fréquentes</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Pratique</h4>
+      <ul>
+        <li>4 place de la Mairie, 35230 Noyal-Châtillon-sur-Seiche</li>
+        <li><a href="tel:+33650189031">06 50 18 90 31</a></li>
+        <li>Midi mar–ven · Soir mar–dim</li>
+        <li>10–20 € par personne</li>
+        <li>Sur place · À emporter · Livraison</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bas wrap">
+    La Table de Nass — 4 place de la Mairie, 35230 Noyal-Châtillon-sur-Seiche · Maquette de démonstration non contractuelle
+  </div>
+  <div class="bandeau-walter">
+    Aperçu réalisé par <a href="https://walter-studio.fr" target="_blank" rel="noopener">WALTER Studio</a> — walter-studio.fr
+  </div>
+</footer>
+
+<script>
+/* ============ Header : fond au scroll ============ */
+const header = document.getElementById('haut');
+addEventListener('scroll', () => header.classList.toggle('scrolle', scrollY > 60), {passive:true});
+
+/* ============ Menu mobile ============ */
+const burger = document.getElementById('burger');
+const menu = document.getElementById('menu-mobile');
+burger.addEventListener('click', () => {
+  const ouvert = menu.classList.toggle('ouvert');
+  burger.classList.toggle('ouvert', ouvert);
+  burger.setAttribute('aria-expanded', ouvert);
+});
+menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  menu.classList.remove('ouvert'); burger.classList.remove('ouvert');
+}));
+
+/* ============ Apparition au scroll ============ */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vu'); obs.unobserve(e.target); } });
+}, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* ============ FAQ accordéon ============ */
+document.querySelectorAll('.faq-item').forEach(item => {
+  const q = item.querySelector('.faq-q'), r = item.querySelector('.faq-r');
+  q.addEventListener('click', () => {
+    const dejaOuvert = item.classList.contains('ouvert');
+    document.querySelectorAll('.faq-item.ouvert').forEach(o => {
+      o.classList.remove('ouvert'); o.querySelector('.faq-r').style.maxHeight = null;
+    });
+    if (!dejaOuvert) { item.classList.add('ouvert'); r.style.maxHeight = r.scrollHeight + 'px'; }
+  });
+});
+
+/* ============ Horaires du jour (barre infos + surbrillance) ============ */
+(() => {
+  const jour = new Date().getDay(); // 0 = dimanche
+  const cell = document.getElementById('horaire-jour');
+  let txt;
+  if (jour === 1) txt = 'Fermé aujourd\'hui — réouverture mardi 12h';
+  else if (jour === 0 || jour === 6) txt = 'Ouvert ce soir · 19h–22h30';
+  else txt = 'Ouvert · 12h–14h30 & 19h–22h30';
+  cell.textContent = txt;
+  const ligne = document.querySelector(`#table-horaires tr[data-jour="${jour}"]`);
+  if (ligne) ligne.classList.add('aujourdhui');
+})();
+
+/* ============ Formulaire (démo, sans backend) ============ */
+document.getElementById('form-contact').addEventListener('submit', e => {
+  e.preventDefault();
+  document.getElementById('msg-form').classList.add('visible');
+});
+</script>
+</body>
+</html>

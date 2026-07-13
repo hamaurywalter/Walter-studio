@@ -1,0 +1,26 @@
+{
+  "maquettes": [
+    {"id": "alain-coiffure", "nom": "Alain Coiffure", "secteur": "Coiffure", "ville": "Rennes", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Salon de coiffure à Rennes"},
+    {"id": "amelie-esthetique-noyal-chatillon", "nom": "Amélie Esthétique", "secteur": "Beauté", "ville": "Noyal-Châtillon-sur-Seiche", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Institut de beauté — épilation, soins visage, massages"},
+    {"id": "au-salon-de-lydie", "nom": "Au Salon de Lydie", "secteur": "Coiffure", "ville": "Rennes", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Salon de coiffure à Rennes Maurepas"},
+    {"id": "authentique-boucherie", "nom": "Authentique Boucherie", "secteur": "Boucherie", "ville": "Chartres-de-Bretagne", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Boucherie-charcuterie artisanale — viande maturée"},
+    {"id": "brooklyn-barber", "nom": "Brooklyn Barber Shop", "secteur": "Coiffure", "ville": "Rennes", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Barbier à Rennes Colombier"},
+    {"id": "cordonnerie-descartes", "nom": "Cordonnerie Descartes", "secteur": "Chaussures", "ville": "Rennes", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Cordonnerie artisanale à Rennes"},
+    {"id": "cordonnerie-fred-rolland", "nom": "Cordonnerie Fred Rolland", "secteur": "Chaussures", "ville": "Rennes", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Artisan Cordonnier à Rennes"},
+    {"id": "dsr-coiffure", "nom": "DS'R", "secteur": "Coiffure", "ville": "Rennes", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Salon de Coiffure & Institut de Beauté"},
+    {"id": "dada-cafe-restaurant", "nom": "Dada Café Restaurant", "secteur": "Restauration", "ville": "Rennes", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Café Restaurant — cuisine du marché"},
+    {"id": "elite-barber-lounge", "nom": "Elite Barber Lounge", "secteur": "Coiffure", "ville": "Rennes", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Barbier à Rennes Cleunay"},
+    {"id": "fromagerie-saint-helier", "nom": "Fromagerie Saint Helier", "secteur": "Commerce", "ville": "Rennes", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Fromagerie artisanale — Vincent Thomas"},
+    {"id": "fromagerie-vasselot", "nom": "Fromagerie Vasselot", "secteur": "Commerce", "ville": "Rennes", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Fromagerie spécialisée à Rennes"},
+    {"id": "frederick-romer", "nom": "Frédérick Romer", "secteur": "Coiffure", "ville": "Rennes", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Coiffeur expert — Rennes La Poterie"},
+    {"id": "institut-eclat-douceur", "nom": "Institut Éclat et Douceur", "secteur": "Beauté", "ville": "Rennes", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Institut de beauté à Rennes"},
+    {"id": "institut-perle-ongle", "nom": "Institut Perle Ongle", "secteur": "Beauté", "ville": "Rennes", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Institut spécialisé ongles à Rennes"},
+    {"id": "institut-zen-beaute", "nom": "Institut Zen Beauté", "secteur": "Beauté", "ville": "Chartres-de-Bretagne", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Institut de beauté — bien-être"},
+    {"id": "la-bonne-excuse", "nom": "La Bonne Excuse", "secteur": "Restauration", "ville": "Rennes", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Troquet de quartier à Rennes"},
+    {"id": "la-table-de-nass", "nom": "La Table de Nass", "secteur": "Restauration", "ville": "Noyal-Châtillon-sur-Seiche", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Restaurant halal — Cuisine orientale"},
+    {"id": "le-bistronome-bruz", "nom": "Le Bistronome", "secteur": "Restauration", "ville": "Bruz", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Restaurant bistronomique — Cuisine de saison"},
+    {"id": "les-demoiselles", "nom": "Les Demoiselles", "secteur": "Restauration", "ville": "Rennes", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Restaurant — Cuisine de marché"},
+    {"id": "soleil-noir", "nom": "Soleil Noir", "secteur": "Commerce", "ville": "Rennes", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Friperie · Brocante · Créateurs"},
+    {"id": "studio-disco", "nom": "Studio Disco", "secteur": "Services", "ville": "Rennes", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Toilettage Canin & Accessoires"}
+  ]
+}
