@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Institut Perle Ongle — Rennes</title>
+<!-- Palette : fuchsia + rose poudré + noir élégant — univers glamour & féminin comme la façade rose -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --pink:#E91E8C;--pink-dark:#C4177A;--pink-light:#F8C8DC;--pink-soft:#FDF0F5;
+  --black:#1A1A1A;--text:#3D3D3D;--white:#FFFFFF;--gold:#D4A574;
+  --font-heading:'Cormorant Garamond',Georgia,serif;
+  --font-body:'Montserrat','Helvetica Neue',sans-serif;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-body);color:var(--text);line-height:1.7;background:var(--white);overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--font-heading);color:var(--black);line-height:1.3}
+.container{max-width:1140px;margin:0 auto;padding:0 24px}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(233,30,140,0.1);transition:box-shadow .3s}
+header.scrolled{box-shadow:0 2px 20px rgba(233,30,140,0.08)}
+header .container{display:flex;align-items:center;justify-content:space-between;height:70px}
+.logo{font-family:var(--font-heading);font-size:1.5rem;font-weight:700;color:var(--pink)}
+.logo span{color:var(--black)}
+nav{display:flex;align-items:center;gap:28px}
+nav a{font-size:.82rem;font-weight:500;color:var(--text);transition:color .3s;text-transform:uppercase;letter-spacing:1px}
+nav a:hover{color:var(--pink)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 28px;border-radius:50px;font-size:.82rem;font-weight:600;letter-spacing:.8px;transition:all .3s;border:none;cursor:pointer;text-transform:uppercase}
+.btn-pink{background:var(--pink);color:var(--white)}
+.btn-pink:hover{background:var(--pink-dark);transform:translateY(-2px);box-shadow:0 8px 25px rgba(233,30,140,0.3)}
+.btn-outline-w{background:transparent;border:2px solid var(--white);color:var(--white)}
+.btn-outline-w:hover{background:var(--white);color:var(--pink)}
+.btn-outline-p{background:transparent;border:2px solid var(--pink);color:var(--pink)}
+.btn-outline-p:hover{background:var(--pink);color:var(--white)}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:var(--black)}
+.hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1600&q=80') center/cover;opacity:0.35}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(233,30,140,0.5) 0%,rgba(26,26,26,0.7) 100%)}
+.hero-content{position:relative;z-index:2;color:var(--white);padding:120px 24px 80px;max-width:700px;margin:0 auto;text-align:center}
+.hero-badge{display:inline-block;background:rgba(255,255,255,0.12);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);padding:8px 22px;border-radius:50px;font-size:.72rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:28px;font-weight:500}
+.hero h1{font-size:clamp(2.8rem,7vw,5rem);font-weight:700;margin-bottom:16px}
+.hero h1 em{font-style:italic;color:var(--pink-light)}
+.hero-sub{font-size:clamp(1rem,2vw,1.2rem);font-weight:300;max-width:550px;margin:0 auto 40px;opacity:0.9;line-height:1.8}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.hero-rating{margin-top:40px;display:flex;align-items:center;gap:12px;justify-content:center;font-size:.9rem;opacity:0.85}
+.hero-rating .stars{color:#FFD700;font-size:1.2rem}
+
+/* INFO BAR */
+.info-bar{background:var(--pink);color:var(--white);padding:14px 0}
+.info-bar .container{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;font-size:.85rem;font-weight:500}
+.info-bar a{color:var(--white)}
+
+/* SECTIONS */
+section{padding:90px 0}
+.tag{font-size:.7rem;text-transform:uppercase;letter-spacing:3px;color:var(--pink);font-weight:600;margin-bottom:12px}
+.stitle{font-size:clamp(2rem,4vw,3rem);margin-bottom:16px}
+.sdesc{font-size:1rem;color:var(--text);max-width:580px;line-height:1.8;opacity:0.8}
+.tc{text-align:center}.mx{margin-left:auto;margin-right:auto}
+.bg-soft{background:var(--pink-soft)}
+.bg-black{background:var(--black);color:var(--white)}
+.bg-black .tag{color:var(--pink-light)}
+.bg-black .stitle{color:var(--white)}
+.bg-black .sdesc{color:rgba(255,255,255,0.75)}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:50px}
+.about-img{border-radius:20px;overflow:hidden;position:relative;box-shadow:0 20px 60px rgba(233,30,140,0.15)}
+.about-img img{width:100%;height:480px;object-fit:cover}
+.about-img .badge{position:absolute;top:24px;left:24px;background:var(--pink);color:var(--white);padding:10px 20px;border-radius:10px;font-size:.75rem;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.about-text h2{margin-bottom:20px}
+.about-text p{margin-bottom:16px;font-size:.95rem}
+.about-signature{font-family:var(--font-heading);font-style:italic;font-size:1.4rem;color:var(--pink);margin-top:24px}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;margin-top:50px}
+.scard{background:var(--white);border-radius:18px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.05);transition:all .4s;border:1px solid rgba(233,30,140,0.06)}
+.scard:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(233,30,140,0.12);border-color:rgba(233,30,140,0.15)}
+.scard img{width:100%;height:240px;object-fit:cover}
+.scard-body{padding:28px}
+.scard h3{font-size:1.3rem;margin-bottom:10px}
+.scard p{font-size:.9rem;line-height:1.7;opacity:0.8}
+.scard .price{display:inline-block;margin-top:12px;color:var(--pink);font-weight:600;font-size:.95rem}
+
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:50px}
+.gallery-grid .gi{border-radius:14px;overflow:hidden;aspect-ratio:1;cursor:pointer}
+.gallery-grid .gi img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.gallery-grid .gi:hover img{transform:scale(1.06)}
+.gallery-grid .gi:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+
+/* STATS */
+.stats{padding:60px 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.si .sn{font-family:var(--font-heading);font-size:clamp(2.2rem,4vw,3.5rem);font-weight:700;color:var(--pink-light)}
+.si .sl{font-size:.85rem;margin-top:6px;opacity:0.8}
+
+/* REVIEWS */
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:28px;margin-top:50px}
+.rcard{background:var(--white);padding:36px;border-radius:18px;box-shadow:0 4px 20px rgba(0,0,0,0.05);position:relative;border-left:4px solid var(--pink)}
+.rcard .stars{color:#FFD700;font-size:1rem;margin-bottom:14px}
+.rcard .rtext{font-size:.93rem;line-height:1.8;font-style:italic;margin-bottom:18px}
+.rcard .rauthor{font-weight:700;color:var(--pink);font-size:.85rem}
+.rcard .rdate{font-size:.75rem;color:#999;margin-top:4px}
+
+/* FAQ */
+.faq-list{max-width:720px;margin:50px auto 0}
+.faq-item{border-bottom:1px solid var(--pink-light);overflow:hidden}
+.faq-q{width:100%;background:none;border:none;padding:22px 0;font-family:var(--font-body);font-size:1rem;font-weight:600;color:var(--black);text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .3s}
+.faq-q:hover{color:var(--pink)}
+.faq-q .arr{font-size:1.2rem;transition:transform .3s;color:var(--pink)}
+.faq-item.open .arr{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s}
+.faq-item.open .faq-a{max-height:300px;padding:0 0 22px}
+.faq-a p{font-size:.9rem;line-height:1.8;opacity:0.8}
+
+/* HOURS */
+.hours-table{max-width:480px;margin:40px auto 0}
+.hrow{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--pink-light)}
+.hrow:last-child{border:none}
+.hrow .day{font-weight:600}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;margin-top:50px;align-items:start}
+.ci{display:flex;gap:16px;align-items:flex-start;margin-bottom:28px}
+.ci-icon{width:48px;height:48px;background:var(--pink-soft);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.ci h4{font-size:.95rem;margin-bottom:4px}
+.ci p{font-size:.88rem;opacity:0.8}
+.ci a{color:var(--pink);font-weight:600}
+.cform{background:var(--pink-soft);padding:40px;border-radius:18px}
+.fg{margin-bottom:18px}
+.fg label{display:block;font-size:.8rem;font-weight:600;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.fg input,.fg textarea,.fg select{width:100%;padding:13px 16px;border:1px solid #e0d0d8;border-radius:10px;font-family:var(--font-body);font-size:.9rem;background:var(--white);transition:border-color .3s}
+.fg input:focus,.fg textarea:focus{outline:none;border-color:var(--pink)}
+.fg textarea{height:110px;resize:vertical}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+/* FOOTER */
+footer{background:var(--black);color:rgba(255,255,255,0.65);padding:60px 0 30px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand{font-family:var(--font-heading);font-size:1.5rem;color:var(--white);margin-bottom:12px}
+footer h4{color:var(--white);font-size:.85rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+footer ul{list-style:none}
+footer li{margin-bottom:10px}
+footer li a{font-size:.85rem;transition:color .3s}
+footer li a:hover{color:var(--pink-light)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;text-align:center;font-size:.78rem}
+.walter-credit{margin-top:10px;opacity:0.4;font-size:.72rem}
+.walter-credit a{color:var(--pink-light)}
+
+/* ANIMATIONS */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.rd1{transition-delay:.12s}.rd2{transition-delay:.24s}.rd3{transition-delay:.36s}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav a:not(.btn){display:none}
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr}
+  .frow{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  section{padding:60px 0}
+  .gallery-grid{grid-template-columns:1fr 1fr}
+  .services-grid{grid-template-columns:1fr}
+  .reviews-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="container">
+    <a href="#" class="logo">Perle <span>Ongle</span></a>
+    <nav>
+      <a href="#about">À propos</a>
+      <a href="#services">Prestations</a>
+      <a href="#gallery">Galerie</a>
+      <a href="#reviews">Avis</a>
+      <a href="#contact">Contact</a>
+      <a href="tel:0601170537" class="btn btn-pink">Réserver</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Salon de beauté — Rennes</div>
+    <h1>Institut <em>Perle Ongle</em></h1>
+    <p class="hero-sub">Prothèse ongulaire, maquillage semi-permanent & extension de cils. L'art de sublimer votre beauté au bout des doigts.</p>
+    <div class="hero-btns">
+      <a href="https://www.planity.com/institut-perle-ongle-35000-rennes" target="_blank" class="btn btn-pink">📅 Réserver en ligne</a>
+      <a href="#services" class="btn btn-outline-w">Nos prestations</a>
+    </div>
+    <div class="hero-rating">
+      <span class="stars">★★★★★</span>
+      <span>4,8/5 — 306 avis Google</span>
+    </div>
+  </div>
+</section>
+
+<!-- INFO BAR -->
+<div class="info-bar">
+  <div class="container">
+    <span>⭐ 4,8/5 sur Google (306 avis)</span>
+    <span>📍 44 Rue d'Antrain, Rennes</span>
+    <a href="tel:0601170537">📞 06 01 17 05 37</a>
+    <span>💜 Salon pour femmes</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img reveal">
+        <img src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?w=800&q=80" alt="Nail art Institut Perle Ongle" loading="lazy">
+        <div class="badge">♀ Salon pour femmes</div>
+      </div>
+      <div class="about-text reveal rd1">
+        <span class="tag">Notre histoire</span>
+        <h2 class="stitle">Nawel, l'artiste de vos ongles à Rennes</h2>
+        <p>Bienvenue à l'Institut Perle Ongle, votre salon de prothèse ongulaire au cœur du quartier Hoche, rue d'Antrain à Rennes. Nawel, passionnée et experte, vous accueille dans un univers 100 % féminin, chaleureux et créatif.</p>
+        <p>Spécialisée dans la pose d'ongles en gel et en résine, le maquillage semi-permanent (sourcils, lèvres, eye-liner) et les extensions de cils, Nawel allie technicité et créativité pour sublimer chacune de ses clientes.</p>
+        <p>Avec plus de 300 avis Google et une note de 4,8/5, la qualité de son travail parle d'elle-même. Chaque prestation est réalisée avec soin, dans le respect de vos ongles et de vos envies.</p>
+        <div class="about-signature">— Nawel, votre prothésiste ongulaire</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="bg-soft">
+  <div class="container">
+    <div class="tc">
+      <span class="tag">Nos prestations</span>
+      <h2 class="stitle">L'excellence au bout des doigts</h2>
+      <p class="sdesc mx">Des techniques professionnelles et des produits haut de gamme pour des résultats impeccables.</p>
+    </div>
+    <div class="services-grid">
+      <div class="scard reveal">
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80" alt="Pose d'ongles en gel" loading="lazy">
+        <div class="scard-body">
+          <h3>Pose d'ongles gel & résine</h3>
+          <p>Pose complète, remplissage, french, baby boomer, nail art… Nawel sculpte vos ongles avec une précision d'artiste. Résultat naturel ou glamour, selon vos envies.</p>
+          <span class="price">Voir tarifs sur Planity</span>
+        </div>
+      </div>
+      <div class="scard reveal rd1">
+        <img src="https://images.unsplash.com/photo-1583001931096-959e9a1a6223?w=600&q=80" alt="Vernis semi-permanent" loading="lazy">
+        <div class="scard-body">
+          <h3>Vernis semi-permanent</h3>
+          <p>Un vernis longue tenue, brillant et résistant pendant 2 à 3 semaines. Large choix de couleurs tendance et finitions (mat, pailleté, chrome, cat eye).</p>
+          <span class="price">Voir tarifs sur Planity</span>
+        </div>
+      </div>
+      <div class="scard reveal rd2">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80" alt="Maquillage semi-permanent" loading="lazy">
+        <div class="scard-body">
+          <h3>Maquillage semi-permanent</h3>
+          <p>Sourcils (microblading, powder brows), lèvres, eye-liner… Un maquillage qui dure, pour un réveil toujours parfait. Résultat naturel et sublimant.</p>
+          <span class="price">Voir tarifs sur Planity</span>
+        </div>
+      </div>
+      <div class="scard reveal rd3">
+        <img src="https://images.unsplash.com/photo-1595867818082-083862f3d630?w=600&q=80" alt="Extension de cils" loading="lazy">
+        <div class="scard-body">
+          <h3>Extension de cils</h3>
+          <p>Cil à cil, volume russe, mega volume… Des cils sur mesure pour un regard intense et captivant. Pose experte, légère et confortable.</p>
+          <span class="price">Voir tarifs sur Planity</span>
+        </div>
+      </div>
+      <div class="scard reveal">
+        <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=600&q=80" alt="Nail art" loading="lazy">
+        <div class="scard-body">
+          <h3>Nail art & créations</h3>
+          <p>Strass, dégradés, motifs géométriques, aqua glitter… Laissez libre cours à votre imagination. Nawel transforme vos ongles en véritables œuvres d'art.</p>
+          <span class="price">Sur devis selon complexité</span>
+        </div>
+      </div>
+      <div class="scard reveal rd1">
+        <img src="https://images.unsplash.com/photo-1457972729786-0411a3b2b626?w=600&q=80" alt="Beauté des mains" loading="lazy">
+        <div class="scard-body">
+          <h3>Beauté des mains & pieds</h3>
+          <p>Manucure, pédicure, soins hydratants… Des mains et des pieds soignés et sublimés pour compléter votre routine beauté.</p>
+          <span class="price">Voir tarifs sur Planity</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <div class="tc">
+      <span class="tag">Galerie</span>
+      <h2 class="stitle">Nos réalisations</h2>
+      <p class="sdesc mx">Chaque pose est unique, chaque création reflète la personnalité de nos clientes.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gi reveal"><img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&q=80" alt="Ongles élégants" loading="lazy"></div>
+      <div class="gi reveal rd1"><img src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?w=500&q=80" alt="Nail art coloré" loading="lazy"></div>
+      <div class="gi reveal rd2"><img src="https://images.unsplash.com/photo-1583001931096-959e9a1a6223?w=500&q=80" alt="French manucure" loading="lazy"></div>
+      <div class="gi reveal"><img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=500&q=80" alt="Nail art design" loading="lazy"></div>
+      <div class="gi reveal rd1"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=80" alt="Beauté des mains" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats bg-black">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="si reveal"><div class="sn">4,8★</div><div class="sl">Note Google</div></div>
+      <div class="si reveal rd1"><div class="sn">306</div><div class="sl">Avis clients</div></div>
+      <div class="si reveal rd2"><div class="sn">6</div><div class="sl">Types de prestations</div></div>
+      <div class="si reveal rd3"><div class="sn">♀</div><div class="sl">Salon pour femmes</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="bg-soft">
+  <div class="container">
+    <div class="tc">
+      <span class="tag">Témoignages</span>
+      <h2 class="stitle">Elles parlent de Nawel</h2>
+      <p class="sdesc mx">Des avis authentiques de nos clientes, directement depuis Google.</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="rcard reveal">
+        <div class="stars">★★★★★</div>
+        <p class="rtext">« Gros coup de cœur pour Nawel ! Je viens de sortir de son salon avec le sourire aux lèvres. J'ai passé un excellent moment et le résultat est juste parfait, quel professionnalisme. Je vous recommande ce salon à 100 %. »</p>
+        <div class="rauthor">Kelte</div>
+        <div class="rdate">Avril 2026</div>
+      </div>
+      <div class="rcard reveal rd1">
+        <div class="stars">★★★★★</div>
+        <p class="rtext">« Un travail méticuleux et soigné, Nawell est une vraie professionnelle dans son domaine. Je suis ravie du résultat. Un moment très agréable, je recommande ! »</p>
+        <div class="rauthor">Gwen</div>
+        <div class="rdate">Local Guide · Janvier 2025</div>
+      </div>
+      <div class="rcard reveal rd2">
+        <div class="stars">★★★★★</div>
+        <p class="rtext">« Elle a fait un travail INCROYABLE pour mes ongles. Il y a un an et 2 mois je rongeais mes ongles (vraiment beaucoup !!) et depuis le gel qu'elle met sur mes ongles est ma véritable longueur d'ongle ! »</p>
+        <div class="rauthor">Yanna Schwendner</div>
+        <div class="rdate">Novembre 2021</div>
+      </div>
+    </div>
+    <div class="tc" style="margin-top:40px">
+      <div style="display:inline-flex;align-items:center;gap:12px;background:var(--white);padding:20px 32px;border-radius:14px;box-shadow:0 4px 16px rgba(0,0,0,0.06)">
+        <span style="font-size:2rem">🏆</span>
+        <div style="text-align:left">
+          <div style="font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--black)">4,8 / 5</div>
+          <div style="font-size:.85rem;color:var(--text)">Basé sur 306 avis Google</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POURQUOI NOUS -->
+<section>
+  <div class="container">
+    <div class="tc">
+      <span class="tag">Pourquoi nous choisir</span>
+      <h2 class="stitle">Ce qui rend Perle Ongle unique</h2>
+    </div>
+    <div class="services-grid" style="margin-top:40px">
+      <div class="scard reveal" style="text-align:center;padding:40px 28px">
+        <div style="font-size:3.5rem;margin-bottom:16px">💅</div>
+        <h3>Expertise & créativité</h3>
+        <p>Nawel maîtrise toutes les techniques : gel, résine, nail art, maquillage semi-permanent. Chaque prestation est une création sur-mesure.</p>
+      </div>
+      <div class="scard reveal rd1" style="text-align:center;padding:40px 28px">
+        <div style="font-size:3.5rem;margin-bottom:16px">🌟</div>
+        <h3>306 avis — 4,8★</h3>
+        <p>Une des meilleures notes de Rennes dans sa catégorie. La confiance de centaines de clientes ne trompe pas.</p>
+      </div>
+      <div class="scard reveal rd2" style="text-align:center;padding:40px 28px">
+        <div style="font-size:3.5rem;margin-bottom:16px">📱</div>
+        <h3>Réservation en ligne</h3>
+        <p>Prenez rendez-vous 24h/24 via Planity. Choisissez votre créneau en quelques clics, sans attente au téléphone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="bg-soft">
+  <div class="container">
+    <div class="tc">
+      <span class="tag">Nous trouver</span>
+      <h2 class="stitle">En plein cœur de Rennes</h2>
+      <p class="sdesc mx">44 Rue d'Antrain — Quartier Hoche, à deux pas du centre-ville.</p>
+    </div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2664.8!2d-1.6786177!3d48.1161778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480edf8ce4c52f3b%3A0x6a45ba869615a371!2sINSTITUT%20PERLE%20ONGLE!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr" style="width:100%;height:400px;border:none;border-radius:18px;margin-top:40px;box-shadow:0 4px 20px rgba(0,0,0,0.06)" allowfullscreen loading="lazy"></iframe>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="tc">
+      <span class="tag">Questions fréquentes</span>
+      <h2 class="stitle">Tout savoir avant votre visite</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Comment prendre rendez-vous ? <span class="arr">▼</span></button><div class="faq-a"><p>Vous pouvez réserver en ligne via Planity 24h/24, ou appeler Nawel au 06 01 17 05 37. La réservation en ligne est recommandée pour choisir le créneau qui vous convient le mieux.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Combien de temps dure une pose complète ? <span class="arr">▼</span></button><div class="faq-a"><p>Une pose complète (gel ou résine) dure environ 1h30 à 2h selon la complexité du nail art souhaité. Un remplissage prend environ 1h. Prévoyez un moment de détente !</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Le maquillage semi-permanent est-il douloureux ? <span class="arr">▼</span></button><div class="faq-a"><p>Nawel utilise une crème anesthésiante pour minimiser l'inconfort. La plupart des clientes décrivent la sensation comme un léger picotement. Le résultat dure entre 12 et 24 mois selon la zone traitée.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Le salon est-il mixte ? <span class="arr">▼</span></button><div class="faq-a"><p>L'Institut Perle Ongle est un salon exclusivement réservé aux femmes, pour offrir un espace de confort et de sérénité à toutes les clientes.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Les extensions de cils abîment-elles les cils naturels ? <span class="arr">▼</span></button><div class="faq-a"><p>Non, lorsqu'elles sont posées par une professionnelle comme Nawel, les extensions respectent vos cils naturels. Un entretien régulier (toutes les 3-4 semaines) est recommandé pour garder un résultat optimal.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Je ronge mes ongles, pouvez-vous m'aider ? <span class="arr">▼</span></button><div class="faq-a"><p>Absolument ! C'est même une spécialité de Nawel. De nombreuses clientes sont venues avec des ongles très courts et sont reparties avec de magnifiques ongles naturels grâce au gel protecteur. Lisez l'avis de Yanna qui en témoigne !</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS -->
+<section class="bg-soft" id="hours">
+  <div class="container">
+    <div class="tc">
+      <span class="tag">Horaires</span>
+      <h2 class="stitle">Quand nous rendre visite</h2>
+    </div>
+    <div class="hours-table reveal">
+      <div class="hrow"><span class="day">Lundi</span><span style="color:#c0392b;font-weight:600">Fermé</span></div>
+      <div class="hrow"><span class="day">Mardi</span><span>10:00 – 19:00</span></div>
+      <div class="hrow"><span class="day">Mercredi</span><span>10:00 – 19:00</span></div>
+      <div class="hrow"><span class="day">Jeudi</span><span>10:00 – 19:00</span></div>
+      <div class="hrow"><span class="day">Vendredi</span><span>10:00 – 19:00</span></div>
+      <div class="hrow"><span class="day">Samedi</span><span>10:00 – 19:00</span></div>
+      <div class="hrow"><span class="day">Dimanche</span><span style="color:#c0392b;font-weight:600">Fermé</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="tc">
+      <span class="tag">Contact</span>
+      <h2 class="stitle">Prenez rendez-vous</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="ci"><div class="ci-icon">📍</div><div><h4>Adresse</h4><p>44 Rue d'Antrain<br>35000 Rennes</p><a href="https://www.google.com/maps/dir/?api=1&destination=44+Rue+d'Antrain+35000+Rennes" target="_blank">Itinéraire →</a></div></div>
+        <div class="ci"><div class="ci-icon">📞</div><div><h4>Téléphone</h4><p><a href="tel:0601170537">06 01 17 05 37</a></p></div></div>
+        <div class="ci"><div class="ci-icon">📅</div><div><h4>Réservation en ligne</h4><p><a href="https://www.planity.com/institut-perle-ongle-35000-rennes" target="_blank">Réserver sur Planity →</a></p></div></div>
+        <div class="ci"><div class="ci-icon">📸</div><div><h4>Instagram</h4><p><a href="https://www.instagram.com/perle_ongle" target="_blank">@perle_ongle</a></p></div></div>
+        <div class="ci"><div class="ci-icon">📘</div><div><h4>Facebook</h4><p><a href="https://www.facebook.com/perleongle35" target="_blank">Institut perle Ongle</a></p></div></div>
+      </div>
+      <div class="cform reveal rd1">
+        <h3 style="font-family:var(--font-heading);font-size:1.3rem;margin-bottom:20px">Demande de rendez-vous</h3>
+        <div class="frow"><div class="fg"><label>Prénom</label><input type="text" placeholder="Votre prénom"></div><div class="fg"><label>Nom</label><input type="text" placeholder="Votre nom"></div></div>
+        <div class="fg"><label>Téléphone</label><input type="tel" placeholder="06 00 00 00 00"></div>
+        <div class="fg"><label>Prestation souhaitée</label><select><option>Pose d'ongles gel/résine</option><option>Vernis semi-permanent</option><option>Maquillage semi-permanent</option><option>Extension de cils</option><option>Nail art</option><option>Beauté des mains/pieds</option><option>Autre</option></select></div>
+        <div class="fg"><label>Message</label><textarea placeholder="Décrivez vos souhaits…"></textarea></div>
+        <button class="btn btn-pink" style="width:100%;justify-content:center">Envoyer ma demande</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Perle Ongle</div>
+        <p style="font-size:.88rem;line-height:1.7;margin-bottom:16px">Salon de prothèse ongulaire, maquillage semi-permanent & extension de cils à Rennes. Par Nawel — 44 Rue d'Antrain, quartier Hoche.</p>
+        <div style="display:flex;gap:10px">
+          <a href="https://www.instagram.com/perle_ongle" target="_blank" style="background:rgba(255,255,255,0.08);padding:8px 14px;border-radius:8px;font-size:.82rem">📸 Instagram</a>
+          <a href="https://www.facebook.com/perleongle35" target="_blank" style="background:rgba(255,255,255,0.08);padding:8px 14px;border-radius:8px;font-size:.82rem">📘 Facebook</a>
+        </div>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul><li><a href="#about">À propos</a></li><li><a href="#services">Prestations</a></li><li><a href="#gallery">Galerie</a></li><li><a href="#reviews">Avis</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul>
+      </div>
+      <div>
+        <h4>Infos pratiques</h4>
+        <ul><li>44 Rue d'Antrain</li><li>35000 Rennes</li><li><a href="tel:0601170537">06 01 17 05 37</a></li><li>Mar–Sam : 10h–19h</li><li>Dim & Lun : Fermé</li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Institut Perle Ongle — Tous droits réservés</p>
+      <p class="walter-credit">Aperçu réalisé par <a href="https://walter-studio.fr" target="_blank">WALTER Studio</a> — walter-studio.fr</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const header=document.getElementById('header');
+window.addEventListener('scroll',()=>{header.classList.toggle('scrolled',window.scrollY>50)});
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+</script>
+</body>
+</html>

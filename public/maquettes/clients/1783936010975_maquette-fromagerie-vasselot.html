@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fromagerie Vasselot — Rennes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Lato:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#D4A017;--gold-dark:#B8880F;--green:#1B4332;--green-light:#2D6A4F;
+  --cream:#FFF8E7;--white:#FFFFFF;--black:#1A1A1A;--text:#3D3D3D;
+  --font-heading:'Merriweather',Georgia,serif;
+  --font-body:'Lato','Helvetica Neue',sans-serif;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-body);color:var(--text);line-height:1.7;background:var(--cream);overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--font-heading);color:var(--black);line-height:1.3}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(255,248,231,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(27,67,50,0.08);transition:box-shadow .3s}
+header.scrolled{box-shadow:0 2px 20px rgba(27,67,50,0.06)}
+header .container{display:flex;align-items:center;justify-content:space-between;height:70px}
+.logo{font-family:var(--font-heading);font-size:1.3rem;font-weight:700;color:var(--green)}
+nav{display:flex;align-items:center;gap:28px}
+nav a{font-size:.82rem;font-weight:600;color:var(--text);transition:color .3s}
+nav a:hover{color:var(--green)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:8px;font-size:.82rem;font-weight:700;transition:all .3s;border:none;cursor:pointer}
+.btn-green{background:var(--green);color:var(--white)}
+.btn-green:hover{background:var(--green-light);transform:translateY(-2px);box-shadow:0 8px 25px rgba(27,67,50,0.25)}
+.btn-outline-w{background:transparent;border:2px solid var(--white);color:var(--white);border-radius:8px}
+.btn-outline-w:hover{background:var(--white);color:var(--green)}
+
+/* HERO — fond vert foncé, texte blanc pour bon contraste */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;background:var(--green)}
+.hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1452195100486-9cc805987862?w=1600&q=80') center/cover;opacity:0.2}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(27,67,50,0.5) 0%,rgba(27,67,50,0.85) 100%)}
+.hero-content{position:relative;z-index:2;color:var(--white);padding:120px 24px 80px;max-width:700px;margin:0 auto;text-align:center}
+.hero-badge{display:inline-block;background:rgba(212,160,23,0.2);border:1px solid rgba(212,160,23,0.5);padding:8px 24px;border-radius:50px;font-size:.72rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:28px;color:var(--gold)}
+.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;margin-bottom:16px;color:var(--white)}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:clamp(1rem,2vw,1.15rem);font-weight:300;max-width:520px;margin:0 auto 40px;opacity:0.9;line-height:1.9;color:rgba(255,255,255,0.9)}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.hero-rating{margin-top:40px;display:flex;align-items:center;gap:12px;justify-content:center;font-size:.9rem;color:rgba(255,255,255,0.85)}
+.hero-rating .stars{color:var(--gold);font-size:1.3rem}
+
+.info-bar{background:var(--green);color:var(--white);padding:14px 0;border-top:3px solid var(--gold)}
+.info-bar .container{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;font-size:.85rem;font-weight:500}
+.info-bar a{color:var(--gold)}
+
+section{padding:90px 0}
+.tag{font-size:.7rem;text-transform:uppercase;letter-spacing:3px;color:var(--green);font-weight:700;margin-bottom:12px}
+.stitle{font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:16px;color:var(--black)}
+.sdesc{font-size:1rem;max-width:560px;line-height:1.8;opacity:0.8;color:var(--text)}
+.tc{text-align:center}.mx{margin-left:auto;margin-right:auto}
+.bg-white{background:var(--white)}
+.bg-green{background:var(--green);color:var(--white)}
+.bg-green .tag{color:var(--gold)}
+.bg-green .stitle,.bg-green .sdesc{color:var(--white)}
+.bg-green .sdesc{opacity:0.85}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:50px}
+.about-img{border-radius:14px;overflow:hidden;box-shadow:0 20px 60px rgba(27,67,50,0.12)}
+.about-img img{width:100%;height:480px;object-fit:cover}
+.about-text p{margin-bottom:16px;font-size:.95rem;color:var(--text)}
+.about-signature{font-family:var(--font-heading);font-style:italic;font-size:1.3rem;color:var(--green);margin-top:24px}
+
+.products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:50px}
+.pcard{background:var(--white);border-radius:14px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.04);transition:all .4s;border:1px solid rgba(27,67,50,0.06)}
+.pcard:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(27,67,50,0.1)}
+.pcard img{width:100%;height:220px;object-fit:cover}
+.pcard-body{padding:24px}
+.pcard h3{font-size:1.1rem;margin-bottom:8px;color:var(--black)}
+.pcard p{font-size:.88rem;line-height:1.7;color:var(--text);opacity:0.8}
+
+.stats{padding:60px 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.sti .stn{font-family:var(--font-heading);font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:var(--gold)}
+.sti .stl{font-size:.85rem;margin-top:6px;color:rgba(255,255,255,0.75)}
+
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:24px;margin-top:50px}
+.rcard{background:var(--white);padding:36px;border-radius:14px;box-shadow:0 4px 16px rgba(0,0,0,0.04);border-left:4px solid var(--green)}
+.rcard .stars{color:var(--gold);font-size:1rem;margin-bottom:14px}
+.rcard .rtext{font-size:.92rem;line-height:1.8;font-style:italic;margin-bottom:18px;color:var(--text)}
+.rcard .rauthor{font-weight:700;color:var(--green);font-size:.85rem}
+.rcard .rdate{font-size:.75rem;color:#999;margin-top:4px}
+
+.faq-list{max-width:720px;margin:50px auto 0}
+.faq-item{border-bottom:1px solid rgba(27,67,50,0.12)}
+.faq-q{width:100%;background:none;border:none;padding:22px 0;font-family:var(--font-body);font-size:1rem;font-weight:700;color:var(--black);text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .3s}
+.faq-q:hover{color:var(--green)}
+.faq-q .arr{font-size:1.2rem;transition:transform .3s;color:var(--green)}
+.faq-item.open .arr{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s}
+.faq-item.open .faq-a{max-height:300px;padding:0 0 22px}
+.faq-a p{font-size:.9rem;line-height:1.8;color:var(--text);opacity:0.8}
+
+.hours-table{max-width:480px;margin:40px auto 0}
+.hrow{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(27,67,50,0.1)}
+.hrow:last-child{border:none}
+.hrow .day{font-weight:700;color:var(--black)}
+
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;margin-top:50px;align-items:start}
+.ci{display:flex;gap:16px;align-items:flex-start;margin-bottom:28px}
+.ci-icon{width:48px;height:48px;background:var(--cream);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.ci h4{font-size:.95rem;margin-bottom:4px;color:var(--black)}
+.ci p{font-size:.88rem;color:var(--text);opacity:0.8}
+.ci a{color:var(--green);font-weight:700}
+.cform{background:var(--cream);padding:40px;border-radius:14px}
+.fg{margin-bottom:18px}
+.fg label{display:block;font-size:.78rem;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;color:var(--black)}
+.fg input,.fg textarea{width:100%;padding:13px 16px;border:1px solid #d9d0b8;border-radius:8px;font-family:var(--font-body);font-size:.9rem;background:var(--white);transition:border-color .3s}
+.fg input:focus,.fg textarea:focus{outline:none;border-color:var(--green)}
+.fg textarea{height:110px;resize:vertical}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+footer{background:var(--green);color:rgba(255,255,255,0.65);padding:60px 0 30px}
+.footer-brand{font-family:var(--font-heading);font-size:1.3rem;color:var(--white);margin-bottom:12px}
+footer h4{color:var(--gold);font-size:.82rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+footer ul{list-style:none}footer li{margin-bottom:10px}
+footer li a{font-size:.85rem;color:rgba(255,255,255,0.65);transition:color .3s}footer li a:hover{color:var(--gold)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;text-align:center;font-size:.78rem}
+.walter-credit{margin-top:10px;opacity:0.4;font-size:.72rem}
+.walter-credit a{color:var(--gold)}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.rd1{transition-delay:.12s}.rd2{transition-delay:.24s}.rd3{transition-delay:.36s}
+
+@media(max-width:900px){nav a:not(.btn){display:none}.about-grid,.contact-grid{grid-template-columns:1fr}.stats-grid{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr}.frow{grid-template-columns:1fr}}
+@media(max-width:600px){section{padding:60px 0}.products-grid{grid-template-columns:1fr}.reviews-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="container">
+    <a href="#" class="logo">Fromagerie Vasselot</a>
+    <nav>
+      <a href="#about">L'histoire</a>
+      <a href="#products">Nos produits</a>
+      <a href="#reviews">Avis</a>
+      <a href="#contact">Contact</a>
+      <a href="tel:0985206869" class="btn btn-green">Appeler</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Fromagerie artisanale — Rennes</div>
+    <h1>Fromagerie <em>Vasselot</em></h1>
+    <p class="hero-sub">Fromages d'exception, sélection de terroir et conseils passionnés. Au cœur du vieux Rennes, rue Vasselot.</p>
+    <div class="hero-btns">
+      <a href="tel:0985206869" class="btn btn-green">📞 09 85 20 68 69</a>
+      <a href="#products" class="btn btn-outline-w">Découvrir</a>
+    </div>
+    <div class="hero-rating">
+      <span class="stars">★★★★★</span>
+      <span>4,9/5 — 32 avis Google</span>
+    </div>
+  </div>
+</section>
+
+<div class="info-bar">
+  <div class="container">
+    <span>⭐ 4,9/5 (32 avis)</span>
+    <span>📍 11 Rue Vasselot, Rennes</span>
+    <a href="tel:0985206869">📞 09 85 20 68 69</a>
+    <span>🧀 Depuis 2021</span>
+  </div>
+</div>
+
+<section id="about" class="bg-white">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img reveal">
+        <img src="https://images.unsplash.com/photo-1452195100486-9cc805987862?w=800&q=80" alt="Fromages artisanaux" loading="lazy">
+      </div>
+      <div class="about-text reveal rd1">
+        <span class="tag">Notre histoire</span>
+        <h2 class="stitle">Stéphanie, passionnée de fromages</h2>
+        <p>Ouverte en septembre 2021, la Fromagerie Vasselot est née de la passion de Stéphanie Darmaillacq pour les fromages d'exception. Au 11 rue Vasselot, dans l'une des plus belles rues du vieux Rennes, elle a créé un lieu chaleureux dédié au goût et au terroir.</p>
+        <p>Ici, chaque fromage est sélectionné avec soin : des trésors bretons aux pépites de toute la France, en passant par quelques merveilles européennes. Stéphanie prend le temps de vous conseiller, de vous faire goûter, de vous raconter l'histoire de chaque produit.</p>
+        <p>Au-delà du fromage, retrouvez une sélection de saucissons artisanaux, huiles d'olive, biscuits apéritifs et vins soigneusement choisis pour accompagner vos plateaux.</p>
+        <div class="about-signature">— Stéphanie Darmaillacq</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="products">
+  <div class="container">
+    <div class="tc">
+      <span class="tag">Nos produits</span>
+      <h2 class="stitle">Une sélection de terroir</h2>
+      <p class="sdesc mx">Fromages, charcuterie, vins et épicerie fine — le meilleur du goût, choisi avec passion.</p>
+    </div>
+    <div class="products-grid">
+      <div class="pcard reveal">
+        <img src="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=600&q=80" alt="Fromages français" loading="lazy">
+        <div class="pcard-body">
+          <h3>Fromages de France</h3>
+          <p>Comté affiné, Brie de Meaux, Roquefort, Saint-Nectaire, Ossau-Iraty… Une sélection du meilleur de chaque terroir français.</p>
+        </div>
+      </div>
+      <div class="pcard reveal rd1">
+        <img src="https://images.unsplash.com/photo-1589881133595-a3c085cb731d?w=600&q=80" alt="Fromages bretons" loading="lazy">
+        <div class="pcard-body">
+          <h3>Fromages bretons</h3>
+          <p>Les trésors de notre terroir : Beurré nantais, Timanoix, Petit breton… Des producteurs locaux sélectionnés avec soin.</p>
+        </div>
+      </div>
+      <div class="pcard reveal rd2">
+        <img src="https://images.unsplash.com/photo-1528750997573-59b89d56f4f7?w=600&q=80" alt="Plateaux fromages" loading="lazy">
+        <div class="pcard-body">
+          <h3>Plateaux tout prêts</h3>
+          <p>Plateaux fromage pour vos fins de repas, plateaux raclette avec charcuterie, plateaux apéritifs… Prêts à déguster.</p>
+        </div>
+      </div>
+      <div class="pcard reveal">
+        <img src="https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=600&q=80" alt="Charcuterie artisanale" loading="lazy">
+        <div class="pcard-body">
+          <h3>Saucissons & charcuterie</h3>
+          <p>Saucissons artisanaux, jambons secs, terrines — la charcuterie parfaite pour accompagner vos fromages.</p>
+        </div>
+      </div>
+      <div class="pcard reveal rd1">
+        <img src="https://images.unsplash.com/photo-1474722883778-792e7990302f?w=600&q=80" alt="Vins" loading="lazy">
+        <div class="pcard-body">
+          <h3>Vins sélectionnés</h3>
+          <p>Des vins choisis pour se marier parfaitement avec nos fromages. Rouges, blancs, et quelques trouvailles.</p>
+        </div>
+      </div>
+      <div class="pcard reveal rd2">
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&q=80" alt="Épicerie fine" loading="lazy">
+        <div class="pcard-body">
+          <h3>Épicerie fine</h3>
+          <p>Huiles d'olive, biscuits apéritifs, confitures, miels… Les accompagnements parfaits pour sublimer vos plateaux.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats bg-green">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="sti reveal"><div class="stn">4,9★</div><div class="stl">Note Google</div></div>
+      <div class="sti reveal rd1"><div class="stn">32</div><div class="stl">Avis clients</div></div>
+      <div class="sti reveal rd2"><div class="stn">2021</div><div class="stl">Ouverture</div></div>
+      <div class="sti reveal rd3"><div class="stn">6j/7</div><div class="stl">Mar–Dim</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="bg-white">
+  <div class="container">
+    <div class="tc">
+      <span class="tag">Témoignages</span>
+      <h2 class="stitle">Ce qu'en disent les gourmets</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="rcard reveal">
+        <div class="stars">★★★★★</div>
+        <p class="rtext">« Personnel très gentil et de très beaux fromages ! Je ne connaissais pas cette fromagerie mais j'ai pu y faire un tour grâce au parcours Destination Rennes. »</p>
+        <div class="rauthor">Lise</div>
+        <div class="rdate">Local Guide · Avril 2025</div>
+      </div>
+      <div class="rcard reveal rd1">
+        <div class="stars">★★★★★</div>
+        <p class="rtext">« Petit passage dimanche pour prendre du bon fromage, c'était la première fois. Pas déçu, accueil et service au top et le fromage est excellent ! Avec achat de vin aussi. Je recommande. »</p>
+        <div class="rauthor">Mathias Lefevre</div>
+        <div class="rdate">Local Guide · Décembre 2025</div>
+      </div>
+      <div class="rcard reveal rd2">
+        <div class="stars">★★★★★</div>
+        <p class="rtext">« Une fromagerie absolument fantastique ! La qualité des fromages est exceptionnelle, et l'accueil chaleureux rend l'expérience encore plus agréable. Le personnel est passionné et prend le temps. »</p>
+        <div class="rauthor">Yasaman Moghaddasi</div>
+        <div class="rdate">Mai 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="tc"><span class="tag">Nous trouver</span><h2 class="stitle">11 Rue Vasselot</h2><p class="sdesc mx">Au cœur du vieux Rennes, dans l'une des plus charmantes rues piétonnes de la ville.</p></div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2665!2d-1.6825!3d48.1115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zRnJvbWFnZXJpZSBWYXNzZWxvdA!5e0!3m2!1sfr!2sfr" style="width:100%;height:400px;border:none;border-radius:14px;margin-top:40px;box-shadow:0 4px 20px rgba(0,0,0,0.06)" allowfullscreen loading="lazy"></iframe>
+  </div>
+</section>
+
+<section id="faq" class="bg-white">
+  <div class="container">
+    <div class="tc"><span class="tag">FAQ</span><h2 class="stitle">Questions fréquentes</h2></div>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Proposez-vous des plateaux tout faits ? <span class="arr">▼</span></button><div class="faq-a"><p>Oui ! Stéphanie compose des plateaux fromage pour vos fins de repas, des plateaux raclette avec charcuterie, et des plateaux apéritifs. Sur commande ou à emporter directement.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">D'où viennent vos fromages ? <span class="arr">▼</span></button><div class="faq-a"><p>Nos fromages viennent de toute la France — Bretagne, Auvergne, Savoie, Pays Basque, Normandie… Avec quelques pépites européennes à découvrir. Chaque producteur est sélectionné pour la qualité de son travail.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Vendez-vous aussi du vin ? <span class="arr">▼</span></button><div class="faq-a"><p>Oui, une sélection de vins choisis pour accompagner nos fromages. Stéphanie saura vous conseiller le mariage parfait fromage-vin.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Êtes-vous ouverts le dimanche ? <span class="arr">▼</span></button><div class="faq-a"><p>Oui, la fromagerie est ouverte le dimanche matin. Appelez-nous au 09 85 20 68 69 pour confirmer les horaires du dimanche.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Peut-on goûter avant d'acheter ? <span class="arr">▼</span></button><div class="faq-a"><p>Bien sûr ! Stéphanie adore faire découvrir ses fromages. N'hésitez pas à demander conseil et à goûter, c'est le meilleur moyen de faire votre choix.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Livrez-vous des plateaux pour des événements ? <span class="arr">▼</span></button><div class="faq-a"><p>Pour les commandes spéciales (événements, soirées, repas de groupe), contactez directement la fromagerie par téléphone pour discuter de vos besoins et des délais.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="hours">
+  <div class="container">
+    <div class="tc"><span class="tag">Horaires</span><h2 class="stitle">Heures d'ouverture</h2></div>
+    <div class="hours-table reveal">
+      <div class="hrow"><span class="day">Lundi</span><span style="color:#c0392b;font-weight:700">Fermé</span></div>
+      <div class="hrow"><span class="day">Mardi</span><span>10:00–13:00 / 15:00–19:30</span></div>
+      <div class="hrow"><span class="day">Mercredi</span><span>10:00–13:00 / 15:00–19:30</span></div>
+      <div class="hrow"><span class="day">Jeudi</span><span>10:00–13:00 / 15:00–19:30</span></div>
+      <div class="hrow"><span class="day">Vendredi</span><span>10:00–13:00 / 15:00–19:30</span></div>
+      <div class="hrow"><span class="day">Samedi</span><span>10:00–13:00 / 15:00–19:30</span></div>
+      <div class="hrow"><span class="day">Dimanche</span><span>10:00–13:00</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="bg-white">
+  <div class="container">
+    <div class="tc"><span class="tag">Contact</span><h2 class="stitle">Venez nous voir</h2></div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="ci"><div class="ci-icon">📍</div><div><h4>Adresse</h4><p>11 Rue Vasselot<br>35000 Rennes</p><a href="https://www.google.com/maps/dir/?api=1&destination=11+Rue+Vasselot+35000+Rennes" target="_blank">Itinéraire →</a></div></div>
+        <div class="ci"><div class="ci-icon">📞</div><div><h4>Téléphone</h4><p><a href="tel:0985206869">09 85 20 68 69</a></p></div></div>
+        <div class="ci"><div class="ci-icon">📸</div><div><h4>Instagram</h4><p><a href="https://www.instagram.com/fromagerievasselot/" target="_blank">@fromagerievasselot</a></p></div></div>
+      </div>
+      <div class="cform reveal rd1">
+        <h3 style="font-family:var(--font-heading);font-size:1.2rem;margin-bottom:20px;color:var(--black)">Nous contacter</h3>
+        <div class="frow"><div class="fg"><label>Prénom</label><input type="text" placeholder="Votre prénom"></div><div class="fg"><label>Nom</label><input type="text" placeholder="Votre nom"></div></div>
+        <div class="fg"><label>Téléphone</label><input type="tel" placeholder="06 00 00 00 00"></div>
+        <div class="fg"><label>Message</label><textarea placeholder="Votre message (commande, question…)"></textarea></div>
+        <button class="btn btn-green" style="width:100%;justify-content:center">Envoyer</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-brand">Fromagerie Vasselot</div><p style="font-size:.88rem;line-height:1.7;margin-bottom:16px;color:rgba(255,255,255,0.65)">Fromagerie artisanale, épicerie fine & vins — 11 Rue Vasselot, 35000 Rennes. Par Stéphanie Darmaillacq, depuis 2021.</p></div>
+      <div><h4>Navigation</h4><ul><li><a href="#about">L'histoire</a></li><li><a href="#products">Produits</a></li><li><a href="#reviews">Avis</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div><h4>Infos</h4><ul><li style="color:rgba(255,255,255,0.65)">11 Rue Vasselot</li><li style="color:rgba(255,255,255,0.65)">35000 Rennes</li><li><a href="tel:0985206869">09 85 20 68 69</a></li><li style="color:rgba(255,255,255,0.65)">Mar–Sam + Dim matin</li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Fromagerie Vasselot — Tous droits réservés</p>
+      <p class="walter-credit">Aperçu réalisé par <a href="https://walter-studio.fr" target="_blank">WALTER Studio</a> — walter-studio.fr</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const header=document.getElementById('header');
+window.addEventListener('scroll',()=>{header.classList.toggle('scrolled',window.scrollY>50)});
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+</script>
+</body>
+</html>

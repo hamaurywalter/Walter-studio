@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elite Barber Lounge — Barbier — Rennes Cleunay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#C9A96E;--gold-dark:#B0903A;--black:#0F0F0F;--dark:#1A1A1A;
+  --grey:#2A2A2A;--text-light:#CCCCCC;--white:#FFFFFF;--cream:#F5F2ED;
+  --font-heading:'Oswald',Impact,sans-serif;
+  --font-body:'DM Sans','Helvetica Neue',sans-serif;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-body);color:var(--text-light);line-height:1.7;background:var(--black);overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--font-heading);color:var(--white);line-height:1.2;text-transform:uppercase;letter-spacing:2px}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(15,15,15,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,169,110,0.1);transition:box-shadow .3s}
+header.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.4)}
+header .container{display:flex;align-items:center;justify-content:space-between;height:70px}
+.logo{font-family:var(--font-heading);font-size:1.4rem;font-weight:700;color:var(--white);letter-spacing:4px;text-transform:uppercase}
+.logo span{color:var(--gold)}
+nav{display:flex;align-items:center;gap:28px}
+nav a{font-size:.75rem;font-weight:500;color:var(--text-light);letter-spacing:1px;text-transform:uppercase;transition:color .3s}
+nav a:hover{color:var(--gold)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border-radius:0;font-size:.78rem;font-weight:700;transition:all .3s;border:none;cursor:pointer;letter-spacing:2px;text-transform:uppercase}
+.btn-gold{background:var(--gold);color:var(--black)}
+.btn-gold:hover{background:var(--gold-dark);transform:translateY(-2px);box-shadow:0 8px 25px rgba(201,169,110,0.25)}
+.btn-outline-w{background:transparent;border:2px solid var(--white);color:var(--white)}
+.btn-outline-w:hover{background:var(--white);color:var(--black)}
+
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;background:var(--black)}
+.hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1493256338651-d82f7acb2b38?w=1600&q=80') center/cover;opacity:0.18}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,15,15,0.3) 0%,rgba(15,15,15,0.9) 100%)}
+.hero-content{position:relative;z-index:2;color:var(--white);padding:120px 24px 80px;max-width:700px;margin:0 auto;text-align:center}
+.hero-line{width:60px;height:2px;background:var(--gold);margin:0 auto 24px}
+.hero h1{font-size:clamp(3rem,7vw,5.5rem);font-weight:700;margin-bottom:16px;letter-spacing:6px}
+.hero h1 span{color:var(--gold)}
+.hero-sub{font-family:var(--font-body);font-size:clamp(.92rem,2vw,1.05rem);font-weight:300;max-width:500px;margin:0 auto 40px;color:rgba(255,255,255,0.7);line-height:1.9;text-transform:none;letter-spacing:0}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.hero-rating{margin-top:40px;display:flex;align-items:center;gap:12px;justify-content:center;font-size:.85rem;color:rgba(255,255,255,0.6)}
+.hero-rating .stars{color:var(--gold);font-size:1.3rem}
+
+.info-bar{background:var(--gold);color:var(--black);padding:14px 0}
+.info-bar .container{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;font-size:.82rem;font-weight:600;letter-spacing:.5px}
+.info-bar a{color:var(--black)}
+
+section{padding:90px 0}
+.tag{font-size:.68rem;text-transform:uppercase;letter-spacing:5px;color:var(--gold);font-weight:500;margin-bottom:12px}
+.stitle{font-size:clamp(1.6rem,4vw,2.5rem);margin-bottom:16px;letter-spacing:3px}
+.sdesc{font-size:.92rem;max-width:540px;line-height:1.9;color:var(--text-light);opacity:0.7;text-transform:none;letter-spacing:0}
+.tc{text-align:center}.mx{margin-left:auto;margin-right:auto}
+.bg-grey{background:var(--grey)}
+.bg-cream{background:var(--cream);color:#333}
+.bg-cream .tag{color:var(--gold-dark)}
+.bg-cream .stitle{color:var(--black)}
+.bg-cream .sdesc{color:#555}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:50px}
+.about-img{overflow:hidden}
+.about-img img{width:100%;height:480px;object-fit:cover}
+.about-text p{margin-bottom:16px;font-size:.92rem;color:var(--text-light);text-transform:none;letter-spacing:0}
+
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;margin-top:50px}
+.scard{background:var(--dark);padding:40px 28px;text-align:center;transition:all .4s;border:1px solid rgba(201,169,110,0.05)}
+.scard:hover{background:var(--grey);border-color:rgba(201,169,110,0.15)}
+.scard .si{font-size:2.5rem;margin-bottom:16px}
+.scard h3{font-size:.9rem;margin-bottom:10px;letter-spacing:3px}
+.scard p{font-size:.82rem;line-height:1.8;color:var(--text-light);opacity:0.6;text-transform:none;letter-spacing:0}
+
+.stats{padding:60px 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.sti .stn{font-family:var(--font-heading);font-size:clamp(2rem,4vw,3.2rem);font-weight:700;color:var(--gold)}
+.sti .stl{font-size:.8rem;margin-top:6px;color:var(--text-light);opacity:0.5;text-transform:uppercase;letter-spacing:2px}
+
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px;margin-top:50px}
+.rcard{background:var(--dark);padding:36px;border-left:3px solid var(--gold)}
+.rcard .stars{color:var(--gold);font-size:1rem;margin-bottom:14px}
+.rcard .rtext{font-size:.92rem;line-height:1.9;font-style:italic;margin-bottom:18px;color:var(--text-light)}
+.rcard .rauthor{font-family:var(--font-heading);font-weight:600;color:var(--gold);font-size:.85rem;letter-spacing:2px;text-transform:uppercase}
+.rcard .rdate{font-size:.72rem;color:#666;margin-top:4px}
+
+.faq-list{max-width:720px;margin:50px auto 0}
+.faq-item{border-bottom:1px solid rgba(201,169,110,0.1)}
+.faq-q{width:100%;background:none;border:none;padding:22px 0;font-family:var(--font-body);font-size:.95rem;font-weight:600;color:var(--white);text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .3s}
+.faq-q:hover{color:var(--gold)}
+.faq-q .arr{font-size:1.2rem;transition:transform .3s;color:var(--gold)}
+.faq-item.open .arr{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s}
+.faq-item.open .faq-a{max-height:300px;padding:0 0 22px}
+.faq-a p{font-size:.88rem;line-height:1.8;color:var(--text-light);opacity:0.7}
+
+.hours-table{max-width:480px;margin:40px auto 0}
+.hrow{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(201,169,110,0.08)}
+.hrow:last-child{border:none}
+.hrow .day{font-weight:600;color:var(--white)}
+.hrow span:last-child{color:var(--text-light)}
+
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;margin-top:50px;align-items:start}
+.ci{display:flex;gap:16px;align-items:flex-start;margin-bottom:28px}
+.ci-icon{width:48px;height:48px;background:var(--grey);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.ci h4{font-size:.88rem;margin-bottom:4px;color:var(--white);font-family:var(--font-body);text-transform:none;letter-spacing:0}
+.ci p{font-size:.82rem;color:var(--text-light);opacity:0.7}
+.ci a{color:var(--gold);font-weight:600}
+.cform{background:var(--grey);padding:40px}
+.fg{margin-bottom:18px}
+.fg label{display:block;font-size:.7rem;font-weight:600;margin-bottom:6px;text-transform:uppercase;letter-spacing:2px;color:var(--gold)}
+.fg input,.fg textarea{width:100%;padding:13px 16px;border:1px solid #444;background:var(--dark);color:var(--white);font-family:var(--font-body);font-size:.88rem;transition:border-color .3s}
+.fg input:focus,.fg textarea:focus{outline:none;border-color:var(--gold)}
+.fg textarea{height:110px;resize:vertical}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+footer{background:var(--black);color:rgba(255,255,255,0.4);padding:60px 0 30px;border-top:1px solid rgba(201,169,110,0.08)}
+.footer-brand{font-family:var(--font-heading);font-size:1.3rem;color:var(--white);letter-spacing:4px;text-transform:uppercase;margin-bottom:12px}
+footer h4{color:var(--gold);font-size:.72rem;text-transform:uppercase;letter-spacing:3px;margin-bottom:14px;font-family:var(--font-heading)}
+footer ul{list-style:none}footer li{margin-bottom:10px}
+footer li a{font-size:.82rem;color:rgba(255,255,255,0.4);transition:color .3s}footer li a:hover{color:var(--gold)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.05);padding-top:24px;text-align:center;font-size:.72rem}
+.walter-credit{margin-top:10px;opacity:0.3;font-size:.68rem}
+.walter-credit a{color:var(--gold)}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.rd1{transition-delay:.12s}.rd2{transition-delay:.24s}.rd3{transition-delay:.36s}
+
+@media(max-width:900px){nav a:not(.btn){display:none}.about-grid,.contact-grid{grid-template-columns:1fr}.stats-grid{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr}.frow{grid-template-columns:1fr}}
+@media(max-width:600px){section{padding:60px 0}.services-grid{grid-template-columns:1fr}.reviews-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="container">
+    <a href="#" class="logo">Elite <span>Barber</span> Lounge</a>
+    <nav>
+      <a href="#about">Le salon</a>
+      <a href="#services">Prestations</a>
+      <a href="#reviews">Avis</a>
+      <a href="#contact">Contact</a>
+      <a href="tel:0781085817" class="btn btn-gold">Réserver</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-line"></div>
+    <h1>Elite <span>Barber</span> Lounge</h1>
+    <p class="hero-sub">L'excellence du barbier. Un cadre impeccable, un service irréprochable, une coupe parfaite. Bienvenue dans votre salon premium à Rennes.</p>
+    <div class="hero-btns">
+      <a href="tel:0781085817" class="btn btn-gold">📞 07 81 08 58 17</a>
+      <a href="#services" class="btn btn-outline-w">Nos prestations</a>
+    </div>
+    <div class="hero-rating">
+      <span class="stars">★★★★★</span>
+      <span>4,9/5 — 107 avis Google</span>
+    </div>
+  </div>
+</section>
+
+<div class="info-bar">
+  <div class="container">
+    <span>⭐ 4,9/5 (107 avis)</span>
+    <span>📍 46 Bd Voltaire, Rennes</span>
+    <a href="tel:0781085817">📞 07 81 08 58 17</a>
+    <span>✂️ Barbier Premium</span>
+  </div>
+</div>
+
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img reveal">
+        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=800&q=80" alt="Barbier professionnel" loading="lazy">
+      </div>
+      <div class="about-text reveal rd1">
+        <span class="tag">Le salon</span>
+        <h2 class="stitle">L'art du barbier</h2>
+        <p>Au 46 boulevard Voltaire, dans le quartier Cleunay-Mabilais, Elite Barber Lounge redéfinit l'expérience barbier à Rennes. Un cadre luxueux et impeccable qui met immédiatement en confiance.</p>
+        <p>Ici, chaque coupe est un acte de précision. Dégradés millimétrés, taille de barbe au rasoir, soins du visage — le tout dans une ambiance détendue et professionnelle. Les barbiers d'Elite allient technique irréprochable et accueil attentionné.</p>
+        <p>Avec 4,9/5 sur 107 avis Google et une clientèle fidèle, le salon s'est imposé comme une référence de la coiffure masculine à Rennes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="bg-grey">
+  <div class="container">
+    <div class="tc">
+      <span class="tag">Prestations</span>
+      <h2 class="stitle">Nos services</h2>
+      <p class="sdesc mx">Coupe, barbe, soin visage — le meilleur pour l'homme exigeant.</p>
+    </div>
+    <div class="services-grid">
+      <div class="scard reveal">
+        <div class="si">✂️</div>
+        <h3>Coupe homme</h3>
+        <p>Dégradé, fondu, coupe classique ou tendance. Chaque coupe est adaptée à la morphologie de votre visage.</p>
+      </div>
+      <div class="scard reveal rd1">
+        <div class="si">🪒</div>
+        <h3>Taille de barbe</h3>
+        <p>Sculptée au rasoir ou à la tondeuse. Des contours nets et une barbe parfaitement entretenue.</p>
+      </div>
+      <div class="scard reveal rd2">
+        <div class="si">💈</div>
+        <h3>Coupe + Barbe</h3>
+        <p>Le combo complet pour un look impeccable. Coupe personnalisée et barbe sculptée en une seule séance.</p>
+      </div>
+      <div class="scard reveal">
+        <div class="si">🧴</div>
+        <h3>Soin du visage</h3>
+        <p>Nettoyage, gommage, hydratation. Un soin professionnel pour une peau nette et revitalisée.</p>
+      </div>
+      <div class="scard reveal rd1">
+        <div class="si">🔥</div>
+        <h3>Rasage traditionnel</h3>
+        <p>Serviette chaude, mousse, rasoir coupe-chou. Le rituel de rasage dans la plus pure tradition.</p>
+      </div>
+      <div class="scard reveal rd2">
+        <div class="si">👦</div>
+        <h3>Coupe enfant</h3>
+        <p>Les plus jeunes aussi méritent une coupe soignée. Accueil bienveillant et résultat impeccable.</p>
+      </div>
+    </div>
+    <div class="tc" style="margin-top:40px">
+      <a href="https://www.planity.com" target="_blank" class="btn btn-gold">Réserver sur Planity</a>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="sti reveal"><div class="stn">4,9★</div><div class="stl">Note Google</div></div>
+      <div class="sti reveal rd1"><div class="stn">107</div><div class="stl">Avis clients</div></div>
+      <div class="sti reveal rd2"><div class="stn">100%</div><div class="stl">Premium</div></div>
+      <div class="sti reveal rd3"><div class="stn">💈</div><div class="stl">Excellence</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="bg-grey">
+  <div class="container">
+    <div class="tc">
+      <span class="tag">Avis clients</span>
+      <h2 class="stitle">Ils en parlent</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="rcard reveal">
+        <div class="stars">★★★★★</div>
+        <p class="rtext">« Accueil top, coupe parfaite, qualité/prix avec le soin du visage que j'ai essayé pour la première fois c'était au top ! Cadre professionnel, très propre et Barber très intentionné. »</p>
+        <div class="rauthor">Chams</div>
+        <div class="rdate">Mars 2026</div>
+      </div>
+      <div class="rcard reveal rd1">
+        <div class="stars">★★★★★</div>
+        <p class="rtext">« Je suis absolument ravi de mon expérience chez Élite Barber Lounge. Le salon est impeccable, ce qui met tout de suite en confiance. L'accueil est tout simplement au top : professionnel et attentionné. »</p>
+        <div class="rauthor">Olivier U.</div>
+        <div class="rdate">Mai 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="tc"><span class="tag">Localisation</span><h2 class="stitle">46 Bd Voltaire</h2><p class="sdesc mx">Quartier Cleunay-Mabilais, Rennes.</p></div>
+    <iframe src="https://www.google.com/maps?q=46+Boulevard+Voltaire+35000+Rennes&output=embed" style="width:100%;height:400px;border:none;margin-top:40px" allowfullscreen loading="lazy"></iframe>
+  </div>
+</section>
+
+<section id="faq" class="bg-grey">
+  <div class="container">
+    <div class="tc"><span class="tag">FAQ</span><h2 class="stitle">Questions</h2></div>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Comment réserver ? <span class="arr">▼</span></button><div class="faq-a"><p>Réservez directement sur Planity ou appelez-nous au 07 81 08 58 17. Nous recommandons la réservation en ligne pour choisir votre créneau préféré.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Proposez-vous des soins visage ? <span class="arr">▼</span></button><div class="faq-a"><p>Oui ! Notre soin du visage comprend nettoyage, gommage et hydratation. C'est le complément idéal d'une coupe pour un résultat complet.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Acceptez-vous les enfants ? <span class="arr">▼</span></button><div class="faq-a"><p>Absolument. Nous accueillons les plus jeunes avec bienveillance pour une coupe soignée dans un cadre professionnel.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Combien de temps dure une coupe ? <span class="arr">▼</span></button><div class="faq-a"><p>Comptez environ 30 à 45 minutes pour une coupe, et jusqu'à 1h pour un combo coupe + barbe + soin. Nous prenons le temps nécessaire pour un résultat impeccable.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="hours">
+  <div class="container">
+    <div class="tc"><span class="tag">Horaires</span><h2 class="stitle">Ouverture</h2></div>
+    <div class="hours-table reveal">
+      <div class="hrow"><span class="day">Lundi</span><span>09:00 – 19:30</span></div>
+      <div class="hrow"><span class="day">Mardi</span><span>09:00 – 19:30</span></div>
+      <div class="hrow"><span class="day">Mercredi</span><span>09:00 – 19:30</span></div>
+      <div class="hrow"><span class="day">Jeudi</span><span>09:00 – 19:30</span></div>
+      <div class="hrow"><span class="day">Vendredi</span><span>09:00 – 19:30</span></div>
+      <div class="hrow"><span class="day">Samedi</span><span>09:00 – 19:30</span></div>
+      <div class="hrow"><span class="day">Dimanche</span><span style="color:#c0392b;font-weight:600">Fermé</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="bg-grey">
+  <div class="container">
+    <div class="tc"><span class="tag">Contact</span><h2 class="stitle">Rendez-vous</h2></div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="ci"><div class="ci-icon">📍</div><div><h4>Adresse</h4><p>46 Bd Voltaire<br>35000 Rennes</p><a href="https://www.google.com/maps/dir/?api=1&destination=46+Boulevard+Voltaire+35000+Rennes" target="_blank">Itinéraire →</a></div></div>
+        <div class="ci"><div class="ci-icon">📞</div><div><h4>Téléphone</h4><p><a href="tel:0781085817">07 81 08 58 17</a></p></div></div>
+        <div class="ci"><div class="ci-icon">📅</div><div><h4>Réservation</h4><p><a href="https://www.planity.com" target="_blank">Réserver sur Planity →</a></p></div></div>
+        <div class="ci"><div class="ci-icon">⭐</div><div><h4>Avis Google</h4><p>4,9/5 — 107 avis<br><a href="https://www.google.com/maps/search/Elite+Barber+Lounge+Rennes" target="_blank">Voir les avis →</a></p></div></div>
+      </div>
+      <div class="cform reveal rd1">
+        <h3 style="font-family:var(--font-heading);font-size:1.1rem;margin-bottom:20px;letter-spacing:3px">CONTACT</h3>
+        <div class="frow"><div class="fg"><label>Nom</label><input type="text" placeholder="Votre nom"></div><div class="fg"><label>Téléphone</label><input type="tel" placeholder="06 00 00 00 00"></div></div>
+        <div class="fg"><label>Prestation</label><input type="text" placeholder="Coupe, barbe, soin…"></div>
+        <div class="fg"><label>Message</label><textarea placeholder="Votre message…"></textarea></div>
+        <button class="btn btn-gold" style="width:100%;justify-content:center">Envoyer</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-brand">Elite <span style="color:var(--gold)">Barber</span> Lounge</div><p style="font-size:.82rem;line-height:1.7;margin-bottom:16px">Barbier premium — 46 Bd Voltaire, 35000 Rennes. L'excellence au masculin.</p></div>
+      <div><h4>Navigation</h4><ul><li><a href="#about">Le salon</a></li><li><a href="#services">Prestations</a></li><li><a href="#reviews">Avis</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div><h4>Infos</h4><ul><li>46 Bd Voltaire</li><li>35000 Rennes</li><li><a href="tel:0781085817">07 81 08 58 17</a></li><li><a href="https://www.planity.com" target="_blank">Planity</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Elite Barber Lounge — Tous droits réservés</p>
+      <p class="walter-credit">Aperçu réalisé par <a href="https://walter-studio.fr" target="_blank">WALTER Studio</a> — walter-studio.fr</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const header=document.getElementById('header');
+window.addEventListener('scroll',()=>{header.classList.toggle('scrolled',window.scrollY>50)});
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+</script>
+</body>
+</html>

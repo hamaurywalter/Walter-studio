@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Institut Zen Beauté — Chartres-de-Bretagne</title>
+<!-- Palette : vert sauge + beige crème + or doux — évoque nature, zen, bien-être -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════ RESET & VARIABLES ═══════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --sage:#7D9B76;--sage-dark:#5C7A55;--sage-light:#A8C5A0;
+  --cream:#F5F0E8;--cream-dark:#EDE5D8;
+  --gold:#C4A35A;--gold-light:#D4B96E;
+  --dark:#2C2C2C;--text:#4A4A4A;--white:#FFFFFF;
+  --font-heading:'Playfair Display',Georgia,serif;
+  --font-body:'Lato','Helvetica Neue',sans-serif;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-body);color:var(--text);line-height:1.7;background:var(--white);overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--font-heading);color:var(--dark);line-height:1.3}
+.container{max-width:1140px;margin:0 auto;padding:0 24px}
+
+/* ═══════════════ HEADER STICKY ═══════════════ */
+header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(255,255,255,0.97);backdrop-filter:blur(10px);border-bottom:1px solid rgba(125,155,118,0.15);transition:box-shadow .3s}
+header.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.08)}
+header .container{display:flex;align-items:center;justify-content:space-between;height:70px}
+.logo{font-family:var(--font-heading);font-size:1.4rem;color:var(--sage-dark);font-weight:700;letter-spacing:0.5px}
+.logo span{color:var(--gold)}
+nav{display:flex;align-items:center;gap:28px}
+nav a{font-size:.88rem;font-weight:400;color:var(--text);transition:color .3s;letter-spacing:.3px}
+nav a:hover{color:var(--sage)}
+.btn-cta{display:inline-flex;align-items:center;gap:8px;background:var(--sage);color:var(--white);padding:10px 24px;border-radius:50px;font-size:.88rem;font-weight:700;letter-spacing:.5px;transition:all .3s;border:none;cursor:pointer}
+.btn-cta:hover{background:var(--sage-dark);transform:translateY(-2px);box-shadow:0 6px 20px rgba(125,155,118,0.35)}
+.btn-cta-gold{background:var(--gold)}
+.btn-cta-gold:hover{background:#B8943E;box-shadow:0 6px 20px rgba(196,163,90,0.35)}
+.btn-outline{background:transparent;border:2px solid var(--white);color:var(--white)}
+.btn-outline:hover{background:var(--white);color:var(--sage-dark)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}
+.hamburger span{width:24px;height:2px;background:var(--dark);transition:.3s}
+
+/* ═══════════════ HERO ═══════════════ */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(135deg,#5C7A55 0%,#7D9B76 50%,#A8C5A0 100%)}
+.hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1600&q=80') center/cover no-repeat;opacity:0.25}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(92,122,85,0.3) 0%,rgba(92,122,85,0.6) 100%)}
+.hero-content{position:relative;z-index:2;text-align:center;color:var(--white);padding:120px 24px 80px}
+.hero-badge{display:inline-block;background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.25);padding:8px 20px;border-radius:50px;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px}
+.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;margin-bottom:16px;text-shadow:0 2px 30px rgba(0,0,0,0.2)}
+.hero h1 em{font-style:italic;color:var(--gold-light)}
+.hero-sub{font-size:clamp(1rem,2vw,1.3rem);font-weight:300;max-width:600px;margin:0 auto 40px;opacity:0.92;line-height:1.8}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+/* ═══════════════ INFO BAR ═══════════════ */
+.info-bar{background:var(--cream);border-bottom:1px solid var(--cream-dark)}
+.info-bar .container{display:flex;justify-content:center;align-items:center;gap:40px;padding:16px 24px;flex-wrap:wrap}
+.info-item{display:flex;align-items:center;gap:8px;font-size:.9rem;white-space:nowrap}
+.info-item .icon{font-size:1.2rem}
+.info-item strong{color:var(--sage-dark)}
+
+/* ═══════════════ SECTIONS ═══════════════ */
+section{padding:90px 0}
+.section-tag{display:inline-block;font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:var(--sage);font-weight:700;margin-bottom:12px}
+.section-title{font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:16px}
+.section-desc{font-size:1.05rem;color:var(--text);max-width:600px;line-height:1.8;opacity:0.85}
+.text-center{text-align:center}
+.mx-auto{margin-left:auto;margin-right:auto}
+.bg-cream{background:var(--cream)}
+.bg-sage{background:var(--sage);color:var(--white)}
+.bg-sage .section-tag{color:var(--gold-light)}
+.bg-sage .section-title{color:var(--white)}
+.bg-sage .section-desc{color:rgba(255,255,255,0.85)}
+
+/* ═══════════════ ABOUT ═══════════════ */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:50px}
+.about-img{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.1)}
+.about-img img{width:100%;height:450px;object-fit:cover}
+.about-img .experience-badge{position:absolute;bottom:24px;right:24px;background:var(--gold);color:var(--white);padding:16px 24px;border-radius:12px;text-align:center;box-shadow:0 8px 30px rgba(196,163,90,0.4)}
+.experience-badge .number{font-family:var(--font-heading);font-size:2.5rem;font-weight:700;line-height:1}
+.experience-badge .label{font-size:.75rem;text-transform:uppercase;letter-spacing:1px}
+.about-text h2{margin-bottom:20px}
+.about-text p{margin-bottom:16px}
+.about-signature{font-family:var(--font-heading);font-style:italic;font-size:1.3rem;color:var(--sage-dark);margin-top:24px}
+
+/* ═══════════════ SERVICES ═══════════════ */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;margin-top:50px}
+.service-card{background:var(--white);border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.06);transition:all .4s}
+.service-card:hover{transform:translateY(-8px);box-shadow:0 16px 40px rgba(0,0,0,0.12)}
+.service-card img{width:100%;height:220px;object-fit:cover}
+.service-card-body{padding:28px}
+.service-card h3{font-size:1.25rem;margin-bottom:10px}
+.service-card p{font-size:.92rem;line-height:1.7;color:var(--text);opacity:0.8}
+.service-card .price{display:inline-block;margin-top:14px;font-weight:700;color:var(--sage-dark);font-size:1rem}
+
+/* ═══════════════ GALLERY ═══════════════ */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:50px}
+.gallery-grid .item{border-radius:12px;overflow:hidden;position:relative;aspect-ratio:1;cursor:pointer}
+.gallery-grid .item img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.gallery-grid .item:hover img{transform:scale(1.08)}
+.gallery-grid .item:nth-child(1){grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+
+/* ═══════════════ STATS ═══════════════ */
+.stats{padding:60px 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;text-align:center}
+.stat-item .stat-number{font-family:var(--font-heading);font-size:clamp(2rem,4vw,3.2rem);font-weight:700;color:var(--gold-light)}
+.stat-item .stat-label{font-size:.88rem;margin-top:6px;opacity:0.85}
+
+/* ═══════════════ REVIEWS ═══════════════ */
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px;margin-top:50px}
+.review-card{background:var(--white);padding:36px;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.06);position:relative}
+.review-card::before{content:'"';font-family:var(--font-heading);font-size:5rem;color:var(--sage-light);position:absolute;top:10px;left:20px;line-height:1;opacity:0.3}
+.review-stars{color:var(--gold);font-size:1.1rem;margin-bottom:14px}
+.review-text{font-size:.95rem;line-height:1.8;font-style:italic;color:var(--text);margin-bottom:18px;position:relative;z-index:1}
+.review-author{font-weight:700;color:var(--sage-dark);font-size:.88rem}
+.review-date{font-size:.78rem;color:#999;margin-top:4px}
+.google-rating{display:flex;align-items:center;gap:12px;justify-content:center;margin-top:40px;padding:20px;background:var(--cream);border-radius:12px}
+.google-rating img{width:28px}
+.google-rating .rating-score{font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--dark)}
+
+/* ═══════════════ MAP ═══════════════ */
+.map-section iframe{width:100%;height:400px;border:none;border-radius:16px;margin-top:40px;box-shadow:0 4px 20px rgba(0,0,0,0.08)}
+
+/* ═══════════════ FAQ ═══════════════ */
+.faq-list{max-width:750px;margin:50px auto 0}
+.faq-item{border-bottom:1px solid var(--cream-dark);overflow:hidden}
+.faq-question{width:100%;background:none;border:none;padding:22px 0;font-family:var(--font-body);font-size:1.05rem;font-weight:700;color:var(--dark);text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .3s}
+.faq-question:hover{color:var(--sage)}
+.faq-question .arrow{font-size:1.3rem;transition:transform .3s;color:var(--sage)}
+.faq-item.open .arrow{transform:rotate(180deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s;padding:0 0}
+.faq-item.open .faq-answer{max-height:300px;padding:0 0 22px}
+.faq-answer p{font-size:.93rem;line-height:1.8;color:var(--text);opacity:0.85}
+
+/* ═══════════════ HOURS ═══════════════ */
+.hours-table{max-width:500px;margin:40px auto 0}
+.hours-row{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(125,155,118,0.15)}
+.hours-row:last-child{border:none}
+.hours-row .day{font-weight:700;color:var(--dark)}
+.hours-row .time{color:var(--text)}
+.hours-row.today{background:rgba(125,155,118,0.08);padding:14px 16px;border-radius:8px;margin:0 -16px}
+
+/* ═══════════════ CONTACT ═══════════════ */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;margin-top:50px;align-items:start}
+.contact-info-item{display:flex;gap:16px;align-items:flex-start;margin-bottom:28px}
+.contact-icon{width:50px;height:50px;background:var(--cream);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.contact-info-item h4{font-size:1rem;margin-bottom:4px}
+.contact-info-item p{font-size:.9rem;color:var(--text);opacity:0.8}
+.contact-info-item a{color:var(--sage-dark);font-weight:600}
+.contact-form{background:var(--cream);padding:40px;border-radius:16px}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;font-size:.85rem;font-weight:700;color:var(--dark);margin-bottom:6px}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:14px 18px;border:1px solid #ddd;border-radius:10px;font-family:var(--font-body);font-size:.95rem;background:var(--white);transition:border-color .3s}
+.form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--sage)}
+.form-group textarea{height:120px;resize:vertical}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* ═══════════════ FOOTER ═══════════════ */
+footer{background:var(--dark);color:rgba(255,255,255,0.7);padding:60px 0 30px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand{font-family:var(--font-heading);font-size:1.4rem;color:var(--white);margin-bottom:12px}
+footer h4{color:var(--white);font-size:.95rem;margin-bottom:16px}
+footer ul{list-style:none}
+footer li{margin-bottom:10px}
+footer li a{font-size:.88rem;transition:color .3s}
+footer li a:hover{color:var(--sage-light)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;text-align:center;font-size:.8rem}
+.walter-credit{margin-top:12px;font-size:.75rem;opacity:0.5}
+.walter-credit a{color:var(--sage-light);text-decoration:underline}
+
+/* ═══════════════ ANIMATIONS ═══════════════ */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.15s}
+.reveal-delay-2{transition-delay:.3s}
+.reveal-delay-3{transition-delay:.45s}
+
+/* ═══════════════ RESPONSIVE ═══════════════ */
+@media(max-width:900px){
+  nav a:not(.btn-cta){display:none}
+  .hamburger{display:flex}
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .gallery-grid .item:nth-child(1){grid-column:span 2}
+  .footer-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .hero h1{font-size:2.2rem}
+  section{padding:60px 0}
+  .info-bar .container{gap:20px}
+  .gallery-grid{grid-template-columns:1fr 1fr}
+  .gallery-grid .item:nth-child(1){grid-column:span 2}
+  .services-grid{grid-template-columns:1fr}
+  .reviews-grid{grid-template-columns:1fr}
+  header .container{height:60px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ HEADER ═══════════════ -->
+<header id="header">
+  <div class="container">
+    <a href="#" class="logo">Zen <span>Beauté</span></a>
+    <nav>
+      <a href="#about">À propos</a>
+      <a href="#services">Soins</a>
+      <a href="#gallery">Galerie</a>
+      <a href="#reviews">Avis</a>
+      <a href="#contact">Contact</a>
+      <a href="tel:0299413509" class="btn-cta">📞 Appeler</a>
+    </nav>
+    <button class="hamburger" onclick="document.querySelector('nav').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Institut de beauté — Chartres-de-Bretagne</div>
+    <h1>Institut Zen <em>Beauté</em></h1>
+    <p class="hero-sub">Un havre de douceur et de sérénité, où chaque soin est un moment rien qu'à vous. Plus de 20 ans de savoir-faire au service de votre beauté.</p>
+    <div class="hero-btns">
+      <a href="tel:0299413509" class="btn-cta btn-cta-gold">📞 Prendre rendez-vous</a>
+      <a href="#services" class="btn-cta btn-outline">Découvrir nos soins</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ INFO BAR ═══════════════ -->
+<div class="info-bar">
+  <div class="container">
+    <div class="info-item"><span class="icon">⭐</span> <strong>4,9/5</strong> — 22 avis Google</div>
+    <div class="info-item"><span class="icon">🕐</span> Aujourd'hui : <strong>Consultez nos horaires</strong></div>
+    <div class="info-item"><span class="icon">📞</span> <a href="tel:0299413509"><strong>02 99 41 35 09</strong></a></div>
+    <div class="info-item"><span class="icon">♿</span> <strong>Accès PMR</strong></div>
+  </div>
+</div>
+
+<!-- ═══════════════ À PROPOS ═══════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img reveal">
+        <img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=800&q=80" alt="Soin du visage Institut Zen Beauté" loading="lazy">
+        <div class="experience-badge">
+          <div class="number">20+</div>
+          <div class="label">ans d'expérience</div>
+        </div>
+      </div>
+      <div class="about-text reveal reveal-delay-1">
+        <span class="section-tag">Notre histoire</span>
+        <h2 class="section-title">Un savoir-faire artisanal au cœur de Chartres-de-Bretagne</h2>
+        <p>Bienvenue à l'Institut Zen Beauté, un espace dédié à votre bien-être, niché au cœur du centre commercial Le Bretagne, place René Cassin. Depuis plus de vingt ans, Martine vous accueille dans un cadre chaleureux et apaisant, loin de l'agitation du quotidien.</p>
+        <p>Passionnée par son métier, Martine met tout son savoir-faire au service de chaque cliente, avec des produits soigneusement sélectionnés et des techniques éprouvées. Ici, chaque soin est personnalisé, chaque visite est un moment de ressourcement.</p>
+        <p>L'institut est accessible aux personnes à mobilité réduite, parce que le bien-être est un droit pour tous.</p>
+        <div class="about-signature">— Martine, votre esthéticienne</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SERVICES ═══════════════ -->
+<section id="services" class="bg-cream">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-tag">Nos prestations</span>
+      <h2 class="section-title">Des soins sur-mesure pour chaque besoin</h2>
+      <p class="section-desc mx-auto">Des techniques expertes et des produits de qualité professionnelle pour sublimer votre beauté naturelle.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80" alt="Soin visage" loading="lazy">
+        <div class="service-card-body">
+          <h3>Soins du visage</h3>
+          <p>Des soins ciblés pour redonner éclat et jeunesse à votre peau : Hydra Advanced, Vitamin Energy, soin classique… Chaque protocole est adapté à votre type de peau.</p>
+          <span class="price">À partir de 45 €</span>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80" alt="Soin du corps" loading="lazy">
+        <div class="service-card-body">
+          <h3>Soins du corps</h3>
+          <p>Massages relaxants du dos, gommages, enveloppements… Offrez à votre corps un véritable moment de détente et de régénération en profondeur.</p>
+          <span class="price">À partir de 50 €</span>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80" alt="Épilation" loading="lazy">
+        <div class="service-card-body">
+          <h3>Épilation</h3>
+          <p>Épilation à la cire chaude ou tiède, pour des résultats durables et une peau douce. Demi-jambes, maillot, aisselles, visage… toutes les zones sont traitées avec soin.</p>
+          <span class="price">À partir de 10 €</span>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80" alt="Manucure" loading="lazy">
+        <div class="service-card-body">
+          <h3>Beauté des mains & pieds</h3>
+          <p>Manucure, pose de vernis semi-permanent, beauté des pieds… Des mains et des pieds soignés pour une allure impeccable au quotidien.</p>
+          <span class="price">À partir de 20 €</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <img src="https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=600&q=80" alt="Maquillage" loading="lazy">
+        <div class="service-card-body">
+          <h3>Maquillage</h3>
+          <p>Maquillage de jour, de soirée ou de mariée. Martine sublime votre beauté naturelle avec des produits professionnels pour un résultat longue tenue.</p>
+          <span class="price">À partir de 30 €</span>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600&q=80" alt="Duo soins" loading="lazy">
+        <div class="service-card-body">
+          <h3>Offres duo & combos</h3>
+          <p>Profitez de nos formules combinées à prix réduit : soin visage + soin du dos relaxant, Hydra Advanced + Vitamin Energy… Jusqu'à 30 € d'économie !</p>
+          <span class="price">À partir de 92 €</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ GALLERY ═══════════════ -->
+<section id="gallery">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-tag">Galerie</span>
+      <h2 class="section-title">Un aperçu de notre univers</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="item reveal"><img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=800&q=80" alt="Soin visage" loading="lazy"></div>
+      <div class="item reveal reveal-delay-1"><img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=500&q=80" alt="Ambiance zen" loading="lazy"></div>
+      <div class="item reveal reveal-delay-2"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80" alt="Produits de soin" loading="lazy"></div>
+      <div class="item reveal reveal-delay-1"><img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=500&q=80" alt="Soin des mains" loading="lazy"></div>
+      <div class="item reveal reveal-delay-2"><img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=500&q=80" alt="Espace détente" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ STATS ═══════════════ -->
+<section class="stats bg-sage">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-number">20+</div>
+        <div class="stat-label">Années d'expérience</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <div class="stat-number">4,9★</div>
+        <div class="stat-label">Note Google</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <div class="stat-number">22</div>
+        <div class="stat-label">Avis clients</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <div class="stat-number">6</div>
+        <div class="stat-label">Types de soins</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ AVIS CLIENTS ═══════════════ -->
+<section id="reviews">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-tag">Témoignages</span>
+      <h2 class="section-title">Ce que nos clientes disent de nous</h2>
+      <p class="section-desc mx-auto">Des avis authentiques, directement depuis notre fiche Google.</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">« J'ai été très bien accueilli. L'esthéticienne est très pro. Je vous la recommande. »</p>
+        <div class="review-author">dédé</div>
+        <div class="review-date">Local Guide · Janvier 2025</div>
+      </div>
+      <div class="review-card reveal reveal-delay-1">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">« Très bonne prestation avec une esthéticienne très sympa et rassurante pour une débutante douillette comme moi 😊 »</p>
+        <div class="review-author">Katell Lamour</div>
+        <div class="review-date">Avis Google vérifié</div>
+      </div>
+      <div class="review-card reveal reveal-delay-2">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">« Accueil parfait. Gentillesse de l'esthéticienne. Travail soigné. Institut à recommander. »</p>
+        <div class="review-author">Nadine M.</div>
+        <div class="review-date">Mars 2021</div>
+      </div>
+    </div>
+    <div class="google-rating reveal">
+      <span style="font-size:1.8rem">🏆</span>
+      <div>
+        <div class="rating-score">4,9 / 5</div>
+        <div style="font-size:.85rem;color:var(--text)">Basé sur 22 avis Google</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ POURQUOI NOUS ═══════════════ -->
+<section class="bg-cream">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-tag">Pourquoi nous choisir</span>
+      <h2 class="section-title">Ce qui fait la différence</h2>
+    </div>
+    <div class="services-grid" style="margin-top:40px">
+      <div class="service-card reveal" style="text-align:center;padding:40px 30px">
+        <div style="font-size:3rem;margin-bottom:16px">💆‍♀️</div>
+        <h3>Expertise & passion</h3>
+        <p>Plus de 20 ans de métier, une formation continue et une passion intacte pour sublimer chaque cliente.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1" style="text-align:center;padding:40px 30px">
+        <div style="font-size:3rem;margin-bottom:16px">🌿</div>
+        <h3>Produits de qualité</h3>
+        <p>Des gammes professionnelles soigneusement sélectionnées, adaptées à tous les types de peau.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2" style="text-align:center;padding:40px 30px">
+        <div style="font-size:3rem;margin-bottom:16px">♿</div>
+        <h3>Accessible à tous</h3>
+        <p>Institut entièrement accessible PMR : parking adapté et entrée de plain-pied.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ MAP ═══════════════ -->
+<section class="map-section" id="map">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-tag">Nous trouver</span>
+      <h2 class="section-title">Au cœur de Chartres-de-Bretagne</h2>
+      <p class="section-desc mx-auto">Centre commercial Le Bretagne, 7 Place René Cassin — facilement accessible en voiture et à pied, avec parking gratuit sur place.</p>
+    </div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2669.5!2d-1.7063187!3d48.0412691!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480f1f919e6baca3%3A0x9f0bf54c233104a!2sInstitut%20Zen%20Beaut%C3%A9!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr" allowfullscreen loading="lazy" title="Localisation Institut Zen Beauté"></iframe>
+  </div>
+</section>
+
+<!-- ═══════════════ FAQ ═══════════════ -->
+<section id="faq" class="bg-cream">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-tag">Questions fréquentes</span>
+      <h2 class="section-title">Tout ce que vous devez savoir</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          Faut-il prendre rendez-vous ?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-answer"><p>Oui, il est vivement recommandé de prendre rendez-vous par téléphone au 02 99 41 35 09 afin de vous garantir un créneau adapté et un service personnalisé. Martine se consacre entièrement à chaque cliente.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          L'institut est-il accessible aux personnes à mobilité réduite ?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-answer"><p>Absolument. L'Institut Zen Beauté dispose d'un parking PMR et d'une entrée accessible de plain-pied. Tout le monde est le bienvenu.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          Quels moyens de paiement acceptez-vous ?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-answer"><p>Nous acceptons les espèces, les cartes bancaires (Visa, Mastercard), ainsi que les chèques cadeaux. N'hésitez pas à demander si vous avez un moyen de paiement spécifique.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          Combien de temps dure un soin visage ?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-answer"><p>Un soin visage dure généralement entre 45 minutes et 1h15 selon le protocole choisi. Les soins combinés (visage + corps) peuvent durer jusqu'à 1h30. Prévoyez un moment rien qu'à vous !</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          Proposez-vous des cartes cadeaux ?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-answer"><p>Oui, les bons cadeaux sont disponibles pour tous les soins et à tous les montants. C'est l'idée parfaite pour offrir un moment de bien-être à un proche.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          Peut-on venir sans connaître les soins ?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-answer"><p>Bien sûr ! Martine prend le temps de discuter avec vous de vos besoins et de votre peau avant de vous recommander le soin le plus adapté. Aucune connaissance préalable n'est nécessaire.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ HORAIRES ═══════════════ -->
+<section id="hours">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-tag">Horaires d'ouverture</span>
+      <h2 class="section-title">Quand nous rendre visite</h2>
+    </div>
+    <div class="hours-table reveal">
+      <div class="hours-row"><span class="day">Lundi</span><span class="time" style="color:#c0392b;font-weight:600">Fermé</span></div>
+      <div class="hours-row"><span class="day">Mardi</span><span class="time">09:00 – 12:00 · 14:00 – 19:00</span></div>
+      <div class="hours-row"><span class="day">Mercredi</span><span class="time">09:00 – 12:00 · 14:00 – 19:00</span></div>
+      <div class="hours-row"><span class="day">Jeudi</span><span class="time">09:00 – 12:00 · 14:00 – 19:00</span></div>
+      <div class="hours-row"><span class="day">Vendredi</span><span class="time">09:00 – 12:00 · 14:00 – 19:00</span></div>
+      <div class="hours-row"><span class="day">Samedi</span><span class="time">09:00 – 12:00 · 14:00 – 16:00</span></div>
+      <div class="hours-row"><span class="day">Dimanche</span><span class="time" style="color:#c0392b;font-weight:600">Fermé</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CONTACT ═══════════════ -->
+<section id="contact" class="bg-cream">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-tag">Contact</span>
+      <h2 class="section-title">Prenez rendez-vous</h2>
+      <p class="section-desc mx-auto">Un appel suffit pour réserver votre moment de bien-être.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="contact-info-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h4>Adresse</h4>
+            <p>7 Place René Cassin<br>35131 Chartres-de-Bretagne</p>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Institut+Zen+Beauté+Chartres-de-Bretagne" target="_blank">Obtenir l'itinéraire →</a>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <h4>Téléphone</h4>
+            <p><a href="tel:0299413509">02 99 41 35 09</a></p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">🌐</div>
+          <div>
+            <h4>Réseaux sociaux</h4>
+            <p><a href="https://www.facebook.com/institutzenbeaute" target="_blank">Facebook — Institut Zen Beauté</a></p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">♿</div>
+          <div>
+            <h4>Accessibilité</h4>
+            <p>Parking PMR · Entrée accessible</p>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form reveal reveal-delay-1">
+        <h3 style="font-size:1.2rem;margin-bottom:20px">Demande de rendez-vous</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Prénom</label>
+            <input type="text" placeholder="Votre prénom">
+          </div>
+          <div class="form-group">
+            <label>Nom</label>
+            <input type="text" placeholder="Votre nom">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Téléphone</label>
+          <input type="tel" placeholder="06 00 00 00 00">
+        </div>
+        <div class="form-group">
+          <label>Soin souhaité</label>
+          <select>
+            <option>Soin du visage</option>
+            <option>Soin du corps / Massage</option>
+            <option>Épilation</option>
+            <option>Beauté des mains</option>
+            <option>Beauté des pieds</option>
+            <option>Maquillage</option>
+            <option>Autre / Je ne sais pas encore</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Précisez vos souhaits, votre disponibilité…"></textarea>
+        </div>
+        <button class="btn-cta" style="width:100%;justify-content:center">Envoyer ma demande</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Zen Beauté</div>
+        <p style="font-size:.9rem;line-height:1.7;margin-bottom:16px">Institut de beauté à Chartres-de-Bretagne, près de Bruz et Rennes. Soins du visage, du corps, épilation, manucure et maquillage par Martine, esthéticienne passionnée depuis plus de 20 ans.</p>
+        <a href="https://www.facebook.com/institutzenbeaute" target="_blank" style="display:inline-block;background:rgba(255,255,255,0.1);padding:8px 16px;border-radius:8px;font-size:.85rem">📘 Facebook</a>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#about">À propos</a></li>
+          <li><a href="#services">Nos soins</a></li>
+          <li><a href="#gallery">Galerie</a></li>
+          <li><a href="#reviews">Avis clients</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Infos pratiques</h4>
+        <ul>
+          <li>7 Pl. René Cassin</li>
+          <li>35131 Chartres-de-Bretagne</li>
+          <li><a href="tel:0299413509">02 99 41 35 09</a></li>
+          <li>Mar-Ven : 9h-12h / 14h-19h</li>
+          <li>Sam : 9h-12h / 14h-16h</li>
+          <li>Dim & Lun : Fermé</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Institut Zen Beauté — Tous droits réservés</p>
+      <p class="walter-credit">Aperçu réalisé par <a href="https://walter-studio.fr" target="_blank">WALTER Studio</a> — walter-studio.fr</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════ SCRIPTS ═══════════════ -->
+<script>
+// Header scroll effect
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Reveal on scroll (IntersectionObserver)
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>

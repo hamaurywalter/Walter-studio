@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DS'R — Salon de Coiffure & Institut de Beauté — Rennes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --purple:#6B4C8A;--purple-dark:#553A70;--rose:#F0E4EC;--gold-rose:#D4A07A;
+  --black:#1A1A1A;--text:#413548;--white:#FFFFFF;--soft:#FAF6F9;
+  --font-heading:'Josefin Sans',sans-serif;
+  --font-body:'Nunito Sans','Helvetica Neue',sans-serif;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-body);color:var(--text);line-height:1.7;background:var(--soft);overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--font-heading);color:var(--black);line-height:1.3}
+.container{max-width:1140px;margin:0 auto;padding:0 24px}
+
+header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(250,246,249,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(107,76,138,0.08);transition:box-shadow .3s}
+header.scrolled{box-shadow:0 2px 20px rgba(107,76,138,0.06)}
+header .container{display:flex;align-items:center;justify-content:space-between;height:70px}
+.logo{font-family:var(--font-heading);font-size:1.6rem;font-weight:700;color:var(--purple);letter-spacing:2px}
+nav{display:flex;align-items:center;gap:28px}
+nav a{font-size:.8rem;font-weight:500;color:var(--text);transition:color .3s;letter-spacing:1px;text-transform:uppercase}
+nav a:hover{color:var(--purple)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:50px;font-size:.8rem;font-weight:600;letter-spacing:.5px;transition:all .3s;border:none;cursor:pointer}
+.btn-purple{background:var(--purple);color:var(--white)}
+.btn-purple:hover{background:var(--purple-dark);transform:translateY(-2px);box-shadow:0 8px 25px rgba(107,76,138,0.3)}
+.btn-outline-w{background:transparent;border:2px solid var(--white);color:var(--white);border-radius:50px}
+.btn-outline-w:hover{background:var(--white);color:var(--purple)}
+
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;background:var(--black)}
+.hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1600&q=80') center/cover;opacity:0.3}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(107,76,138,0.55) 0%,rgba(26,26,26,0.75) 100%)}
+.hero-content{position:relative;z-index:2;color:var(--white);padding:120px 24px 80px;max-width:700px;margin:0 auto;text-align:center}
+.hero-badge{display:inline-block;background:rgba(212,160,122,0.2);border:1px solid rgba(212,160,122,0.4);padding:8px 24px;border-radius:50px;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:28px;color:var(--gold-rose)}
+.hero h1{font-size:clamp(3rem,7vw,5.5rem);font-weight:700;margin-bottom:16px;letter-spacing:3px}
+.hero h1 span{color:var(--gold-rose)}
+.hero-sub{font-size:clamp(.95rem,2vw,1.1rem);font-weight:300;max-width:500px;margin:0 auto 40px;opacity:0.85;line-height:1.9}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.hero-rating{margin-top:40px;display:flex;align-items:center;gap:12px;justify-content:center;font-size:.88rem;opacity:0.8}
+.hero-rating .stars{color:var(--gold-rose);font-size:1.2rem}
+
+.info-bar{background:var(--purple);color:var(--white);padding:14px 0}
+.info-bar .container{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;font-size:.85rem;font-weight:500}
+.info-bar a{color:var(--white)}
+
+section{padding:90px 0}
+.tag{font-size:.68rem;text-transform:uppercase;letter-spacing:3px;color:var(--purple);font-weight:600;margin-bottom:12px}
+.stitle{font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:16px;letter-spacing:1px}
+.sdesc{font-size:1rem;max-width:560px;line-height:1.8;opacity:0.8}
+.tc{text-align:center}.mx{margin-left:auto;margin-right:auto}
+.bg-white{background:var(--white)}
+.bg-purple{background:var(--purple);color:var(--white)}
+.bg-purple .tag{color:var(--gold-rose)}
+.bg-purple .stitle{color:var(--white)}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:50px}
+.about-img{border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(107,76,138,0.12)}
+.about-img img{width:100%;height:480px;object-fit:cover}
+.about-text p{margin-bottom:16px;font-size:.95rem}
+
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:50px}
+.scard{background:var(--white);border-radius:18px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.04);transition:all .4s;border:1px solid rgba(107,76,138,0.05)}
+.scard:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(107,76,138,0.1)}
+.scard img{width:100%;height:220px;object-fit:cover}
+.scard-body{padding:28px}
+.scard h3{font-size:1.15rem;margin-bottom:10px;letter-spacing:1px}
+.scard p{font-size:.88rem;line-height:1.7;opacity:0.8}
+
+.stats{padding:60px 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.sti .stn{font-family:var(--font-heading);font-size:clamp(2rem,4vw,3.2rem);font-weight:700;color:var(--gold-rose)}
+.sti .stl{font-size:.85rem;margin-top:6px;opacity:0.8}
+
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:24px;margin-top:50px}
+.rcard{background:var(--white);padding:36px;border-radius:18px;box-shadow:0 4px 16px rgba(0,0,0,0.04);border-left:4px solid var(--purple)}
+.rcard .stars{color:var(--gold-rose);font-size:1rem;margin-bottom:14px}
+.rcard .rtext{font-size:.92rem;line-height:1.8;font-style:italic;margin-bottom:18px}
+.rcard .rauthor{font-weight:700;color:var(--purple);font-size:.85rem}
+.rcard .rdate{font-size:.75rem;color:#999;margin-top:4px}
+
+.faq-list{max-width:720px;margin:50px auto 0}
+.faq-item{border-bottom:1px solid rgba(107,76,138,0.12)}
+.faq-q{width:100%;background:none;border:none;padding:22px 0;font-family:var(--font-body);font-size:1rem;font-weight:600;color:var(--black);text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .3s}
+.faq-q:hover{color:var(--purple)}
+.faq-q .arr{font-size:1.2rem;transition:transform .3s;color:var(--purple)}
+.faq-item.open .arr{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s}
+.faq-item.open .faq-a{max-height:300px;padding:0 0 22px}
+.faq-a p{font-size:.9rem;line-height:1.8;opacity:0.8}
+
+.hours-table{max-width:480px;margin:40px auto 0}
+.hrow{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(107,76,138,0.1)}
+.hrow:last-child{border:none}
+.hrow .day{font-weight:600}
+
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;margin-top:50px;align-items:start}
+.ci{display:flex;gap:16px;align-items:flex-start;margin-bottom:28px}
+.ci-icon{width:48px;height:48px;background:var(--rose);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.ci h4{font-size:.95rem;margin-bottom:4px}
+.ci p{font-size:.88rem;opacity:0.8}
+.ci a{color:var(--purple);font-weight:600}
+.cform{background:var(--rose);padding:40px;border-radius:18px}
+.fg{margin-bottom:18px}
+.fg label{display:block;font-size:.78rem;font-weight:600;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.fg input,.fg textarea,.fg select{width:100%;padding:13px 16px;border:1px solid #d9cfdd;border-radius:10px;font-family:var(--font-body);font-size:.9rem;background:var(--white);transition:border-color .3s}
+.fg input:focus,.fg textarea:focus{outline:none;border-color:var(--purple)}
+.fg textarea{height:110px;resize:vertical}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+footer{background:var(--black);color:rgba(255,255,255,0.6);padding:60px 0 30px}
+.footer-brand{font-family:var(--font-heading);font-size:1.5rem;color:var(--white);letter-spacing:2px;margin-bottom:12px}
+footer h4{color:var(--gold-rose);font-size:.82rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+footer ul{list-style:none}footer li{margin-bottom:10px}
+footer li a{font-size:.85rem;transition:color .3s}footer li a:hover{color:var(--gold-rose)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:24px;text-align:center;font-size:.78rem}
+.walter-credit{margin-top:10px;opacity:0.4;font-size:.72rem}
+.walter-credit a{color:var(--gold-rose)}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.rd1{transition-delay:.12s}.rd2{transition-delay:.24s}.rd3{transition-delay:.36s}
+
+@media(max-width:900px){nav a:not(.btn){display:none}.about-grid,.contact-grid{grid-template-columns:1fr}.stats-grid{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr}.frow{grid-template-columns:1fr}}
+@media(max-width:600px){section{padding:60px 0}.services-grid{grid-template-columns:1fr}.reviews-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="container">
+    <a href="#" class="logo">DS'R</a>
+    <nav>
+      <a href="#about">Le salon</a>
+      <a href="#services">Prestations</a>
+      <a href="#reviews">Avis</a>
+      <a href="#contact">Contact</a>
+      <a href="https://www.planity.com/dsr-35000-rennes" target="_blank" class="btn btn-purple">Réserver</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Coiffure · Beauté · Bien-être</div>
+    <h1>DS<span>'</span>R</h1>
+    <p class="hero-sub">Salon de coiffure & institut de beauté à Rennes. De la tête aux pieds, laissez-vous chouchouter.</p>
+    <div class="hero-btns">
+      <a href="https://www.planity.com/dsr-35000-rennes" target="_blank" class="btn btn-purple">Réserver en ligne</a>
+      <a href="#services" class="btn btn-outline-w">Nos prestations</a>
+    </div>
+    <div class="hero-rating">
+      <span class="stars">★★★★★</span>
+      <span>4,6/5 — 186 avis Google</span>
+    </div>
+  </div>
+</section>
+
+<div class="info-bar">
+  <div class="container">
+    <span>⭐ 4,6/5 (186 avis)</span>
+    <span>📍 51 Rue du Puits Mauger</span>
+    <a href="tel:0223056642">📞 02 23 05 66 42</a>
+    <span>✨ Coiffure + Institut</span>
+  </div>
+</div>
+
+<section id="about" class="bg-white">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img reveal">
+        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80" alt="Salon DS'R" loading="lazy">
+      </div>
+      <div class="about-text reveal rd1">
+        <span class="tag">Notre salon</span>
+        <h2 class="stitle">Un espace coiffure & beauté au cœur de Rennes</h2>
+        <p>DS'R, c'est autant un salon de coiffure qu'un institut de beauté. Niché au 51 rue du Puits Mauger, notre équipe vous accueille dans un espace chaleureux dédié à votre bien-être, de la tête aux pieds.</p>
+        <p>De la coupe et coloration capillaire aux soins du visage, en passant par la manucure, la pédicure et la beauté du regard — notre carte de prestations est riche et variée, pour que chaque visite soit un vrai moment pour soi.</p>
+        <p>Agathe et l'équipe DS'R sont réputées pour leur professionnalisme, leur écoute et la qualité irréprochable de leur travail. 186 avis Google et une note de 4,6/5 en témoignent.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="tc">
+      <span class="tag">Nos prestations</span>
+      <h2 class="stitle">De la tête aux pieds</h2>
+      <p class="sdesc mx">Coiffure, soins, beauté des mains & du regard — tout pour vous sentir belle et bien.</p>
+    </div>
+    <div class="services-grid">
+      <div class="scard reveal">
+        <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&q=80" alt="Coiffure" loading="lazy">
+        <div class="scard-body">
+          <h3>Coiffure</h3>
+          <p>Coupe, brushing, coloration, mèches, balayage, lissage… Des techniques maîtrisées pour sublimer votre chevelure.</p>
+        </div>
+      </div>
+      <div class="scard reveal rd1">
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80" alt="Manucure" loading="lazy">
+        <div class="scard-body">
+          <h3>Manucure</h3>
+          <p>Pose de vernis semi-permanent, nail art, soins des mains. Un travail de qualité reconnu par toutes nos clientes.</p>
+        </div>
+      </div>
+      <div class="scard reveal rd2">
+        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=600&q=80" alt="Pédicure" loading="lazy">
+        <div class="scard-body">
+          <h3>Pédicure</h3>
+          <p>Soin complet des pieds, pose de vernis, embellissement. Prenez soin de vos pieds avec douceur et expertise.</p>
+        </div>
+      </div>
+      <div class="scard reveal">
+        <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=600&q=80" alt="Soins visage" loading="lazy">
+        <div class="scard-body">
+          <h3>Soins du visage</h3>
+          <p>Nettoyage de peau, soins hydratants, anti-âge, éclat. Un moment de détente pour une peau rayonnante.</p>
+        </div>
+      </div>
+      <div class="scard reveal rd1">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80" alt="Beauté du regard" loading="lazy">
+        <div class="scard-body">
+          <h3>Beauté du regard</h3>
+          <p>Épilation sourcils, teinture, rehaussement de cils, extension. Sublimez votre regard avec des techniques pro.</p>
+        </div>
+      </div>
+      <div class="scard reveal rd2">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="Coloration" loading="lazy">
+        <div class="scard-body">
+          <h3>Coloration & technique</h3>
+          <p>Coloration, décoloration, balayage, ombré… Des techniques capillaires maîtrisées pour un résultat personnalisé.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats bg-purple">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="sti reveal"><div class="stn">4,6★</div><div class="stl" style="color:rgba(255,255,255,0.7)">Note Google</div></div>
+      <div class="sti reveal rd1"><div class="stn">186</div><div class="stl" style="color:rgba(255,255,255,0.7)">Avis clients</div></div>
+      <div class="sti reveal rd2"><div class="stn">2 en 1</div><div class="stl" style="color:rgba(255,255,255,0.7)">Coiffure + Institut</div></div>
+      <div class="sti reveal rd3"><div class="stn">Planity</div><div class="stl" style="color:rgba(255,255,255,0.7)">Réservation en ligne</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="bg-white">
+  <div class="container">
+    <div class="tc">
+      <span class="tag">Témoignages</span>
+      <h2 class="stitle">Elles parlent de DS'R</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="rcard reveal">
+        <div class="stars">★★★★★</div>
+        <p class="rtext">« Agathe m'a fait une magnifique manucure digne de ce nom. Hyper gentille, pro et elle fait franchement du travail de qualité. Elle a été hyper à l'écoute et m'a fait les ongles exactement comme je l'imaginais. »</p>
+        <div class="rauthor">Cynthia Jaegle</div>
+        <div class="rdate">Avril 2026</div>
+      </div>
+      <div class="rcard reveal rd1">
+        <div class="stars">★★★★★</div>
+        <p class="rtext">« Je suis absolument ravie de mon expérience avec Agathe ! Dès mon arrivée, j'ai été accueillie avec beaucoup de chaleur et de bienveillance. Sa douceur pendant la pédicure a vraiment fait toute la différence. »</p>
+        <div class="rauthor">Sandra Scordia Raïd</div>
+        <div class="rdate">Avril 2026</div>
+      </div>
+      <div class="rcard reveal rd2">
+        <div class="stars">★★★★★</div>
+        <p class="rtext">« Je recommande le travail d'Agathe, elle est professionnelle, perfectionniste, hyper arrangeante et met à l'aise tout de suite. Son travail est toujours impeccable, je suis ravie ! Allez-y les yeux fermés ! »</p>
+        <div class="rauthor">Lucie Robin</div>
+        <div class="rdate">Février 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="tc"><span class="tag">Nous trouver</span><h2 class="stitle">51 Rue du Puits Mauger</h2><p class="sdesc mx">En plein centre de Rennes, quartier Colombier.</p></div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2665!2d-1.682!3d48.106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zRFNSIENvaWZmdXJl!5e0!3m2!1sfr!2sfr" style="width:100%;height:400px;border:none;border-radius:18px;margin-top:40px;box-shadow:0 4px 20px rgba(0,0,0,0.06)" allowfullscreen loading="lazy"></iframe>
+  </div>
+</section>
+
+<section id="faq" class="bg-white">
+  <div class="container">
+    <div class="tc"><span class="tag">FAQ</span><h2 class="stitle">Questions fréquentes</h2></div>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Comment prendre rendez-vous ? <span class="arr">▼</span></button><div class="faq-a"><p>Réservez en ligne 24h/24 sur Planity ou appelez-nous au 02 23 05 66 42. La réservation en ligne vous permet de choisir votre prestation et votre créneau en quelques clics.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">DS'R est-il un salon mixte ? <span class="arr">▼</span></button><div class="faq-a"><p>Oui, DS'R accueille aussi bien les femmes que les hommes pour les prestations de coiffure. Les soins beauté (manucure, pédicure, soins visage) sont ouverts à tous.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Proposez-vous des soins en plus de la coiffure ? <span class="arr">▼</span></button><div class="faq-a"><p>Absolument ! DS'R est autant un salon de coiffure qu'un institut de beauté : manucure, pédicure, soins du visage, beauté du regard, épilation. Vous pouvez même combiner plusieurs prestations lors de la même visite.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Qui est Agathe ? <span class="arr">▼</span></button><div class="faq-a"><p>Agathe est l'une des professionnelles phares de DS'R. Ses clientes la décrivent unanimement comme perfectionniste, à l'écoute et d'une grande douceur. Elle est particulièrement reconnue pour son travail de manucure et pédicure.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Quels sont vos tarifs ? <span class="arr">▼</span></button><div class="faq-a"><p>Nos tarifs détaillés sont consultables sur Planity lors de la réservation en ligne, ou directement en salon. Nous proposons des prestations pour tous les budgets.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Où se situe le salon exactement ? <span class="arr">▼</span></button><div class="faq-a"><p>Au 51 rue du Puits Mauger, 35000 Rennes — quartier Colombier, en plein centre-ville. Accessible facilement à pied, en bus ou en métro.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="hours">
+  <div class="container">
+    <div class="tc"><span class="tag">Horaires</span><h2 class="stitle">Quand nous voir</h2></div>
+    <div class="hours-table reveal">
+      <div class="hrow"><span class="day">Lundi</span><span>09:00 – 19:00</span></div>
+      <div class="hrow"><span class="day">Mardi</span><span>09:00 – 19:00</span></div>
+      <div class="hrow"><span class="day">Mercredi</span><span>09:00 – 19:00</span></div>
+      <div class="hrow"><span class="day">Jeudi</span><span>09:00 – 19:00</span></div>
+      <div class="hrow"><span class="day">Vendredi</span><span>09:00 – 19:00</span></div>
+      <div class="hrow"><span class="day">Samedi</span><span>09:00 – 17:00</span></div>
+      <div class="hrow"><span class="day">Dimanche</span><span style="color:#c0392b;font-weight:600">Fermé</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="bg-white">
+  <div class="container">
+    <div class="tc"><span class="tag">Contact</span><h2 class="stitle">Prenez rendez-vous</h2></div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="ci"><div class="ci-icon">📍</div><div><h4>Adresse</h4><p>51 Rue du Puits Mauger<br>35000 Rennes</p><a href="https://www.google.com/maps/dir/?api=1&destination=51+Rue+du+Puits+Mauger+35000+Rennes" target="_blank">Itinéraire →</a></div></div>
+        <div class="ci"><div class="ci-icon">📞</div><div><h4>Téléphone</h4><p><a href="tel:0223056642">02 23 05 66 42</a></p></div></div>
+        <div class="ci"><div class="ci-icon">📅</div><div><h4>Réservation</h4><p><a href="https://www.planity.com/dsr-35000-rennes" target="_blank">Réserver sur Planity →</a></p></div></div>
+      </div>
+      <div class="cform reveal rd1">
+        <h3 style="font-family:var(--font-heading);font-size:1.2rem;margin-bottom:20px;letter-spacing:1px">Nous contacter</h3>
+        <div class="frow"><div class="fg"><label>Prénom</label><input type="text" placeholder="Votre prénom"></div><div class="fg"><label>Nom</label><input type="text" placeholder="Votre nom"></div></div>
+        <div class="fg"><label>Téléphone</label><input type="tel" placeholder="06 00 00 00 00"></div>
+        <div class="fg"><label>Prestation souhaitée</label><select><option>Coiffure</option><option>Manucure</option><option>Pédicure</option><option>Soins du visage</option><option>Beauté du regard</option><option>Autre</option></select></div>
+        <div class="fg"><label>Message</label><textarea placeholder="Votre message…"></textarea></div>
+        <button class="btn btn-purple" style="width:100%;justify-content:center">Envoyer</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-brand">DS'R</div><p style="font-size:.88rem;line-height:1.7;margin-bottom:16px">Salon de coiffure & institut de beauté — 51 Rue du Puits Mauger, 35000 Rennes. Coiffure, manucure, pédicure, soins visage & beauté du regard.</p></div>
+      <div><h4>Navigation</h4><ul><li><a href="#about">Le salon</a></li><li><a href="#services">Prestations</a></li><li><a href="#reviews">Avis</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div><h4>Infos</h4><ul><li>51 Rue du Puits Mauger</li><li>35000 Rennes</li><li><a href="tel:0223056642">02 23 05 66 42</a></li><li>Lun–Sam ouvert</li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 DS'R — Tous droits réservés</p>
+      <p class="walter-credit">Aperçu réalisé par <a href="https://walter-studio.fr" target="_blank">WALTER Studio</a> — walter-studio.fr</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const header=document.getElementById('header');
+window.addEventListener('scroll',()=>{header.classList.toggle('scrolled',window.scrollY>50)});
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+</script>
+</body>
+</html>
