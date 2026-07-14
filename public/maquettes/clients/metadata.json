@@ -21,15 +21,7 @@
     {"id": "le-bistronome-bruz", "nom": "Le Bistronome", "secteur": "Restauration", "ville": "Bruz", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Restaurant bistronomique — Cuisine de saison"},
     {"id": "les-demoiselles", "nom": "Les Demoiselles", "secteur": "Restauration", "ville": "Rennes", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Restaurant — Cuisine de marché"},
     {"id": "soleil-noir", "nom": "Soleil Noir", "secteur": "Commerce", "ville": "Rennes", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Friperie · Brocante · Créateurs"},
-    {"id": "studio-disco", "nom": "Studio Disco", "secteur": "Services", "ville": "Rennes", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Toilettage Canin & Accessoires"}
-    {
-      "id": "trends-coffee-bakery",
-      "nom": "Trend's Coffee & Bakery",
-      "secteur": "Restauration",
-      "ville": "Cesson-Sévigné",
-      "dateCreation": "2026-07-13",
-      "statut": "en-cours",
-      "description": "Coffee shop d'inspiration australienne à Cesson-Sévigné"
-    }
+    {"id": "studio-disco", "nom": "Studio Disco", "secteur": "Services", "ville": "Rennes", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Toilettage Canin & Accessoires"},
+    {"id": "trends-coffee-bakery", "nom": "Trend's Coffee & Bakery", "secteur": "Restauration", "ville": "Cesson-Sévigné", "dateCreation": "2026-07-14", "statut": "en-cours", "description": "Coffee shop d'inspiration australienne à Cesson-Sévigné"}
   ]
 }
