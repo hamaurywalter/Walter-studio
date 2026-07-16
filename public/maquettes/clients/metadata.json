@@ -16,6 +16,7 @@
     {"id": "institut-eclat-douceur", "nom": "Institut Éclat et Douceur", "secteur": "Beauté", "ville": "Rennes", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Institut de beauté à Rennes"},
     {"id": "institut-perle-ongle", "nom": "Institut Perle Ongle", "secteur": "Beauté", "ville": "Rennes", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Institut spécialisé ongles à Rennes"},
     {"id": "institut-zen-beaute", "nom": "Institut Zen Beauté", "secteur": "Beauté", "ville": "Chartres-de-Bretagne", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Institut de beauté — bien-être"},
+    {"id": "jb-detailing", "nom": "JB Detailing", "secteur": "Services", "ville": "Plouisy", "dateCreation": "2026-07-15", "statut": "en-cours", "description": "Detailing auto & moto à domicile — nettoyage et rénovation"},
     {"id": "la-bonne-excuse", "nom": "La Bonne Excuse", "secteur": "Restauration", "ville": "Rennes", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Troquet de quartier à Rennes"},
     {"id": "la-table-de-nass", "nom": "La Table de Nass", "secteur": "Restauration", "ville": "Noyal-Châtillon-sur-Seiche", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Restaurant halal — Cuisine orientale"},
     {"id": "le-bistronome-bruz", "nom": "Le Bistronome", "secteur": "Restauration", "ville": "Bruz", "dateCreation": "2026-07-13", "statut": "en-cours", "description": "Restaurant bistronomique — Cuisine de saison"},
