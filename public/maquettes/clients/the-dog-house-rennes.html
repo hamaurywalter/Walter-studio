@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Dog House · Garderie canine & café au cœur de Rennes</title>
+<meta name="description" content="The Dog House — la garderie-café canine de Rennes. Max 5 chiens, accueil sur mesure, coin café et dogwash. 21 boulevard de Chézy, Rennes.">
+<meta name="theme-color" content="#3A2E28">
+
+<!-- ============ MAQUETTE DE DÉMONSTRATION — WALTER Studio ============
+     Réalisée pour prospection. Données réelles récupérées (adresse, horaires,
+     tél, services, identité visuelle @thedoghouse_rennes).
+     Les champs entre [crochets] sont à confirmer sur place (prénoms équipe,
+     tarifs exacts, avis Google réels).
+     Palette calée sur le vrai logo : crème / espresso / terracotta / sauge / doré.
+================================================================= -->
+
+<!-- Favicon inline (tasse + esprit du logo) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23F7F1E7'/%3E%3Cpath d='M9 13h11v6a4 4 0 0 1-4 4h-3a4 4 0 0 1-4-4z' fill='none' stroke='%233A2E28' stroke-width='2'/%3E%3Cpath d='M20 14h2.5a2.5 2.5 0 0 1 0 5H20' fill='none' stroke='%233A2E28' stroke-width='2'/%3E%3Cpath d='M12 8c0 1.2 1 1.2 1 2.4M15.5 8c0 1.2 1 1.2 1 2.4' stroke='%23D79B7E' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap');
+
+/* ============ TOKENS ============ */
+:root{
+  --cream:#F7F1E7;
+  --cream-deep:#EFE5D4;
+  --cream-card:#FBF7EF;
+  --espresso:#3A2E28;
+  --espresso-soft:#5C4A3F;
+  --terracotta:#D79B7E;
+  --terracotta-deep:#C07E5C;
+  --sage:#9CAE97;
+  --sage-deep:#7C9077;
+  --gold:#E3A72F;
+  --white:#ffffff;
+  --shadow:0 14px 40px -18px rgba(58,46,40,.45);
+  --shadow-soft:0 8px 24px -14px rgba(58,46,40,.35);
+  --radius:20px;
+  --maxw:1180px;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --display:'Poppins',var(--sans);
+}
+
+/* ============ RESET ============ */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-padding-top:96px;overflow-x:hidden}
+body{
+  font-family:var(--sans);
+  color:var(--espresso);
+  background:var(--cream);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.15;color:var(--espresso)}
+section{position:relative}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.eyebrow{
+  font-family:var(--display);font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;font-size:.72rem;color:var(--terracotta-deep);
+  display:inline-block;margin-bottom:14px;
+}
+.section-title{font-size:clamp(1.9rem,4vw,2.9rem);margin-bottom:16px}
+.section-lead{max-width:620px;color:var(--espresso-soft);font-size:1.05rem}
+.center{text-align:center}
+.center .section-lead{margin-inline:auto}
+.pad{padding:clamp(64px,9vw,110px) 0}
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--display);font-weight:600;font-size:.98rem;
+  padding:14px 28px;border-radius:999px;cursor:pointer;border:2px solid transparent;
+  transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease;
+}
+.btn-primary{background:var(--espresso);color:var(--cream)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:var(--shadow);background:#2c221d}
+.btn-terra{background:var(--terracotta);color:var(--espresso)}
+.btn-terra:hover{transform:translateY(-3px);box-shadow:var(--shadow);background:var(--terracotta-deep);color:#fff}
+.btn-ghost{background:transparent;border-color:var(--espresso);color:var(--espresso)}
+.btn-ghost:hover{background:var(--espresso);color:var(--cream);transform:translateY(-3px)}
+
+/* ============ HEADER ============ */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  transition:background .3s ease,box-shadow .3s ease,padding .3s ease;
+  padding:18px 0;
+}
+header.scrolled{background:rgba(247,241,231,.92);backdrop-filter:blur(12px);box-shadow:0 4px 24px -18px rgba(58,46,40,.6);padding:10px 0}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{
+  width:46px;height:46px;border-radius:50%;background:var(--cream-card);
+  border:2px solid var(--espresso);display:grid;place-items:center;flex-shrink:0;
+}
+.brand-mark svg{width:30px;height:30px}
+.brand-text h1{font-size:1.28rem;line-height:1;margin-bottom:2px}
+.brand-text span{font-family:var(--sans);font-size:.72rem;color:var(--espresso-soft);letter-spacing:.02em}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-family:var(--display);font-weight:500;font-size:.94rem;position:relative;padding:4px 0}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--terracotta);transition:width .25s ease}
+.nav-links a:hover::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:12px}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+.burger span{width:26px;height:2.5px;background:var(--espresso);border-radius:3px;transition:.3s}
+.burger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100svh;display:flex;align-items:center;position:relative;
+  background:linear-gradient(rgba(43,34,29,.55),rgba(43,34,29,.35)),
+    url('https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=1600&q=80&auto=format&fit=crop') center/cover no-repeat;
+  color:var(--cream);padding-top:90px;
+}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(58,46,40,.5),transparent 40%);pointer-events:none}
+.hero-inner{position:relative;z-index:2;max-width:720px}
+.hero .badge-new{
+  display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--espresso);
+  font-family:var(--display);font-weight:600;font-size:.8rem;letter-spacing:.04em;
+  padding:8px 16px;border-radius:999px;margin-bottom:22px;
+}
+.hero h2{font-size:clamp(2.8rem,8vw,5.4rem);color:#fff;line-height:1.02;margin-bottom:10px;text-shadow:0 2px 30px rgba(0,0,0,.3)}
+.hero .tag{font-family:var(--serif);font-style:italic;font-size:clamp(1.2rem,3vw,1.7rem);color:var(--cream);margin-bottom:14px;display:block}
+.hero p.sub{font-size:1.12rem;color:rgba(247,241,231,.92);max-width:520px;margin-bottom:34px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px}
+.scroll-cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;color:var(--cream);font-size:1.6rem;animation:bob 1.8s ease-in-out infinite;opacity:.85}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,10px)}}
+
+/* ============ INFO BAR ============ */
+.infobar{background:var(--espresso);color:var(--cream)}
+.infobar .wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 40px;padding-top:22px;padding-bottom:22px}
+.infobar .item{display:flex;align-items:center;gap:11px;font-family:var(--display);font-weight:500;font-size:.98rem}
+.infobar .item .ic{font-size:1.15rem}
+.infobar .status-dot{width:9px;height:9px;border-radius:50%;background:var(--sage);box-shadow:0 0 0 4px rgba(156,174,151,.25);display:inline-block}
+.infobar .status-dot.closed{background:var(--terracotta)}
+.infobar a{border-bottom:1px dashed rgba(247,241,231,.5);transition:color .2s}
+.infobar a:hover{color:var(--terracotta)}
+
+/* ============ ABOUT ============ */
+.about{background:var(--cream)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about-media{position:relative}
+.about-media img{border-radius:var(--radius);box-shadow:var(--shadow);width:100%;height:520px;object-fit:cover}
+.about-media .float{
+  position:absolute;bottom:-26px;left:-26px;background:var(--cream-card);
+  border-radius:16px;padding:18px 22px;box-shadow:var(--shadow-soft);border:1px solid var(--cream-deep);
+  display:flex;align-items:center;gap:14px;
+}
+.about-media .float .big{font-family:var(--serif);font-size:2rem;color:var(--terracotta-deep);line-height:1}
+.about-media .float small{font-family:var(--display);font-weight:600;font-size:.78rem;color:var(--espresso-soft);text-transform:uppercase;letter-spacing:.08em}
+.values{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+.value{
+  flex:1;min-width:150px;background:var(--cream-card);border:1px solid var(--cream-deep);
+  border-radius:16px;padding:20px 18px;text-align:center;transition:transform .25s ease,box-shadow .25s ease;
+}
+.value:hover{transform:translateY(-5px);box-shadow:var(--shadow-soft)}
+.value .em{font-size:1.7rem;display:block;margin-bottom:8px}
+.value strong{font-family:var(--display);display:block;font-size:.98rem;margin-bottom:3px}
+.value span{font-size:.85rem;color:var(--espresso-soft)}
+
+/* ============ SERVICES ============ */
+.services{background:var(--cream-deep)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:52px}
+.card{
+  background:var(--cream-card);border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow-soft);transition:transform .3s ease,box-shadow .3s ease;
+  display:flex;flex-direction:column;border:1px solid rgba(58,46,40,.06);
+}
+.card:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
+.card .thumb{height:190px;overflow:hidden;position:relative}
+.card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.card:hover .thumb img{transform:scale(1.07)}
+.card .body{padding:24px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card .body h3{font-size:1.28rem}
+.card .body p{font-size:.95rem;color:var(--espresso-soft)}
+.card .tagpill{
+  align-self:flex-start;margin-top:auto;font-family:var(--display);font-weight:600;font-size:.74rem;
+  text-transform:uppercase;letter-spacing:.06em;color:var(--terracotta-deep);
+  background:rgba(215,155,126,.16);padding:6px 12px;border-radius:999px;
+}
+
+/* ============ GALLERY ============ */
+.gallery{background:var(--cream)}
+.grid-gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:16px;margin-top:52px}
+.grid-gal figure{overflow:hidden;border-radius:16px;box-shadow:var(--shadow-soft);position:relative}
+.grid-gal img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.grid-gal figure:hover img{transform:scale(1.1)}
+.grid-gal figure::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(58,46,40,.35));opacity:0;transition:opacity .3s}
+.grid-gal figure:hover::after{opacity:1}
+.g-tall{grid-row:span 2}
+.g-wide{grid-column:span 2}
+
+/* ============ EXPERIENCES ============ */
+.exp{background:#F3E7DA}
+.exp-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:52px}
+.exp-card{
+  background:var(--cream-card);border-radius:var(--radius);padding:0 0 28px;overflow:hidden;
+  box-shadow:var(--shadow-soft);transition:transform .3s ease;
+}
+.exp-card:hover{transform:translateY(-6px)}
+.exp-card img{height:200px;width:100%;object-fit:cover}
+.exp-card .txt{padding:24px 26px 0}
+.exp-card h3{font-size:1.35rem;margin-bottom:10px}
+.exp-card p{font-size:.95rem;color:var(--espresso-soft)}
+
+/* ============ STATS ============ */
+.stats{background:var(--espresso);color:var(--cream)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;text-align:center}
+.stat .num{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.4rem);color:var(--terracotta);line-height:1}
+.stat .lbl{font-family:var(--display);font-weight:500;font-size:.95rem;color:rgba(247,241,231,.85);margin-top:8px}
+.stats .em{font-size:1.8rem;display:block;margin-bottom:6px}
+
+/* ============ TESTIMONIALS ============ */
+.testi{background:var(--cream)}
+.testi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;margin-top:52px}
+.quote{
+  background:var(--cream-card);border-radius:var(--radius);padding:32px 30px;box-shadow:var(--shadow-soft);
+  border:1px solid var(--cream-deep);position:relative;
+}
+.quote .stars{color:var(--gold);font-size:1.05rem;letter-spacing:2px;margin-bottom:12px}
+.quote p{font-family:var(--serif);font-style:italic;font-size:1.12rem;color:var(--espresso);margin-bottom:18px;line-height:1.5}
+.quote .who{display:flex;align-items:center;gap:12px}
+.quote .av{width:46px;height:46px;border-radius:50%;background:var(--terracotta);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:1.05rem}
+.quote .who strong{font-family:var(--display);display:block;font-size:.95rem}
+.quote .who span{font-size:.82rem;color:var(--espresso-soft)}
+
+/* ============ TEAM ============ */
+.team{background:#F1E4DE}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:52px}
+.member{background:var(--cream-card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-soft);text-align:center;transition:transform .3s ease}
+.member:hover{transform:translateY(-6px)}
+.member img{height:280px;width:100%;object-fit:cover}
+.member .info{padding:22px}
+.member h3{font-size:1.3rem;margin-bottom:2px}
+.member .role{font-family:var(--display);font-weight:600;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:var(--terracotta-deep);margin-bottom:10px}
+.member p{font-size:.9rem;color:var(--espresso-soft)}
+
+/* ============ PRICING ============ */
+.pricing{background:var(--cream)}
+.price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:52px}
+.price{
+  background:var(--cream-card);border:1px solid var(--cream-deep);border-radius:var(--radius);
+  padding:30px 26px;display:flex;flex-direction:column;gap:6px;transition:transform .3s ease,box-shadow .3s ease;position:relative;
+}
+.price:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.price.featured{background:var(--espresso);color:var(--cream);border-color:var(--espresso)}
+.price.featured h3,.price.featured .amount{color:var(--cream)}
+.price .flag{position:absolute;top:-12px;right:20px;background:var(--gold);color:var(--espresso);font-family:var(--display);font-weight:600;font-size:.72rem;padding:5px 12px;border-radius:999px}
+.price h3{font-size:1.3rem}
+.price .amount{font-family:var(--serif);font-size:2rem;color:var(--terracotta-deep)}
+.price .amount small{font-size:.9rem;font-family:var(--sans);color:var(--espresso-soft)}
+.price.featured .amount small{color:rgba(247,241,231,.7)}
+.price ul{list-style:none;margin:12px 0 20px;display:flex;flex-direction:column;gap:8px}
+.price li{font-size:.92rem;display:flex;gap:8px;align-items:flex-start}
+.price li::before{content:"🐾";font-size:.85rem}
+.price .btn{margin-top:auto;justify-content:center}
+.price.featured .btn-ghost{border-color:var(--cream);color:var(--cream)}
+.price.featured .btn-ghost:hover{background:var(--cream);color:var(--espresso)}
+.price-note{text-align:center;margin-top:26px;font-size:.9rem;color:var(--espresso-soft)}
+
+/* ============ LOCATION ============ */
+.location{background:var(--cream-deep)}
+.loc-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:stretch}
+.map-box{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);min-height:400px}
+.map-box iframe{width:100%;height:100%;min-height:400px;border:0}
+.loc-info{display:flex;flex-direction:column;gap:18px;justify-content:center}
+.loc-line{display:flex;gap:14px;align-items:flex-start}
+.loc-line .ic{font-size:1.4rem;flex-shrink:0}
+.loc-line strong{font-family:var(--display);display:block;font-size:1rem;margin-bottom:2px}
+.loc-line span{color:var(--espresso-soft);font-size:.95rem}
+.access-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.access-badges span{background:var(--cream-card);border:1px solid var(--cream-deep);border-radius:999px;padding:8px 15px;font-size:.85rem;font-family:var(--display);font-weight:500}
+
+/* ============ FAQ ============ */
+.faq{background:var(--cream)}
+.faq-list{max-width:820px;margin:52px auto 0}
+.faq-item{border-bottom:1px solid var(--cream-deep)}
+.faq-q{
+  width:100%;background:none;border:none;cursor:pointer;text-align:left;
+  font-family:var(--serif);font-size:1.15rem;color:var(--espresso);
+  padding:22px 44px 22px 0;position:relative;display:flex;
+}
+.faq-q::after{content:"+";position:absolute;right:6px;top:50%;transform:translateY(-50%);font-family:var(--sans);font-size:1.6rem;color:var(--terracotta-deep);transition:transform .3s}
+.faq-item.open .faq-q::after{content:"–"}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a p{padding:0 40px 22px 0;color:var(--espresso-soft);font-size:.98rem}
+
+/* ============ HOURS ============ */
+.hours{background:#F1E4DE}
+.hours-table{max-width:620px;margin:44px auto 0;background:var(--cream-card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-soft)}
+.hours-row{display:flex;justify-content:space-between;padding:16px 26px;border-bottom:1px solid var(--cream-deep);font-family:var(--display);font-weight:500}
+.hours-row:last-child{border-bottom:none}
+.hours-row.today{background:var(--terracotta);color:var(--espresso)}
+.hours-row .day{}
+.hours-row .hr{color:var(--espresso-soft)}
+.hours-row.today .hr{color:var(--espresso)}
+.hours-row.closed .hr{color:var(--terracotta-deep)}
+.hours-note{text-align:center;margin-top:20px;font-size:.9rem;color:var(--espresso-soft)}
+
+/* ============ CONTACT ============ */
+.contact{background:var(--espresso);color:var(--cream)}
+.contact .section-title,.contact .eyebrow{color:var(--cream)}
+.contact .eyebrow{color:var(--terracotta)}
+.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;margin-top:20px}
+.c-form{display:flex;flex-direction:column;gap:16px}
+.c-form .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.c-form label{font-family:var(--display);font-weight:500;font-size:.85rem;display:block;margin-bottom:6px;color:rgba(247,241,231,.85)}
+.c-form input,.c-form textarea{
+  width:100%;background:rgba(247,241,231,.07);border:1px solid rgba(247,241,231,.2);
+  border-radius:12px;padding:13px 16px;color:var(--cream);font-family:var(--sans);font-size:.96rem;transition:border .2s,background .2s;
+}
+.c-form input:focus,.c-form textarea:focus{outline:none;border-color:var(--terracotta);background:rgba(247,241,231,.12)}
+.c-form input::placeholder,.c-form textarea::placeholder{color:rgba(247,241,231,.4)}
+.c-form textarea{resize:vertical;min-height:120px}
+.form-msg{display:none;background:var(--sage);color:var(--espresso);padding:14px 18px;border-radius:12px;font-family:var(--display);font-weight:500;font-size:.95rem}
+.form-msg.show{display:block;animation:fadeUp .4s ease}
+.c-info{display:flex;flex-direction:column;gap:22px;justify-content:center}
+.c-info .ci{display:flex;gap:14px;align-items:flex-start}
+.c-info .ic{font-size:1.35rem;flex-shrink:0}
+.c-info strong{font-family:var(--display);display:block;font-size:.95rem;margin-bottom:2px}
+.c-info span,.c-info a{color:rgba(247,241,231,.82);font-size:.95rem}
+.c-info a:hover{color:var(--terracotta)}
+.socials{display:flex;gap:12px;margin-top:6px}
+.socials a{width:42px;height:42px;border-radius:50%;background:rgba(247,241,231,.1);display:grid;place-items:center;transition:background .25s,transform .25s}
+.socials a:hover{background:var(--terracotta);transform:translateY(-3px)}
+.socials svg{width:20px;height:20px;fill:var(--cream)}
+
+/* ============ FOOTER ============ */
+footer{background:#2c221d;color:rgba(247,241,231,.7);padding:56px 0 30px}
+.foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;padding-bottom:30px;border-bottom:1px solid rgba(247,241,231,.12)}
+.foot-brand{max-width:320px}
+.foot-brand .brand-text h1{color:var(--cream)}
+.foot-brand p{margin-top:14px;font-size:.92rem}
+.foot-nav{display:flex;gap:50px;flex-wrap:wrap}
+.foot-col h4{color:var(--cream);font-family:var(--display);font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px}
+.foot-col a{display:block;font-size:.92rem;margin-bottom:9px;transition:color .2s}
+.foot-col a:hover{color:var(--terracotta)}
+.foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:24px;font-size:.85rem}
+.foot-bottom .sig{color:rgba(247,241,231,.55)}
+.foot-bottom .sig a{color:var(--terracotta);font-weight:600}
+
+/* ============ REVEAL ANIM ============ */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.reveal.in{opacity:1;transform:none}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:1024px){
+  .cards,.exp-cards,.team-grid{grid-template-columns:repeat(2,1fr)}
+  .price-grid{grid-template-columns:repeat(2,1fr)}
+  .about-grid,.loc-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+  .about-media img{height:420px}
+  .grid-gal{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:768px){
+  .nav-cta .btn{display:none}
+  .burger{display:flex}
+  .nav-links{
+    display:flex;position:fixed;top:0;right:0;height:100vh;width:78%;max-width:320px;
+    background:var(--cream);flex-direction:column;justify-content:center;gap:30px;
+    transform:translateX(100%);transition:transform .35s ease;box-shadow:-10px 0 40px -20px rgba(0,0,0,.4);z-index:99;
+  }
+  .nav-links.open{transform:translateX(0)}
+  .nav-links a{font-size:1.3rem;font-family:var(--serif)}
+  .nav-links .btn{display:inline-flex}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:36px 20px}
+  .testi-grid{grid-template-columns:1fr}
+  .infobar .wrap{flex-direction:column;align-items:flex-start;gap:12px}
+  .about-media .float{left:16px;bottom:-20px}
+}
+@media(max-width:560px){
+  .cards,.exp-cards,.team-grid,.price-grid{grid-template-columns:1fr}
+  .grid-gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}
+  .g-wide{grid-column:span 2}
+  .c-form .row{grid-template-columns:1fr}
+  .hero-cta{flex-direction:column;align-items:stretch}
+  .hero-cta .btn{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header id="header">
+  <div class="wrap nav">
+    <a href="#accueil" class="brand" aria-label="The Dog House, accueil">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32"><path d="M8 14h12v6a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4z" fill="none" stroke="#3A2E28" stroke-width="2"/><path d="M20 15h2.6a2.4 2.4 0 0 1 0 4.8H20" fill="none" stroke="#3A2E28" stroke-width="2"/><path d="M11 9c0 1.3 1 1.3 1 2.6M14.5 9c0 1.3 1 1.3 1 2.6" stroke="#D79B7E" stroke-width="1.7" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-text">
+        <h1>The Dog House</h1>
+        <span>Garderie canine · Rennes</span>
+      </span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Navigation principale">
+      <a href="#accueil">Accueil</a>
+      <a href="#maison">La maison</a>
+      <a href="#services">Services</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#avis">Avis</a>
+      <a href="#contact">Contact</a>
+      <a href="tel:+33759745044" class="btn btn-terra">Réserver</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="tel:+33759745044" class="btn btn-primary">📞 07 59 74 50 44</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="accueil">
+  <div class="wrap hero-inner">
+    <span class="badge-new">✦ Nouveau à Rennes · ouvert depuis juillet</span>
+    <h2>The Dog House</h2>
+    <span class="tag">la garderie-café où votre chien est comme à la maison</span>
+    <p class="sub">Au cœur de Rennes, un lieu chaleureux et à taille humaine : <strong>5 chiens maximum</strong>, un vrai coin café et toute l'attention que votre compagnon mérite.</p>
+    <div class="hero-cta">
+      <a href="tel:+33759745044" class="btn btn-terra">📞 Appeler maintenant</a>
+      <a href="#services" class="btn btn-ghost" style="border-color:#fff;color:#fff">Découvrir nos services</a>
+    </div>
+  </div>
+  <a href="#maison" class="scroll-cue" aria-label="Défiler vers le bas">⌄</a>
+</section>
+
+<!-- ================= INFO BAR ================= -->
+<div class="infobar">
+  <div class="wrap">
+    <div class="item"><span class="ic">📍</span> 21 boulevard de Chézy, Rennes</div>
+    <div class="item"><span class="status-dot" id="statusDot"></span> <span id="todayStatus">Chargement…</span></div>
+    <div class="item"><span class="ic">📞</span> <a href="tel:+33759745044">07 59 74 50 44</a></div>
+  </div>
+</div>
+
+<!-- ================= ABOUT ================= -->
+<section class="about pad" id="maison">
+  <div class="wrap about-grid">
+    <div class="about-media reveal">
+      <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=900&q=80&auto=format&fit=crop" alt="Chien détendu dans un intérieur chaleureux et lumineux">
+      <div class="float">
+        <span class="big">5</span>
+        <small>chiens<br>maximum</small>
+      </div>
+    </div>
+    <div class="about-text reveal">
+      <span class="eyebrow">Bienvenue à The Dog House</span>
+      <h2 class="section-title">Une maison, pas un chenil.</h2>
+      <p class="section-lead">The Dog House est née d'une conviction simple : un chien mérite mieux qu'un box. Ici, au cœur de Rennes, votre compagnon passe la journée dans un vrai lieu de vie — un coin café cosy, de la lumière, du bois, et surtout du temps rien que pour lui.</p>
+      <p style="margin-top:16px;color:var(--espresso-soft)">Nous accueillons <strong>5 chiens maximum</strong> par jour, avec ou sans réservation. Ce choix, c'est notre promesse : chaque chien est connu, câliné et surveillé de près. Pas de foule, pas de stress — juste une parenthèse douce pendant que vous vaquez à vos occupations.</p>
+      <div class="values">
+        <div class="value"><span class="em">🐾</span><strong>5 chiens max</strong><span>Accueil intime</span></div>
+        <div class="value"><span class="em">☕</span><strong>Coin café</strong><span>Comme à la maison</span></div>
+        <div class="value"><span class="em">🛁</span><strong>Dogwash</strong><span>Propre et frais</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="services pad" id="services">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow">Nos services</span>
+      <h2 class="section-title">Tout ce qu'il faut pour votre compagnon</h2>
+      <p class="section-lead">Des prestations pensées autour du bien-être, dans un cadre à taille humaine.</p>
+    </div>
+    <div class="cards">
+      <article class="card reveal">
+        <div class="thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=700&q=80&auto=format&fit=crop" alt="Chiens jouant ensemble en garderie"></div>
+        <div class="body"><h3>Garderie à la journée</h3><p>Jeux, câlins, repos et sociabilisation dans un petit groupe encadré, du lundi au samedi.</p><span class="tagpill">Sur réservation</span></div>
+      </article>
+      <article class="card reveal">
+        <div class="thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=700&q=80&auto=format&fit=crop" alt="Chien accueilli sans rendez-vous">
+        </div>
+        <div class="body"><h3>Garderie sans résa</h3><p>Un imprévu ? Déposez votre chien à la volée, dans la limite des places disponibles.</p><span class="tagpill">Sans rendez-vous</span></div>
+      </article>
+      <article class="card reveal">
+        <div class="thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=700&q=80&auto=format&fit=crop" alt="Coin café chaleureux"></div>
+        <div class="body"><h3>Le coin café</h3><p>Un espace cosy pour patienter, papoter et prendre un café pendant que votre chien s'installe.</p><span class="tagpill">Sur place</span></div>
+      </article>
+      <article class="card reveal">
+        <div class="thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=700&q=80&auto=format&fit=crop" alt="Chien lavé au dogwash"></div>
+        <div class="body"><h3>Dogwash</h3><p>Un bain, un séchage, et votre chien repart tout propre et tout doux. Simple et rapide.</p><span class="tagpill">Toute la semaine</span></div>
+      </article>
+      <article class="card reveal">
+        <div class="thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1477884213360-7e9d7dcc1e48?w=700&q=80&auto=format&fit=crop" alt="Séance photo portrait de chien"></div>
+        <div class="body"><h3>Séance photo</h3><p>On tire le portrait de votre chien : un joli souvenir à emporter et à partager.</p><span class="tagpill">On adore ça</span></div>
+      </article>
+      <article class="card reveal">
+        <div class="thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1568572933382-74d440642117?w=700&q=80&auto=format&fit=crop" alt="Conseil autour du bien-être canin"></div>
+        <div class="body"><h3>Conseil & écoute</h3><p>Une question sur son comportement, son adaptation, son bien-être ? On prend le temps d'échanger.</p><span class="tagpill">Gratuit</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section class="gallery pad" id="galerie">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow">Galerie</span>
+      <h2 class="section-title">Des moments heureux, tous les jours</h2>
+      <p class="section-lead">Un aperçu de l'ambiance à The Dog House.</p>
+    </div>
+    <div class="grid-gal reveal">
+      <figure class="g-tall"><img loading="lazy" src="https://images.unsplash.com/photo-1544568100-847a948585b9?w=700&q=80&auto=format&fit=crop" alt="Portrait d'un chien heureux"></figure>
+      <figure class="g-wide"><img loading="lazy" src="https://images.unsplash.com/photo-1534361960057-19889db9621e?w=900&q=80&auto=format&fit=crop" alt="Chien qui court joyeusement"></figure>
+      <figure><img loading="lazy" src="https://images.unsplash.com/photo-1517849845537-4d257902454a?w=600&q=80&auto=format&fit=crop" alt="Petit chien attendrissant"></figure>
+      <figure><img loading="lazy" src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=600&q=80&auto=format&fit=crop" alt="Golden retriever souriant"></figure>
+      <figure class="g-wide"><img loading="lazy" src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=900&q=80&auto=format&fit=crop" alt="Deux chiens en balade"></figure>
+      <figure class="g-tall"><img loading="lazy" src="https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb?w=700&q=80&auto=format&fit=crop" alt="Chien câliné par un soigneur"></figure>
+      <figure><img loading="lazy" src="https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?w=600&q=80&auto=format&fit=crop" alt="Chien qui se repose"></figure>
+      <figure><img loading="lazy" src="https://images.unsplash.com/photo-1477884213360-7e9d7dcc1e48?w=600&q=80&auto=format&fit=crop" alt="Chien dans un cadre naturel"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCES ================= -->
+<section class="exp pad">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow">Activités & expériences</span>
+      <h2 class="section-title">Votre chien s'amuse chaque jour</h2>
+      <p class="section-lead">En petit comité, chaque journée est rythmée et adaptée à chaque tempérament.</p>
+    </div>
+    <div class="exp-cards">
+      <article class="exp-card reveal">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1601758124510-52d02ddb7cbd?w=700&q=80&auto=format&fit=crop" alt="Chiens jouant en petit groupe">
+        <div class="txt"><h3>Jeux en petit groupe</h3><p>Maximum 5 chiens : les affinités se créent, les jeux restent doux et surveillés en permanence.</p></div>
+      </article>
+      <article class="exp-card reveal">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1568572933382-74d440642117?w=700&q=80&auto=format&fit=crop" alt="Apprentissage en douceur">
+        <div class="txt"><h3>Sociabilisation douce</h3><p>Renforcement positif, bonnes manières et confiance : votre chien apprend en s'amusant.</p></div>
+      </article>
+      <article class="exp-card reveal">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1541599540903-216a46ca1dc0?w=700&q=80&auto=format&fit=crop" alt="Chien qui se repose au calme">
+        <div class="txt"><h3>Moments calmes</h3><p>Repos, caresses et cocooning : le bien-être mental compte autant que la dépense d'énergie.</p></div>
+      </article>
+    </div>
+    <div class="center" style="margin-top:44px">
+      <a href="#contact" class="btn btn-primary reveal">Réserver une journée découverte</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<section class="stats pad">
+  <div class="wrap stats-grid">
+    <div class="stat reveal"><span class="em">🐾</span><div class="num">5</div><div class="lbl">chiens max par jour</div></div>
+    <div class="stat reveal"><span class="em">📅</span><div class="num">6j/7</div><div class="lbl">du lundi au samedi</div></div>
+    <div class="stat reveal"><span class="em">📍</span><div class="num">100%</div><div class="lbl">au cœur de Rennes</div></div>
+    <div class="stat reveal"><span class="em">💚</span><div class="num">Sur<br>mesure</div><div class="lbl">accueil personnalisé</div></div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="testi pad" id="avis">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow">Ils nous font confiance</span>
+      <h2 class="section-title">Ce que disent les maîtres</h2>
+      <p class="section-lead">Quelques retours de nos premiers clients rennais. <em>(À remplacer par vos vrais avis Google.)</em></p>
+    </div>
+    <div class="testi-grid">
+      <div class="quote reveal">
+        <div class="stars">★★★★★</div>
+        <p>« Un endroit adorable en plein centre. Ma chienne adore y aller et je la retrouve détendue et heureuse. Le fait qu'ils prennent peu de chiens fait toute la différence. »</p>
+        <div class="who"><span class="av">C</span><div><strong>Camille</strong><span>maîtresse de Nala 🐕</span></div></div>
+      </div>
+      <div class="quote reveal">
+        <div class="stars">★★★★★</div>
+        <p>« Accueil au top, le coin café est un vrai plus. On sent que les chiens sont chouchoutés, pas parqués. Je recommande à 100%. »</p>
+        <div class="who"><span class="av">T</span><div><strong>Thomas</strong><span>maître d'Oslo 🐕</span></div></div>
+      </div>
+      <div class="quote reveal">
+        <div class="stars">★★★★★</div>
+        <p>« Enfin une garderie à taille humaine à Rennes ! Le dogwash après la journée, c'est génial, mon chien repart tout propre. »</p>
+        <div class="who"><span class="av">L</span><div><strong>Léa</strong><span>maîtresse de Gribouille 🐕</span></div></div>
+      </div>
+      <div class="quote reveal">
+        <div class="stars">★★★★★</div>
+        <p>« Je pouvais déposer mon chien sans réservation quand j'avais un imprévu. Super flexible et vraiment bienveillant. Merci ! »</p>
+        <div class="who"><span class="av">M</span><div><strong>Marion</strong><span>maîtresse de Pepper 🐕</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TEAM ================= -->
+<section class="team pad">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow">L'équipe</span>
+      <h2 class="section-title">Les passionné·es qui s'occupent de votre chien</h2>
+      <p class="section-lead">Des visages familiers qui connaissent chaque chien par son nom. <em>(Prénoms & photos à compléter.)</em></p>
+    </div>
+    <div class="team-grid">
+      <article class="member reveal">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1594751543129-6701ad444259?w=600&q=80&auto=format&fit=crop" alt="Membre de l'équipe avec un chien">
+        <div class="info"><h3>[Prénom]</h3><div class="role">Fondatrice</div><p>Amoureuse des chiens depuis toujours, elle a imaginé The Dog House comme un second chez-soi.</p></div>
+      </article>
+      <article class="member reveal">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1583337426008-2fef51aa841e?w=600&q=80&auto=format&fit=crop" alt="Membre de l'équipe câlinant un chien">
+        <div class="info"><h3>[Prénom]</h3><div class="role">Responsable bien-être</div><p>Un œil sur chaque chien, une caresse pour chacun : le calme et la sécurité avant tout.</p></div>
+      </article>
+      <article class="member reveal">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1560807707-8cc77767d783?w=600&q=80&auto=format&fit=crop" alt="Membre de l'équipe au coin café">
+        <div class="info"><h3>[Prénom]</h3><div class="role">Accueil & café</div><p>Le sourire de l'accueil et le café qui va avec, pour les maîtres comme pour les chiens.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRICING ================= -->
+<section class="pricing pad">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow">Tarifs & formules</span>
+      <h2 class="section-title">Simple et transparent</h2>
+      <p class="section-lead">Pas de mauvaise surprise. <em>(Montants indicatifs à confirmer.)</em></p>
+    </div>
+    <div class="price-grid">
+      <div class="price reveal">
+        <h3>Demi-journée</h3>
+        <div class="amount">[__] € <small>/ chien</small></div>
+        <ul><li>Jusqu'à 4h de garde</li><li>Petit groupe (5 max)</li><li>Câlins inclus 🐾</li></ul>
+        <a href="#contact" class="btn btn-ghost">Réserver</a>
+      </div>
+      <div class="price featured reveal">
+        <span class="flag">Le + demandé</span>
+        <h3>Journée complète</h3>
+        <div class="amount">[__] € <small>/ chien</small></div>
+        <ul><li>De l'ouverture à la fermeture</li><li>Jeux + repos + sociabilisation</li><li>Suivi personnalisé</li></ul>
+        <a href="#contact" class="btn btn-ghost">Réserver</a>
+      </div>
+      <div class="price reveal">
+        <h3>Carnet 10 jours</h3>
+        <div class="amount">[__] € <small>/ carnet</small></div>
+        <ul><li>10 journées à tarif malin</li><li>Valable sans limite de temps</li><li>Idéal habitué·es</li></ul>
+        <a href="#contact" class="btn btn-ghost">Demander</a>
+      </div>
+      <div class="price reveal">
+        <h3>Dogwash</h3>
+        <div class="amount">[__] € <small>/ bain</small></div>
+        <ul><li>Bain + séchage</li><li>Produits doux</li><li>En complément d'une garde</li></ul>
+        <a href="#contact" class="btn btn-ghost">En savoir +</a>
+      </div>
+    </div>
+    <p class="price-note">Besoin d'une formule sur mesure ? <a href="#contact" style="color:var(--terracotta-deep);font-weight:600">Demandez un devis personnalisé →</a></p>
+  </div>
+</section>
+
+<!-- ================= LOCATION ================= -->
+<section class="location pad">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow">Accès & localisation</span>
+      <h2 class="section-title">On vous attend !</h2>
+    </div>
+    <div class="loc-grid" style="margin-top:52px">
+      <div class="map-box reveal">
+        <iframe title="Carte The Dog House Rennes" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=21+boulevard+de+Ch%C3%A9zy+35000+Rennes&output=embed"></iframe>
+      </div>
+      <div class="loc-info reveal">
+        <div class="loc-line"><span class="ic">📍</span><div><strong>Adresse</strong><span><a href="https://www.google.com/maps?q=21+boulevard+de+Ch%C3%A9zy+35000+Rennes" target="_blank" rel="noopener">21 boulevard de Chézy, 35000 Rennes</a></span></div></div>
+        <div class="loc-line"><span class="ic">🕘</span><div><strong>Horaires</strong><span>Lun–Ven 8h15–18h45 · Sam 10h–17h · Dim fermé</span></div></div>
+        <div class="loc-line"><span class="ic">📞</span><div><strong>Téléphone</strong><span><a href="tel:+33759745044">07 59 74 50 44</a></span></div></div>
+        <div class="loc-line"><span class="ic">🚶</span><div><strong>Accès</strong>
+          <div class="access-badges">
+            <span>🚉 Proche gare & centre</span>
+            <span>🚌 Bus à proximité</span>
+            <span>🅿️ Stationnement de quartier</span>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq pad">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow">Bon à savoir</span>
+      <h2 class="section-title">Questions fréquentes</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item"><button class="faq-q">Faut-il réserver à l'avance ?</button><div class="faq-a"><p>Pas forcément ! On accueille avec ou sans réservation, dans la limite de 5 chiens par jour. Pour être sûr d'avoir une place, un petit appel la veille est idéal.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Pourquoi seulement 5 chiens maximum ?</button><div class="faq-a"><p>C'est un choix assumé. En petit comité, chaque chien est réellement connu, surveillé et câliné. Moins de stress, plus d'attention : c'est toute la différence The Dog House.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Comment se passe la première visite ?</button><div class="faq-a"><p>On fait connaissance en douceur : vous nous présentez votre chien, ses habitudes, et on l'accueille progressivement pour qu'il se sente vite à l'aise.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Quels chiens acceptez-vous ?</button><div class="faq-a"><p>Chiens sociables de toutes tailles, à jour de leurs vaccins. Pour les tempéraments plus délicats, on évalue au cas par cas pour le bien-être de tous.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Qu'est-ce que le dogwash ?</button><div class="faq-a"><p>Un espace de lavage : bain, produits doux et séchage. Votre chien repart tout propre, souvent après une bonne journée de jeux.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Puis-je prendre un café en déposant mon chien ?</button><div class="faq-a"><p>Avec plaisir. Le coin café fait partie de l'esprit de la maison : on prend le temps, pour vous comme pour votre compagnon.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Aurai-je des nouvelles dans la journée ?</button><div class="faq-a"><p>Oui, on aime partager les moments forts de la journée de votre chien. Suivez aussi nos coulisses sur Instagram <a href="https://www.instagram.com/thedoghouse_rennes/" target="_blank" rel="noopener" style="color:var(--terracotta-deep)">@thedoghouse_rennes</a>.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Où êtes-vous situés ?</button><div class="faq-a"><p>Au 21 boulevard de Chézy, en plein cœur de Rennes, à quelques minutes à pied de la gare et du centre.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOURS ================= -->
+<section class="hours pad">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow">Horaires</span>
+      <h2 class="section-title">Nos horaires d'ouverture</h2>
+    </div>
+    <div class="hours-table reveal" id="hoursTable">
+      <div class="hours-row" data-day="1"><span class="day">Lundi</span><span class="hr">8h15 – 18h45</span></div>
+      <div class="hours-row" data-day="2"><span class="day">Mardi</span><span class="hr">8h15 – 18h45</span></div>
+      <div class="hours-row" data-day="3"><span class="day">Mercredi</span><span class="hr">8h15 – 18h45</span></div>
+      <div class="hours-row" data-day="4"><span class="day">Jeudi</span><span class="hr">8h15 – 18h45</span></div>
+      <div class="hours-row" data-day="5"><span class="day">Vendredi</span><span class="hr">8h15 – 18h45</span></div>
+      <div class="hours-row" data-day="6"><span class="day">Samedi</span><span class="hr">10h00 – 17h00</span></div>
+      <div class="hours-row closed" data-day="0"><span class="day">Dimanche</span><span class="hr">Fermé</span></div>
+    </div>
+    <p class="hours-note">Ouvert toute l'année, fermé le dimanche et les jours fériés.</p>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact pad" id="contact">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow">Contact</span>
+      <h2 class="section-title">Envie de nous rencontrer ?</h2>
+    </div>
+    <div class="contact-grid">
+      <form class="c-form reveal" id="contactForm" novalidate>
+        <div class="row">
+          <div><label for="nom">Votre nom</label><input type="text" id="nom" name="nom" placeholder="Camille Dupont" required></div>
+          <div><label for="email">Votre email</label><input type="email" id="email" name="email" placeholder="camille@email.com" required></div>
+        </div>
+        <div class="row">
+          <div><label for="chien">Nom / race du chien</label><input type="text" id="chien" name="chien" placeholder="Nala, border collie"></div>
+          <div><label for="tel">Téléphone</label><input type="tel" id="tel" name="tel" placeholder="06 xx xx xx xx"></div>
+        </div>
+        <div><label for="msg">Votre message</label><textarea id="msg" name="msg" placeholder="Bonjour, j'aimerais réserver une journée pour…" required></textarea></div>
+        <div class="form-msg" id="formMsg">🐾 Merci ! Votre message est bien noté — nous vous répondons très vite.</div>
+        <button type="submit" class="btn btn-terra" style="align-self:flex-start">Envoyer ma demande</button>
+      </form>
+      <div class="c-info reveal">
+        <div class="ci"><span class="ic">📞</span><div><strong>Téléphone</strong><a href="tel:+33759745044">07 59 74 50 44</a></div></div>
+        <div class="ci"><span class="ic">📧</span><div><strong>Email</strong><a href="mailto:contact@thedoghouse-rennes.fr">contact@thedoghouse-rennes.fr</a></div></div>
+        <div class="ci"><span class="ic">📍</span><div><strong>Adresse</strong><a href="https://www.google.com/maps?q=21+boulevard+de+Ch%C3%A9zy+35000+Rennes" target="_blank" rel="noopener">21 boulevard de Chézy, 35000 Rennes</a></div></div>
+        <div class="ci"><span class="ic">🕘</span><div><strong>Horaires</strong><span>Lun–Ven 8h15–18h45 · Sam 10h–17h</span></div></div>
+        <div class="socials">
+          <a href="https://www.instagram.com/thedoghouse_rennes/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.42-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.42-.37-1.06-.42-2.23C2.21 15.6 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.42 2.21 8.8 2.2 12 2.2Zm0 1.8c-3.14 0-3.51 0-4.75.07-.9.04-1.38.19-1.7.32-.43.16-.73.36-1.05.68-.32.32-.52.62-.68 1.05-.13.32-.28.8-.32 1.7C3.4 8.49 3.4 8.86 3.4 12s0 3.51.07 4.75c.04.9.19 1.38.32 1.7.16.43.36.73.68 1.05.32.32.62.52 1.05.68.32.13.8.28 1.7.32 1.24.07 1.61.07 4.75.07s3.51 0 4.75-.07c.9-.04 1.38-.19 1.7-.32.43-.16.73-.36 1.05-.68.32-.32.52-.62.68-1.05.13-.32.28-.8.32-1.7.07-1.24.07-1.61.07-4.75s0-3.51-.07-4.75c-.04-.9-.19-1.38-.32-1.7-.16-.43-.36-.73-.68-1.05-.32-.32-.62-.52-1.05-.68-.32-.13-.8-.28-1.7-.32C15.51 4 15.14 4 12 4Zm0 3.06A4.94 4.94 0 1 1 7.06 12 4.94 4.94 0 0 1 12 7.06Zm0 8.14A3.2 3.2 0 1 0 8.8 12a3.2 3.2 0 0 0 3.2 3.2Zm5.14-8.34a1.15 1.15 0 1 1-1.15-1.15 1.15 1.15 0 0 1 1.15 1.15Z"/></svg>
+          </a>
+          <a href="tel:+33759745044" aria-label="Téléphone">
+            <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32"><path d="M8 14h12v6a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4z" fill="none" stroke="#F7F1E7" stroke-width="2"/><path d="M20 15h2.6a2.4 2.4 0 0 1 0 4.8H20" fill="none" stroke="#F7F1E7" stroke-width="2"/><path d="M11 9c0 1.3 1 1.3 1 2.6M14.5 9c0 1.3 1 1.3 1 2.6" stroke="#D79B7E" stroke-width="1.7" stroke-linecap="round"/></svg>
+          </span>
+          <span class="brand-text"><h1>The Dog House</h1></span>
+        </div>
+        <p>La garderie-café canine au cœur de Rennes. 5 chiens max, mille attentions.</p>
+      </div>
+      <div class="foot-nav">
+        <div class="foot-col">
+          <h4>Navigation</h4>
+          <a href="#accueil">Accueil</a>
+          <a href="#maison">La maison</a>
+          <a href="#services">Services</a>
+          <a href="#galerie">Galerie</a>
+        </div>
+        <div class="foot-col">
+          <h4>Infos</h4>
+          <a href="#avis">Avis</a>
+          <a href="#contact">Contact</a>
+          <a href="https://www.instagram.com/thedoghouse_rennes/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+        <div class="foot-col">
+          <h4>Contact</h4>
+          <a href="tel:+33759745044">07 59 74 50 44</a>
+          <a href="https://www.google.com/maps?q=21+boulevard+de+Ch%C3%A9zy+35000+Rennes" target="_blank" rel="noopener">21 bd de Chézy, Rennes</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> The Dog House · Rennes. Tous droits réservés.</span>
+      <span class="sig">🎨 Maquette réalisée par <a href="#" rel="noopener">WALTER Studio</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============ Image fallback (jamais d'image cassée en démo) ============ */
+(function(){
+  var ph="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%23D79B7E'/%3E%3Ctext x='50%25' y='50%25' font-size='90' text-anchor='middle' dy='.35em'%3E%F0%9F%90%BE%3C/text%3E%3C/svg%3E";
+  document.querySelectorAll('img').forEach(function(im){
+    im.addEventListener('error',function(){this.onerror=null;this.src=ph;});
+  });
+})();
+
+/* ============ Header scroll state ============ */
+var header=document.getElementById('header');
+window.addEventListener('scroll',function(){
+  header.classList.toggle('scrolled',window.scrollY>40);
+});
+
+/* ============ Burger menu ============ */
+var burger=document.getElementById('burger'),navLinks=document.getElementById('navLinks');
+burger.addEventListener('click',function(){
+  var open=navLinks.classList.toggle('open');
+  burger.classList.toggle('open',open);
+  burger.setAttribute('aria-expanded',open);
+});
+function closeMenu(){navLinks.classList.remove('open');burger.classList.remove('open');burger.setAttribute('aria-expanded',false);}
+
+/* ============ Smooth scroll maison (compatible toutes versions Safari) ============
+   N'utilise ni scrollTo({behavior}) ni scroll-behavior CSS (non gérés par
+   d'anciennes versions de Safari). Animation manuelle via requestAnimationFrame,
+   avec window.scrollTo(x,y) à deux arguments, supporté partout. ============ */
+function currentY(){var se=document.scrollingElement||document.documentElement;return (se&&se.scrollTop)||window.pageYOffset||0;}
+function setY(y){window.scrollTo(0,y);var se=document.scrollingElement||document.documentElement;if(se)se.scrollTop=y;if(document.body)document.body.scrollTop=y;}
+function animateScrollTo(destY){
+  var startY=currentY();
+  var diff=destY-startY, duration=600, start=null;
+  if(Math.abs(diff)<2){setY(destY);return;}
+  function step(ts){
+    if(start===null)start=ts;
+    var p=Math.min((ts-start)/duration,1);
+    var ease=p<0.5?2*p*p:1-Math.pow(-2*p+2,2)/2; // easeInOutQuad
+    setY(startY+diff*ease);
+    if(p<1)window.requestAnimationFrame(step);
+  }
+  if(window.requestAnimationFrame)window.requestAnimationFrame(step);
+  else setY(destY); // ultime repli
+}
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var id=a.getAttribute('href');
+    if(id==='#'||id.length<2)return;
+    var target=document.querySelector(id);
+    if(!target)return;
+    e.preventDefault();
+    closeMenu();
+    var offset=header.offsetHeight+12;
+    var rectTop=target.getBoundingClientRect().top;
+    var destY=Math.max(0,rectTop+currentY()-offset);
+    animateScrollTo(destY);
+    try{history.replaceState(null,'',id);}catch(err){/* file:// sous Safari peut refuser */}
+  });
+});
+
+/* ============ FAQ accordion ============ */
+document.querySelectorAll('.faq-item').forEach(function(item){
+  var q=item.querySelector('.faq-q'),a=item.querySelector('.faq-a');
+  q.addEventListener('click',function(){
+    var open=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight=null;});
+    if(!open){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}
+  });
+});
+
+/* ============ Reveal on scroll ============ */
+var io=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+/* ============ Live hours + open status ============ */
+(function(){
+  var schedule={1:[495,1125],2:[495,1125],3:[495,1125],4:[495,1125],5:[495,1125],6:[600,1020],0:null}; // minutes
+  var now=new Date(),day=now.getDay(),mins=now.getHours()*60+now.getMinutes();
+  var dot=document.getElementById('statusDot'),txt=document.getElementById('todayStatus');
+  var today=schedule[day],open=false,nextInfo='';
+  if(today&&mins>=today[0]&&mins<today[1]){open=true;}
+  function fmt(m){var h=Math.floor(m/60),mm=m%60;return h+'h'+(mm<10?'0'+mm:mm);}
+  if(open){txt.innerHTML='<strong>Ouvert</strong> — ferme à '+fmt(today[1]);}
+  else{
+    dot.classList.add('closed');
+    // find next opening
+    for(var i=0;i<=7;i++){
+      var d=(day+i)%7,s=schedule[d];
+      if(s){
+        if(i===0&&mins<s[0]){txt.innerHTML='<strong>Fermé</strong> — ouvre à '+fmt(s[0]);break;}
+        if(i>0){var names=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];txt.innerHTML='<strong>Fermé</strong> — ouvre '+(i===1?'demain':names[d])+' à '+fmt(s[0]);break;}
+      }
+    }
+    if(!txt.innerHTML)txt.innerHTML='<strong>Fermé</strong>';
+  }
+  // highlight today's row
+  var row=document.querySelector('.hours-row[data-day="'+day+'"]');
+  if(row)row.classList.add('today');
+})();
+
+/* ============ Contact form (démo, pas de backend) ============ */
+document.getElementById('contactForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var f=e.target,ok=f.nom.value.trim()&&f.email.value.trim()&&f.msg.value.trim();
+  var msg=document.getElementById('formMsg');
+  if(!ok){msg.style.background='#D79B7E';msg.textContent='Merci de remplir votre nom, email et message.';msg.classList.add('show');return;}
+  msg.style.background='';msg.textContent='🐾 Merci ! Votre message est bien noté — nous vous répondons très vite.';
+  msg.classList.add('show');f.reset();
+  setTimeout(function(){msg.classList.remove('show');},6000);
+});
+
+/* ============ Year ============ */
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>

@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Cabane — Conciergerie de quartier ViaSilva | Cesson-Sévigné</title>
+<meta name="description" content="La Cabane, conciergerie du quotidien du quartier ViaSilva à Cesson-Sévigné : services, salle à louer 105 m², atelier bricolage, recyclerie et foodtrucks. Ouvert 7j/7 de 8h à 21h.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+:root{
+  --primaire:#E74C3C;
+  --primaire-fonce:#C0392B;
+  --secondaire:#F5F5F5;
+  --accent:#2C3E50;
+  --accent2:#27AE60;
+  --accent2-fonce:#1E8449;
+  --neutre:#ECF0F1;
+  --texte:#2C3E50;
+  --texte-doux:#5D6D7E;
+  --blanc:#FFFFFF;
+  --ombre:0 4px 22px rgba(44,62,80,.09);
+  --ombre-forte:0 14px 42px rgba(44,62,80,.17);
+  --rayon:16px;
+  --transition:.38s cubic-bezier(.22,.61,.36,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  color:var(--texte);background:var(--blanc);
+  line-height:1.7;font-size:16px;overflow-x:hidden;
+}
+img{max-width:100%;display:block;height:auto}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:'Syne',sans-serif;line-height:1.15;font-weight:800;color:var(--accent)}
+h1{font-size:clamp(2.15rem,6.4vw,4.4rem)}
+h2{font-size:clamp(1.75rem,4.2vw,2.9rem)}
+h3{font-size:clamp(1.15rem,2.4vw,1.5rem);font-weight:700}
+h4{font-size:1.05rem;font-weight:700}
+p{color:var(--texte-doux)}
+
+:focus-visible{outline:3px solid var(--primaire);outline-offset:3px;border-radius:5px}
+
+.wrap{width:min(1180px,92vw);margin-inline:auto}
+section{padding:clamp(56px,8vw,104px) 0}
+.centre{text-align:center}
+
+.surtitre{
+  display:inline-block;background:rgba(231,76,60,.1);color:var(--primaire);
+  padding:7px 17px;border-radius:50px;font-size:.8rem;font-weight:700;
+  letter-spacing:.11em;text-transform:uppercase;margin-bottom:16px;
+}
+.surtitre.vert{background:rgba(39,174,96,.11);color:var(--accent2-fonce)}
+.trait{width:62px;height:4px;background:var(--primaire);margin:18px auto 28px;border-radius:3px}
+.trait.gauche{margin-inline:0}
+.intro{max-width:650px;margin-inline:auto;font-size:1.06rem}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:15px 30px;border-radius:50px;font-family:'Inter',sans-serif;font-weight:600;
+  font-size:1rem;cursor:pointer;border:2px solid transparent;
+  transition:transform var(--transition),box-shadow var(--transition),background var(--transition),color var(--transition);
+  min-height:52px;text-align:center;
+}
+.btn-primaire{background:var(--primaire);color:#fff}
+.btn-primaire:hover{background:var(--primaire-fonce);transform:translateY(-3px);box-shadow:0 12px 28px rgba(231,76,60,.34)}
+.btn-vert{background:var(--accent2);color:#fff}
+.btn-vert:hover{background:var(--accent2-fonce);transform:translateY(-3px);box-shadow:0 12px 28px rgba(39,174,96,.32)}
+.btn-fantome{background:transparent;color:#fff;border-color:rgba(255,255,255,.78)}
+.btn-fantome:hover{background:#fff;color:var(--primaire);transform:translateY(-3px)}
+.btn-ligne{background:transparent;color:var(--primaire);border-color:var(--primaire)}
+.btn-ligne:hover{background:var(--primaire);color:#fff;transform:translateY(-3px)}
+
+/* ---------- 1. HEADER ---------- */
+.entete{
+  position:fixed;inset:0 0 auto 0;z-index:1000;
+  background:rgba(255,255,255,.93);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(44,62,80,.09);transition:box-shadow var(--transition);
+}
+.entete.defile{box-shadow:0 4px 20px rgba(44,62,80,.1)}
+.entete-in{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:13px 0;min-height:66px}
+.logo{display:flex;align-items:center;gap:11px;flex-shrink:0}
+.logo-mark{
+  width:44px;height:44px;border-radius:12px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--primaire),var(--accent2));
+  color:#fff;display:grid;place-items:center;font-size:1.35rem;
+}
+.logo-txt{display:flex;flex-direction:column;line-height:1.12}
+.logo-nom{font-family:'Syne',sans-serif;font-weight:800;font-size:1.18rem;color:var(--accent)}
+.logo-sous{font-size:.67rem;letter-spacing:.17em;text-transform:uppercase;color:var(--primaire);font-weight:700}
+
+.nav-liens{display:flex;gap:26px;align-items:center}
+.nav-liens a{font-size:.94rem;font-weight:500;color:var(--accent);position:relative;padding:6px 0;transition:color var(--transition)}
+.nav-liens a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--primaire);transition:width var(--transition)}
+.nav-liens a:hover{color:var(--primaire)}
+.nav-liens a:hover::after{width:100%}
+.entete .btn{padding:12px 22px;font-size:.92rem;min-height:46px}
+
+.burger{display:none;width:46px;height:46px;background:none;border:0;cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:5px;border-radius:9px}
+.burger span{display:block;width:24px;height:2px;background:var(--accent);border-radius:2px;transition:transform var(--transition),opacity var(--transition)}
+.burger.actif span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.actif span:nth-child(2){opacity:0}
+.burger.actif span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ---------- 2. HERO ---------- */
+.hero{position:relative;min-height:100svh;display:grid;place-items:center;text-align:center;color:#fff;padding:118px 0 68px;overflow:hidden}
+.hero-fond{position:absolute;inset:0;z-index:0}
+.hero-fond img{width:100%;height:100%;object-fit:cover}
+.hero-fond::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,32,44,.66) 0%,rgba(20,32,44,.55) 45%,rgba(20,32,44,.85) 100%)}
+.hero-in{position:relative;z-index:2;width:min(880px,92vw)}
+.hero .surtitre{background:rgba(255,255,255,.16);color:#fff;backdrop-filter:blur(8px)}
+.hero h1{color:#fff;margin-bottom:18px;text-shadow:0 3px 28px rgba(0,0,0,.36)}
+.hero-sous{color:rgba(255,255,255,.94);font-size:clamp(1.03rem,2vw,1.28rem);max-width:640px;margin:0 auto 34px}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero-note{
+  margin-top:38px;display:inline-flex;align-items:center;gap:11px;flex-wrap:wrap;justify-content:center;
+  background:rgba(255,255,255,.15);backdrop-filter:blur(9px);
+  border:1px solid rgba(255,255,255,.26);border-radius:50px;padding:11px 24px;font-size:.94rem;color:#fff;
+}
+.etoiles{color:#F5C24A;letter-spacing:1px}
+
+/* ---------- 3. BARRE INFOS ---------- */
+.barre{background:var(--accent);color:#fff;padding:0}
+.barre-grille{display:grid;grid-template-columns:repeat(4,1fr)}
+.barre-item{display:flex;align-items:center;gap:13px;padding:24px 20px;border-right:1px solid rgba(255,255,255,.14);transition:background var(--transition)}
+.barre-item:last-child{border-right:0}
+.barre-item:hover{background:rgba(255,255,255,.07)}
+.barre-ico{font-size:1.45rem;line-height:1;flex-shrink:0}
+.barre-lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.13em;color:rgba(255,255,255,.62);display:block;margin-bottom:3px}
+.barre-val{font-weight:600;font-size:.96rem;color:#fff}
+.pastille{display:inline-flex;align-items:center;gap:7px}
+.pastille::before{content:'';width:9px;height:9px;border-radius:50%;background:#2ECC71;box-shadow:0 0 0 4px rgba(46,204,113,.28)}
+.pastille.ferme::before{background:#E74C3C;box-shadow:0 0 0 4px rgba(231,76,60,.28)}
+
+/* ---------- 4. CONCEPT ---------- */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(34px,5vw,66px);align-items:center}
+.duo-img{position:relative;border-radius:var(--rayon);overflow:hidden;box-shadow:var(--ombre-forte)}
+.duo-img img{aspect-ratio:4/5;object-fit:cover;transition:transform .9s var(--transition)}
+.duo-img:hover img{transform:scale(1.05)}
+.badge-flottant{position:absolute;right:-14px;bottom:26px;background:var(--primaire);color:#fff;padding:16px 24px;border-radius:13px;box-shadow:var(--ombre-forte);text-align:center}
+.badge-flottant strong{display:block;font-family:'Syne',sans-serif;font-size:1.85rem;line-height:1}
+.badge-flottant span{font-size:.71rem;text-transform:uppercase;letter-spacing:.12em;opacity:.9}
+
+.badges{display:flex;flex-wrap:wrap;gap:11px;margin-top:28px}
+.badge{display:inline-flex;align-items:center;gap:8px;background:var(--neutre);color:var(--accent);padding:10px 18px;border-radius:50px;font-size:.9rem;font-weight:600}
+
+/* ---------- 5. SERVICES ---------- */
+.fond-gris{background:var(--secondaire)}
+.cartes{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:24px;margin-top:52px}
+.carte{background:var(--blanc);border-radius:var(--rayon);overflow:hidden;box-shadow:var(--ombre);transition:transform var(--transition),box-shadow var(--transition);display:flex;flex-direction:column}
+.carte:hover{transform:translateY(-8px);box-shadow:var(--ombre-forte)}
+.carte-img{position:relative;overflow:hidden;aspect-ratio:4/3}
+.carte-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--transition)}
+.carte:hover .carte-img img{transform:scale(1.08)}
+.carte-tag{position:absolute;top:14px;left:14px;background:var(--primaire);color:#fff;padding:6px 14px;border-radius:50px;font-size:.74rem;font-weight:700}
+.carte-tag.vert{background:var(--accent2)}
+.carte-corps{padding:24px;flex:1;display:flex;flex-direction:column}
+.carte-corps h3{margin-bottom:9px}
+.carte-corps p{font-size:.94rem;flex:1}
+.carte-pied{margin-top:16px;padding-top:16px;border-top:1px solid var(--neutre);font-weight:700;color:var(--primaire);font-size:.95rem}
+
+/* ---------- Salle ---------- */
+.salle-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:16px;margin-top:26px}
+.salle-stat{background:var(--neutre);border-radius:12px;padding:20px 16px;text-align:center}
+.salle-stat strong{display:block;font-family:'Syne',sans-serif;font-size:1.7rem;color:var(--primaire);line-height:1}
+.salle-stat span{font-size:.82rem;color:var(--texte-doux);margin-top:5px;display:block}
+
+/* ---------- 6. GALERIE ---------- */
+.galerie{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:52px}
+.galerie a{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:1;box-shadow:var(--ombre);display:block}
+.galerie img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--transition)}
+.galerie a::after{content:'Instagram';position:absolute;inset:0;background:rgba(231,76,60,.8);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.9rem;opacity:0;transition:opacity var(--transition);letter-spacing:.05em}
+.galerie a:hover img{transform:scale(1.11)}
+.galerie a:hover::after{opacity:1}
+
+/* ---------- 7. ACTUS ---------- */
+.actu{background:var(--blanc);border-radius:var(--rayon);overflow:hidden;box-shadow:var(--ombre);transition:transform var(--transition),box-shadow var(--transition)}
+.actu:hover{transform:translateY(-7px);box-shadow:var(--ombre-forte)}
+.actu-img{aspect-ratio:16/10;overflow:hidden}
+.actu-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--transition)}
+.actu:hover .actu-img img{transform:scale(1.07)}
+.actu-corps{padding:22px}
+.actu-date{font-size:.77rem;text-transform:uppercase;letter-spacing:.13em;color:var(--primaire);font-weight:700;margin-bottom:9px;display:block}
+.actu-corps h3{font-size:1.13rem;margin-bottom:9px}
+.actu-corps p{font-size:.92rem}
+
+/* ---------- 8. STATS ---------- */
+.stats{background:var(--accent);color:#fff;position:relative;overflow:hidden}
+.stats::before{content:'';position:absolute;inset:0;opacity:.1;background:radial-gradient(circle at 14% 22%,var(--primaire) 0%,transparent 44%),radial-gradient(circle at 86% 78%,var(--accent2) 0%,transparent 44%)}
+.stats .wrap{position:relative;z-index:2}
+.stats h2{color:#fff}
+.stats-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:32px;margin-top:48px}
+.stat{text-align:center;padding:20px 12px}
+.stat-nb{font-family:'Syne',sans-serif;font-size:clamp(2.4rem,6vw,3.6rem);font-weight:800;color:var(--primaire);line-height:1;display:block}
+.stat:nth-child(even) .stat-nb{color:var(--accent2)}
+.stat-lbl{margin-top:11px;font-size:.88rem;color:rgba(255,255,255,.8);text-transform:uppercase;letter-spacing:.09em}
+
+/* ---------- 9. AVIS ---------- */
+.avis-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(292px,1fr));gap:24px;margin-top:52px}
+.avis{background:var(--blanc);border-radius:var(--rayon);padding:30px 27px;box-shadow:var(--ombre);position:relative;transition:transform var(--transition),box-shadow var(--transition);display:flex;flex-direction:column}
+.avis:hover{transform:translateY(-6px);box-shadow:var(--ombre-forte)}
+.avis::before{content:'"';position:absolute;top:2px;right:22px;font-family:'Syne',sans-serif;font-size:5rem;color:var(--neutre);line-height:1;z-index:0}
+.avis-txt{position:relative;z-index:1;margin-bottom:22px;flex:1;color:var(--texte)}
+.avis-pied{display:flex;align-items:center;gap:13px;position:relative;z-index:1}
+.avis-av{width:46px;height:46px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--primaire),var(--accent2));color:#fff;display:grid;place-items:center;font-weight:800;font-family:'Syne',sans-serif;font-size:1.12rem}
+.avis-nom{font-weight:700;color:var(--accent);font-size:.96rem}
+.avis-meta{font-size:.81rem;color:var(--texte-doux)}
+.note-mention{margin-top:40px;text-align:center;font-size:.85rem;color:var(--texte-doux);font-style:italic;padding:16px;background:var(--neutre);border-radius:11px}
+
+/* ---------- 10. LOCALISATION ---------- */
+.carte-zone{border-radius:var(--rayon);overflow:hidden;box-shadow:var(--ombre-forte);min-height:400px}
+.carte-zone iframe{width:100%;height:100%;min-height:400px;border:0;display:block}
+.infos-liste{list-style:none;margin-top:26px}
+.infos-liste li{display:flex;gap:15px;align-items:flex-start;padding:17px 0;border-bottom:1px solid var(--neutre)}
+.infos-liste li:last-child{border-bottom:0}
+.infos-ico{font-size:1.3rem;flex-shrink:0;width:30px;line-height:1.4}
+.infos-liste strong{display:block;color:var(--accent);font-size:.95rem;margin-bottom:2px}
+.infos-liste span{font-size:.93rem;color:var(--texte-doux)}
+.infos-liste a{color:var(--primaire);font-weight:600}
+.infos-liste a:hover{text-decoration:underline}
+
+/* ---------- 11. FAQ ---------- */
+.faq{max-width:820px;margin:52px auto 0}
+.faq-item{background:var(--blanc);border-radius:12px;margin-bottom:13px;box-shadow:var(--ombre);overflow:hidden}
+.faq-q{width:100%;background:none;border:0;cursor:pointer;text-align:left;padding:21px 56px 21px 24px;font-family:'Syne',sans-serif;font-weight:700;font-size:1.02rem;color:var(--accent);position:relative;transition:color var(--transition);min-height:60px}
+.faq-q:hover{color:var(--primaire)}
+.faq-q::after{content:'+';position:absolute;right:22px;top:50%;transform:translateY(-50%);font-size:1.6rem;color:var(--primaire);font-family:'Inter',sans-serif;transition:transform var(--transition);line-height:1}
+.faq-item.ouvert .faq-q::after{transform:translateY(-50%) rotate(45deg)}
+.faq-r{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.22,.61,.36,1)}
+.faq-r p{padding:0 24px 22px;font-size:.95rem}
+
+/* ---------- 12. HORAIRES ---------- */
+.horaires{max-width:620px;margin:52px auto 0;background:var(--blanc);border-radius:var(--rayon);overflow:hidden;box-shadow:var(--ombre)}
+.horaires table{width:100%;border-collapse:collapse}
+.horaires th{background:var(--accent);color:#fff;padding:17px 22px;text-align:left;font-family:'Syne',sans-serif;font-size:.94rem;letter-spacing:.04em}
+.horaires td{padding:15px 22px;border-bottom:1px solid var(--neutre);font-size:.95rem}
+.horaires tr:last-child td{border-bottom:0}
+.horaires tr.aujourdhui{background:rgba(231,76,60,.06)}
+.horaires tr.aujourdhui td{font-weight:700;color:var(--primaire)}
+.horaires .jour{font-weight:600;color:var(--accent)}
+.note-horaires{margin-top:20px;text-align:center;font-size:.86rem;color:var(--texte-doux);font-style:italic}
+
+/* ---------- 13. CONTACT ---------- */
+.contact-duo{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:52px;align-items:start}
+.form-boite{background:var(--blanc);border-radius:var(--rayon);padding:clamp(26px,4vw,40px);box-shadow:var(--ombre)}
+.champs{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}
+.champ{display:flex;flex-direction:column;gap:7px}
+.champ.plein{grid-column:1/-1}
+.champ label{font-size:.87rem;font-weight:600;color:var(--accent)}
+.champ input,.champ select,.champ textarea{
+  font-family:'Inter',sans-serif;font-size:.97rem;padding:13px 15px;
+  border:2px solid var(--neutre);border-radius:10px;background:var(--secondaire);
+  color:var(--texte);transition:border-color var(--transition),background var(--transition);width:100%;min-height:50px;
+}
+.champ textarea{resize:vertical;min-height:120px}
+.champ input:focus,.champ select:focus,.champ textarea:focus{outline:0;border-color:var(--primaire);background:var(--blanc)}
+.champ input.err,.champ select.err,.champ textarea.err{border-color:#C0392B;background:#FDF0EE}
+.err-msg{font-size:.8rem;color:#C0392B;display:none;font-weight:600}
+.err-msg.on{display:block}
+.form-boite .btn{width:100%;margin-top:24px}
+.succes{display:none;margin-top:22px;padding:20px 22px;border-radius:12px;background:#E9F7EF;border:2px solid var(--accent2);color:#1B6B3A;font-weight:600;font-size:.95rem;align-items:flex-start;gap:12px}
+.succes.on{display:flex;animation:pop .45s ease}
+@keyframes pop{from{opacity:0;transform:translateY(-9px)}to{opacity:1;transform:none}}
+
+.reseaux{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+.reseau{width:48px;height:48px;border-radius:50%;background:var(--neutre);display:grid;place-items:center;font-size:1.2rem;transition:background var(--transition),transform var(--transition),color var(--transition)}
+.reseau:hover{background:var(--primaire);color:#fff;transform:translateY(-4px)}
+
+/* ---------- 14. FOOTER ---------- */
+.pied{background:#1E2B38;color:rgba(255,255,255,.68);padding:62px 0 0;font-size:.93rem}
+.pied-grille{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:42px;padding-bottom:44px}
+.pied h4{color:#fff;margin-bottom:17px;font-size:1rem}
+.pied p{color:rgba(255,255,255,.6);font-size:.92rem}
+.pied ul{list-style:none}
+.pied li{margin-bottom:11px}
+.pied a{transition:color var(--transition)}
+.pied a:hover{color:var(--primaire)}
+.pied .logo-nom{color:#fff}
+.pied .logo-sous{color:var(--primaire)}
+.pied-bas{border-top:1px solid rgba(255,255,255,.12);padding:26px 0;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;font-size:.86rem}
+.signature{display:inline-flex;align-items:center;gap:8px;color:var(--primaire);font-weight:700}
+.signature-pt{width:7px;height:7px;border-radius:50%;background:var(--primaire)}
+
+/* ---------- ANIMATIONS ---------- */
+.anim{opacity:0;transform:translateY(30px);transition:opacity .78s cubic-bezier(.22,.61,.36,1),transform .78s cubic-bezier(.22,.61,.36,1)}
+.anim.vu{opacity:1;transform:none}
+.anim.d1{transition-delay:.09s}
+.anim.d2{transition-delay:.18s}
+.anim.d3{transition-delay:.27s}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .anim{opacity:1;transform:none}
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:1024px){
+  .duo,.contact-duo{grid-template-columns:1fr}
+  .duo-img img{aspect-ratio:16/10}
+  .badge-flottant{right:20px}
+  .pied-grille{grid-template-columns:1fr 1fr}
+  .barre-grille{grid-template-columns:repeat(2,1fr)}
+  .barre-item:nth-child(2){border-right:0}
+  .barre-item:nth-child(1),.barre-item:nth-child(2){border-bottom:1px solid rgba(255,255,255,.14)}
+}
+@media (max-width:860px){
+  .nav-liens{
+    position:fixed;inset:66px 0 auto 0;flex-direction:column;gap:0;
+    background:var(--blanc);padding:0 6vw;overflow:hidden;max-height:0;
+    transition:max-height .45s cubic-bezier(.22,.61,.36,1),padding .45s;
+    box-shadow:0 14px 30px rgba(44,62,80,.14);border-bottom:1px solid var(--neutre);
+  }
+  .nav-liens.ouvert{max-height:440px;padding:16px 6vw 26px}
+  .nav-liens a{width:100%;padding:15px 0;border-bottom:1px solid var(--neutre);font-size:1.03rem}
+  .burger{display:flex}
+  .entete .btn{display:none}
+  .galerie{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:600px){
+  .barre-grille{grid-template-columns:1fr}
+  .barre-item{border-right:0!important;border-bottom:1px solid rgba(255,255,255,.14)}
+  .barre-item:last-child{border-bottom:0}
+  .champs{grid-template-columns:1fr}
+  .pied-grille{grid-template-columns:1fr;gap:32px}
+  .pied-bas{flex-direction:column;text-align:center}
+  .hero-btns .btn{width:100%}
+  .badge-flottant{position:static;margin-top:16px;display:block}
+}
+@media (max-width:480px){
+  .galerie{grid-template-columns:1fr 1fr;gap:9px}
+  section{padding:46px 0}
+  .horaires td,.horaires th{padding:13px 15px;font-size:.89rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ 1. HEADER STICKY ============ -->
+<header class="entete" id="entete">
+  <div class="wrap entete-in">
+    <a href="#top" class="logo" aria-label="La Cabane, retour en haut de page">
+      <span class="logo-mark" aria-hidden="true">🏡</span>
+      <span class="logo-txt">
+        <span class="logo-nom">La Cabane</span>
+        <span class="logo-sous">ViaSilva · Cesson</span>
+      </span>
+    </a>
+    <nav class="nav-liens" id="nav" aria-label="Navigation principale">
+      <a href="#concept">Le lieu</a>
+      <a href="#services">Services</a>
+      <a href="#salle">Louer la salle</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#actus">Actus</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="tel:+33608165803" class="btn btn-primaire">📞 Nous appeler</a>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ 2. HERO ============ -->
+<section class="hero">
+  <div class="hero-fond">
+    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1800&q=80&auto=format&fit=crop" alt="Habitants réunis dans l'espace commun de La Cabane à ViaSilva">
+  </div>
+  <div class="hero-in">
+    <span class="surtitre">Conciergerie de quartier · ViaSilva</span>
+    <h1>Le point de rendez-vous du quartier</h1>
+    <p class="hero-sous">Un espace d'accueil, une salle à louer, un atelier bricolage et une recyclerie. Tous les jours de 8h à 21h, à ViaSilva.</p>
+    <div class="hero-btns">
+      <a href="#salle" class="btn btn-primaire">Réserver la salle</a>
+      <a href="#services" class="btn btn-fantome">Découvrir les services</a>
+    </div>
+    <div class="hero-note">
+      <span class="etoiles" aria-hidden="true">★★★★★</span>
+      <strong>4,8 / 5</strong>
+      <span>· Ouvert 7j/7 de 8h à 21h</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. BARRE INFOS RAPIDES ============ -->
+<section class="barre" aria-label="Informations pratiques" style="padding:0">
+  <div class="wrap" style="width:100%">
+    <div class="barre-grille">
+      <div class="barre-item">
+        <span class="barre-ico" aria-hidden="true">⭐</span>
+        <span><span class="barre-lbl">Avis Google</span><span class="barre-val">4,8 sur 5</span></span>
+      </div>
+      <div class="barre-item">
+        <span class="barre-ico" aria-hidden="true">🕒</span>
+        <span><span class="barre-lbl">Aujourd'hui</span><span class="barre-val pastille" id="statut-ouverture">Chargement…</span></span>
+      </div>
+      <a class="barre-item" href="https://www.google.com/maps/search/La+Cabane+Cesson-S%C3%A9vign%C3%A9" target="_blank" rel="noopener noreferrer">
+        <span class="barre-ico" aria-hidden="true">📍</span>
+        <span><span class="barre-lbl">Quartier ViaSilva</span><span class="barre-val">Cesson-Sévigné</span></span>
+      </a>
+      <a class="barre-item" href="tel:+33608165803">
+        <span class="barre-ico" aria-hidden="true">📞</span>
+        <span><span class="barre-lbl">Nous joindre</span><span class="barre-val">06 08 16 58 03</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. CONCEPT ============ -->
+<section id="concept">
+  <div class="wrap duo">
+    <div class="duo-img anim">
+      <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=1000&q=80&auto=format&fit=crop" alt="Atelier participatif à La Cabane, habitants réparant du mobilier ensemble">
+      <div class="badge-flottant"><strong>7j/7</strong><span>8h – 21h</span></div>
+    </div>
+    <div class="anim d1">
+      <span class="surtitre">Le lieu</span>
+      <h2>Un quartier, un lieu où tout converge</h2>
+      <div class="trait gauche"></div>
+      <p>La Cabane est née avec le quartier ViaSilva, à Cesson-Sévigné. L'idée de départ est simple : donner aux habitants un endroit physique où se croiser, se rendre service et faire vivre le quartier autrement qu'entre quatre murs.</p>
+      <p style="margin-top:16px">Concrètement, c'est un espace d'accueil et de conciergerie du quotidien, une salle partagée que chacun peut louer, un atelier bricolage pour réparer plutôt que jeter, et une recyclerie pour donner une seconde vie aux objets. Les foodtrucks s'installent régulièrement devant, et les projets des habitants y trouvent un point d'ancrage.</p>
+      <p style="margin-top:16px">Ce n'est ni une mairie annexe ni un simple local associatif : c'est un service de proximité pensé pour rendre la vie de quartier plus simple.</p>
+      <div class="badges">
+        <span class="badge">🛎️ Accueil &amp; conciergerie</span>
+        <span class="badge">♻️ Recyclerie</span>
+        <span class="badge">🤝 Projets d'habitants</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. NOS SERVICES ============ -->
+<section id="services" class="fond-gris">
+  <div class="wrap">
+    <div class="centre anim">
+      <span class="surtitre">Au quotidien</span>
+      <h2>Nos services</h2>
+      <div class="trait"></div>
+      <p class="intro">Des services de conciergerie pensés pour vous faire gagner du temps, à tarif préférentiel pour les adhérents.</p>
+    </div>
+    <div class="cartes">
+      <article class="carte anim">
+        <div class="carte-img">
+          <img src="https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?w=800&q=80&auto=format&fit=crop" alt="Colis réceptionnés et stockés à l'accueil de La Cabane">
+          <span class="carte-tag">Conciergerie</span>
+        </div>
+        <div class="carte-corps">
+          <h3>Colis &amp; dépôt de clés</h3>
+          <p>Réception de vos colis quand vous êtes absent, dépôt de clés pour un proche ou un artisan. Le service le plus utilisé du quartier.</p>
+          <div class="carte-pied">Tarif adhérent</div>
+        </div>
+      </article>
+      <article class="carte anim d1">
+        <div class="carte-img">
+          <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=800&q=80&auto=format&fit=crop" alt="Paniers de légumes bio issus des commandes groupées">
+          <span class="carte-tag vert">Alimentation</span>
+        </div>
+        <div class="carte-corps">
+          <h3>Paniers bio &amp; commandes groupées</h3>
+          <p>Des paniers de producteurs livrés sur place et des commandes groupées qui font baisser les prix. Vous récupérez, c'est tout.</p>
+          <div class="carte-pied">Chaque semaine</div>
+        </div>
+      </article>
+      <article class="carte anim d2">
+        <div class="carte-img">
+          <img src="https://images.unsplash.com/photo-1556909212-d5b604d0c90d?w=800&q=80&auto=format&fit=crop" alt="Atelier de couture et de retouche à La Cabane">
+          <span class="carte-tag">Réparation</span>
+        </div>
+        <div class="carte-corps">
+          <h3>Couture, cordonnerie, pressing</h3>
+          <p>Retouches, réparation de chaussures, pressing : déposez, on s'occupe du reste. Réparer coûte moins cher que remplacer.</p>
+          <div class="carte-pied">Dépôt sur place</div>
+        </div>
+      </article>
+      <article class="carte anim d3">
+        <div class="carte-img">
+          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80&auto=format&fit=crop" alt="Véhicule pris en charge pour un service d'entretien automobile">
+          <span class="carte-tag">Véhicule</span>
+        </div>
+        <div class="carte-corps">
+          <h3>Entretien &amp; nettoyage auto</h3>
+          <p>Nettoyage et petit entretien de votre voiture pendant votre journée de travail. Vous laissez les clés le matin, vous récupérez le soir.</p>
+          <div class="carte-pied">Sur réservation</div>
+        </div>
+      </article>
+    </div>
+    <div class="centre" style="margin-top:44px">
+      <a href="tel:+33608165803" class="btn btn-ligne">📞 Demander la liste complète des services</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. LOUER LA SALLE ============ -->
+<section id="salle">
+  <div class="wrap duo">
+    <div class="anim">
+      <span class="surtitre vert">Espace partagé</span>
+      <h2>Louer la salle</h2>
+      <div class="trait gauche" style="background:var(--accent2)"></div>
+      <p>La salle partagée de La Cabane se loue pour tous types d'événements : réunion associative, séminaire d'entreprise, anniversaire, atelier, assemblée générale ou fête de famille. Elle est disponible tous les jours de 8h à 21h.</p>
+      <p style="margin-top:16px">105 m² modulables, jusqu'à 93 personnes. Que vous soyez une association du quartier, une entreprise du secteur ou un particulier, les conditions d'accès sont les mêmes : on vous accompagne pour caler la configuration adaptée à votre format.</p>
+      <div class="salle-stats">
+        <div class="salle-stat"><strong>105</strong><span>m² modulables</span></div>
+        <div class="salle-stat"><strong>93</strong><span>personnes max</span></div>
+        <div class="salle-stat"><strong>8h–21h</strong><span>tous les jours</span></div>
+      </div>
+      <div style="margin-top:30px;display:flex;gap:13px;flex-wrap:wrap">
+        <a href="#contact" class="btn btn-vert">Demander un créneau</a>
+        <a href="tel:+33608165803" class="btn btn-ligne">📞 06 08 16 58 03</a>
+      </div>
+    </div>
+    <div class="duo-img anim d1">
+      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1000&q=80&auto=format&fit=crop" alt="Salle partagée de La Cabane aménagée pour une réunion de quartier">
+      <div class="badge-flottant" style="background:var(--accent2)"><strong>105</strong><span>m² à louer</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. ATELIER & RECYCLERIE ============ -->
+<section class="fond-gris">
+  <div class="wrap">
+    <div class="centre anim">
+      <span class="surtitre vert">Réparer, réemployer</span>
+      <h2>Atelier bricolage &amp; recyclerie</h2>
+      <div class="trait" style="background:var(--accent2)"></div>
+      <p class="intro">Deux espaces pour prolonger la vie des objets plutôt que de les jeter — et apprendre à le faire soi-même.</p>
+    </div>
+    <div class="cartes" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+      <article class="carte anim">
+        <div class="carte-img">
+          <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=900&q=80&auto=format&fit=crop" alt="Établi et outils disponibles dans l'atelier bricolage de La Cabane">
+          <span class="carte-tag">Atelier</span>
+        </div>
+        <div class="carte-corps">
+          <h3>L'atelier bricolage</h3>
+          <p>Un espace équipé en outils, accessible aux habitants du quartier. Vous avez un meuble à réparer, un vélo à régler, un projet à monter ? Vous trouverez l'outillage et souvent quelqu'un pour vous donner un coup de main.</p>
+          <div class="carte-pied">Accès sur inscription</div>
+        </div>
+      </article>
+      <article class="carte anim d1">
+        <div class="carte-img">
+          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=900&q=80&auto=format&fit=crop" alt="Espace recyclerie où les habitants déposent et récupèrent des objets">
+          <span class="carte-tag vert">Recyclerie</span>
+        </div>
+        <div class="carte-corps">
+          <h3>La recyclerie</h3>
+          <p>Déposez ce dont vous n'avez plus l'usage, repartez avec ce dont vous avez besoin. Meubles, vaisselle, livres, petit électroménager : tout ce qui peut encore servir trouve preneur.</p>
+          <div class="carte-pied">Dépôt &amp; récupération libres</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. GALERIE ============ -->
+<section id="galerie">
+  <div class="wrap">
+    <div class="centre anim">
+      <span class="surtitre">En images</span>
+      <h2>La Cabane en photos</h2>
+      <div class="trait"></div>
+      <p class="intro">Ateliers, foodtrucks, événements de quartier et vie quotidienne. Retrouvez-nous sur Instagram.</p>
+    </div>
+    <div class="galerie anim">
+      <a href="https://www.instagram.com/la_cabane_viasilva/" target="_blank" rel="noopener noreferrer" aria-label="Photo : atelier participatif à La Cabane"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80&auto=format&fit=crop" alt="Atelier participatif réunissant des habitants du quartier"></a>
+      <a href="https://www.instagram.com/la_cabane_viasilva/" target="_blank" rel="noopener noreferrer" aria-label="Photo : foodtruck installé devant La Cabane"><img src="https://images.unsplash.com/photo-1565123409695-7b5ef63a2efb?w=600&q=80&auto=format&fit=crop" alt="Foodtruck installé devant La Cabane un soir de semaine"></a>
+      <a href="https://www.instagram.com/la_cabane_viasilva/" target="_blank" rel="noopener noreferrer" aria-label="Photo : espace de la recyclerie"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80&auto=format&fit=crop" alt="Objets et mobilier disponibles dans la recyclerie"></a>
+      <a href="https://www.instagram.com/la_cabane_viasilva/" target="_blank" rel="noopener noreferrer" aria-label="Photo : réunion dans la salle partagée"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&q=80&auto=format&fit=crop" alt="Réunion de travail dans la salle partagée de La Cabane"></a>
+      <a href="https://www.instagram.com/la_cabane_viasilva/" target="_blank" rel="noopener noreferrer" aria-label="Photo : paniers de légumes"><img src="https://images.unsplash.com/photo-1610348725531-843dff563e2c?w=600&q=80&auto=format&fit=crop" alt="Paniers de légumes bio préparés pour la distribution"></a>
+      <a href="https://www.instagram.com/la_cabane_viasilva/" target="_blank" rel="noopener noreferrer" aria-label="Photo : outils de l'atelier bricolage"><img src="https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=600&q=80&auto=format&fit=crop" alt="Outils rangés sur le mur de l'atelier bricolage"></a>
+      <a href="https://www.instagram.com/la_cabane_viasilva/" target="_blank" rel="noopener noreferrer" aria-label="Photo : événement de quartier en extérieur"><img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=80&auto=format&fit=crop" alt="Événement de quartier organisé en extérieur devant La Cabane"></a>
+      <a href="https://www.instagram.com/la_cabane_viasilva/" target="_blank" rel="noopener noreferrer" aria-label="Photo : espace d'accueil et de conciergerie"><img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=600&q=80&auto=format&fit=crop" alt="Espace d'accueil et de conciergerie de La Cabane"></a>
+      <a href="https://www.instagram.com/la_cabane_viasilva/" target="_blank" rel="noopener noreferrer" aria-label="Photo : atelier couture"><img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600&q=80&auto=format&fit=crop" alt="Machine à coudre installée pour l'atelier couture"></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. ACTUALITÉS ============ -->
+<section id="actus" class="fond-gris">
+  <div class="wrap">
+    <div class="centre anim">
+      <span class="surtitre">Actualités</span>
+      <h2>Ce qui se passe à La Cabane</h2>
+      <div class="trait"></div>
+      <p class="intro">Foodtrucks, ateliers, appels à projets : le programme du quartier.</p>
+    </div>
+    <div class="cartes">
+      <article class="actu anim">
+        <div class="actu-img"><img src="https://images.unsplash.com/photo-1565123409695-7b5ef63a2efb?w=700&q=80&auto=format&fit=crop" alt="Foodtruck en service devant La Cabane"></div>
+        <div class="actu-corps">
+          <span class="actu-date">Juillet 2026</span>
+          <h3>Les foodtrucks de l'été</h3>
+          <p>Le planning des foodtrucks qui s'installent devant La Cabane est mis à jour chaque semaine sur notre Instagram.</p>
+        </div>
+      </article>
+      <article class="actu anim d1">
+        <div class="actu-img"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=700&q=80&auto=format&fit=crop" alt="Habitants présentant un projet lors d'une réunion"></div>
+        <div class="actu-corps">
+          <span class="actu-date">Juillet 2026</span>
+          <h3>Appel à projets habitants</h3>
+          <p>Vous avez une idée pour le quartier ? La Cabane vous accompagne pour la monter et vous prête ses espaces.</p>
+        </div>
+      </article>
+      <article class="actu anim d2">
+        <div class="actu-img"><img src="https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=700&q=80&auto=format&fit=crop" alt="Atelier de réparation d'objets du quotidien"></div>
+        <div class="actu-corps">
+          <span class="actu-date">Juin 2026</span>
+          <h3>Atelier réparation : nouveaux créneaux</h3>
+          <p>L'atelier bricolage ouvre de nouveaux créneaux accompagnés. Inscription à l'accueil ou par téléphone.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. STATS ============ -->
+<section class="stats">
+  <div class="wrap">
+    <div class="centre anim">
+      <span class="surtitre" style="background:rgba(255,255,255,.15);color:#fff">En chiffres</span>
+      <h2>La Cabane aujourd'hui</h2>
+      <div class="trait"></div>
+    </div>
+    <div class="stats-grille">
+      <div class="stat anim"><span class="stat-nb" data-cible="4.8" data-decimal="1">0</span><span class="stat-lbl">Note Google</span></div>
+      <div class="stat anim d1"><span class="stat-nb" data-cible="105" data-suffixe=" m²">0</span><span class="stat-lbl">Salle à louer</span></div>
+      <div class="stat anim d2"><span class="stat-nb" data-cible="93" data-suffixe=" pers.">0</span><span class="stat-lbl">Capacité maximale</span></div>
+      <div class="stat anim d3"><span class="stat-nb" data-cible="7" data-suffixe="j/7">0</span><span class="stat-lbl">Ouvert 8h – 21h</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11. AVIS ============ -->
+<section>
+  <div class="wrap">
+    <div class="centre anim">
+      <span class="surtitre">Témoignages</span>
+      <h2>Ce qu'en disent les habitants</h2>
+      <div class="trait"></div>
+      <p class="intro">4,8 sur 5 sur Google. Le quartier s'est approprié le lieu.</p>
+    </div>
+    <div class="avis-grille">
+      <article class="avis anim">
+        <p class="avis-txt">Le service de réception de colis m'a changé la vie. Plus besoin de courir au point relais après le boulot, tout est à cinq minutes à pied.</p>
+        <div class="avis-pied">
+          <span class="avis-av" aria-hidden="true">C</span>
+          <span><span class="avis-nom">Camille D.</span><span class="avis-meta"><span class="etoiles" aria-hidden="true">★★★★★</span> · Habitante ViaSilva</span></span>
+        </div>
+      </article>
+      <article class="avis anim d1">
+        <p class="avis-txt">Nous avons loué la salle pour notre assemblée générale. Espace bien pensé, accueil au top et un tarif qui reste accessible pour une association.</p>
+        <div class="avis-pied">
+          <span class="avis-av" aria-hidden="true">P</span>
+          <span><span class="avis-nom">Pascal M.</span><span class="avis-meta"><span class="etoiles" aria-hidden="true">★★★★★</span> · Association locale</span></span>
+        </div>
+      </article>
+      <article class="avis anim d2">
+        <p class="avis-txt">L'atelier bricolage est une vraie bonne idée. J'y ai réparé deux chaises que j'allais jeter, avec les conseils de quelqu'un qui savait faire.</p>
+        <div class="avis-pied">
+          <span class="avis-av" aria-hidden="true">S</span>
+          <span><span class="avis-nom">Sophie L.</span><span class="avis-meta"><span class="etoiles" aria-hidden="true">★★★★★</span> · Habitante Cesson</span></span>
+        </div>
+      </article>
+      <article class="avis anim d3">
+        <p class="avis-txt">Les soirées foodtruck devant La Cabane, c'est devenu le rendez-vous du quartier. On y croise tout le monde, c'est exactement ce qui manquait ici.</p>
+        <div class="avis-pied">
+          <span class="avis-av" aria-hidden="true">N</span>
+          <span><span class="avis-nom">Nicolas B.</span><span class="avis-meta"><span class="etoiles" aria-hidden="true">★★★★★</span> · Habitant ViaSilva</span></span>
+        </div>
+      </article>
+    </div>
+    <p class="note-mention">⚠️ <strong>Maquette de démonstration</strong> — ces témoignages sont des exemples illustratifs. La note de 4,8/5 correspond à la donnée Google réelle du lieu.</p>
+  </div>
+</section>
+
+<!-- ============ 12. LOCALISATION ============ -->
+<section id="acces" class="fond-gris">
+  <div class="wrap">
+    <div class="centre anim">
+      <span class="surtitre">Nous trouver</span>
+      <h2>Localisation &amp; accès</h2>
+      <div class="trait"></div>
+      <p class="intro">Au cœur du quartier ViaSilva, à Cesson-Sévigné, accessible à pied, à vélo et en transports.</p>
+    </div>
+    <div class="duo" style="margin-top:52px">
+      <div class="carte-zone anim">
+        <iframe
+          src="https://www.google.com/maps?q=La+Cabane,+Avenue+des+Champs+Blancs,+35510+Cesson-S%C3%A9vign%C3%A9&output=embed"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Carte Google Maps indiquant La Cabane dans le quartier ViaSilva à Cesson-Sévigné"></iframe>
+      </div>
+      <div class="anim d1">
+        <h3>Informations pratiques</h3>
+        <ul class="infos-liste">
+          <li><span class="infos-ico" aria-hidden="true">📍</span><span><strong>Adresse</strong><span><a href="https://www.google.com/maps/search/La+Cabane+Cesson-S%C3%A9vign%C3%A9" target="_blank" rel="noopener noreferrer">Quartier ViaSilva, Cesson-Sévigné (35510)</a></span></span></li>
+          <li><span class="infos-ico" aria-hidden="true">📞</span><span><strong>Téléphone</strong><span><a href="tel:+33608165803">06 08 16 58 03</a></span></span></li>
+          <li><span class="infos-ico" aria-hidden="true">🕒</span><span><strong>Ouverture</strong><span>Tous les jours de 8h à 21h.</span></span></li>
+          <li><span class="infos-ico" aria-hidden="true">🚇</span><span><strong>Métro</strong><span>Ligne b — station ViaSilva, à quelques minutes à pied.</span></span></li>
+          <li><span class="infos-ico" aria-hidden="true">🚲</span><span><strong>Vélo</strong><span>Quartier desservi par les pistes cyclables et stationnements vélo.</span></span></li>
+          <li><span class="infos-ico" aria-hidden="true">🚗</span><span><strong>Voiture</strong><span>Stationnement disponible à proximité immédiate.</span></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 13. FAQ ============ -->
+<section>
+  <div class="wrap">
+    <div class="centre anim">
+      <span class="surtitre">Questions fréquentes</span>
+      <h2>On vous répond</h2>
+      <div class="trait"></div>
+    </div>
+    <div class="faq anim">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Faut-il habiter ViaSilva pour venir ?</button>
+        <div class="faq-r"><p>Non. La Cabane est ouverte à tous. Les habitants du quartier bénéficient de tarifs préférentiels sur certains services de conciergerie, mais le lieu, la salle et la recyclerie sont accessibles largement au-delà.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Comment réserver la salle ?</button>
+        <div class="faq-r"><p>Contactez-nous par téléphone au 06 08 16 58 03 ou via le formulaire de cette page en précisant votre date, le créneau souhaité et le nombre de participants. Nous revenons vers vous avec les disponibilités et les conditions.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Quel est le tarif de location de la salle ?</button>
+        <div class="faq-r"><p>Le tarif dépend du type d'organisateur (association, entreprise, particulier), de la durée et du créneau. Contactez-nous pour recevoir la grille tarifaire correspondant à votre situation.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Comment fonctionne la recyclerie ?</button>
+        <div class="faq-r"><p>Vous déposez les objets dont vous n'avez plus l'usage, à condition qu'ils soient en état de servir. Et vous pouvez repartir avec ce qui vous intéresse. L'objectif est simple : éviter que des objets utilisables finissent à la déchetterie.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">L'atelier bricolage est-il accessible librement ?</button>
+        <div class="faq-r"><p>L'accès se fait sur inscription, pour des raisons de sécurité et de gestion des outils. Renseignez-vous à l'accueil pour connaître les créneaux disponibles et les modalités.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Comment savoir quel foodtruck est présent ?</button>
+        <div class="faq-r"><p>Le planning des foodtrucks est publié régulièrement sur notre compte Instagram. C'est le moyen le plus fiable de savoir qui s'installe et quand.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Peut-on proposer un projet ou une animation ?</button>
+        <div class="faq-r"><p>Oui, c'est même encouragé. La Cabane lance des appels à projets et accompagne les initiatives d'habitants en mettant à disposition ses espaces et son réseau. Parlez-nous de votre idée.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Le lieu est-il accessible aux personnes à mobilité réduite ?</button>
+        <div class="faq-r"><p>Oui, La Cabane est un équipement récent conçu pour être accessible. Si vous avez un besoin spécifique pour un événement, signalez-le nous en amont afin que nous adaptions la configuration.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 14. HORAIRES ============ -->
+<section class="fond-gris">
+  <div class="wrap">
+    <div class="centre anim">
+      <span class="surtitre">Ouverture</span>
+      <h2>Nos horaires</h2>
+      <div class="trait"></div>
+    </div>
+    <div class="horaires anim">
+      <table>
+        <caption style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Horaires d'ouverture de La Cabane</caption>
+        <thead><tr><th scope="col">Jour</th><th scope="col">Horaires</th></tr></thead>
+        <tbody id="tbl-horaires">
+          <tr data-jour="1"><td class="jour">Lundi</td><td>8h00 – 21h00</td></tr>
+          <tr data-jour="2"><td class="jour">Mardi</td><td>8h00 – 21h00</td></tr>
+          <tr data-jour="3"><td class="jour">Mercredi</td><td>8h00 – 21h00</td></tr>
+          <tr data-jour="4"><td class="jour">Jeudi</td><td>8h00 – 21h00</td></tr>
+          <tr data-jour="5"><td class="jour">Vendredi</td><td>8h00 – 21h00</td></tr>
+          <tr data-jour="6"><td class="jour">Samedi</td><td>8h00 – 21h00</td></tr>
+          <tr data-jour="0"><td class="jour">Dimanche</td><td>8h00 – 21h00</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note-horaires">Certains services de conciergerie ont des créneaux spécifiques.<br>Fermetures exceptionnelles annoncées sur Instagram.</p>
+  </div>
+</section>
+
+<!-- ============ 15. CONTACT ============ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="centre anim">
+      <span class="surtitre">Écrivez-nous</span>
+      <h2>Contact</h2>
+      <div class="trait"></div>
+      <p class="intro">Une question, une demande de réservation de salle ou un projet à proposer ? On vous répond vite.</p>
+    </div>
+    <div class="contact-duo">
+      <div class="form-boite anim">
+        <h3>Nous envoyer un message</h3>
+        <form id="form-contact" novalidate>
+          <div class="champs">
+            <div class="champ">
+              <label for="c-nom">Nom *</label>
+              <input type="text" id="c-nom" name="nom" placeholder="Votre nom" required>
+              <span class="err-msg" data-err="c-nom">Merci d'indiquer votre nom.</span>
+            </div>
+            <div class="champ">
+              <label for="c-tel">Téléphone</label>
+              <input type="tel" id="c-tel" name="tel" placeholder="06 12 34 56 78">
+            </div>
+            <div class="champ plein">
+              <label for="c-email">E-mail *</label>
+              <input type="email" id="c-email" name="email" placeholder="vous@exemple.fr" required>
+              <span class="err-msg" data-err="c-email">Adresse e-mail invalide.</span>
+            </div>
+            <div class="champ plein">
+              <label for="c-objet">Votre demande</label>
+              <select id="c-objet" name="objet">
+                <option>Réserver la salle</option>
+                <option>Question sur les services de conciergerie</option>
+                <option>Atelier bricolage</option>
+                <option>Recyclerie</option>
+                <option>Proposer un projet</option>
+                <option>Autre</option>
+              </select>
+            </div>
+            <div class="champ plein">
+              <label for="c-msg">Message *</label>
+              <textarea id="c-msg" name="message" placeholder="Décrivez votre demande, votre date souhaitée, le nombre de participants…" required></textarea>
+              <span class="err-msg" data-err="c-msg">Merci d'écrire votre message (10 caractères minimum).</span>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primaire">Envoyer le message</button>
+          <div class="succes" id="succes-contact" role="status">
+            <span aria-hidden="true">✅</span>
+            <span><strong>Message envoyé.</strong> Merci ! Nous revenons vers vous sous 48 h. Pour une demande urgente, appelez-nous au 06 08 16 58 03.</span>
+          </div>
+        </form>
+      </div>
+      <div class="anim d1">
+        <h3>Coordonnées</h3>
+        <ul class="infos-liste">
+          <li><span class="infos-ico" aria-hidden="true">📞</span><span><strong>Téléphone</strong><span><a href="tel:+33608165803">06 08 16 58 03</a></span></span></li>
+          <li><span class="infos-ico" aria-hidden="true">✉️</span><span><strong>E-mail</strong><span><a href="mailto:contact@lacabane-viasilva.fr">contact@lacabane-viasilva.fr</a></span></span></li>
+          <li><span class="infos-ico" aria-hidden="true">📍</span><span><strong>Adresse</strong><span>Quartier ViaSilva, 35510 Cesson-Sévigné</span></span></li>
+          <li><span class="infos-ico" aria-hidden="true">🕒</span><span><strong>Aujourd'hui</strong><span id="contact-statut">—</span></span></li>
+        </ul>
+        <h4 style="margin-top:30px">Nous suivre</h4>
+        <div class="reseaux">
+          <a href="https://www.instagram.com/la_cabane_viasilva/" target="_blank" rel="noopener noreferrer" class="reseau" aria-label="Instagram de La Cabane">📷</a>
+          <a href="https://www.facebook.com/p/La-Cabane-61556594023192/" target="_blank" rel="noopener noreferrer" class="reseau" aria-label="Facebook de La Cabane">👍</a>
+          <a href="https://www.google.com/maps/search/La+Cabane+Cesson-S%C3%A9vign%C3%A9" target="_blank" rel="noopener noreferrer" class="reseau" aria-label="Fiche Google Maps de La Cabane">🗺️</a>
+        </div>
+        <p style="margin-top:22px;font-size:.9rem">Retrouvez le programme des foodtrucks, des ateliers et des événements sur notre compte Instagram <a href="https://www.instagram.com/la_cabane_viasilva/" target="_blank" rel="noopener noreferrer" style="color:var(--primaire);font-weight:600">@la_cabane_viasilva</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ 16. FOOTER ============ -->
+<footer class="pied">
+  <div class="wrap">
+    <div class="pied-grille">
+      <div>
+        <div class="logo" style="margin-bottom:16px">
+          <span class="logo-mark" aria-hidden="true">🏡</span>
+          <span class="logo-txt">
+            <span class="logo-nom">La Cabane</span>
+            <span class="logo-sous">ViaSilva · Cesson</span>
+          </span>
+        </div>
+        <p>La conciergerie du quotidien du quartier ViaSilva à Cesson-Sévigné. Accueil, salle à louer, atelier bricolage et recyclerie. Ouvert tous les jours de 8h à 21h.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#concept">Le lieu</a></li>
+          <li><a href="#services">Nos services</a></li>
+          <li><a href="#salle">Louer la salle</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#actus">Actualités</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Nous joindre</h4>
+        <ul>
+          <li><a href="tel:+33608165803">06 08 16 58 03</a></li>
+          <li><a href="mailto:contact@lacabane-viasilva.fr">contact@lacabane-viasilva.fr</a></li>
+          <li><a href="https://www.instagram.com/la_cabane_viasilva/" target="_blank" rel="noopener noreferrer">@la_cabane_viasilva</a></li>
+          <li><a href="#acces">Accès &amp; plan</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pied-bas">
+      <span>© 2026 La Cabane — Quartier ViaSilva, Cesson-Sévigné</span>
+      <span class="signature"><span class="signature-pt" aria-hidden="true"></span>Site conçu par WALTER Studio</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ---------- Menu burger ---------- */
+  var burger = document.getElementById('burger');
+  var nav = document.getElementById('nav');
+  burger.addEventListener('click', function(){
+    var ouvert = nav.classList.toggle('ouvert');
+    burger.classList.toggle('actif', ouvert);
+    burger.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+    burger.setAttribute('aria-label', ouvert ? 'Fermer le menu' : 'Ouvrir le menu');
+  });
+  nav.addEventListener('click', function(e){
+    if(e.target.tagName === 'A'){
+      nav.classList.remove('ouvert');
+      burger.classList.remove('actif');
+      burger.setAttribute('aria-expanded','false');
+    }
+  });
+
+  /* ---------- Header au scroll ---------- */
+  var entete = document.getElementById('entete');
+  window.addEventListener('scroll', function(){
+    entete.classList.toggle('defile', window.scrollY > 30);
+  }, {passive:true});
+
+  /* ---------- IntersectionObserver ---------- */
+  var elements = document.querySelectorAll('.anim');
+  if('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entrees){
+      entrees.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add('vu');
+          if(e.target.querySelector('.stat-nb')) compteur(e.target);
+          obs.unobserve(e.target);
+        }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -60px 0px'});
+    elements.forEach(function(el){ obs.observe(el); });
+  } else {
+    elements.forEach(function(el){ el.classList.add('vu'); });
+  }
+
+  /* ---------- Compteurs ---------- */
+  function compteur(bloc){
+    var el = bloc.querySelector('.stat-nb');
+    if(!el || el.dataset.fait) return;
+    el.dataset.fait = '1';
+    var cible = parseFloat(el.dataset.cible);
+    var dec = parseInt(el.dataset.decimal || '0', 10);
+    var suf = el.dataset.suffixe || '';
+    var debut = performance.now(), duree = 1500;
+    function pas(t){
+      var p = Math.min((t - debut) / duree, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      var val = cible * eased;
+      el.textContent = (dec ? val.toFixed(dec).replace('.', ',') : Math.round(val)) + suf;
+      if(p < 1) requestAnimationFrame(pas);
+    }
+    requestAnimationFrame(pas);
+  }
+
+  /* ---------- Accordéon FAQ ---------- */
+  document.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.parentElement;
+      var rep = item.querySelector('.faq-r');
+      var ouvert = item.classList.contains('ouvert');
+      document.querySelectorAll('.faq-item.ouvert').forEach(function(o){
+        o.classList.remove('ouvert');
+        o.querySelector('.faq-r').style.maxHeight = null;
+        o.querySelector('.faq-q').setAttribute('aria-expanded','false');
+      });
+      if(!ouvert){
+        item.classList.add('ouvert');
+        rep.style.maxHeight = rep.scrollHeight + 'px';
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+
+  /* ---------- Horaires : ouvert maintenant ? (8h-21h tous les jours) ---------- */
+  var OUVERTURE = 480;  /* 8h00 */
+  var FERMETURE = 1260; /* 21h00 */
+
+  function fmt(m){
+    var h = Math.floor(m/60), mn = m%60;
+    return h + 'h' + (mn < 10 ? '0'+mn : mn);
+  }
+  function majStatut(){
+    var d = new Date();
+    var mnt = d.getHours()*60 + d.getMinutes();
+    var ouvert = mnt >= OUVERTURE && mnt < FERMETURE;
+    var texte = ouvert
+      ? "Ouvert · jusqu'à " + fmt(FERMETURE)
+      : 'Fermé · ouvre à ' + fmt(OUVERTURE);
+
+    var el = document.getElementById('statut-ouverture');
+    if(el){
+      el.textContent = texte;
+      el.classList.toggle('ferme', !ouvert);
+    }
+    var el2 = document.getElementById('contact-statut');
+    if(el2) el2.textContent = texte;
+
+    var jour = d.getDay();
+    document.querySelectorAll('#tbl-horaires tr').forEach(function(t){ t.classList.remove('aujourdhui'); });
+    var ligne = document.querySelector('#tbl-horaires tr[data-jour="' + jour + '"]');
+    if(ligne) ligne.classList.add('aujourdhui');
+  }
+  majStatut();
+  setInterval(majStatut, 30000);
+
+  /* ---------- Validation formulaire ---------- */
+  function marque(input, ok){
+    input.classList.toggle('err', !ok);
+    var msg = document.querySelector('.err-msg[data-err="' + input.id + '"]');
+    if(msg) msg.classList.toggle('on', !ok);
+    return ok;
+  }
+  var reMail = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
+
+  var formContact = document.getElementById('form-contact');
+  formContact.addEventListener('submit', function(e){
+    e.preventDefault();
+    var ok = true;
+    var nom = document.getElementById('c-nom');
+    var mail = document.getElementById('c-email');
+    var msg = document.getElementById('c-msg');
+    if(!marque(nom, nom.value.trim().length > 0)) ok = false;
+    if(!marque(mail, reMail.test(mail.value.trim()))) ok = false;
+    if(!marque(msg, msg.value.trim().length >= 10)) ok = false;
+    if(ok){
+      document.getElementById('succes-contact').classList.add('on');
+      formContact.querySelector('button[type="submit"]').disabled = true;
+      formContact.reset();
+      document.getElementById('succes-contact').scrollIntoView({behavior:'smooth', block:'center'});
+    }
+  });
+
+  document.querySelectorAll('input, select, textarea').forEach(function(el){
+    el.addEventListener('input', function(){
+      if(el.classList.contains('err')) marque(el, true);
+    });
+  });
+})();
+</script>
+</body>
+</html>
